@@ -5,7 +5,7 @@ This chat is for COACH only. Paste this whole file into the new chat. The source
 ## What COACH is
 My own calorie, nutrition and hydration tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub.
 
-Current version: **v143**.
+Current version: **v144**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -43,10 +43,19 @@ Current version: **v143**.
 - `VERSION`: bump this for every build.
 - `build.py`: `python3 build.py` builds `dist/`, `coach_vN.zip` and `index.preview.html`.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **119 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, and the v142 store.
+- `tests/run.js`: the test pack, **133 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, and Muse sync (mock GitHub, v144).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v144 (this chat)
+- **Sync with Muse.** Same pattern as Jot sync (v35): food, water, weight and training days sync to ONE file, `coach-sync.json`, in a **private** repo `baileywalsh-maker/coach-sync` (Bailey creates it, installs the Muse GitHub App on it, and pastes a fine-grained token — Contents read/write on that repo only — into Settings → Sync with Muse). Full design + Muse's instructions: `_source/COACH_SYNC.md`. Code: `src/js/44-muse-sync.js`.
+- **What syncs:** one record per day (food entries, water in ml, complete tick, training tick) plus the weight log. What never syncs: profile, targets, target snapshots, My foods, label fixes, reviews, adjust log, recents, settings.
+- **Merge:** three-way by day, then by entry id, against the last good sync — same rules as Jot. A day changed on both sides merges entry by entry (newer `upd` wins, listed in Settings); water keeps the larger amount; ticks are kept if either side ticked them; a date weighed on both sides keeps the phone's reading.
+- **Entry ids:** food entries never had ids, so sync stamps a stable `id` (and `upd` when the food changes) on every save, in `saveEntries`. Entries restored from a backup get ids on the next sync. The id changes nothing the app shows, and old days keep working.
+- **Token safety:** the token and the sync state live under `coachmusesync*` keys and are left out of both backup paths (a test checks this). They are never in the app code.
+- **Still to do (needs Bailey):** create the private `coach-sync` repo, install the Muse GitHub App on it, make the token, paste it in Settings, open COACH, tap Sync now, and check a test entry Muse adds appears. Sync is **not** proved live until that run — same as Jot was.
+- **Workouts:** the sync file has a `workouts` slot, empty for now — there is no workout logging yet, only the training-day tick. When workout logging lands, its entries go there, merged like food entries.
 
 ## v143 (this chat)
 - **Search:** forgives typos (one slip in 5+ letter words, two in 8+), ignores accents ("nestle" finds Nestlé), finds words typed together ("mullerlight"). Close spellings sit below exact matches, marked "close spelling". If the live search finds little, it retries with the close spelling.
