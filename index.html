@@ -1895,6 +1895,7 @@
   .rvx-tile span{display:block; font-size:11.5px; color:var(--t3); margin-top:3px; line-height:1.35;}
   .rvx-p{margin:0 0 10px; font-size:13px; color:var(--t2); line-height:1.55;}
   .rvx-p b{color:var(--t1);}
+  .rvx-dot{color:var(--t3); padding:0 2px;}
   .rvx-wrow{display:flex; align-items:center; gap:10px; margin-bottom:7px; font-size:11.5px;}
   .rvx-wrow span{width:34px; color:var(--t3);} .rvx-wrow em{width:44px; text-align:right; font-style:normal; color:var(--t2);}
   .rvx-wrow div{flex:1; height:6px; background:var(--n3); border-radius:3px; overflow:hidden;}
@@ -3392,8 +3393,8 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
 </div>
 
 <script src="zxing.js" onerror="window.__zxingFailed=true"></script>
-<script>window.COACH_PACKETS = "packets.02def9fd13.txt"; window.COACH_VERSION = "142";</script>
-<script src="foods.1280b87412.js"></script>
+<script>window.COACH_PACKETS = "packets.7b4a23dc1c.txt"; window.COACH_VERSION = "143";</script>
+<script src="foods.b1246bfd58.js"></script>
 <script>
 /* v117: bulk food data is kept as plain text in the blocks above and read here,
    once, at the same point the old inline lists were defined. The block is then
@@ -4769,13 +4770,11 @@ function renderLearned(){
                       ' on three weeks ago.';
   }
 
-  const tail = { solid:  'That is a solid sample — treat it as a number.',
-                 usable: 'Enough to act on, not enough to be certain.',
-                 thin:   'Thin. Treat it as a direction, not a number.' }[r.tier];
+  // v143: one line - how much it rests on, and how far to trust it.
+  const tail = { solid: 'solid', usable: 'good enough to act on', thin: 'thin, a rough guide' }[r.tier];
   document.getElementById('learned-sample').innerHTML =
-    'From <b>' + r.confirmed + ' confirmed day' + (r.confirmed===1?'':'s') +
-    '</b> and <b>' + r.weighIns + ' weigh-in' + (r.weighIns===1?'':'s') +
-    '</b> in the last four weeks. ' + tail;
+    '<b>' + r.confirmed + '</b> day' + (r.confirmed===1?'':'s') + ' \u00b7 <b>' + r.weighIns + '</b> weigh-in' +
+    (r.weighIns===1?'':'s') + ' \u00b7 4 weeks \u00b7 ' + tail;
 }
 
 function renderDay(){
@@ -7459,9 +7458,31 @@ const HYD_MILK_PRO100 = 3.4;
 const HYD_ALC_ML_PER_G = 1.0;
 const HYD_ALC_STRONG  = 0.08;   // 8% ABV and over: the wine and spirits arm of Polhuis 2017
 
-// Cup and bottle sizes the chains publish themselves. Empty until filled from
-// their own sites; a drink with no known size is shown as "size unknown".
-const HYD_SIZES = {};
+// Cup and bottle sizes the chains publish themselves; a drink with no known
+// size is shown as "size unknown".
+// v143: Nando's own menus print each glass: Coca-Cola Classic GLASS 300ml,
+// Cloudy Lemonade GLASS 300ml, Orange Juice GLASS 295ml, RUBRO Iced Tea CAN
+// 300ml, Karma Gingerella BOTTLE 300ml, Pip Organic CARTON 180ml. A bottomless
+// drink is that same 300 ml glass, counted per glass.
+const HYD_SIZES = {
+  "Nando's Bottomless ": 300, "Nando's Coca-Cola Classic": 300, "Nando's Cloudy Lemonade": 300,
+  "Nando's Orange Juice": 295, "Nando's RUBRO ": 300, "Nando's Karma Drinks Gingerella": 300,
+  "Nando's Pip Organic": 180
+};
+/* v143: cup sizes as each chain prints them.
+   Starbucks (its own nutrition guide): Short 240, Tall 355, Grande 473,
+   Venti 591 ml. Iced drinks, liquid without the ice: Tall 192, Grande 273,
+   Venti 326 ml.
+   Tim Hortons UK (timhortons.co.uk, each drink's serving size): Small 12 oz,
+   Medium 16 oz, Large 20 oz = 355, 473, 591 ml. No liquid-without-ice figure
+   is published, so iced Tim Hortons drinks stay "size unknown".
+   KFC and Costa: Costa names already carry their ml; KFC publishes no cup
+   volumes (its bottles carry their size in the name). */
+const HYD_CHAIN_SIZES = {
+  'Starbucks': {Short: {hot: 240}, Tall: {hot: 355, icedLiquid: 192}, Grande: {hot: 473, icedLiquid: 273},
+                Venti: {hot: 591, icedLiquid: 326}},
+  'Tim Hortons': {Small: {hot: 355}, Medium: {hot: 473}, Large: {hot: 591}}
+};
 
 // Never a drink, whatever else the name says.
 const HYD_HARD_NOT = /\b(cakes?|cookies?|biscuits?|mcflurry|sundae|pies?|brownies?|muffins?|fries|crisps|munch|tinned|canned|sardines|beans|chickpeas|tomato(es)?|porridge|cereal|ice cream|yogh?urt|cheese|powder|dry mix|soup|minestrone|broth|sauce|curry|bread|pudding|custard|doughnuts?|croissant|pain au|pancakes?|waffles?|chocolate bar|milk chocolate|dairy milk|white chocolate|teacakes?|tea cake|tea loaf|in water|made with water|made up with water, as purchased|jelly|sorbet|lolly|cream liqueur truffle|bar\b|buttons|spread|fudge|toffee pieces|gums?|chestnuts?|butternut|melon|rice|noodles?|pasta|evaporated|condensed|coconut milk, canned|vinegar|syrup|gravy|stock|marinade|dressing)\b|\b\d+\s*g\b/i;
@@ -8073,6 +8094,8 @@ function wirePage(backdropId, closeFn){
 function openSheet(id){
   if(id==='add-backdrop'){
     renderRecents(); renderSavedMeals();
+    // v143: opened before the packets had loaded? Start now, not in a few seconds.
+    try{ if(typeof packetsLoad === 'function') packetsLoad(); }catch(e){}
     // The sheet opens on what you actually eat, not on an empty box.
     const si = document.getElementById('search-input');
     if(si && !si.value.trim()) renderUsuals();
@@ -8882,6 +8905,15 @@ function normalise(s){
   return t.trim();
 }
 
+/* v143: "Müller", "Nestlé", "crème fraîche" lost their accented letter to
+   normalise() and could never be found by typing them plainly. Search folds
+   accents first. normalise() itself is left exactly as it was, because saved
+   keys are built from it. */
+function foldAccents(s){
+  return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\u00df/g,'ss').replace(/[\u00f8\u00d8]/g,'o').replace(/[\u00e6\u00c6]/g,'ae');
+}
+
 function tokenise(s){
   return normalise(s).split(' ')
     // a leading count is how people type ("3 eggs", "2x coffee") and it matches nothing
@@ -8932,12 +8964,34 @@ function within1(a, b){
   return true;
 }
 
+/* v143: two slips in a long word ("bunderberg" for Bundaberg, "mozarella"
+   plus a missed key). Only for words of 8+ letters that start with the same
+   letter, so short words never turn into something else. */
+function within2(a, b){
+  const la = a.length, lb = b.length;
+  if(Math.abs(la - lb) > 2 || a[0] !== b[0]) return false;
+  let prev2 = null, prev = new Array(lb + 1);
+  for(let j = 0; j <= lb; j++) prev[j] = j;
+  for(let i = 1; i <= la; i++){
+    const cur = new Array(lb + 1); cur[0] = i; let rowMin = i;
+    for(let j = 1; j <= lb; j++){
+      const c = a[i-1] === b[j-1] ? 0 : 1;
+      let v = Math.min(prev[j] + 1, cur[j-1] + 1, prev[j-1] + c);
+      if(prev2 && i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]) v = Math.min(v, prev2[j-2] + 1);
+      cur[j] = v; if(v < rowMin) rowMin = v;
+    }
+    if(rowMin > 2) return false;
+    prev2 = prev; prev = cur;
+  }
+  return prev[lb] <= 2;
+}
+
 // HOW WELL a token matched, not just whether it did. "oats" found the word
 // "oats" in "rolled oats" and the singular stem "oat" in "oat milk" — both
 // counted as one match, both landed on the same score tier, and the tiebreak
 // on name length then handed the top slot to the milk. Anything further from
 // the word you actually typed now costs you.
-const Q_EXACT = 0, Q_STEM = 1, Q_SYN = 2, Q_PREFIX = 3, Q_TYPO = 4, Q_MISS = 9;
+const Q_EXACT = 0, Q_STEM = 1, Q_SYN = 2, Q_PREFIX = 3, Q_TYPO = 4, Q_TYPO2 = 6, Q_MISS = 9;
 function tokenQuality(v, words){
   let best = Q_MISS;
   for(const w of words){
@@ -8949,7 +9003,8 @@ function tokenQuality(v, words){
       // typed longer than the entry ("chickens" vs "chicken")
       if(p.length > 4 && w.length > 4 && p.startsWith(w)){ if(best > Q_PREFIX) best = Q_PREFIX; continue; }
       // a single typo anywhere in a reasonably long word
-      if(p.length >= 5 && w.length >= 5 && within1(p, w)){ if(best > Q_TYPO) best = Q_TYPO; }
+      if(p.length >= 5 && w.length >= 5 && within1(p, w)){ if(best > Q_TYPO) best = Q_TYPO; continue; }
+      if(best > Q_TYPO2 && p.length >= 8 && w.length >= 7 && within2(p, w)) best = Q_TYPO2;
     }
   }
   return best;
@@ -9022,7 +9077,7 @@ function searchLocal(q, source, withScore){
    is judged by the SAME function against this, which is the only way one
    merged list can be ordered honestly. */
 function queryCtx(q){
-  const raw = brandAlias(String(q||'').toLowerCase()).trim();
+  const raw = foldAccents(brandAlias(String(q||'').toLowerCase())).trim();
   if(!raw) return null;
   const qTokens = tokenise(raw);
   if(!qTokens.length) return null;
@@ -9042,10 +9097,10 @@ function nameParts(name){
   let m = NAME_MEMO.get(name);
   if(m) return m;
   if(NAME_MEMO.size > 60000) NAME_MEMO.clear();
-  const norm = normalise(brandAlias(name));
+  const norm = normalise(foldAccents(brandAlias(name)));
   const c = name.indexOf(',');
   m = {norm: norm, words: norm.split(' '), lower: name.toLowerCase(),
-       head: c < 0 ? null : normalise(name.slice(0, c)).split(' '), comma: c >= 0};
+       head: c < 0 ? null : normalise(foldAccents(name.slice(0, c))).split(' '), comma: c >= 0};
   NAME_MEMO.set(name, m);
   return m;
 }
@@ -12787,11 +12842,15 @@ function searchCandidates(q){
    moment they land, rather than sitting in a section of their own. */
 let searchQ = '', searchSeq = 0, searchExtra = [], searchPending = 0, searchNote = '';
 
+let candMemo = {seq: -1, q: null, list: []};
 function searchRender(){
   const box = document.getElementById('search-results');
   if(!box) return;
   const q = searchQ;
-  let list = searchCandidates(q).concat(searchExtra);
+  /* v143: worked out once per letter typed. It used to be done twice (once
+     straight away, once as the live search set off) for the same answer. */
+  if(candMemo.seq !== searchSeq || candMemo.q !== q) candMemo = {seq: searchSeq, q: q, list: searchCandidates(q)};
+  let list = candMemo.list.concat(searchExtra);
 
   /* One row per food. Where two places have the same thing and match about as
      well, the one that knows MORE about it wins - 30 nutrients beats 6, and
@@ -12857,7 +12916,7 @@ function renderSearch(q){
   if(q.length >= 3){
     // v135: UK packets kept on the phone are in the first list, not half a
     // second later - fewer rows arriving after you have started to tap.
-    try{ brandRowsFrom(packetHits(q, 40), q); }catch(e){}
+    try{ brandRowsFrom(packetSearch(q, 40), q); }catch(e){}
   }
   searchRender();
   if(q.length < 3) return;
@@ -12895,8 +12954,18 @@ function brandRowsFrom(products, q, ctx){
       if(c) looseCtxs.push(c);
     });
   }
+  const closeCtx = {};
   products.forEach(p=>{
     const brand = p.brands ? String(p.brands).split(',')[0].trim() : '';
+    /* v143: a packet found through a close spelling of what you typed is
+       judged against that spelling, and always sits below the exact ones. */
+    if(p._close){
+      const cc = closeCtx[p._close] || (closeCtx[p._close] = queryCtx(p._close));
+      const c0 = matchCost(cc, p.product_name, brand + ' ' + (p.quantity || ''), {wordy: true});
+      if(c0 === null) return;
+      pushBrandRow(p, brand, c0 + 45, 'close spelling');
+      return;
+    }
     /* A packet is matched on its name AND its brand, and judged with the wordy
        rule, because a product name is a shelf label, not a dish. */
     let cost = matchCost(ctx, p.product_name, brand + ' ' + (p.quantity || ''), {wordy: true});
@@ -12907,23 +12976,27 @@ function brandRowsFrom(products, q, ctx){
       }
     }
     if(cost === null) return;
-    const kc = Math.round(kcalFrom(p.nutriments, p));
-    const food = offToFood(p);
-    const bits = ['per 100 ' + (food.basis === 'ml' ? 'ml' : 'g')];
-    if(brand) bits.push(brand);
-    if(p.quantity) bits.push(String(p.quantity).trim());
-    searchExtra.push({kind: 'brand', name: p.product_name,
-      cost: cost + offPlaceCost(p) + SRC_BIAS.brand,
-      sub: esc(bits.join(' \u00b7 ')), tag: foodKind(food),
-      kcal: kc, kcalUnit: '/100' + (food.basis === 'ml' ? 'ml' : 'g'),
-      food: food, onAdd: ()=>openPortion(food)});
+    pushBrandRow(p, brand, cost);
   });
+}
+function pushBrandRow(p, brand, cost, note){
+  const kc = Math.round(kcalFrom(p.nutriments, p));
+  const food = offToFood(p);
+  const bits = ['per 100 ' + (food.basis === 'ml' ? 'ml' : 'g')];
+  if(brand) bits.push(brand);
+  if(p.quantity) bits.push(String(p.quantity).trim());
+  if(note) bits.push(note);
+  searchExtra.push({kind: 'brand', name: p.product_name,
+    cost: cost + offPlaceCost(p) + SRC_BIAS.brand,
+    sub: esc(bits.join(' \u00b7 ')), tag: foodKind(food),
+    kcal: kc, kcalUnit: '/100' + (food.basis === 'ml' ? 'ml' : 'g'),
+    food: food, onAdd: ()=>openPortion(food)});
 }
 
 let mergedBrandTimer = null;
 function scheduleMergedBranded(q, seq){
   clearTimeout(mergedBrandTimer);
-  mergedBrandTimer = setTimeout(()=>mergedBranded(q, seq), 420);
+  mergedBrandTimer = setTimeout(()=>mergedBranded(q, seq), 300);
 }
 
 async function mergedBranded(q, seq){
@@ -12936,7 +13009,7 @@ async function mergedBranded(q, seq){
   // the same barcode; the rest are added, so a shelf product turns up with
   // no signal at all.
   let local = [];
-  try{ local = packetHits(q, 40); }catch(e){ local = []; }
+  try{ local = packetSearch(q, 40); }catch(e){ local = []; }
   if(err && !local.length){
     searchNote = 'Could not reach the product database ('+esc(err.message)+
       '). Everything above still works offline.';
@@ -12944,6 +13017,19 @@ async function mergedBranded(q, seq){
     return;
   }
   if(err) searchNote = 'No signal \u2014 showing UK packets saved on this phone.';
+  /* v143: the live search found little and what you typed looks like a slip
+     ("bunderberg"): ask again with the close spelling, shown below. */
+  if(!err && products.length < 5){
+    let fixed = null; try{ fixed = packetCorrect(q); }catch(e){}
+    if(fixed){
+      try{
+        const more = await brandedFetch(fixed);
+        if(seq !== searchSeq) return;
+        const have = new Set(products.map(p => String(p.code || '')));
+        more.forEach(p => { if(!have.has(String(p.code || ''))){ p._close = fixed; products.push(p); } });
+      }catch(e){}
+    }
+  }
   if(local.length){
     const codes = new Set(products.map(p => String(p.code || '').replace(/^0+/, '')));
     products = products.concat(local.filter(p => !codes.has(String(p.code).replace(/^0+/, ''))));
@@ -12955,7 +13041,7 @@ async function mergedBranded(q, seq){
 let mergedUsdaTimer = null;
 function scheduleMergedUsda(q, seq){
   clearTimeout(mergedUsdaTimer);
-  mergedUsdaTimer = setTimeout(()=>mergedUsda(q, seq), 420);
+  mergedUsdaTimer = setTimeout(()=>mergedUsda(q, seq), 300);
 }
 
 async function mergedUsda(q, seq){
@@ -13185,7 +13271,18 @@ function queryLadder(q){
   return out.slice(0, aliased ? 9 : 7);
 }
 
+/* v143: answers kept for the session, so going back a letter, or searching
+   the same thing twice, is instant and costs nothing. */
+const OFF_MEMO = new Map();
 async function offSearch(term, signalSeq){
+  const hit = OFF_MEMO.get(term);
+  if(hit && Date.now() - hit.at < 30 * 60000) return hit.list.map(p => Object.assign({}, p));
+  const list = await offSearchLive(term);
+  OFF_MEMO.set(term, {at: Date.now(), list: list});
+  if(OFF_MEMO.size > 80) OFF_MEMO.delete(OFF_MEMO.keys().next().value);
+  return list.map(p => Object.assign({}, p));
+}
+async function offSearchLive(term){
   // Sorting by scan count puts the product people actually buy at the top,
   // instead of an obscure variant that happens to match the string.
   const url = 'https://search.openfoodfacts.org/search?q=' + encodeURIComponent(term) +
@@ -13329,7 +13426,7 @@ function offToFood(p){
    here before giving up. Nothing here is written to storage.
    Line: code|name|brand|quantity|serving g|kcal|protein|carbs|fat|sugars|sat|fibre|salt
    ============================================================ */
-let pkLines = null, pkHay = null, pkByCode = null, pkLoading = null;
+let pkLines = null, pkHay = null, pkByCode = null, pkLoading = null, pkWords = null;
 function packetsLoad(){
   if(pkLines || pkLoading) return pkLoading;
   pkLoading = fetch(window.COACH_PACKETS || 'uk_packets.txt').then(r=>{
@@ -13340,10 +13437,12 @@ function packetsLoad(){
     const hay = new Array(L.length), by = new Map();
     for(let i = 0; i < L.length; i++){
       const p = L[i].split('|', 4);
-      hay[i] = (p[1] + ' ' + p[2]).toLowerCase().replace(/[‘’']/g, '');
+      hay[i] = foldAccents((p[1] + ' ' + p[2]).toLowerCase()).replace(/[‘’']/g, '');
       by.set(p[0].replace(/^0+/, ''), i);
     }
-    pkLines = L; pkHay = hay; pkByCode = by;
+    pkLines = L; pkHay = hay; pkByCode = by; pkWords = null;
+    // The word list for close spellings is built when the phone is idle.
+    if('requestIdleCallback' in window) requestIdleCallback(()=>packetWords(), {timeout: 4000});
   }).catch(()=>{ pkLoading = null; });
   return pkLoading;
 }
@@ -13367,21 +13466,90 @@ function packetProduct(i){
   if(p[4]) prod.serving_quantity = Number(p[4]);
   return prod;
 }
+function packetQueryWords(q){
+  return tokenise(foldAccents(brandAlias(String(q || '').toLowerCase())).replace(/[‘’']/g, ''))
+    .filter(w => w && !SEARCH_FILLER.has(w));
+}
 function packetHits(q, max){
   if(!pkLines) return [];
-  const words = tokenise(brandAlias(String(q || '').toLowerCase()).replace(/[‘’']/g, ''))
-    .filter(w => w && !SEARCH_FILLER.has(w));
+  const words = packetQueryWords(q);
   if(!words.length) return [];
+  max = max || 40;
   const out = [];
   // The file is in order of how often each product is scanned, so the first
   // matches are the ones people actually buy.
-  for(let i = 0; i < pkHay.length && out.length < (max || 40); i++){
+  for(let i = 0; i < pkHay.length && out.length < max; i++){
     const h = pkHay[i];
     let all = true;
     for(const w of words){ if(h.indexOf(w) < 0){ all = false; break; } }
-    if(all) out.push(packetProduct(i));
+    if(all) out.push(i);
   }
-  return out;
+  // v143: one word typed with no spaces ("mullerlight", "cocacola").
+  if(out.length < 5 && words.length === 1 && words[0].length >= 6){
+    const w = words[0], have = new Set(out);
+    for(let i = 0; i < pkHay.length && out.length < max; i++){
+      if(have.has(i)) continue;
+      if(pkHay[i].replace(/[^a-z0-9]/g, '').indexOf(w) >= 0) out.push(i);
+    }
+  }
+  return out.map(packetProduct);
+}
+
+/* v143: close spellings. Every word on every packet, each pointing at the
+   packets it is on. Built once, when the phone is idle. */
+function packetWords(){
+  if(pkWords || !pkHay) return pkWords;
+  const m = new Map();
+  for(let i = 0; i < pkHay.length; i++){
+    const seen = new Set();
+    for(const w of pkHay[i].split(/[^a-z0-9]+/)){
+      if(w.length < 4 || seen.has(w)) continue;
+      seen.add(w);
+      let a = m.get(w); if(!a){ a = []; m.set(w, a); } a.push(i);
+    }
+  }
+  pkWords = m;
+  return m;
+}
+// The packet words close to one you typed, most common first.
+function packetNear(w){
+  const m = packetWords();
+  if(!m || w.length < 4) return [];
+  const out = [];
+  for(const [v, rows] of m){
+    if(v === w || Math.abs(v.length - w.length) > 2) continue;
+    if((w.length >= 5 && v.length >= 5 && within1(w, v)) || (w.length >= 8 && within2(w, v)) ||
+       (w.length === 4 && v.length === 4 && within1(w, v) && w[0] === v[0])) out.push([v, rows]);
+  }
+  return out.sort((a, b) => b[1].length - a[1].length).slice(0, 6);
+}
+/* What you typed with each word nobody uses swapped for its closest real
+   one: "bunderberg ginger" -> "bundaberg ginger". Null if nothing changed. */
+function packetCorrect(q){
+  const words = packetQueryWords(q);
+  if(!words.length || !packetWords()) return null;
+  let changed = false;
+  const fixed = words.map(w => {
+    if(w.length < 4 || pkWords.has(w)) return w;
+    // A word that is the start of real words is just not finished yet.
+    for(const v of pkWords.keys()){ if(v.length > w.length && v.startsWith(w)) return w; }
+    const near = packetNear(w);
+    if(!near.length) return w;
+    changed = true; return near[0][0];
+  });
+  return changed ? fixed.join(' ') : null;
+}
+/* Exact matches first. When there are fewer than five, packets matching a
+   close spelling of what you typed are added below them, marked _close. */
+function packetSearch(q, max){
+  const exact = packetHits(q, max);
+  if(exact.length >= 5 || !pkLines) return exact;
+  const fixed = packetCorrect(q);
+  if(!fixed) return exact;
+  const have = new Set(exact.map(p => p.code));
+  const close = packetHits(fixed, (max || 40) - exact.length)
+    .filter(p => !have.has(p.code)).map(p => { p._close = fixed; return p; });
+  return exact.concat(close);
 }
 function packetByCode(code){
   if(!pkByCode) return null;
@@ -16002,13 +16170,11 @@ function patternTips(nDays, opts){
       const avgShort = r.proMiss.reduce((s,x)=>s+x.by,0) / r.proMiss.length;
       const weak = weakestProteinMeal(nDays);
       const ideas = proteinIdeas(weak ? weak.gap : avgShort, 3);
-      let body = 'Protein finished short on <b>'+m.n+' of '+r.logged+'</b> logged days '+word+
-                 ', by '+fmt0(avgShort)+' g on average.';
+      // v143: the point first, in a line or two.
+      let body = 'Short on <b>'+m.n+' of '+r.logged+'</b> days '+word+', by '+fmt0(avgShort)+' g on average.';
       if(weak){
-        body += ' <b>'+esc(weak.meal)+'</b> is where the room is \u2014 it averages '+
-                fmt0(weak.avgKcal)+' kcal but only '+fmt0(weak.avgProtein)+' g of protein. '+
-                'On those calories it could carry about '+fmt0(weak.missed)+' g more '+
-                'without the day getting any bigger.';
+        body += ' <b>'+esc(weak.meal)+'</b> is the gap: '+fmt0(weak.avgKcal)+' kcal but only '+
+                fmt0(weak.avgProtein)+' g protein. Room for about '+fmt0(weak.missed)+' g more, same calories.';
       }
       tips.push({key:'protein', title: weak ? 'Your '+weak.meal.toLowerCase()+' is where protein slips'
                                             : 'Protein keeps finishing short',
@@ -16026,11 +16192,10 @@ function patternTips(nDays, opts){
         // thing to change - adding a meal beats enlarging three of them.
         const rare = mp.meals.filter(x=>x.frequency > 0 && x.frequency < 0.6)
                              .sort((a,b)=>a.frequency - b.frequency)[0];
-        let body = 'Calories came in under the band on <b>'+under.length+'</b> of '+r.logged+
-                   ' days, by '+fmt0(avg)+' kcal on average. On a build, under is the miss.';
+        let body = 'Under on <b>'+under.length+' of '+r.logged+'</b> days, by '+fmt0(avg)+' kcal on average.';
         if(rare){
-          body += ' You only ate '+esc(rare.meal.toLowerCase())+' on '+Math.round(rare.frequency*100)+
-                  '% of them \u2014 adding it back is '+fmt0(rare.avgKcal)+' kcal without changing anything else.';
+          body += ' '+esc(rare.meal)+' was skipped on '+Math.round((1 - rare.frequency)*100)+
+                  '% of days \u2014 adding it back is '+fmt0(rare.avgKcal)+' kcal.';
         }
         tips.push({key:'cal', title:'Under the calorie band', body,
                    ideas: calorieIdeas(avg, 3),
@@ -16040,10 +16205,8 @@ function patternTips(nDays, opts){
         const big = mp.meals.slice().sort((a,b)=>b.avgKcal - a.avgKcal)[0];
         tips.push({key:'cal',
           title:'Over the top of the band',
-          body:'Calories went past the ceiling on <b>'+over.length+'</b> of '+r.logged+' days, by '+
-               fmt0(avg)+' kcal on average. Past about 20% over, more of what you gain is fat rather '+
-               'than muscle.'+(big ? ' '+esc(big.meal)+' is your biggest meal at '+fmt0(big.avgKcal)+
-               ' kcal \u2014 that is where the room is.' : ''),
+          body:'Over on <b>'+over.length+' of '+r.logged+'</b> days, by '+fmt0(avg)+' kcal on average.'+
+               (big ? ' Biggest meal: '+esc(big.meal)+', '+fmt0(big.avgKcal)+' kcal.' : ''),
           ideas: [], ideaLead:''});
       }
     }
@@ -16053,9 +16216,7 @@ function patternTips(nDays, opts){
       const worst = worstQualityFoods(nDays, 3);
       tips.push({key:'quality',
         title:'Food quality is under your floor',
-        body:'The day scored below '+healthFloor()+' on <b>'+m.n+' of '+r.qualKnown+'</b> scored days '+
-             word+', by '+fmt0(avgShort)+' points on average.'+
-             (worst.length ? ' The same few things keep pulling it down.' : ''),
+        body:'Under '+healthFloor()+' on <b>'+m.n+' of '+r.qualKnown+'</b> days '+word+', by '+fmt0(avgShort)+' points on average.',
         ideas: [], ideaLead:'',
         worst: worst});
     }
@@ -16069,10 +16230,8 @@ function patternTips(nDays, opts){
     const names = {};
     MICROS.forEach(m=>{ names[m.k] = m.n; });
     const lowNames = weakSys.worst.map(x=>names[x.k] || x.k);
-    let body = '<b>'+esc(weakSys.sys.n)+'</b> came in under par on <b>'+weakSys.short+
-               ' of '+weakSys.judged+'</b> days '+word+', averaging '+weakSys.avg+'%. '+
-               esc(weakSys.sys.blurb);
-    if(lowNames.length) body += ' The gap is '+esc(andList(lowNames))+'.';
+    let body = 'Under par on <b>'+weakSys.short+' of '+weakSys.judged+'</b> days '+word+' (average '+weakSys.avg+'%).';
+    if(lowNames.length) body += ' Short on '+esc(andList(lowNames))+'.';
     // Foods that genuinely carry the nutrient, taken from the national tables
     // rather than from a list of things that sound healthy.
     const rich = weakSys.worst.length ? foodsRichIn(weakSys.worst[0].k, 3) : [];
@@ -16343,8 +16502,7 @@ function renderData(){
       (s.weights.length ? s.weights.length+' weigh-in'+(s.weights.length===1?'':'s') : 'nothing yet')+
     '</span></div>';
   if(wp.length < 2){
-    html += '<div class="dt-empty">Two weigh-ins in this window and the line appears. '+
-            'Weight moves too much day to day to read from a single reading.</div>';
+    html += '<div class="dt-empty">Two weigh-ins and the line appears.</div>';
   } else {
     // v137: against the plan, once there is enough to draw one.
     let wpm = null;
@@ -16408,8 +16566,7 @@ function renderData(){
     '<div class="dt-h"><span class="t">Averages</span><span class="s">'+
       s.confirmed+' confirmed day'+(s.confirmed===1?'':'s')+'</span></div>';
   if(!s.confirmed){
-    html += '<div class="dt-empty">Averages use days you have ticked as fully logged, so a day '+
-            'missing its dinner cannot drag them down. Tick a few and this fills in.</div>';
+    html += '<div class="dt-empty">Only ticked-complete days count here. Tick a few and this fills in.</div>';
   } else {
     html += '<div class="dt-stats">'+
       '<div><b>'+num(s.avgKcal)+'</b><span>kcal a day</span></div>'+
@@ -16435,8 +16592,7 @@ function renderData(){
     '<div class="dt-h"><span class="t">Food quality</span><span class="s">'+
       s.healthDays+' day'+(s.healthDays===1?'':'s')+' scored</span></div>';
   if(s.healthDays < 2){
-    html += '<div class="dt-empty">A day is scored once the food on it carries label figures. '+
-            'Scanned products bring their own; anything typed in by hand needs the packet numbers.</div>';
+    html += '<div class="dt-empty">Days get a score once their food has label figures. Scanned packets have them.</div>';
   } else {
     const hp = s.series.filter(x=>x.finished && x.health !== null).map(x=>({x:x.d.getTime(), y:x.health}));
     html += '<div class="dt-stats">'+
@@ -16461,14 +16617,12 @@ function renderData(){
   } else if(pat.thin){
     html += '<div class="dt-card"><div class="dt-h"><span class="t">What to change</span>'+
       '<span class="s">'+pat.record.logged+' logged</span></div>'+
-      '<div class="dt-empty">Four logged days and this starts spotting patterns. Anything less and '+
-      'it would be reading one bad Tuesday as a habit.</div></div>';
+      '<div class="dt-empty">Patterns show from four logged days.</div></div>';
   } else {
     html += '<div class="dt-card"><div class="dt-h"><span class="t">What to change</span>'+
       '<span class="s">over '+pat.record.logged+' logged days</span></div>'+
-      '<div class="dt-empty">Nothing is going wrong often enough to call it a pattern. '+
-      'Calories landed on '+pat.record.cal+', protein on '+pat.record.pro+
-      ', quality on '+pat.record.qual+' of '+pat.record.logged+'.</div></div>';
+      '<div class="dt-empty">No problem patterns. Calories '+pat.record.cal+', protein '+pat.record.pro+
+      ', quality '+pat.record.qual+' of '+pat.record.logged+' days.</div></div>';
   }
 
   // ---- hydration ----
@@ -16485,7 +16639,7 @@ function renderData(){
         '<div><b>'+num(s.avgHydTarget,1)+'</b><span>target L</span></div>'+
         '<div><b>'+s.hydHit+'<span style="font-size:11px; color:var(--text3)">/'+s.hydDays+'</span></b><span>days hit</span></div>'+
       '</div>'+
-      (s.avgWater !== null ? '<div class="dt-legend"><span>Plain water averaged '+num(s.avgWater,1)+' L on the '+s.waterDays+' day'+(s.waterDays===1?'':'s')+' you logged it.</span></div>' : ''))+
+      (s.avgWater !== null ? '<div class="dt-legend"><span>Plain water: '+num(s.avgWater,1)+' L a day \u00b7 '+s.waterDays+' day'+(s.waterDays===1?'':'s')+' logged</span></div>' : ''))+
   '</div>';
 
   box.innerHTML = html;
@@ -19781,6 +19935,23 @@ function adaptWhy(a){
   try{ s += trainingNote(TDEE_WINDOW, a.weekly < a.rate - 0.05); }catch(e){}
   return s;
 }
+/* v143: the card shows the reasons as three short lines. The full sentence
+   (adaptWhy) is still what is saved with the change in the history. */
+function adaptWhyShort(a){
+  const sg = v => (v > 0 ? '+' : v < 0 ? '\u2212' : '') + Math.abs(v).toFixed(2);
+  const goal = Math.abs(a.rate) < 0.01 ? 'hold' : sg(a.rate);
+  const row = (k, v) => '<div style="display:flex; justify-content:space-between; gap:10px; padding:3px 0;">' +
+    '<span style="color:var(--text3);">' + k + '</span><span style="color:var(--text); font-weight:600; text-align:right;">' + v + '</span></div>';
+  let notes = [];
+  if(a.capped) notes.push('capped at 10%');
+  if(a.floored) notes.push('stopped at the minimum');
+  return '<div style="font-size:12.5px; line-height:1.45; margin-top:4px;">' +
+    row('Weight', sg(a.weekly) + ' kg/wk <span style="color:var(--text3); font-weight:400;">(goal ' + goal + ')</span>') +
+    row('You burn', '~' + fmt0(a.tdee) + ' kcal <span style="color:var(--text3); font-weight:400;">\u00b1' + fmt0(a.se) + '</span>') +
+    row('You ate', fmt0(a.avgIntake) + ' kcal/day') +
+    '<div style="color:var(--text3); font-size:11px; margin-top:4px;">' + a.weighIns + ' weigh-ins \u00b7 ' + a.fullDays +
+      ' days \u00b7 4 weeks' + (notes.length ? ' \u00b7 ' + notes.join(' \u00b7 ') : '') + '</div></div>';
+}
 function renderAdaptCard(){
   const el = document.getElementById('adapt-card');
   if(!el) return;
@@ -19794,7 +19965,7 @@ function renderAdaptCard(){
     '<div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); font-weight:600;">Suggested change</div>' +
     '<div style="font-size:19px; font-weight:700; margin:6px 0 4px;">' + fmt0(a.from) + ' \u2192 ' + fmt0(a.to) +
       ' kcal <span style="font-size:13px; font-weight:500; color:var(--text3);">(' + (up ? '+' : '\u2212') + fmt0(Math.abs(a.to - a.from)) + ')</span></div>' +
-    '<div style="font-size:12.5px; color:var(--text2); line-height:1.55;">' + esc(adaptWhy(a)) + '</div>' +
+    adaptWhyShort(a) +
     '<div style="display:flex; gap:8px; margin-top:12px;">' +
       '<button id="adapt-apply" class="save-btn" style="margin:0; flex:1; padding:11px;">Apply</button>' +
       '<button id="adapt-later" class="save-btn" style="margin:0; flex:1; padding:11px; background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Not now</button>' +
@@ -22268,15 +22439,12 @@ function nutrientActions(w, label, opts){
   if(noSource.length){
     html += '<div class="section-title">COACH cannot see these yet</div>'+
       '<p class="nrev-note">'+esc(noSource.map(x=>x.m.n).join(', '))+
-      ': no food table COACH ships publishes '+(noSource.length > 1 ? 'these' : 'this')+
-      '. Turning on the USDA key in settings fills '+(noSource.length > 1 ? 'them' : 'it')+
-      ' in. Until then it is COACH that is blind, not your diet that is short.</p>';
+      ': no figures in COACH\u2019s food tables. The USDA key in Settings fills '+(noSource.length > 1 ? 'them' : 'it')+' in.</p>';
   }
   if(gone.length){
     html += '<div class="section-title">Never measured</div>'+
-      '<p class="nrev-note">Not low — unknown. No food you logged carried a figure for '+
-      'these. Scanning packets and filling the food data in settings is what turns them on; '+
-      'eating the foods below covers you either way.</p>';
+      '<p class="nrev-note">Unknown, not low: nothing you logged had a figure for these. '+
+      'The foods below cover them anyway.</p>';
     gone.forEach(x=>{
       // A ceiling is not a target. "Eat these to get more trans fat" would be
       // actively bad advice, so a limit is told the other way round.
@@ -22342,6 +22510,17 @@ function nutrientSystems(w, dates){
    one portion gives, capped at 100% so a food cannot win on one enormous
    figure. Averaged across the system's nutrients. A nutrient the food has no
    figure for counts as nothing - it only gets credit for what is measured.  */
+/* v143: the rules for which foods are worth suggesting, kept in one place.
+   They were written out three times (best all-rounders, the nutrient plan and
+   the system plan) and had drifted slightly apart. */
+const FOOD_NOT_A_DISH = /\b(flour|beverage base|drink powder|lecithin|wattle|lupin|uncooked|giblets|gelatin|bran, |wheatgerm|wheat germ|germ,|meal,|protein isolate|powder)\b/i;
+const FOOD_MEATY = /\b(beef|lamb|pork|chicken|turkey|liver|kidney|mince|steak|bacon|sausage|duck|venison|veal|salmon|squid|cod|tuna|prawn|prawns|mackerel|haddock|trout|scallop|scallops|octopus|mussel|mussels)\b/i;
+const FOOD_OFFAL = /\b(liver|kidney|kidneys|heart|tongue|tripe|pate|p\u00e2t\u00e9|sweetbread|giblet)\b/i;
+const FOOD_NUTSEED = /\b(nut|nuts|walnut|walnuts|almond|almonds|cashew|cashews|pecan|pecans|pistachio|pistachios|hazelnut|hazelnuts|macadamia|seed|seeds|linseed|flaxseed|chia|hemp)\b/i;
+const FOOD_GENERIC = /^(seed|nut|meat|flesh|cooked|raw|canned|dried|fresh|boiled|grilled|roasted|fried|baked|fillet|breast|whole|plain|only|and|with|in|the|a|of|lean|fat|skin|stewed|average)$/i;
+// Raw meat and fish are published raw in the tables, but nobody plans a meal that way.
+function foodRawMeat(name){ return /\braw\b/i.test(name) && FOOD_MEATY.test(name); }
+
 let superPool = null;
 function superFoodPool(){
   if(superPool) return superPool;
@@ -22391,18 +22570,18 @@ function systemSuperFoods(sysKey, n, skip){
 
   // Ingredients and reference-table curiosities that score well and that
   // nobody eats as a portion of anything.
-  const NOT_A_DISH = /\b(flour|beverage base|drink powder|lecithin|wattle|lupin|uncooked|giblets|gelatin|bran, |wheatgerm|wheat germ|germ,|meal,|protein isolate|powder)\b/i;
+  const NOT_A_DISH = FOOD_NOT_A_DISH;
   // Offal genuinely is the richest all-rounder for most of these systems, and
   // it is worth saying once. Four kinds of it in one list is not four ideas.
-  const OFFAL = /\b(liver|kidney|kidneys|heart|tongue|tripe|pate|pâté|sweetbread|giblet)\b/i;
+  const OFFAL = FOOD_OFFAL;
   // Raw meat and offal are published as raw in the tables, but nobody plans a
   // meal around them that way.
   const RAW_MEAT = /\b(raw)\b/i;
-  const MEATY = /\b(beef|lamb|pork|chicken|turkey|liver|kidney|mince|steak|bacon|sausage|duck|venison|veal|salmon|squid|cod|tuna|prawn|prawns|mackerel|haddock|trout|scallop|scallops|octopus)\b/i;
+  const MEATY = FOOD_MEATY;
   // Nuts and seeds really are dense all-rounders, which is exactly why they
   // filled the whole heart list on their own. Two is information; four is a
   // list of seeds.
-  const NUTSEED = /\b(nut|nuts|walnut|walnuts|almond|almonds|cashew|cashews|pecan|pecans|pistachio|pistachios|hazelnut|hazelnuts|macadamia|seed|seeds|linseed|flaxseed|chia|hemp)\b/i;
+  const NUTSEED = FOOD_NUTSEED;
 
   const rank = pool => {
     const scored = [];
@@ -22434,7 +22613,7 @@ function systemSuperFoods(sysKey, n, skip){
     return scored.sort((a,b)=>(b.hits.length - a.hits.length) || (b.cover - a.cover));
   };
 
-  const GENERIC = /^(seed|nut|meat|flesh|cooked|raw|canned|dried|fresh|boiled|grilled|roasted|fried|baked|fillet|breast|whole|plain|only|and|with|in|the|a|of|lean|fat|skin|stewed|average)$/i;
+  const GENERIC = FOOD_GENERIC;
   const nouns = s => s.toLowerCase().split(/[^a-z0-9]+/)
     .map(x=>x.replace(/s$/, '')).filter(x=>x.length > 2 && !GENERIC.test(x));
 
@@ -22523,11 +22702,11 @@ function combinedFixes(w, n){
   });
   if(gaps.length < 2) return {gaps: gaps, foods: []};
 
-  const NOT_A_DISH = /\b(flour|beverage base|drink powder|lecithin|wattle|lupin|uncooked|giblets|gelatin|bran, |wheatgerm|wheat germ|germ,|meal,|protein isolate|powder)\b/i;
+  const NOT_A_DISH = FOOD_NOT_A_DISH;
   const RAW = /\braw\b/i;
-  const MEATY = /\b(beef|lamb|pork|chicken|turkey|liver|kidney|mince|steak|bacon|sausage|duck|venison|veal|salmon|squid|cod|tuna|prawn|prawns|mackerel|haddock|trout|scallop|scallops|octopus|mussel|mussels)\b/i;
-  const OFFAL = /\b(liver|kidney|kidneys|heart|tongue|tripe|pate|sweetbread|giblet)\b/i;
-  const NUTSEED = /\b(nut|nuts|walnut|walnuts|almond|almonds|cashew|cashews|pecan|pecans|pistachio|pistachios|hazelnut|hazelnuts|macadamia|seed|seeds|linseed|flaxseed|chia|hemp)\b/i;
+  const MEATY = FOOD_MEATY;
+  const OFFAL = FOOD_OFFAL;
+  const NUTSEED = FOOD_NUTSEED;
 
   const rank = pool => {
     const out = [];
@@ -22555,7 +22734,7 @@ function combinedFixes(w, n){
     return out.sort((a,b)=>(b.helps.length - a.helps.length) || (b.closed - a.closed));
   };
 
-  const GENERIC = /^(seed|nut|meat|flesh|cooked|raw|canned|dried|fresh|boiled|grilled|roasted|fried|baked|fillet|breast|whole|plain|only|and|with|in|the|a|of|lean|fat|skin|stewed|average)$/i;
+  const GENERIC = FOOD_GENERIC;
   const nouns = s => s.toLowerCase().split(/[^a-z0-9]+/)
     .map(x=>x.replace(/s$/, '')).filter(x=>x.length > 2 && !GENERIC.test(x));
 
@@ -22655,10 +22834,10 @@ function reviewPlan(w, n, opts){
   const gapKeys = Object.keys(gaps);
   if(!gapKeys.length) return {gaps: [], foods: [], weak: weak};
 
-  const NOT_A_DISH = /\b(flour|beverage base|drink powder|lecithin|wattle|lupin|uncooked|giblets|gelatin|bran, |wheatgerm|wheat germ|germ,|meal,|protein isolate|powder)\b/i;
-  const RAW_MEATY = /\braw\b.*\b(beef|lamb|pork|chicken|turkey|liver|kidney|mince|steak|bacon|sausage|duck|venison|veal|salmon|squid|cod|tuna|prawn|prawns|mackerel|haddock|trout|scallop|scallops|octopus|mussel|mussels)\b|\b(beef|lamb|pork|chicken|turkey|liver|kidney|mince|steak|bacon|sausage|duck|venison|veal|salmon|squid|cod|tuna|prawn|prawns|mackerel|haddock|trout|scallop|scallops|octopus|mussel|mussels)\b.*\braw\b/i;
-  const OFFAL = /\b(liver|kidney|kidneys|heart|tongue|tripe|pate|sweetbread|giblet)\b/i;
-  const NUTSEED = /\b(nut|nuts|walnut|walnuts|almond|almonds|cashew|cashews|pecan|pecans|pistachio|pistachios|hazelnut|hazelnuts|macadamia|seed|seeds|linseed|flaxseed|chia|hemp)\b/i;
+  const NOT_A_DISH = FOOD_NOT_A_DISH;
+  const RAW_MEATY = {test: foodRawMeat};
+  const OFFAL = FOOD_OFFAL;
+  const NUTSEED = FOOD_NUTSEED;
   const needHelps = opts.minHelps || 1;
 
   const rank = pool => {
@@ -22698,7 +22877,7 @@ function reviewPlan(w, n, opts){
     return out.sort((a,b)=>(b.score - a.score) || (b.systems.length - a.systems.length));
   };
 
-  const GENERIC = /^(seed|nut|meat|flesh|cooked|raw|canned|dried|fresh|boiled|grilled|roasted|fried|baked|fillet|breast|whole|plain|only|and|with|in|the|a|of|lean|fat|skin|stewed|average)$/i;
+  const GENERIC = FOOD_GENERIC;
   const nouns = s => s.toLowerCase().split(/[^a-z0-9]+/)
     .map(x=>x.replace(/s$/, '')).filter(x=>x.length > 2 && !GENERIC.test(x));
 
@@ -22778,11 +22957,8 @@ function reviewPlanHTML(w, label){
   const yellow = r.weak.filter(x=>x.tone === 'yellow').length;
   const areas = red + yellow;
   return '<div class="nrev-sec"><div class="nrev-sh">Your plan</div>'+
-    '<p class="nrev-sub">'+r.gaps.length+' nutrient'+(r.gaps.length === 1 ? '' : 's')+' came up short'+
-    (areas ? ', holding back '+areas+' part'+(areas === 1 ? '' : 's')+' of you' : '')+
-    '. Add these, top first \u2014 each one fixes the most at once.<br>'+
-    '<span style="color:var(--text2)">\u2713 covers the gap &middot; % is how much of it one portion '+
-    'makes up &middot; red outline = badly short</span></p>'+
+    '<p class="nrev-sub"><b>'+r.gaps.length+' nutrient'+(r.gaps.length === 1 ? '' : 's')+' short.</b> Add these, top first.<br>'+
+    '<span style="color:var(--text2)">\u2713 fills it &middot; % of the gap per portion &middot; red = badly short</span></p>'+
     r.foods.map((f, i)=>planFoodCard(f, i, r.gaps.length)).join('')+'</div>';
 }
 
@@ -23168,12 +23344,15 @@ function rvKcalLine(s){
   // v129: say plainly when the days had different targets, so an average that
   // differs from the day screen is never a mystery.
   const tk = (s.days || []).filter(d => d.complete && d.target > 0).map(d => d.target);
+  // v143: key points, not a paragraph.
   if(tk.length && Math.max(...tk) - Math.min(...tk) >= 25)
-    range = ' Your confirmed days had targets from ' + fmtK(Math.min(...tk)) + ' to ' + fmtK(Math.max(...tk)) +
-      ' (training and rest days), so ' + fmtK(t) + ' is their average.';
-  const tr = (s.trainDays != null) ? ' You trained on <b>' + s.trainDays + '</b> of ' + (s.nDays || 7) + ' days.' : '';
-  return 'Averaged <b>' + fmtK(s.avgIntake) + ' kcal</b> against ' + fmtK(t) + ' — ' + verdict + '.' + range + tr;
+    range = 'targets ' + fmtK(Math.min(...tk)) + '–' + fmtK(Math.max(...tk)) + ' (averaged)';
+  const tr = (s.trainDays != null) ? 'trained ' + s.trainDays + ' of ' + (s.nDays || 7) + ' days' : '';
+  return rvKeys(['<b>' + fmtK(s.avgIntake) + ' kcal</b> a day', verdict + ' (target ' + fmtK(t) + ')', range, tr]);
 }
+/* v143: the review's summary lines are short points joined by dots, so the
+   main fact is the first thing you read. */
+function rvKeys(parts){ return parts.filter(Boolean).join(' <span class="rvx-dot">·</span> '); }
 function rvTile(v, l, tone){
   return '<div class="rvx-tile"><b' + (tone ? ' class="' + tone + '"' : '') + '>' + v + '</b><span>' + l + '</span></div>';
 }
@@ -23257,9 +23436,9 @@ function reviewBodyHTML(shown, monthly){
     html += '<div class="section-title">On target</div>' + reviewOnTarget(s);
     html += '<div class="section-title">Calories</div><p class="rvx-p">' + rvKcalLine(s) + '</p>' +
             reviewRatioLine(s) + reviewCalorieChart(s).replace('<div class="section-title">Calories against target</div>', '');
-    html += '<div class="section-title">Protein and macros</div><p class="rvx-p">Protein averaged <b>' + fmt0(s.avgProtein) +
-            'g</b> against ' + fmt0(s.avgPTarget) + 'g, hit on ' + s.proteinHit + ' of ' + s.daysLogged + ' confirmed days' +
-            (s.avgHealth != null ? '. Food quality averaged <b>' + s.avgHealth + '</b> out of 100' : '') + '.</p>' +
+    html += '<div class="section-title">Protein and macros</div><p class="rvx-p">' + rvKeys(['Protein <b>' + fmt0(s.avgProtein) +
+            'g</b> a day (target ' + fmt0(s.avgPTarget) + 'g)', 'hit ' + s.proteinHit + ' of ' + s.daysLogged + ' days',
+            s.avgHealth != null ? 'quality <b>' + s.avgHealth + '</b>/100' : '']) + '</p>' +
             reviewMacroBars(s).replace('<div class="section-title">Macros, daily average</div>', '') +
             reviewProteinDots(s);
   }
@@ -23268,8 +23447,8 @@ function reviewBodyHTML(shown, monthly){
   // v141: plain water has no target of its own - it is part of hydration,
   // which is judged below against each day's own target.
   html += '<div class="section-title">Water</div><p class="rvx-p">' + (s.waterDays
-    ? 'Plain water averaged <b>' + (s.avgWater / 1000).toFixed(1) + ' L</b> on the ' + s.waterDays + ' day' + (s.waterDays === 1 ? '' : 's') +
-      ' you logged it. Your target covers every drink, so it is judged under Hydration.'
+    ? rvKeys(['<b>' + (s.avgWater / 1000).toFixed(1) + ' L</b> a day', 'logged ' + s.waterDays + ' day' + (s.waterDays === 1 ? '' : 's'),
+      'counts towards Hydration below'])
     : 'No water logged.') + '</p>';
   if(water.length && s.waterDays){
     const maxMl = Math.max(1, ...water.map(w => w.ml));
@@ -23280,8 +23459,8 @@ function reviewBodyHTML(shown, monthly){
   // v128: Hydration - water plus every other drink.
   if(s.hyd){
     html += '<div class="section-title">Hydration</div><p class="rvx-p">' + (s.hydDays
-      ? 'Water plus every other drink averaged <b>' + (s.avgHyd / 1000).toFixed(1) + ' L</b> on the ' + s.hydDays +
-        ' day' + (s.hydDays === 1 ? '' : 's') + ' you logged any (target ' + (rvHydTarget(s) / 1000).toFixed(1) + ' L on average, each day judged against its own), and reached it on <b>' + s.hydHit + '</b>.'
+      ? rvKeys(['<b>' + (s.avgHyd / 1000).toFixed(1) + ' L</b> a day, water and drinks', 'target ' + (rvHydTarget(s) / 1000).toFixed(1) + ' L',
+        'hit <b>' + s.hydHit + '</b> of ' + s.hydDays + ' days'])
       : 'No drinks or water logged.') + '</p>';
     if(s.hydDays){
       const maxH = Math.max(1, ...s.hyd.map(w => Math.max(w.ml, w.target || 0)));
@@ -23294,12 +23473,13 @@ function reviewBodyHTML(shown, monthly){
   // Weight
   let wl = 'No weigh-ins.';
   if(s.weighIns){
-    wl = s.weighIns + ' weigh-in' + (s.weighIns === 1 ? '' : 's') + (s.latestKg ? ', finishing at <b>' + s.latestKg + ' kg</b>' : '');
+    const wbits = [s.latestKg ? 'now <b>' + s.latestKg + ' kg</b>' : ''];
     if(s.weightChange !== null && s.weightChange !== undefined){
-      wl += Math.abs(s.weightChange) < 0.05 ? ', level on the ' + (s.periodWord || 'week') + ' before'
-        : ', ' + (s.weightChange > 0 ? 'up ' : 'down ') + Math.abs(s.weightChange).toFixed(2) + ' kg on the ' + (s.periodWord || 'week') + ' before';
+      wbits.push(Math.abs(s.weightChange) < 0.05 ? 'level on last ' + (s.periodWord || 'week')
+        : (s.weightChange > 0 ? '+' : '−') + Math.abs(s.weightChange).toFixed(2) + ' kg on last ' + (s.periodWord || 'week'));
     }
-    wl += '.';
+    wbits.push(s.weighIns + ' weigh-in' + (s.weighIns === 1 ? '' : 's'));
+    wl = rvKeys(wbits);
   }
   html += '<div class="section-title">Weight</div><p class="rvx-p">' + wl + '</p>';
   if(s.days && s.daysLogged) html += '<div id="review-nutrients"></div>';

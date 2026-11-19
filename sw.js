@@ -1,9 +1,9 @@
-const CACHE = 'coach-v142';
+const CACHE = 'coach-v143';
 // v132: the food tables and the UK packets sit in their own cache, which is
 // kept from one app version to the next. Their file names change only when
 // their contents do, so an app update no longer downloads ~7 MB again.
 const DATA_CACHE = 'coach-data';
-const DATA_ASSETS = ["./foods.1280b87412.js", "./packets.02def9fd13.txt"];
+const DATA_ASSETS = ["./foods.b1246bfd58.js", "./packets.7b4a23dc1c.txt"];
 // The barcode library now ships with the app rather than loading from a CDN,
 // so it is a normal first-party asset and cannot fail independently.
 const ASSETS = ['./index.html', './manifest.json', './zxing.js', './icon-180.png', './icon-192.png', './icon-512.png'];
