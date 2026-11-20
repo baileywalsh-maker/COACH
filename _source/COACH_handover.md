@@ -1,9 +1,11 @@
 # COACH: handover for a new chat
 
-This chat is for COACH only. Paste this whole file into the new chat. The source and the live build are in my laptop's `GitHub\COACH` folder (see below). Use the live files there as the `--old` build for the tests.
+This chat is for COACH updates only. Paste this whole file into the new chat. The source and the live build are in my laptop's `GitHub\COACH` folder (see below). Use the live files there as the `--old` build for the tests.
+
+**Before building anything, check `git log` in the repo.** Only one chat should build COACH at a time. If another chat has pushed, start from its build.
 
 ## What COACH is
-My own calorie, nutrition and hydration tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub.
+My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
 Current version: **v146**.
 
@@ -11,11 +13,13 @@ Current version: **v146**.
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
 - The repo is cloned on my laptop at **`C:\Users\baile\OneDrive\Documents\GitHub\COACH`** (GitHub Desktop). Jot and Ledger sit beside it (`jot`, `LEDGER`).
 - **The source lives in the repo too:** `_source/coach_source.zip` and `_source/COACH_handover.md`. GitHub Pages doesn't publish folders starting with `_`, so it's not part of the site, and every version is kept in the repo's history.
-- **How to start a new chat:** paste this handover and ask me to connect the `GitHub` folder above. Read the source from `COACH/_source/`, so no attachments are needed.
-- **How to ship a build (the routine):**
-  1. Build and run the tests here.
-  2. Write the files from `dist/` straight into the `COACH` folder on my laptop, along with the updated `_source/coach_source.zip` and `_source/COACH_handover.md`.
-  3. I open GitHub Desktop, choose COACH, type the version (e.g. "v145"), then **Commit to main → Push origin**. It's live in about a minute; close and reopen the app if it doesn't show.
+- **How to start a new chat:** paste this handover and ask me to connect the `COACH` folder above. Read the source from `COACH/_source/coach_source.zip`, so no attachments are needed. Also read `CLAUDE.md` in the repo.
+- **How to ship a build (the routine, as of v146):**
+  1. Build and run the tests here (`--old` = the live files in the repo folder).
+  2. Write the files from `dist/` straight into the `COACH` folder, along with the updated `_source/coach_source.zip`, `_source/COACH_handover.md` and `_source/COACH_SYNC.md` if sync changed.
+  3. Commit it yourself with the laptop shell (`git add -A && git commit -m "vN"`). Git needs deletion allowed in the COACH folder for its lock files, so ask once for that permission.
+  4. I click **Push origin** in GitHub Desktop. It's live in about a minute; close and reopen the app.
+  - Pushing straight to GitHub from the cloud was refused by permissions, so I do the push.
   - Old `foods.<hash>.js` / `packets.<hash>.txt` files can stay in the folder. They do no harm.
 - Jot and Ledger share the same web address (`/jot/`, `/LEDGER/`). Their saved data is kept apart (`jot:*`, `ledger:*`), and COACH never copies or touches it. This chat is for COACH only.
 - Deploys are free now. Still run the tests before every build.
@@ -25,8 +29,9 @@ Current version: **v146**.
 1. **Never wipe or break saved data.** Every update must read whatever is already on my phone. Stored names, keys and entry shapes stay compatible, and new features use new keys.
 2. **Never invent nutrition figures.** Only real sources: USDA, CoFID (UK), AFCD (AU), Open Food Facts, or a chain's own published data. Missing = missing.
 3. Plain, simple language. Short answers. Number every list in one running sequence so I can reply "do 1, 3".
-4. Every build: write `dist/` into the COACH repo folder, update `_source/coach_source.zip` and this handover, and also send me `index.preview.html`.
-5. Show a **demo** with every big change: edit the buttons in `demo/tryit.js`, run `python3 demo/make_demo.py`, and publish `demo/coach_demo.html` to the "COACH Demo" artifact: https://claude.ai/artifact/8vSTBxBWvUEYRcHFuagN5t (republish to the same artifact to keep the link).
+4. Every build: write `dist/` into the COACH repo folder and update `_source/coach_source.zip`. Don't send me files I don't need. Update this handover only when I ask, or when the chat is getting full.
+5. Show a **demo** with every big change: edit the buttons in `demo/tryit.js`, run `python3 demo/make_demo.py`, and publish `demo/coach_demo.html` to the **"COACH designs"** artifact: https://claude.ai/artifact/JPNdyYgguyEKx27A8FbQ1F. It's one page for all COACH mockups and demos, so republish to the same link and never make a new one. When showing how a design will look, show exactly how it will look (built with COACH's real styles).
+9. **Everything in COACH must sync with Muse.** Any new saved data must reach the sync file, and `_source/COACH_SYNC.md` (Muse's instructions) must be updated to match. Secrets never sync.
 6. **Run the test pack before shipping.** Add tests for anything new.
 7. Never paste API keys in chat. My GitHub key is pasted into COACH's settings only.
 8. Personal tool: don't add big new features. Fix what I actually hit.
@@ -34,16 +39,16 @@ Current version: **v146**.
 ## Source pack layout (`coach_source.zip`)
 - `src/`: the app, in parts. `src/parts.txt` lists them in order and the build joins them, top to bottom.
   - `00-head.html`, `50-page.html` (all the screens' HTML), `51-store-loader.html` (v142 storage, see below), `99-tail.html`
-  - `css/`: 4 files (icons and fonts, design system, deep pages, the v120 redesign layer, which must stay last)
-  - `js/`: 48 files named by what they hold. They are one script when joined, so order matters.
+  - `css/`: 5 files (icons and fonts, design system, deep pages, `03b-train.css`, then the v120 redesign layer, which must stay last)
+  - `js/`: 50 files named by what they hold. They are one script when joined, so order matters. New: `44-muse-sync.js`, then `44-train.js`.
   - The food data is inserted at `<!--COACH_DATA-->` in `50-page.html`.
-- `data/`: `LOCAL_FOODS.json`, `LABEL_DB.json`, `UK_BLOB.txt`, `AU_BLOB.txt`, `USDA_BLOB.txt`. Edit the JSON as JSON, never by hand.
+- `data/`: `LOCAL_FOODS.json`, `LABEL_DB.json`, `UK_BLOB.txt`, `AU_BLOB.txt`, `USDA_BLOB.txt`, `EXERCISES.json` (888 exercises), `STRENGTH.json` (Strength Level standards for 64 lifts). Edit the JSON as JSON, never by hand.
 - `static/`: `manifest.json`, `zxing.js`, icons, `uk_packets.txt`.
 - `sw.template.js`: the service worker. The food data and packets sit in a `coach-data` cache that is kept between versions.
 - `VERSION`: bump this for every build.
 - `build.py`: `python3 build.py` builds `dist/`, `coach_vN.zip` and `index.preview.html`.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **142 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, and the v142 store.
+- `tests/run.js`: the test pack, **142 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
@@ -122,14 +127,15 @@ Current version: **v146**.
 - 567 of the 27,629 UK packets have a blank brand (Bundaberg Ginger Beer 9311493003289 is one of them), so brand searches miss those. The search needs exact letters ("bunderberg" finds nothing).
 
 ## Open items
-1. Bundaberg Aussie original, Diet and Spiced: still to add from Bundaberg's own figures (web lookups hit a limit in v143).
-2. About 400 of the old blank brands weren't checked yet (Open Food Facts kept throttling), plus ~1,700 of the new v143 packets have no brand. Brand search misses those.
-3. KFC cup sizes: not published by KFC. Left as "size unknown".
-4. Faster logging: waiting for my list of what feels slow.
-5. Small, left alone: the streak counts logged days, not confirmed days.
-6. After moving to GitHub, check: all days, foods and settings came back via Put back. Settings shows "plenty of room". Logging food and reopening keeps it.
-7. Cancel Netlify once happy (the old home-screen copies are already deleted).
-8. Open Food Facts' bulk data is only as good as its contributors: a few new packets may carry odd names.
+1. **Body view muscle highlights:** muscles trained light up on the Day card's body figure (left out of v144).
+2. **More ranked lifts:** only 64 lifts have Strength Level standards, so the rest show no rank.
+3. Bundaberg Aussie Original, Diet and Spiced, from Bundaberg's own figures (web lookups hit a limit in v143).
+4. About 400 old packets plus about 1,700 of the v143 packets have no brand. Brand search misses those.
+5. KFC cup sizes: not published by KFC, so they stay "size unknown".
+6. Train feedback: waiting for my list after real sessions (speed, feel, anything missing).
+7. Small, left alone: the streak counts logged days, not confirmed days.
+8. Cancel Netlify once happy (the old home-screen copies are already deleted).
+9. Open Food Facts' bulk data is only as good as its contributors, so a few packets may carry odd names.
 
 ## How to get data the cloud can't reach
 v143 method that worked: open the site in the built-in browser, fetch the file in the page, save it to Downloads, then copy it into a subfolder with `cat a > b` (the bridge refuses freshly saved downloads as "hardlinked" for a few seconds) and stage it.
