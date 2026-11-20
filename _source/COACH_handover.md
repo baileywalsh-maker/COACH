@@ -5,7 +5,7 @@ This chat is for COACH only. Paste this whole file into the new chat. The source
 ## What COACH is
 My own calorie, nutrition and hydration tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub.
 
-Current version: **v144**.
+Current version: **v145**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -47,6 +47,20 @@ Current version: **v144**.
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v145: merge
+- Two chats both shipped a "v144" from v143: **Train** (this chat) and **Sync with Muse** (another chat). v145 has both. The Muse code came across line for line from its built page (`src/js/44-muse-sync.js`, the Settings block and its hooks). Its own tests and `_source/COACH_SYNC.md` came from that chat, but its test suite was never pushed, so the Muse checks here are basic.
+- **Lesson:** only one chat should build COACH at a time. Before building, check `git log` in the repo. If someone else has pushed, start from their build.
+
+## v144 (other chat): Sync with Muse
+- **Sync with Muse.** Same pattern as Jot sync (v35): food, water, weight and training days sync to ONE file, `coach-sync.json`, in a **private** repo `baileywalsh-maker/coach-sync` (Bailey creates it, installs the Muse GitHub App on it, and pastes a fine-grained token — Contents read/write on that repo only — into Settings → Sync with Muse). Full design + Muse's instructions: `_source/COACH_SYNC.md`. Code: `src/js/44-muse-sync.js`.
+- **What syncs:** one record per day (food entries, water in ml, complete tick, training tick) plus the weight log. What never syncs: profile, targets, target snapshots, My foods, label fixes, reviews, adjust log, recents, settings.
+- **Merge:** three-way by day, then by entry id, against the last good sync — same rules as Jot. A day changed on both sides merges entry by entry (newer `upd` wins, listed in Settings); water keeps the larger amount; ticks are kept if either side ticked them; a date weighed on both sides keeps the phone's reading.
+- **Entry ids:** food entries never had ids, so sync stamps a stable `id` (and `upd` when the food changes) on every save, in `saveEntries`. Entries restored from a backup get ids on the next sync. The id changes nothing the app shows, and old days keep working.
+- **Token safety:** the token and the sync state live under `coachmusesync*` keys and are left out of both backup paths (a test checks this). They are never in the app code.
+- **Still to do (needs Bailey):** create the private `coach-sync` repo, install the Muse GitHub App on it, make the token, paste it in Settings, open COACH, tap Sync now, and check a test entry Muse adds appears. Sync is **not** proved live until that run — same as Jot was.
+- **Workouts:** the sync file has a `workouts` slot, still empty. Train (v144, this repo) now logs workouts under `coachtrain:*`; wiring them into that slot is an open item.
+
 
 ## v144: Train (the workout side)
 - **Eat / Train switch** in the header swaps all the tabs. Train has Workout, History and Exercises. All in `js/44-train.js` and `css/03b-train.css`.
