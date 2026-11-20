@@ -5,7 +5,7 @@ This chat is for COACH only. Paste this whole file into the new chat. The source
 ## What COACH is
 My own calorie, nutrition and hydration tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub.
 
-Current version: **v143**.
+Current version: **v144**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -15,7 +15,7 @@ Current version: **v143**.
 - **How to ship a build (the routine):**
   1. Build and run the tests here.
   2. Write the files from `dist/` straight into the `COACH` folder on my laptop, along with the updated `_source/coach_source.zip` and `_source/COACH_handover.md`.
-  3. I open GitHub Desktop, choose COACH, type the version (e.g. "v144"), then **Commit to main → Push origin**. It's live in about a minute; close and reopen the app if it doesn't show.
+  3. I open GitHub Desktop, choose COACH, type the version (e.g. "v145"), then **Commit to main → Push origin**. It's live in about a minute; close and reopen the app if it doesn't show.
   - Old `foods.<hash>.js` / `packets.<hash>.txt` files can stay in the folder. They do no harm.
 - Jot and Ledger share the same web address (`/jot/`, `/LEDGER/`). Their saved data is kept apart (`jot:*`, `ledger:*`), and COACH never copies or touches it. This chat is for COACH only.
 - Deploys are free now. Still run the tests before every build.
@@ -43,12 +43,23 @@ Current version: **v143**.
 - `VERSION`: bump this for every build.
 - `build.py`: `python3 build.py` builds `dist/`, `coach_vN.zip` and `index.preview.html`.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **119 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, and the v142 store.
+- `tests/run.js`: the test pack, **133 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, and the v142 store.
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
 
-## v143 (this chat)
+## v144: Train (the workout side)
+- **Eat / Train switch** in the header swaps all the tabs. Train has Workout, History and Exercises. All in `js/44-train.js` and `css/03b-train.css`.
+- Hevy-style logging: routines, previous numbers, tick to log, rest timer (kept as an end time), warm-up/drop/failure sets, notes, swap/move exercises. Saves on every change.
+- Storage, new keys only: `coachtrain:mode`, `:active`, `:idx`, `:w:<id>`, `:routines`, `:custom`, `:prefs`, `:rest`. Included in the gist backup.
+- Library: `data/EXERCISES.json`, 888 exercises: about 180 Hevy-named core lifts plus free-exercise-db (public domain). Search forgives typos (4+ letters) and gym shorthand.
+- Ranks: `data/STRENGTH.json`, Strength Level standards for 64 lifts by sex and bodyweight. Six ranks: Rookie, Apprentice, Contender, Strong, Beast, Champion (5/20/50/80/95% lines). Estimated 1RM is Epley (≤12 reps), and bodyweight lifts are judged on reps. Machine ranks are flagged as rough.
+- Muscle map: front and back, using the Day card figure. Red weak (below 20%), yellow average (20–50%), green strong (50–95%), animated gold champion (95%+), grey no data. A lift counts fully for its main muscle and half for the others. Exercises tab shows Highlights (top 3 lifts, strongest and weakest group) plus a Stat library (groups, then lifts, then the lift page).
+- Links to food: a workout marks the day as training. Water top-up is 0.5 L per hour (minimum 0.5 L). The Day chip names the session. Reviews get a Training line. Calories burned (Compendium METs) are shown only, never added to the target. Pre-workout card shows food from the 3 h before the start, and food added from it is a normal entry tagged `pw`.
+- Started fresh: no Hevy import.
+- Next ideas: body view muscle highlights on the Day card, more ranked lifts, cardio pace.
+
+## v143
 - **Search:** forgives typos (one slip in 5+ letter words, two in 8+), ignores accents ("nestle" finds Nestlé), finds words typed together ("mullerlight"). Close spellings sit below exact matches, marked "close spelling". If the live search finds little, it retries with the close spelling.
 - **Faster search:** results worked out once per letter (was twice), live results remembered for the session, live search starts sooner (300 ms), packets load as soon as the add sheet opens.
 - **UK packets:** 27,629 → 33,799. Added 6,170 UK products (UK, Aldi and Lidl barcodes only) scanned 2+ times on Open Food Facts, each checked: named, full figures, and calories adding up. 161 blank brands filled from Open Food Facts (confirmed only), Bundaberg Ginger Beer included. Raw files kept in `_source/import/`.

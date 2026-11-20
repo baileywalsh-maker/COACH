@@ -14,13 +14,14 @@ Read this first in any chat about COACH. The full handover is imported below.
 - This repo is **public**. Never commit keys, tokens, backups or personal figures.
 
 ## Changed since the handover
-- The "COACH Demo" artifact linked in the handover was deleted (Nov 2026 clean-up).
-  Publish the next demo as a new artifact and update the link in the handover.
+- Demos now go on "COACH designs" (below), not the old "COACH Demo" page.
+- Direct pushes from Claude were refused by permissions in the v144 chat, so for now
+  Claude writes the files into this folder and Bailey pushes with GitHub Desktop.
 
 ## Mockups and demos: one page per app
 - All design ideas, mockups and demos for COACH go on ONE artifact titled "COACH designs".
   Update that same page every time (republish to its link). Never make a new one.
-- Its link: (none yet — create it the first time a mockup is needed, then write the link here)
+- Its link: https://claude.ai/artifact/JPNdyYgguyEKx27A8FbQ1F (holds the live demo of the latest build; the "Try vN" buttons come from `demo/tryit.js`).
 - Old ideas get replaced on the page, not kept. Decisions go in the handover instead.
 
 @_source/COACH_handover.md
