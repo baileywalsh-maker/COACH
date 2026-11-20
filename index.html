@@ -3598,7 +3598,7 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
 </div>
 
 <script src="zxing.js" onerror="window.__zxingFailed=true"></script>
-<script>window.COACH_PACKETS = "packets.7b4a23dc1c.txt"; window.COACH_VERSION = "145";</script>
+<script>window.COACH_PACKETS = "packets.7b4a23dc1c.txt"; window.COACH_VERSION = "146";</script>
 <script src="foods.b6d8b98ca1.js"></script>
 <script>
 /* v117: bulk food data is kept as plain text in the blocks above and read here,
@@ -10546,6 +10546,8 @@ const LOG_KEYS_RE = /^(calorielog:|caloriecomplete:|calorietargetsnap:|caloriewe
 const SCORE_NEUTRAL_RE = /^(caloriewater:|calorielog:|caloriecomplete:|calorietargetsnap:|calorietrain:|caloriereviews|calorielastreview|coachmonthreviews|coachlastmonthreview|coachreviewbtn|calorierecents|calorieweightlog|coachhydstart|coachdrinkflags|coachsound|coachhaptic|coachtdeelog|coachlaststreak|calorielastprompt|coachlastbackup|coachtiplog|calorieadjustlog|calorielastauto|coachadaptsnooze|coachbin|coachthumbs|coachcarry|coachgoaldate|coachdemoseed|coachcyclingretired|coachscandiag|coachproteinring|coachoffcache|coachcloud|coachdayview|coachscorefold|coachautobackup|coachfdckey|caloriesavedmeals|caloriecorrupt|coachmusesync)/; // v144: + sync state and token (they never change a score) // v141: + view, fold and backup keys (they never change a score)
 function lsSet(k, v){
   dataEpoch++;
+  // v145: anything COACH saves gets to Muse (a few seconds later, batched).
+  try{ if(typeof museSyncSoon === 'function' && /^(coach|calorie)/.test(k) && !/^(coachmusesync|coachtrain:active|coachtrain:rest|coachoffcache|coachthumbs|coachscandiag)/.test(k)) museSyncSoon(); }catch(e){}
   if(!SCORE_NEUTRAL_RE.test(String(k))) scoreEpoch++;
   if(LOG_KEYS_RE.test(String(k))) logEpoch++;
   // A change to your foods, your label corrections or the USDA top-ups changes
@@ -25699,12 +25701,9 @@ if('serviceWorker' in navigator){
      water in ml (`caloriewater:`), the ticked-complete flag
      (`caloriecomplete:`), the training-day tick (`calorietrain:`), and
      the weight log (`calorieweightlog`).
-   - What NEVER syncs: your profile and targets (`calorieprofile`,
-     `calorietarget`), your foods and label fixes (`coachmyfoods`,
-     `coachlabels`), reviews, the adjust log, recents, or any setting.
-     Targets are yours — Muse must never move them. The per-day target
-     snapshots (`calorietargetsnap:`) are re-frozen on the phone from
-     the targets already there, so they are not synced either.
+   - v145: everything else COACH saves now syncs too (workouts, profile,
+     targets, your foods, reviews, routines, settings...). Only secrets
+     and throwaway caches stay out. See "v145: EVERYTHING" further down.
    - Food entries have no id of their own, so sync gives each one a
      stable id the first time it is saved (`museSyncStampDay`, in
      saveEntries) and stamps `upd` — when it last changed — the same
@@ -25876,9 +25875,127 @@ function museSyncPackLocal(){
     updatedAt: new Date().toISOString(), updatedBy: 'phone',
     days: days,
     weight: weight.map(function(w){ return {date: w.date, kg: w.kg}; }),
-    workouts: {}
+    workouts: museSyncWorkoutsLocal(),
+    store: museSyncStoreLocal(),
+    insights: museSyncInsights()
   };
 }
+
+/* ---------------------------------------------------------------------
+   v145: EVERYTHING. Muse sees and can change all of COACH, not just the
+   food days. Three more parts of the file:
+
+     workouts: { "<id>": a finished workout - name, date, start/end,
+                 every exercise and every set }        (coachtrain:w:<id>)
+     store:    { "<key>": value } - every other thing COACH saves, under
+                its own name: profile, targets, your foods, label fixes,
+                supplements, reviews, the adjust log, routines, your own
+                exercises, settings, per-day target snapshots... A value
+                that is JSON is shown as JSON; anything else is
+                {"__raw": "text"}.
+     insights: read-only, worked out fresh on every sync for Muse to read:
+                ranks, muscle map, bests, today's targets. Muse writing
+                here changes nothing.
+
+   Left out on purpose, and only these:
+     - secrets: the sync token and state (coachmusesync*), the backup
+       token (coachcloudtoken) and the USDA key (coachfdckey);
+     - throwaway copies: the Open Food Facts cache, photo thumbnails,
+       scan diagnostics, local backups, corrupt-day copies, the rest
+       timer and the workout list (rebuilt from the workouts).
+   Merging works like the days: each workout and each store item is
+   compared with the last good sync. Changed on one side only: that side
+   wins. Added on either side: kept. Deleted on one side and untouched on
+   the other: deleted. Changed on both: a workout keeps the newer copy, a
+   store item keeps this phone's (Settings lists it).
+   --------------------------------------------------------------------- */
+var MUSE_SYNC_SKIP = /^(coachmusesync|coachcloudtoken$|coachfdckey$|coachoffcache|coachthumbs|coachscandiag|coachbackup|coachautobackup|caloriecorrupt:|coachtrain:rest$|coachtrain:idx$|coachtrain:w:|coach:|calorielog:|caloriewater:|caloriecomplete:|calorietrain:|calorieweightlog$)/;
+function museSyncStoreKey(k){ return /^(coach|calorie)/.test(k) && !MUSE_SYNC_SKIP.test(k); }
+function museSyncStoreLocal(){
+  var out = {}, i, k, raw;
+  try{
+    for(i = 0; i < CS.length; i++){
+      k = CS.key(i);
+      if(!k || !museSyncStoreKey(k)) continue;
+      raw = CS.getItem(k);
+      if(raw == null) continue;
+      try{ out[k] = JSON.parse(raw); }catch(e){ out[k] = {__raw: String(raw)}; }
+    }
+  }catch(e){}
+  return out;
+}
+function museSyncStoreRaw(v){
+  if(v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length === 1 && typeof v.__raw === 'string') return v.__raw;
+  return JSON.stringify(v);
+}
+function museSyncWorkoutsLocal(){
+  var out = {};
+  try{
+    var idx = JSON.parse(CS.getItem('coachtrain:idx') || '[]') || [];
+    idx.forEach(function(w){ try{ var x = JSON.parse(CS.getItem('coachtrain:w:' + w.id)); if(x && x.id) out[x.id] = x; }catch(e){} });
+  }catch(e){}
+  return out;
+}
+// Read-only summary for Muse. Never merged back.
+function museSyncInsights(){
+  var o = {note: 'Read-only. Worked out by COACH on each sync; edits here are ignored.', at: new Date().toISOString()};
+  try{
+    var t = targetsFor(new Date());
+    o.todayTargets = {kcal: t.kcal, protein: t.protein, carbs: t.carbs, fat: t.fat};
+  }catch(e){}
+  try{ o.hydrationTargetMl = hydTarget(new Date()); }catch(e){}
+  try{
+    if(typeof trUsage === 'function'){
+      var ranks = [], bests = {};
+      trUsage().forEach(function(_, name){
+        var b = trBests(name); bests[name] = b;
+        var r = trRankOf(name);
+        if(r && r.tier >= 0) ranks.push({exercise: name, rank: TR_RANKS[r.tier].n, meaning: TR_RANKS[r.tier].plain,
+          strongerThanPct: r.pct, score: Math.round(r.score * 10) / 10, unit: r.L.u === 'reps' ? 'reps' : 'kg est. max',
+          nextRankAt: r.next ? Math.round(r.next * 10) / 10 : null, roughBecauseMachine: !!r.machine});
+      });
+      o.ranks = ranks.sort(function(a, b){ return b.strongerThanPct - a.strongerThanPct; });
+      o.bests = bests;
+      var S = trMuscleScores(), mm = {};
+      Object.keys(S).forEach(function(k){ mm[k] = {status: TR_MU_LOOK[S[k].k].n, strongerThanPct: S[k].pct, lifts: S[k].lifts.map(function(l){ return l.n; })}; });
+      o.muscles = mm;
+      o.rankSource = 'Strength Level standards (strengthlevel.com) by sex and bodyweight';
+    }
+  }catch(e){}
+  return o;
+}
+// Three-way merge of a keyed map (workouts or store), against the hashes
+// from the last good sync. bothChanged(l, r) picks when both sides changed.
+function museSyncMergeMap(l, r, s, name, bothChanged){
+  l = l || {}; r = r || {}; s = s || {};
+  var out = {}, conflicts = [], keys = {};
+  Object.keys(l).forEach(function(k){ keys[k] = 1; });
+  Object.keys(r).forEach(function(k){ keys[k] = 1; });
+  Object.keys(keys).forEach(function(k){
+    var a = l[k], b = r[k], h = s[k];
+    var ha = a !== undefined ? museSyncHash(JSON.stringify(a)) : null, hb = b !== undefined ? museSyncHash(JSON.stringify(b)) : null;
+    if(a !== undefined && b === undefined){
+      if(!h){ out[k] = a; return; }
+      if(ha !== h){ out[k] = a; conflicts.push('Kept your ' + name(k, a) + ' \u2014 it was deleted in the synced copy.'); }
+      return;
+    }
+    if(b !== undefined && a === undefined){
+      if(!h){ out[k] = b; return; }
+      if(hb !== h){ out[k] = b; conflicts.push('Kept the synced ' + name(k, b) + ' \u2014 it was deleted on this phone.'); }
+      return;
+    }
+    if(ha === hb){ out[k] = a; return; }
+    var ac = h && ha !== h, bc = h && hb !== h;
+    if(ac && !bc){ out[k] = a; return; }
+    if(bc && !ac){ out[k] = b; return; }
+    if(!h){ out[k] = a; return; }
+    var pick = bothChanged(a, b);
+    out[k] = pick;
+    conflicts.push(name(k, pick) + ' was changed in both places \u2014 kept ' + (pick === a ? 'this phone\u2019s' : 'the newer') + ' copy.');
+  });
+  return {map: out, conflicts: conflicts};
+}
+function museSyncHashMap(m){ var o = {}; Object.keys(m || {}).forEach(function(k){ o[k] = museSyncHash(JSON.stringify(m[k])); }); return o; }
 function museSyncSnapOf(pack){
   var snap = {days:{}, weight:''};
   Object.keys(pack.days || {}).sort().forEach(function(ds){
@@ -25898,6 +26015,8 @@ function museSyncSnapOf(pack){
   snap.weight = museSyncHash(JSON.stringify(pack.weight || []));
   snap.weightByDate = {};
   (pack.weight || []).forEach(function(w){ if(w && w.date) snap.weightByDate[w.date] = Number(w.kg); });
+  snap.workouts = museSyncHashMap(pack.workouts);
+  snap.store = museSyncHashMap(pack.store);
   return snap;
 }
 function museSyncSnapEqual(a, b){
@@ -26008,11 +26127,20 @@ function museSyncMerge(local, remote, snap){
     weight.push(e.local);
     conflicts.push('You weighed in twice on ' + dt + ' \u2014 kept this phone\u2019s ' + lKg + ' kg.');
   });
+  // v145: workouts (newer copy wins when both changed) and everything else
+  // (this phone's copy wins when both changed).
+  var wm = museSyncMergeMap(local.workouts, remote.workouts, snap.workouts,
+    function(k, w){ return 'workout \u201c' + ((w && w.name) || k) + '\u201d'; },
+    function(a, b){ return ((b.upd || b.end || 0) > (a.upd || a.end || 0)) ? b : a; });
+  var sm = museSyncMergeMap(local.store, remote.store, snap.store,
+    function(k){ return 'setting \u201c' + k + '\u201d'; },
+    function(a){ return a; });
+  conflicts = conflicts.concat(wm.conflicts, sm.conflicts);
   return {
     pack: {
       __coachSync: 1, version: Math.max(local.version || 0, remote.version || 0) + 1,
       updatedAt: new Date().toISOString(), updatedBy: 'phone',
-      days: days, weight: weight, workouts: remote.workouts || local.workouts || {}
+      days: days, weight: weight, workouts: wm.map, store: sm.map, insights: local.insights || {}
     },
     conflicts: conflicts
   };
@@ -26043,6 +26171,29 @@ function museSyncApply(pack){
       try{ setTrainingDay(d, !!day.training); }catch(e){}
     });
     try{ lsSet(WEIGHTLOG_KEY, JSON.stringify(pack.weight || [])); }catch(e){}
+    // v145: everything else, written back under its own name.
+    var store = pack.store || {}, haveStore = museSyncStoreLocal();
+    Object.keys(store).forEach(function(k){
+      if(!museSyncStoreKey(k)) return;                       // never a secret or a cache
+      var raw = museSyncStoreRaw(store[k]);
+      if(CS.getItem(k) !== raw){ try{ lsSet(k, raw); }catch(e){} }
+    });
+    if(pack.store) Object.keys(haveStore).forEach(function(k){ if(!(k in store)){ try{ CS.removeItem(k); }catch(e){} } });
+    // Workouts, then the list of them rebuilt from what is there.
+    if(pack.workouts){
+      var ws = pack.workouts, have = museSyncWorkoutsLocal();
+      Object.keys(have).forEach(function(id){ if(!ws[id]){ try{ CS.removeItem('coachtrain:w:' + id); }catch(e){} } });
+      var idx = [];
+      Object.keys(ws).forEach(function(id){
+        var w = ws[id]; if(!w || !w.id || !w.d || !Array.isArray(w.ex)) return;
+        try{ lsSet('coachtrain:w:' + id, JSON.stringify(w)); }catch(e){}
+        var st = (typeof trWorkoutStats === 'function') ? trWorkoutStats(w) : {vol: 0, sets: 0, mins: 0};
+        idx.push({id: w.id, d: w.d, s: w.start || 0, n: w.name || 'Workout', v: st.vol, k: st.sets, m: st.mins, x: w.ex.map(function(e){ return e.n; })});
+      });
+      idx.sort(function(a, b){ return a.s - b.s; });
+      try{ lsSet('coachtrain:idx', JSON.stringify(idx)); }catch(e){}
+      try{ trUsageCache = null; TR_LIB = null; }catch(e){}
+    }
   }finally{ museSyncApplying = false; }
 }
 async function museSyncFetch(token){
@@ -26056,6 +26207,13 @@ async function museSyncFetch(token){
   var d = await r.json();
   var pack = null;
   try{ pack = JSON.parse(decodeURIComponent(escape(atob(String(d.content || '').replace(/\n/g, ''))))); }catch(e){ pack = null; }
+  // v145: a file over 1 MB comes back without its content; fetch it raw.
+  if(!pack && d && d.size > 0 && !d.content){
+    try{
+      var rr = await fetch(MUSE_SYNC_API, {headers:{'Authorization':'Bearer ' + token, 'Accept':'application/vnd.github.raw+json'}, cache:'no-store'});
+      if(rr.ok) pack = JSON.parse(await rr.text());
+    }catch(e){ pack = null; }
+  }
   if(!pack || pack.__coachSync !== 1){ var err4 = new Error('bad file'); err4.code = 'badfile'; throw err4; }
   return {pack: pack, sha: d.sha};
 }
@@ -26077,6 +26235,8 @@ function museSyncLocalChanged(st){
   if(!st.snapshot) return true;
   var cur = museSyncSnapOf(museSyncPackLocal());
   if(cur.weight !== st.snapshot.weight) return true;
+  if(JSON.stringify(cur.workouts || {}) !== JSON.stringify(st.snapshot.workouts || {})) return true;
+  if(JSON.stringify(cur.store || {}) !== JSON.stringify(st.snapshot.store || {})) return true;
   var dates = {};
   Object.keys(cur.days).forEach(function(ds){ dates[ds] = 1; });
   Object.keys(st.snapshot.days || {}).forEach(function(ds){ dates[ds] = 1; });
@@ -26183,7 +26343,7 @@ async function museSyncNow(opts){
       var ns0 = {enabled:true, version:local.version, sha:sha0, snapshot:museSyncSnapOf(local), lastSync:new Date().toISOString(), lastError:null, conflicts:[]};
       museSyncSaveState(ns0); museSyncRenderRow();
       try{ renderDay(); renderStreak(); }catch(e){}
-      if(!opts.quiet) alert('Synced \u2014 ' + Object.keys(local.days).length + ' days now shared with Muse');
+      if(!opts.quiet) alert('Synced \u2014 ' + Object.keys(local.days).length + ' days, ' + Object.keys(local.workouts || {}).length + ' workouts and everything else now shared with Muse');
       return {ok:true, pushed:Object.keys(local.days).length, pulled:0, conflicts:[]};
     }
     var remote = fetched.pack;

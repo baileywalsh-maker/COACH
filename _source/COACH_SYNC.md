@@ -1,4 +1,4 @@
-# COACH sync with Muse — v144
+# COACH sync with Muse — v145 (everything, v146)
 
 ## The shape of it
 
@@ -47,20 +47,19 @@ weight log. The code is `src/js/44-muse-sync.js`.
 }
 ```
 
-What syncs: one day's food entries (`calorielog:YYYY-MM-DD`, supplements
-included — they are entries with `"supp": true`), plain water in
-millilitres (`caloriewater:`), the ticked-complete flag
-(`caloriecomplete:`), the training-day tick (`calorietrain:`), and the
-weight log (`calorieweightlog`). What NEVER syncs: the profile and
-targets (`calorieprofile`, `calorietarget`), the per-day target snapshots
-(`calorietargetsnap:` — the phone re-freezes those from its own targets),
-My foods and label fixes (`coachmyfoods`, `coachlabels`), reviews, the
-adjust log, recents, or any setting. Targets are Bailey's — Muse must
-never move them.
+What syncs: **everything COACH saves.** Since v146 the file has five parts:
 
-`workouts` is reserved and empty: COACH has no workout logging yet, only
-the training-day tick. When workout logging lands, its entries go here
-as per-day arrays merged the same way as food entries.
+- `days`: one record per date: food entries (`calorielog:`, supplements included, as entries with `"supp": true`), plain water in ml (`caloriewater:`), the complete tick (`caloriecomplete:`) and the training-day tick (`calorietrain:`).
+- `weight`: the weight log (`calorieweightlog`).
+- `workouts`: every finished workout, keyed by id. Shape: `{id, name, d: "YYYY-MM-DD", start, end (ms), rt (routine id or null), ex: [{n: exercise name, note, sets: [{t: "n"|"w"|"d"|"f", done: true, kg, reps, km, sec, pr: 1}]}]}`. Set types are normal, warm-up, drop and failure. `kg` is per dumbbell for dumbbell lifts, added weight for bodyweight lifts and kg taken off for assisted lifts. Exercise names must match COACH's library (e.g. "Bench Press (Barbell)"), or they appear as custom exercises.
+- `store`: every other thing COACH saves, under its own storage name, e.g. `calorieprofile` (profile), `calorietarget`, `calorietargetsnap:YYYY-MM-DD`, `coachmyfoods`, `coachlabels`, `coachsupps`, `caloriereviews`, `coachmonthreviews`, `calorieadjustlog`, `caloriesavedmeals`, `calorierecents`, `coachtrain:routines`, `coachtrain:custom` (Bailey's own exercises), `coachtrain:prefs`, `coachtrain:active` (a workout in progress), `coachtrain:mode`, plus display settings. A JSON value appears as JSON. Any other value appears as `{"__raw": "text"}`.
+- `insights` (**read-only**): worked out fresh by the phone on every sync. It holds today's targets, the hydration target, every lift's rank (Rookie → Champion, % of lifters beaten, next rank), bests per exercise, and the muscle map (Weak/Average/Strong/Champion/Not sure per muscle). Anything Muse writes here is ignored and replaced.
+
+Never in the file: the sync token and sync state (`coachmusesync*`), the backup token (`coachcloudtoken`), the USDA key (`coachfdckey`), and throwaway caches (Open Food Facts cache, thumbnails, scan diagnostics, local backups, corrupt-day copies, the rest timer, the workout list, which is rebuilt from `workouts`).
+
+Muse **may** change anything in `days`, `weight`, `workouts` and `store`. Bailey wants Muse to have full access. Be careful with targets and the profile: only change them when Bailey asks.
+
+**Merging:** each workout and each store item is compared with the last good sync. Changed on one side only: that side wins. Added on either side: kept. Deleted on one side and untouched on the other: deleted. Changed on both sides: a workout keeps the newer copy (`upd`, then `end`), and a store item keeps the phone's. Settings lists every such case.
 
 Entry fields: an entry is exactly what the phone stored for that food —
 name, grams, kcal, protein, carbs, fat, sugar, sat, micros, meal, basis,
@@ -170,9 +169,8 @@ rather than guessing.
 
 ## Limits (say these plainly, don't paper over them)
 
-- Sync is **food, water, weight and training ticks only**. Profile,
-  targets, My foods, reviews and the adjust log are not synced, and
-  Muse must never write them into the file.
+- Sync covers **everything except secrets and caches** (see The file). A
+  store item changed on both sides keeps the phone's copy.
 - The phone does **not** poll while open. Something Muse adds shows up
   when COACH is next opened, or after a manual Sync now — not live
   while Bailey stares at the app.
@@ -199,3 +197,13 @@ entry pulled on open, a phone entry pushed, a delete propagating both
 ways, both-ways conflict keeps newer + is reported, water keeps the
 larger amount, token never in a backup. Full suite:
 `node tests/run.js --old <last shipped build> --new dist`.
+
+
+## How Muse adds or edits a workout (v146)
+
+1. Fetch the file fresh (and keep its `sha`).
+2. To add one: pick a new id (`Date.now().toString(36)` plus 4 random characters), set `d`, `start` and `end` in ms, `name`, and `ex` with each set marked `done: true`. Set `upd` to now.
+3. To edit one: change its sets or name, and set `upd` to now. Never change its `id`.
+4. To change a routine, edit `store["coachtrain:routines"]`: `[{id, name, ex: [{n, sets}]}]`.
+5. Write the file back with the `sha`. If GitHub says it changed, fetch again and redo the edit.
+6. The phone picks it up when COACH is next opened, or after Sync now. Ranks, the muscle map and history update by themselves.
