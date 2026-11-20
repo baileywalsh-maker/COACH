@@ -1,0 +1,1246 @@
+</style>
+</head>
+<body>
+<!-- v131: covers the app while it loads and draws today, so you never see it
+     half-built or tap something that is not ready yet. Fades away once the day
+     screen is drawn. If anything ever goes wrong it removes itself after 6s. -->
+<div id="boot-splash" style="position:fixed; inset:0; z-index:9999; background:#0a0b0e; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; transition:opacity .28s ease;">
+  <div style="font:700 19px/1 system-ui,-apple-system,sans-serif; letter-spacing:.34em; text-indent:.34em; color:#e9ecf1;">COACH</div>
+  <div style="width:96px; height:3px; border-radius:2px; background:#1c2028; overflow:hidden;"><i style="display:block; width:40%; height:100%; border-radius:2px; background:#7fe0b0; animation:bootbar 1s ease-in-out infinite;"></i></div>
+  <style>@keyframes bootbar{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}</style>
+</div>
+<script>
+window.hideBootSplash = function(){
+  var el = document.getElementById('boot-splash');
+  if(!el || el.dataset.gone) return;
+  el.dataset.gone = '1';
+  el.style.opacity = '0';
+  el.style.pointerEvents = 'none';
+  setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 320);
+};
+setTimeout(window.hideBootSplash, 8000);
+window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 300); });
+</script>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <span class="streak" id="streak-badge"><i class="ti ti-flame" aria-hidden="true"></i> 0</span>
+    </div>
+    <h1 class="wordmark">COACH</h1>
+    <div style="display:flex; gap:4px; align-items:center;">
+      <!-- v144: Eat / Train. Swaps every tab below; the header stays. -->
+      <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
+        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
+        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
+      </div>
+      <button class="gear" id="profile-btn" aria-label="Profile"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></button>
+      <button class="gear" id="target-btn" aria-label="Settings"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+  </header>
+
+  <div class="view-tabs tr-tabs" id="tr-tabs" style="display:none;">
+    <button class="view-tab active" data-tv="workout">Workout</button>
+    <button class="view-tab" data-tv="history">History</button>
+    <button class="view-tab" data-tv="exercises">Exercises</button>
+  </div>
+  <!-- v144: everything for training lives in here. -->
+  <div id="view-train" style="display:none;"></div>
+
+  <div class="view-tabs" id="eat-tabs">
+    <button class="view-tab active" data-view="day">Day</button>
+    <button class="view-tab" data-view="week">Week</button>
+    <button class="view-tab" data-view="data">Data</button>
+  </div>
+
+  <!-- DAY VIEW -->
+  <div id="view-day">
+    <!-- v119: a way back into a review on the day it arrives. Gone the next day;
+         after that the reviews live on the Data page. -->
+    <div id="review-pills" style="display:none;"></div>
+    <!-- v137: the three reminders below, as one row of chips. -->
+    <div id="tf-row" class="tf-row" style="display:none;"></div>
+    <button id="backup-nag" style="display:none; width:100%; background:rgba(255,176,32,.10); border:0.5px solid rgba(255,176,32,.45); border-radius:12px; padding:11px 14px; margin-bottom:var(--blockgap); align-items:center; gap:10px; color:#ffb020; text-align:left;">
+      <i class="ti ti-alert-triangle" aria-hidden="true" style="flex-shrink:0;"></i>
+      <span id="backup-nag-text" style="font-size:12.5px; line-height:1.4;"></span>
+    </button>
+
+    <button id="weigh-nudge" style="display:none; width:100%; background:var(--accent-dim); border:0.5px solid var(--accent); border-radius:12px; padding:11px 14px; margin-bottom:var(--blockgap); align-items:center; justify-content:space-between; color:var(--accent); text-align:left;">
+      <span style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600;"><i class="ti ti-scale" aria-hidden="true"></i> <span id="weigh-nudge-label">Log today's weight</span></span>
+      <span style="font-size:12.5px; opacity:.8;">Log it</span>
+    </button>
+    <!-- v111: a calorie change COACH thinks is due. Nothing moves until you say so. -->
+    <div id="adapt-card" style="display:none; background:var(--card); border:0.5px solid var(--accent); border-radius:14px; padding:14px; margin-bottom:var(--blockgap);"></div>
+
+    <div class="daynav">
+      <button id="prev-day" aria-label="Previous day"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+      <div><span class="label" id="day-label">Today</span><span class="sub" id="day-sub"></span></div>
+      <button id="next-day" aria-label="Next day"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="ring-card">
+      <div class="ring-duo">
+        <button class="ring tappable" data-bdmacro="kcal">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" stroke="var(--well)" stroke-width="9" fill="none"/>
+            <circle id="ring-progress" cx="50" cy="50" r="42" stroke="var(--accent)" stroke-width="9" fill="none"
+              stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round"/>
+            <!-- Where the target sits on a ring that does not END at the target.
+                 On a build the ring runs to target+25%, so the white tick is the
+                 target and the amber tick is where the surplus stops being
+                 muscle. Positioned by setRingTick(); hidden on a cut, where the
+                 ring ends at the target and a tick would sit on the seam. -->
+            <line id="ring-tick-target" x1="0" y1="0" x2="0" y2="0" stroke="var(--text)" stroke-width="2" style="display:none;"/>
+            <line id="ring-tick-ceiling" x1="0" y1="0" x2="0" y2="0" stroke="var(--caution)" stroke-width="2" style="display:none;"/>
+          </svg>
+          <div class="ring-center"><span class="num" id="ring-num">0</span><span class="of" id="ring-lab">of 0</span></div>
+        </button>
+        <div class="ring" id="pring">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" stroke="var(--well)" stroke-width="9" fill="none"/>
+            <circle id="pring-progress" cx="50" cy="50" r="42" stroke="var(--prot)" stroke-width="9" fill="none"
+              stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round"/>
+          </svg>
+          <div class="ring-center"><span class="num" id="pring-num">0g</span><span class="of" id="pring-lab">of 0g</span></div>
+        </div>
+      </div>
+      <!-- Ring ON. The chip carries the total, which is what the ring does not. -->
+      <div class="macro-chips" id="macro-chips">
+        <button class="chip" data-bdmacro="protein"><div class="ck"><span>PROTEIN</span><i>&rsaquo;</i></div>
+          <div class="cv"><span id="chip-p">0</span><span class="t" id="chipt-p"> / 0g</span></div>
+          <div class="cb"><div id="chipbar-p" style="width:0%; background:var(--prot)"></div></div></button>
+        <button class="chip" data-bdmacro="carbs"><div class="ck"><span>CARBS</span><i>&rsaquo;</i></div>
+          <div class="cv"><span id="chip-c">0</span><span class="t" id="chipt-c"> / 0g</span></div>
+          <div class="cb"><div id="chipbar-c" style="width:0%; background:var(--carb)"></div></div></button>
+        <button class="chip" data-bdmacro="fat"><div class="ck"><span>FAT</span><i>&rsaquo;</i></div>
+          <div class="cv"><span id="chip-f">0</span><span class="t" id="chipt-f"> / 0g</span></div>
+          <div class="cb"><div id="chipbar-f" style="width:0%; background:var(--fat)"></div></div></button>
+      </div>
+      <!-- Ring OFF. The v32 rows, protein included. -->
+      <div class="macros" id="macro-bars" style="display:none;">
+        <button class="macro-row" data-bdmacro="protein"><span class="dot" style="background:var(--prot)"></span><span class="name">Protein</span><div class="bar"><div id="bar-p" style="width:0%; background:var(--prot)"></div></div><span class="val" id="val-p">0g</span></button>
+        <button class="macro-row" data-bdmacro="carbs"><span class="dot" style="background:var(--carb)"></span><span class="name">Carbs</span><div class="bar"><div id="bar-c" style="width:0%; background:var(--carb)"></div></div><span class="val" id="val-c">0g</span></button>
+        <button class="macro-row" data-bdmacro="fat"><span class="dot" style="background:var(--fat)"></span><span class="name">Fat</span><div class="bar"><div id="bar-f" style="width:0%; background:var(--fat)"></div></div><span class="val" id="val-f">0g</span></button>
+      </div>
+      <!-- v137: where you usually are by this time of day. -->
+      <div id="pace-row" class="pace-row" style="display:none;"></div>
+      <!-- v120: what is left today, and the training toggle, in one footer. -->
+      <div class="ring-foot" id="ring-foot">
+        <span class="ring-togo" id="ring-togo"></span>
+        <button id="traintoggle" style="width:100%; background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:var(--blockgap); display:flex; align-items:center; justify-content:space-between; color:var(--text);">
+      <span style="display:flex; align-items:center; gap:8px; font-size:13px;"><i class="ti ti-barbell" aria-hidden="true"></i> <span id="traintoggle-label">Rest day</span></span>
+        <span id="traintoggle-hint" style="font-size:12.5px; color:var(--text2);">Change</span>
+    </button>
+      </div>
+    </div>
+
+    <div class="ont" id="ontarget"></div>
+    <div class="week7" id="week7"></div>
+    <!-- The colour key used to sit here as a paragraph of 11px grey. It is a
+         tappable row in the Week view now; the blocks themselves stay. -->
+    <p class="w7note" id="week7-note" style="display:none;"></p>
+
+    <!-- v84: the eaten/target strip moved INTO the ring, and the two grey
+         lines that sat under it — how provisional the target is, and how many
+         days in a row you have logged — moved to the Data tab, where the rest
+         of the worked-out figures live. The elements stay in the document,
+         hidden, so every line of code that writes to them still works and no
+         saved data or setting has to change. -->
+    <div id="ring-totals" style="display:none;">
+      <b id="rt-eaten">0</b><b id="rt-target">0</b><span id="rt-over"></span>
+    </div>
+
+    <div class="water-card">
+      <div class="water-top">
+        <button class="wl" id="water-open" style="background:none; border:0; padding:0; color:var(--text); font-family:inherit;">
+          <i class="ti ti-droplet" style="color:#5aa8e0;" aria-hidden="true"></i> Water
+          <i class="ti ti-chevron-right" style="color:var(--text3); font-size:14px;" aria-hidden="true"></i>
+        </button>
+        <span style="display:flex; align-items:center; gap:9px;">
+          <span class="wv" id="water-val">0 / 2.0 L</span>
+          <button id="water-cog" aria-label="Water settings"><i class="ti ti-adjustments-alt" aria-hidden="true"></i></button>
+        </span>
+      </div>
+      <div class="water-segs" id="water-segs"></div>
+      <div id="water-note" class="water-note"></div>
+      <div id="water-settings" class="water-set" style="display:none;"></div>
+    </div>
+    <!-- v128: hydration - water plus every other drink -->
+    <div id="hyd-card" class="hyd-card" role="button" tabindex="0"></div>
+
+    <!-- v84: History and Data were two small buttons here. Data is a heading
+         next to Day and Week now, and History is a row inside it. -->
+
+    <button id="day-review-card" style="display:none; width:100%; background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:14px 15px 15px; margin-bottom:var(--blockgap); color:var(--text); text-align:left;">
+      <div class="rvh"><span class="rvt" id="drc-title">Today's review</span>
+        <span class="rvc">See it all <i class="ti ti-chevron-right" aria-hidden="true"></i></span></div>
+      <div class="rvgrid" id="drc-grid"></div>
+    </button>
+
+    <div class="section-title">Today's log</div>
+    <div id="entries"></div>
+    <!-- v125: supplements, under the meals -->
+    <div class="meal-group" id="supp-card"></div>
+
+    <!-- v84: the day's tick sits under the whole log, which is when you
+         actually tick it, rather than above the food it is about. -->
+    <button id="day-complete" style="width:100%; background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:13px 14px; margin-bottom:var(--blockgap); display:flex; align-items:center; justify-content:space-between; color:var(--text); text-align:left;">
+      <span style="display:flex; align-items:center; gap:10px;">
+        <span id="dc-box" style="width:20px; height:20px; border-radius:6px; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:12px;"></span>
+        <span>
+          <span id="dc-label" style="font-size:13px; display:block;">Everything logged for this day</span>
+          <span id="dc-sub" style="display:none;"></span>
+        </span>
+      </span>
+    </button>
+
+
+    <div class="section-title">Nutrients</div>
+    <div class="ntabs" id="ntabs">
+      <button data-nv="body" class="on">Body</button>
+      <button data-nv="list">Nutrients</button>
+    </div>
+    <div id="body-panel"></div>
+    <div id="micro-panel" style="background:var(--card); border:0.5px solid var(--border); border-radius:14px; padding:16px;"></div>
+    <!-- The coverage sentence is on the panel's own header now, and the full
+         version is inside the nutrient page. Kept in the document so the code
+         that fills it keeps working. -->
+    <p id="micro-coverage" style="display:none;"></p>
+  </div>
+
+  <!-- DATA VIEW -->
+  <!-- Everything worked out rather than typed in: what COACH has learned your
+       burn to be, the long-range charts that used to live behind a button, what
+       set your target, and the way into every logged day. -->
+  <div id="view-data" style="display:none;">
+    <div class="learned" id="learned-card" style="display:none;">
+      <div class="lh"><i class="ti ti-brain" aria-hidden="true"></i><span>What COACH has worked out</span></div>
+      <div class="lfig" id="learned-fig">—</div>
+      <div class="ldelta" id="learned-delta"></div>
+      <div class="lsample" id="learned-sample"></div>
+    </div>
+
+    <div class="tabs" id="data-range">
+      <button class="tab" data-drange="30">30 days</button>
+      <button class="tab active" data-drange="90">90 days</button>
+      <button class="tab" data-drange="365">A year</button>
+    </div>
+    <div id="data-body"></div>
+
+    <div class="section-title">Your record</div>
+    <button class="datarow" id="open-hist">
+      <span><i class="ti ti-calendar" aria-hidden="true"></i> Every logged day</span>
+      <i class="ti ti-chevron-right" aria-hidden="true"></i>
+    </button>
+    <button class="datarow" id="open-reviews-row">
+      <span><i class="ti ti-notes" aria-hidden="true"></i> Weekly reviews</span>
+      <i class="ti ti-chevron-right" aria-hidden="true"></i>
+    </button>
+    <div class="datanote" id="data-prov"></div>
+  </div>
+
+  <!-- WEEK VIEW -->
+  <div id="view-week" style="display:none;">
+    <!-- v137: the week as a scoreboard. -->
+    <div id="wk-board" class="wkb-card"></div>
+    <div id="budget-card" style="background:linear-gradient(160deg, var(--card2), var(--card)); border:0.5px solid var(--border); border-radius:16px; padding:18px; margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <i class="ti ti-wallet" style="color:var(--accent); font-size:16px;" aria-hidden="true"></i>
+        <span style="font-size:13px; font-weight:600;">Weekly budget</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:10px;">
+        <span style="font-size:26px; font-weight:700;" id="budget-left">0</span>
+        <span style="font-size:13px; color:var(--text3);" id="budget-left-lab">kcal left this week</span>
+      </div>
+      <div style="height:7px; background:#000; border-radius:4px; overflow:hidden; margin-bottom:10px;">
+        <div id="budget-bar" style="height:100%; width:0%; background:var(--accent); border-radius:4px;"></div>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text3);">
+        <span id="budget-spent">0 / 0 spent</span>
+        <span id="budget-perday">-</span>
+      </div>
+      <div id="budget-note" style="font-size:12px; color:var(--text2); line-height:1.5; margin-top:12px;"></div>
+    </div>
+
+    <div class="week-summary">
+      <div class="wsum-card"><div class="n" id="w-avg">0</div><div class="l">Avg per logged day</div></div>
+      <div class="wsum-card"><div class="n" id="w-hit">0/7</div><div class="l">Days on target</div></div>
+      <div class="wsum-card"><div class="n" id="w-total">0</div><div class="l">Eaten this week</div></div>
+    </div>
+    <div id="expend-card" style="display:none; background:var(--card); border:0.5px solid var(--border); border-radius:14px; padding:16px; margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <i class="ti ti-flame" style="color:var(--accent); font-size:16px;" aria-hidden="true"></i>
+        <span style="font-size:13px; font-weight:600;">What you actually burn</span>
+      </div>
+      <div id="expend-body"></div>
+    </div>
+    <div id="adaptive-card" style="background:var(--card); border:0.5px solid var(--border); border-radius:14px; padding:16px; margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <i class="ti ti-adjustments-alt" style="color:var(--accent); font-size:16px;" aria-hidden="true"></i>
+        <span style="font-size:13px; font-weight:600;">Target check</span>
+      </div>
+      <div id="adaptive-body" style="font-size:13px; color:var(--text2); line-height:1.5;">Log your weight daily to unlock adaptive targets.</div>
+      <div id="adaptive-actions" style="display:none; margin-top:12px;">
+        <button class="save-btn" id="apply-adaptive-btn" style="margin-top:0;">Apply new target</button>
+      </div>
+    </div>
+    <div id="weight-trend-card" style="display:none; background:var(--card); border:0.5px solid var(--border); border-radius:14px; padding:14px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between;">
+      <div><div style="font-size:12px; color:var(--text3);" id="wt-label">Weight trend (7d)</div><div style="font-size:18px; font-weight:700; margin-top:2px;" id="wt-change">-</div></div>
+      <div style="text-align:right;"><div style="font-size:12px; color:var(--text3);">Latest</div><div style="font-size:15px; font-weight:600; margin-top:2px;" id="wt-latest">-</div></div>
+    </div>
+    <div class="section-title">This week</div>
+    <div class="weekchart" id="weekchart"></div>
+    <div class="section-title">Macros this week so far</div>
+    <div class="macros" style="background:var(--card); border:0.5px solid var(--border); border-radius:14px; padding:14px;">
+      <button class="macro-row" data-bdweek="protein"><span class="dot" style="background:var(--prot)"></span><span class="name">Protein</span><div class="bar"><div id="wbar-p" style="width:0%; background:var(--prot)"></div></div><span class="val" id="wval-p">0g</span></button>
+      <button class="macro-row" data-bdweek="carbs"><span class="dot" style="background:var(--carb)"></span><span class="name">Carbs</span><div class="bar"><div id="wbar-c" style="width:0%; background:var(--carb)"></div></div><span class="val" id="wval-c">0g</span></button>
+      <button class="macro-row" data-bdweek="fat"><span class="dot" style="background:var(--fat)"></span><span class="name">Fat</span><div class="bar"><div id="wbar-f" style="width:0%; background:var(--fat)"></div></div><span class="val" id="wval-f">0g</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="undo-bar" id="undo-bar"><div class="undo-inner">
+  <div class="ut" id="undo-text"></div>
+  <button id="undo-btn"><i class="ti ti-arrow-back-up" aria-hidden="true"></i> Undo</button>
+  <div class="ubar" id="undo-progress"></div>
+</div></div>
+
+<div class="fab-row"><div class="fab-inner">
+  <button class="fab primary" id="open-add"><i class="ti ti-plus" aria-hidden="true"></i> Add food</button>
+  <button class="fab scan" id="open-scan"><i class="ti ti-barcode" aria-hidden="true"></i> Scan</button>
+</div></div>
+
+<!-- Add food sheet -->
+<div class="sheet-backdrop" id="add-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Add food</h3>
+
+    <div class="section-title add-meal-label" style="margin-top:0;">Meal</div>
+    <div class="tabs meal-pills" style="margin-bottom:14px;">
+      <button class="tab meal-tab active" data-meal="Breakfast">Breakfast</button>
+      <button class="tab meal-tab" data-meal="Lunch">Lunch</button>
+      <button class="tab meal-tab" data-meal="Snack">Snack</button>
+      <button class="tab meal-tab" data-meal="Dinner">Dinner</button>
+    </div>
+
+    <div id="recents-wrap">
+      <div class="section-title" style="margin-top:0;">Recent</div>
+      <div class="recents-row" id="recents-row"></div>
+    </div>
+    <div class="tabs utabs">
+      <button class="tab active" data-tab="search">Search</button>
+      <button class="tab" data-tab="saved">Meals</button>
+      <button class="tab" data-tab="manual">Manual</button>
+      <!-- Not a panel: it hands off to the scanner and keeps the meal you
+           picked. Deliberately outside the [data-tab] wiring so it can never
+           be left "selected" over an empty panel. -->
+      <button class="tab" id="tab-to-scan"><i class="ti ti-barcode" aria-hidden="true"></i> Scan</button>
+    </div>
+
+    <div class="tabpanel" id="tab-saved">
+      <div id="saved-meals-list"></div>
+      <button class="save-btn" id="new-meal-btn" style="background:var(--card2); color:var(--text); border:0.5px solid var(--border);">Build a new meal</button>
+    </div>
+
+    <div class="tabpanel active" id="tab-search">
+      <label class="search-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="text" id="search-input" placeholder="Search e.g. 'chicken breast'" aria-label="Search foods" autocapitalize="sentences" autocorrect="off" spellcheck="false"></label>
+      <div id="search-results" style="max-height:280px; overflow-y:auto;"></div>
+    </div>
+
+    <div class="tabpanel" id="tab-manual">
+      <input type="text" id="m-name" placeholder="Food name" autocapitalize="sentences" autocorrect="off" spellcheck="false">
+      <input type="text" id="m-brand" placeholder="Brand (optional)" autocapitalize="words" autocorrect="off" spellcheck="false" maxlength="40">
+      <div class="tabs" id="m-measure">
+        <button class="tab active" data-mbasis="g">Grams</button>
+        <button class="tab" data-mbasis="ml">Millilitres</button>
+      </div>
+      <div class="row2">
+        <input type="number" id="m-kcal" placeholder="Calories" inputmode="decimal">
+        <input type="number" id="m-qty" placeholder="Portion (g)" inputmode="decimal">
+      </div>
+      <div class="row3">
+        <input type="number" id="m-protein" placeholder="Protein g" inputmode="decimal">
+        <input type="number" id="m-carbs" placeholder="Carbs g" inputmode="decimal">
+        <input type="number" id="m-fat" placeholder="Fat g" inputmode="decimal">
+      </div>
+      <!-- The four figures a health score is built from. Optional, because the
+           commonest manual entry is an estimate and demanding packet-level
+           detail on a guess is false precision - but present and obvious,
+           because without them the food is never scored at all. -->
+      <div class="section-title" style="margin-top:4px;">Off the packet <span style="text-transform:none; letter-spacing:0; color:var(--text3); font-weight:400;">&mdash; for the health score</span></div>
+      <div class="row2 fieldlabels"><span>Sugars g</span><span>of which saturates g</span></div>
+      <div class="row2">
+        <input type="number" id="m-sugar" placeholder="Sugars g" inputmode="decimal">
+        <input type="number" id="m-sat" placeholder="Saturates g" inputmode="decimal">
+      </div>
+      <div class="row2 fieldlabels"><span>Fibre g</span><span>Salt g</span></div>
+      <div class="row2">
+        <input type="number" id="m-fibre" placeholder="Fibre g" inputmode="decimal">
+        <input type="number" id="m-salt" placeholder="Salt g" inputmode="decimal">
+      </div>
+      <div class="scorehint" id="m-scorehint"></div>
+
+      <label class="mf-check"><input type="checkbox" id="m-countable">
+        Count this in units (bars, cans, scoops)</label>
+      <div class="row2" id="m-unit-row" style="display:none;">
+        <input type="text" id="m-unit-name" placeholder="One is a…" autocapitalize="none" autocorrect="off" spellcheck="false">
+        <input type="number" id="m-unit-size" placeholder="One is (g)" inputmode="decimal">
+      </div>
+      <p id="m-unit-hint" style="display:none; font-size:11px; color:var(--text3); line-height:1.5; margin:-2px 0 10px;">
+        Give the size of one and COACH works out every other amount from it. Leave the portion blank and the calories above are taken as one unit.</p>
+      <div class="err" id="manual-err"></div>
+      <button class="save-btn" id="manual-myfoods" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-bottom:10px; font-weight:500;">Edit a food you have already saved</button>
+      <label class="mf-check"><input type="checkbox" id="m-remember" checked>
+        Remember this food <span id="m-code-note"></span></label>
+      <button class="save-btn" id="manual-save">Add to log</button>
+    </div>
+  </div>
+</div>
+
+<!-- Meal builder sheet -->
+<div class="sheet-backdrop" id="breakdown-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="bd-title">Breakdown</h3>
+    <div id="bd-body"></div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="builder-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Build a meal</h3>
+    <input type="text" id="builder-name" placeholder="Meal name e.g. 'Usual breakfast'" autocapitalize="sentences" autocorrect="off" spellcheck="false">
+    <div class="section-title" style="margin-top:6px;">Items</div>
+    <div id="builder-items"><div style="font-size:12px; color:var(--text3); padding-bottom:10px;">No items yet — add from today's log below.</div></div>
+    <!-- A meal is usually built with the packets in front of you, so the
+         scanner belongs here and not only on the Add sheet. -->
+    <div class="section-title">Add an item</div>
+    <div class="bld-add">
+      <button id="bld-scan"><i class="ti ti-barcode" aria-hidden="true"></i> Scan</button>
+      <button id="bld-search"><i class="ti ti-search" aria-hidden="true"></i> Search</button>
+    </div>
+    <div class="section-title">Add from today's log</div>
+    <div id="builder-source" style="max-height:200px; overflow-y:auto;"></div>
+    <div id="builder-score"></div>
+    <label class="mf-check"><input type="checkbox" id="builder-plate">
+      Log this as one dish</label>
+    <p style="font-size:11px; color:var(--text3); line-height:1.5; margin:-4px 0 10px;">
+      A home-cooked dish is one thing you ate, so scoring it as one thing is the honest
+      answer. Leave this off for a plate of separate items &mdash; a sandwich, an apple and
+      a yoghurt &mdash; and each is scored on its own.</p>
+    <div class="err" id="builder-err"></div>
+    <button class="save-btn" id="builder-save">Save meal</button>
+  </div>
+</div>
+
+<!-- My foods sheet -->
+<div class="sheet-backdrop" id="myfoods-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>My foods</h3>
+    <input type="text" id="myfoods-filter" placeholder="Filter your foods" autocapitalize="sentences" autocorrect="off" spellcheck="false">
+    <div id="myfoods-list" style="max-height:340px; overflow-y:auto;"></div>
+  </div>
+</div>
+
+<!-- Edit a saved food. Its own sheet rather than the manual ADD form: the two
+     ask different questions ("how much did you eat" vs "what is this food"),
+     and sharing the form is what made editing drop the unit and the measure. -->
+<div class="sheet-backdrop" id="mfedit-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="mfe-title">Edit saved food</h3>
+    <div class="mfe-note" id="mfe-note"></div>
+    <input type="text" id="mfe-name" placeholder="Food name" autocapitalize="sentences" autocorrect="off" spellcheck="false">
+    <div class="tabs" id="mfe-measure">
+      <button class="tab active" data-mfebasis="g">Grams</button>
+      <button class="tab" data-mfebasis="ml">Millilitres</button>
+    </div>
+    <div class="section-title" style="margin-top:4px;">These numbers describe</div>
+    <div class="row2 fieldlabels"><span id="mfe-amount-label">Amount (g)</span><span>Calories</span></div>
+    <div class="row2">
+      <input type="number" id="mfe-amount" placeholder="Amount (g)" inputmode="decimal">
+      <input type="number" id="mfe-kcal" placeholder="Calories" inputmode="decimal">
+    </div>
+    <div class="row3 fieldlabels"><span>Protein g</span><span>Carbs g</span><span>Fat g</span></div>
+    <div class="row3">
+      <input type="number" id="mfe-protein" placeholder="Protein g" inputmode="decimal">
+      <input type="number" id="mfe-carbs" placeholder="Carbs g" inputmode="decimal">
+      <input type="number" id="mfe-fat" placeholder="Fat g" inputmode="decimal">
+    </div>
+    <label class="mf-check"><input type="checkbox" id="mfe-countable">
+      Count this in units (bars, cans, pots)</label>
+    <div id="mfe-unit-row" style="display:none;">
+      <div class="row2 fieldlabels"><span>One is called</span><span id="mfe-unit-size-label">One is (g)</span></div>
+      <div class="row2">
+        <input type="text" id="mfe-unit-name" placeholder="bar, can, pot…" autocapitalize="none" autocorrect="off" spellcheck="false">
+        <input type="number" id="mfe-unit-size" placeholder="One is (g)" inputmode="decimal">
+      </div>
+    </div>
+    <!-- The line that would have caught the 1-gram mistake immediately. -->
+    <div class="mfe-preview" id="mfe-preview"></div>
+    <div class="err" id="mfe-err"></div>
+    <button class="save-btn" id="mfe-save">Save changes</button>
+    <button class="save-btn" id="mfe-delete" style="background:none; color:var(--danger); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">Delete this food</button>
+  </div>
+</div>
+
+<!-- Portion sheet -->
+<!-- Everything known about one thing you ate. Tapping a row in the log used to
+     go straight to the amount editor, which answers "how much" and nothing
+     else - the score, the nutrients and the reasoning were all one screen back
+     in the portion sheet, which you can only reach before logging. -->
+<!-- Body system detail -->
+<!-- v84: the water page. Opened by tapping the Water heading on the day
+     screen. Everything on it is drawn from the same waterSettings() and
+     waterMl() the card uses, so the page cannot disagree with the card, and
+     nothing new is stored. -->
+<div class="sheet-backdrop pagemode" id="waterpage-backdrop">
+  <div class="sheet">
+    <div class="pagebar">
+      <button data-pageback aria-label="Back"><i class="ti ti-chevron-left" aria-hidden="true"></i> Back</button>
+      <span class="pt">Water</span>
+    </div>
+    <div class="pagebody">
+    <div id="wp-hero"></div>
+    <div class="wp-big" id="wp-big">0 L</div>
+    <div class="wp-of" id="wp-of"></div>
+    <div class="wp-add" id="wp-add"></div>
+    <p class="dp-cap" id="wp-cap"></p>
+
+    <div class="dp-h">Your last seven days</div>
+    <div class="wp-bars" id="wp-bars"></div>
+
+    <div class="dp-h">What it is actually doing</div>
+    <p class="dp-p" id="wp-what"></p>
+
+    <div class="dp-h">What running short looks like</div>
+    <div id="wp-signs"></div>
+
+    <div class="dp-h">The colour test</div>
+    <p class="dp-p">Tap where yours was this morning.</p>
+    <div class="wp-scale" id="wp-scale"></div>
+    <div class="wp-slegend"><span>pale</span><span>dark</span></div>
+    <div class="wp-verdict" id="wp-verdict">Use your first wee of the day.</div>
+
+    <div class="dp-h">Training</div>
+    <p class="dp-p" id="wp-train"></p>
+
+    <div class="dp-h">What to do about it</div>
+    <div id="wp-tips"></div>
+
+    <p class="dp-foot">Spread big amounts out over the day.</p>
+
+    <button class="save-btn" id="wp-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:20px; font-weight:500;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- v84: one page per part of the body. The old header, bar and blurb are still
+     here as elements - hidden - so any code that writes to them keeps working. -->
+<div class="sheet-backdrop pagemode" id="sysdet-backdrop">
+  <div class="sheet">
+    <div class="pagebar">
+      <button data-pageback aria-label="Back"><i class="ti ti-chevron-left" aria-hidden="true"></i> Back</button>
+      <span class="pt" id="sysd-bartitle"></span>
+    </div>
+    <div class="pagebody">
+    <div id="sysd-hero"></div>
+    <div class="dp-name" id="sysd-name"></div>
+    <!-- sysd-stat repeats what the hero already says once the drawing carries
+         the figure, so it is hidden rather than removed: the code that fills it
+         still runs and nothing else has to change. -->
+    <div class="dp-stat" id="sysd-stat"></div>
+    <div style="display:none;"><span id="sysd-ico"></span><em id="sysd-ring"></em></div>
+
+    <div class="dp-h">What this part of you does</div>
+    <p class="dp-p" id="sysd-why"></p>
+    <p class="dp-p" id="sysd-blurb"></p>
+
+    <div class="dp-h">Today</div>
+    <div id="sysd-rows"></div>
+    <div id="sysd-missing"></div>
+
+    <div class="dp-h">What running short looks like</div>
+    <div id="sysd-signs"></div>
+    <p class="dp-foot">General information, not a diagnosis — plenty of things cause all of
+      these. Worth a doctor if something is persistent.</p>
+
+    <div class="dp-h">What to do about it</div>
+    <div id="sysd-tips"></div>
+
+    <div id="sysd-super"></div>
+
+    <button class="save-btn" id="sysd-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:20px; font-weight:500;">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="fooddet-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="fd-name">Food</h3>
+    <div class="fd-sub" id="fd-sub"></div>
+    <div class="fd-amt" id="fd-amt" style="display:none;">
+      <div class="fd-amt-row">
+        <button type="button" id="fd-amt-minus" aria-label="Less">&minus;</button>
+        <span class="fd-amt-mid">
+          <input id="fd-amt-val" type="number" inputmode="decimal" step="any" aria-label="Amount">
+          <span class="fd-amt-u" id="fd-amt-unit">g</span>
+        </span>
+        <button type="button" id="fd-amt-plus" aria-label="More">+</button>
+      </div>
+      <div class="fd-amt-foot">
+        <span class="fd-amt-k" id="fd-amt-kcal"></span>
+        <button class="fd-amt-save" id="fd-amt-save" style="display:none;">Save</button>
+      </div>
+    </div>
+    <div class="fd-sys" id="fd-sys"></div>
+    <div id="fd-score"></div>
+    <div id="fd-nutrients"></div>
+    <div class="fd-acts">
+      <button class="fd-btn" id="fd-amount">Units and meal</button>
+      <button class="fd-btn" id="fd-numbers">Nutrients</button>
+    </div>
+    <button class="save-btn" id="fd-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:10px; font-weight:500;">Done</button>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="portion-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>How much?</h3>
+    <div class="portion-preview">
+      <div class="pname-row">
+        <div class="pname"><span id="portion-name">-</span><span class="pbrand" id="portion-brand" style="display:none;"></span></div>
+        <button class="pedit" id="portion-edit">Edit</button>
+      </div>
+      <div class="pcode" id="portion-code" style="display:none;"></div>
+      <div class="pk-card">
+        <div class="pkcal" id="portion-kcal">0 kcal</div>
+        <div class="pmac" id="portion-macros">-</div>
+      </div>
+    </div>
+    <div class="fd-sys" id="portion-sys"></div>
+    <div class="tabs" id="portion-modes" style="display:none;">
+      <button class="tab active" data-pmode="unit" id="pmode-unit">Quantity</button>
+      <button class="tab" data-pmode="gram" id="pmode-amount">Grams</button>
+    </div>
+
+    <div id="portion-unit-panel" style="display:none;">
+      <div class="qty-row">
+        <button class="qty-btn" id="qty-minus" aria-label="Less">&minus;</button>
+        <div class="qty-mid">
+          <input type="number" id="portion-qty" value="1" step="0.5" min="0" inputmode="decimal">
+          <span class="qty-unit" id="portion-unit-label">eggs</span>
+        </div>
+        <button class="qty-btn" id="qty-plus" aria-label="More">+</button>
+      </div>
+      <div class="qty-equiv" id="portion-equiv"></div>
+      <div class="quick-portions" id="qty-quick"></div>
+    </div>
+
+    <div id="portion-gram-panel">
+      <div class="qty-row">
+        <button class="qty-btn" id="amt-minus" aria-label="Less">&minus;</button>
+        <div class="qty-mid">
+          <input type="number" id="portion-grams" value="100" min="0" inputmode="decimal">
+          <span class="qty-unit" id="portion-amount-label">g</span>
+        </div>
+        <button class="qty-btn" id="amt-plus" aria-label="More">+</button>
+      </div>
+      <div class="qty-equiv" id="portion-gram-equiv"></div>
+      <!-- Filled per food: ml gets 100-568, anything over 500 kcal/100g gets a
+           spoon scale, everything else keeps the old range. -->
+      <div class="quick-portions" id="gram-quick"></div>
+    </div>
+
+    <div class="ms" id="myserve" style="display:none;"></div>
+
+    <div id="score-panel"></div>
+
+    <!-- Where it lands. Scanning used to guess this from the clock and never
+         show you the guess, so a late-night scan of tomorrow's breakfast went
+         quietly to Dinner. -->
+    <div class="section-title">Meal</div>
+    <div class="meal-tabs" id="portion-meals"></div>
+    <button class="measure-flip" id="portion-flip">Measure in ml instead</button>
+    <button class="save-btn" id="portion-add">Add to log</button>
+  </div>
+</div>
+
+<!-- Four figures off the back of a packet. This is how the built-in table
+     fills its own gaps: nothing is estimated, you type what the label says
+     once, and that food scores for ever after. -->
+<div class="sheet-backdrop" id="supp-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Add a supplement</h3>
+    <div id="supp-body"></div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="label-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="label-title">Add label data</h3>
+    <p style="font-size:12.5px; color:var(--text3); line-height:1.55; margin:0 0 14px;">
+      Straight off the back of the packet, per 100g. Leave anything blank that is
+      not printed. These four are what a health score needs.</p>
+    <div class="row2">
+      <div><label class="lbl">Sugars (g)</label>
+        <input type="number" id="lab-sug" inputmode="decimal" step="0.1" min="0" placeholder="of which sugars"></div>
+      <div><label class="lbl">Saturated fat (g)</label>
+        <input type="number" id="lab-sat" inputmode="decimal" step="0.1" min="0" placeholder="of which saturates"></div>
+    </div>
+    <div class="row2">
+      <div><label class="lbl">Fibre (g)</label>
+        <input type="number" id="lab-fib" inputmode="decimal" step="0.1" min="0" placeholder="fibre"></div>
+      <div><label class="lbl">Salt (g)</label>
+        <input type="number" id="lab-salt" inputmode="decimal" step="0.01" min="0" placeholder="salt"></div>
+    </div>
+    <p style="font-size:11px; color:var(--text3); line-height:1.5;">Salt is what UK labels print;
+      COACH converts it to sodium itself. If yours prints sodium instead, divide by 2.5.</p>
+    <button class="save-btn" id="lab-save">Save</button>
+    <button class="save-btn" id="lab-more" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Every other nutrient</button>
+    <button class="save-btn" id="lab-photo" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Photograph the panel instead</button>
+    <button class="save-btn" id="lab-cancel" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Cancel</button>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="ocr-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="ocr-title">Read a label</h3>
+    <p id="ocr-note" style="font-size:12.5px; color:var(--text3); line-height:1.55; margin:0 0 10px;"></p>
+    <div id="ocr-pick">
+      <label class="save-btn" for="ocr-file" style="display:block; text-align:center; cursor:pointer;">Take a photo</label>
+      <input type="file" id="ocr-file" accept="image/*" capture="environment" style="display:none;">
+      <p style="font-size:11px; color:var(--text3); line-height:1.5; margin-top:10px;">
+        The photo never leaves this phone. COACH reads it here, shows you every figure it thinks
+        it saw, and saves nothing until you say so.</p>
+    </div>
+    <div id="ocr-crop-wrap" hidden>
+      <canvas id="ocr-canvas" style="width:100%; border-radius:12px; touch-action:none;"></canvas>
+    </div>
+    <div id="ocr-results" hidden>
+      <div id="ocr-rows"></div>
+      <details style="margin-top:10px;"><summary style="font-size:11.5px; color:var(--text3);">What it actually read</summary>
+        <pre id="ocr-raw" style="font-size:10px; color:var(--text3); white-space:pre-wrap; margin-top:6px;"></pre></details>
+    </div>
+    <button class="save-btn" id="ocr-read" hidden>Read the figures</button>
+    <button class="save-btn" id="ocr-save" hidden>Save these figures</button>
+    <button class="save-btn" id="ocr-cancel" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Cancel</button>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="nova-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="nova-title">How processed is it?</h3>
+    <p id="nova-sub" style="font-size:12.5px; color:var(--text3); line-height:1.55; margin:0 0 6px;"></p>
+    <div id="nova-body"></div>
+    <button class="save-btn" id="nova-auto" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Let COACH decide again</button>
+    <button class="save-btn" id="nova-cancel" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Cancel</button>
+  </div>
+</div>
+
+<!-- v91: what each thing on a plate did to the plate's score. -->
+<div class="sheet-backdrop" id="mealscore-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="msq-title">Breakfast</h3>
+    <div id="msq-body"></div>
+    <button class="save-btn" id="msq-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:16px; font-weight:500;">Close</button>
+  </div>
+</div>
+
+<!-- v90: look the missing numbers up rather than typing them in. -->
+<div class="sheet-backdrop" id="lookup-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="lu-title">Look up the missing numbers</h3>
+    <p id="lu-sub" class="lu-sub"></p>
+    <div id="lu-body"></div>
+    <button class="save-btn" id="lu-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:14px; font-weight:500;">Close</button>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="micro-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="micro-title">Every nutrient</h3>
+    <p id="micro-sub" style="font-size:12.5px; color:var(--text3); line-height:1.55; margin:0 0 6px;"></p>
+    <button class="save-btn" id="micro-lookup" style="margin:2px 0 14px; background:var(--accent-dim); color:var(--accent); border:0.5px solid var(--accent); font-weight:600;">Look the missing ones up</button>
+    <div id="micro-body"></div>
+    <button class="save-btn" id="micro-photo" style="margin-top:16px; background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Photograph the panel</button>
+    <button class="save-btn" id="micro-save">Save my figures</button>
+    <button class="save-btn" id="micro-clear" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Clear the ones I typed</button>
+    <button class="save-btn" id="micro-cancel" style="background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Cancel</button>
+  </div>
+</div>
+
+<!-- v110: every figure for a food, on one sheet. Replaces the label sheet and
+     the every-nutrient sheet as the way in; both wrote to the same record this
+     one does, so nothing already typed is lost. -->
+<div class="sheet-backdrop" id="nut-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="nut-title">Nutrients</h3>
+    <p id="nut-sub" style="font-size:12.5px; color:var(--text3); line-height:1.55; margin:0 0 10px;"></p>
+    <div class="tabs" id="nut-basis" style="display:none;">
+      <button class="tab" data-nb="portion" id="nut-b-portion">This portion</button>
+      <button class="tab" data-nb="per100" id="nut-b-100">Per 100 g</button>
+    </div>
+    <div class="fd-acts" style="margin:0 0 4px;">
+      <button class="fd-btn" id="nut-photo">Photograph the panel</button>
+      <button class="fd-btn" id="nut-lookup">Look up missing</button>
+    </div>
+    <div id="nut-body"></div>
+    <div class="nu-foot">
+      <div class="nu-err" id="nut-err" style="display:none;"></div>
+      <button class="save-btn" id="nut-save" style="margin-top:0;">Save</button>
+      <div class="fd-acts" style="margin-top:8px;">
+        <button class="fd-btn" id="nut-clear">Clear what I typed</button>
+        <button class="fd-btn" id="nut-cancel">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="dayrev-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="dayrev-title">Day complete</h3>
+    <div id="dayrev-body"></div>
+    <button class="save-btn" id="dayrev-close">Done</button>
+  </div>
+</div>
+
+<!-- Scan sheet -->
+<div class="sheet-backdrop" id="scan-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Scan barcode</h3>
+    <div id="scan-wrap">
+      <video id="scan-video" autoplay playsinline muted></video>
+      <div id="scan-diag" style="display:none; font-size:10.5px; color:var(--text3); font-family:ui-monospace,monospace; margin-top:6px; line-height:1.5; word-break:break-word;"></div>
+      <div class="scan-box" aria-hidden="true"></div>
+      <div class="scan-line"></div>
+      <button id="scan-torch" type="button" hidden aria-label="Torch"><i class="ti ti-bulb" aria-hidden="true"></i></button>
+      <div id="scan-status">Point at a barcode</div>
+    </div>
+    <div id="scan-result"></div>
+    <input type="text" id="manual-barcode" placeholder="Or type barcode number" inputmode="numeric" pattern="[0-9]*" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+    <button class="save-btn" id="lookup-barcode-btn">Look up</button>
+  </div>
+</div>
+
+<!-- Edit a logged item -->
+<div class="sheet-backdrop" id="edit-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="ee-name">Edit</h3>
+    <div id="ee-preview" class="portion-preview">
+      <div class="pp-kcal" id="ee-kcal">0 kcal</div>
+      <div class="pp-macros" id="ee-macros"></div>
+    </div>
+
+    <div class="section-title">Meal</div>
+    <div class="meal-tabs" id="ee-meals"></div>
+
+    <div id="ee-amount-wrap">
+      <div class="tabs" id="ee-modes" style="display:none;">
+        <button class="tab active" data-emode="unit">Quantity</button>
+        <button class="tab" data-emode="gram" id="ee-amount-tab">Grams</button>
+      </div>
+
+      <div id="ee-unit-panel" style="display:none;">
+        <div class="qty-row">
+          <button class="qty-btn" id="ee-minus" aria-label="Less">&minus;</button>
+          <div class="qty-mid">
+            <input type="number" id="ee-qty" value="1" step="0.5" min="0" inputmode="decimal">
+            <span class="qty-unit" id="ee-unit-label"></span>
+          </div>
+          <button class="qty-btn" id="ee-plus" aria-label="More">+</button>
+        </div>
+        <div class="qty-equiv" id="ee-equiv"></div>
+      </div>
+
+      <div id="ee-gram-panel">
+        <span class="section-title" style="margin-top:0;" id="ee-amount-title">Grams</span>
+        <input type="number" id="ee-grams" min="0" inputmode="decimal">
+        <div class="qty-equiv" id="ee-gram-equiv"></div>
+      </div>
+    </div>
+
+    <p class="note" id="ee-fixed" style="display:none; font-size:12px; color:var(--text3); line-height:1.6;">
+      This was entered by hand without a weight, so the amount cannot be rescaled. Change the meal, or delete it and add it again.
+    </p>
+
+    <button class="save-btn" id="ee-save">Save changes</button>
+    <button class="save-btn" id="ee-fixnums" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">The calories are wrong</button>
+    <button class="save-btn" id="ee-delete" style="background:none; color:var(--danger); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">Delete from log</button>
+  </div>
+</div>
+
+<!-- Morning weigh-in prompt -->
+<div class="sheet-backdrop" id="weighin-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="weighin-title">Morning weigh-in</h3>
+    <p style="font-size:13px; color:var(--text2); line-height:1.5; margin:0 0 6px;">First thing, after the bathroom, before food or drink.</p>
+    <div id="weighin-for" style="font-size:12px; color:var(--text3); margin:0 0 12px;"></div>
+    <input type="number" step="0.1" id="weighin-input" placeholder="Weight kg" inputmode="decimal">
+    <!-- v132: starts at your last weight; most mornings it is a tap or two -->
+    <div class="wi-steps" id="weighin-steps">
+      <button type="button" data-wstep="-0.5">−0.5</button><button type="button" data-wstep="-0.1">−0.1</button>
+      <button type="button" data-wstep="0.1">+0.1</button><button type="button" data-wstep="0.5">+0.5</button>
+    </div>
+    <div id="weighin-last" style="font-size:11.5px; color:var(--text3); margin:-2px 0 8px;"></div>
+    <div class="err" id="weighin-err"></div>
+    <button class="save-btn" id="weighin-save">Log weight</button>
+    <button class="save-btn" id="weighin-history" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">Weight history</button>
+    <button class="save-btn" id="weighin-skip" style="background:none; color:var(--text3); border:none; margin-top:4px; font-weight:500;">Skip today</button>
+  </div>
+</div>
+
+<!-- Weight history -->
+<div class="sheet-backdrop" id="whist-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Weight history</h3>
+    <p style="font-size:13px; color:var(--text2); line-height:1.5; margin:0 0 12px;">Tap any entry to correct it. One bad number skews your adaptive target, so it is worth fixing.</p>
+    <div id="whist-missed"></div>
+    <div id="whist-list" style="max-height:44vh; overflow-y:auto; -webkit-overflow-scrolling:touch;"></div>
+    <div class="section-title" style="margin-top:14px;">Another day</div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <input type="date" id="whist-date" style="flex:1; margin:0;">
+      <button class="qp" id="whist-add" style="flex:none; padding:10px 14px;">Log</button>
+    </div>
+    <button class="save-btn" id="whist-close" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:12px; font-weight:500;">Done</button>
+  </div>
+</div>
+
+<!-- Edit one weigh-in -->
+<div class="sheet-backdrop" id="wedit-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="wedit-title">Edit weigh-in</h3>
+    <input type="number" step="0.1" id="wedit-input" placeholder="Weight kg" inputmode="decimal">
+    <div class="err" id="wedit-err"></div>
+    <button class="save-btn" id="wedit-save">Save</button>
+    <button class="save-btn" id="wedit-delete" style="background:none; color:var(--danger); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">Delete this weigh-in</button>
+  </div>
+</div>
+
+<!-- Profile sheet -->
+<div class="sheet-backdrop" id="profile-backdrop">
+  <div class="sheet pf-sheet">
+    <div class="sheet-handle"></div>
+    <h3>Profile & goal</h3>
+    <!-- v133: one-tap choices, and your numbers work themselves out as you go -->
+    <div class="pf-sum" id="pf-sum"></div>
+
+    <div class="st-group-t">You</div>
+    <div class="pf-card">
+      <div class="tabs pf-seg"><button class="tab active" data-sex="male">Male</button><button class="tab" data-sex="female">Female</button></div>
+      <div class="pf-tiles">
+        <label class="pf-tile"><b>Age</b><input type="number" id="p-age" placeholder="–" inputmode="numeric"><i>yrs</i></label>
+        <label class="pf-tile"><b>Height</b><input type="number" id="p-height" placeholder="–" inputmode="decimal"><i>cm</i></label>
+        <label class="pf-tile"><b>Weight</b><input type="number" id="p-weight" placeholder="–" inputmode="decimal"><i>kg</i></label>
+        <label class="pf-tile"><b>Body fat</b><input type="number" id="p-bodyfat" placeholder="opt." inputmode="decimal"><i>%</i></label>
+      </div>
+    </div>
+
+    <div class="st-group-t">How active you are</div>
+    <div class="pf-card">
+      <div class="pf-chips col" data-chips="p-activity"></div>
+      <select id="p-activity" class="pf-hidden" aria-hidden="true" tabindex="-1">
+        <option value="1.2" data-t="Mostly sitting" data-s="desk job, little exercise">Sedentary</option>
+        <option value="1.375" data-t="Light" data-s="exercise 1–3 times a week">Light</option>
+        <option value="1.55" data-t="Moderate" data-s="exercise 3–5 times a week" selected>Moderate</option>
+        <option value="1.725" data-t="Active" data-s="exercise 6–7 times a week">Active</option>
+        <option value="1.9" data-t="Very active" data-s="physical job and training">Very active</option>
+      </select>
+    </div>
+
+    <div class="st-group-t">Goal</div>
+    <div class="pf-card">
+      <div class="pf-chips g2" data-chips="p-goal"></div>
+      <select id="p-goal" class="pf-hidden" aria-hidden="true" tabindex="-1">
+        <option value="lose" data-t="Lose fat">Lose fat</option>
+        <option value="build" data-t="Build muscle" selected>Build muscle</option>
+        <option value="recomp" data-t="Recomp">Body recomposition</option>
+        <option value="maintain" data-t="Maintain">Maintain</option>
+      </select>
+      <div class="pf-sub">Pace</div>
+      <div class="pf-chips g3" data-chips="p-pace"></div>
+      <select id="p-pace" class="pf-hidden" aria-hidden="true" tabindex="-1">
+        <option value="conservative" data-t="Steady" data-s="easier to keep up">Conservative</option>
+        <option value="moderate" data-t="Moderate" data-s="the usual" selected>Moderate</option>
+        <option value="aggressive" data-t="Fast" data-s="harder to keep up">Aggressive</option>
+      </select>
+      <label class="pf-tile wide"><b>Goal weight</b><input type="number" id="p-target-weight" placeholder="optional" inputmode="decimal"><i>kg</i></label>
+      <div id="p-goalweight-note" class="pf-note"></div>
+    </div>
+
+    <div class="st-group-t">Your numbers</div>
+    <div class="pf-card pf-res" id="profile-results">
+      <div class="pf-big"><span>Suggested target</span><b id="r-kcal">–</b></div>
+      <div class="pf-macros">
+        <div class="p"><b id="r-protein">–</b><span>protein</span></div>
+        <div class="c"><b id="r-carbs">–</b><span>carbs</span></div>
+        <div class="f"><b id="r-fat">–</b><span>fat</span></div>
+      </div>
+      <div class="pf-rows">
+        <div><span>Formula maintenance (general estimate)</span><b id="r-tdee">–</b></div>
+        <div><span>What you actually burn (your data)</span><b id="pf-measured">–</b></div>
+        <div><span>Resting burn (BMR)</span><b id="r-bmr">–</b></div>
+        <div><span>Your target now</span><b id="pf-current">–</b></div>
+      </div>
+      <p class="pf-note" id="r-rationale"></p>
+      <p class="pf-note bad" id="r-warning" style="display:none;"></p>
+      <button class="save-btn" id="apply-targets-btn">Apply as my targets</button>
+    </div>
+
+    <div class="st-group-t">What makes a day count</div>
+    <div class="pf-card">
+      <div class="pf-sub">Protein floor</div>
+      <div class="pf-chips g5" data-chips="p-protein-floor"></div>
+      <select id="p-protein-floor" class="pf-hidden" aria-hidden="true" tabindex="-1">
+        <option value="100" data-t="100%">All of it</option>
+        <option value="95" data-t="95%">95% of target</option>
+        <option value="90" data-t="90%" selected>90% of target</option>
+        <option value="85" data-t="85%">85% of target</option>
+        <option value="80" data-t="80%">80% of target</option>
+      </select>
+      <div class="pf-sub">Food quality floor</div>
+      <div class="pf-qual">
+        <button type="button" class="st-step" data-qstep="-5">−</button>
+        <div><input type="number" id="p-health-floor" placeholder="75" inputmode="numeric" min="0" max="100"><span>out of 100</span></div>
+        <button type="button" class="st-step" data-qstep="5">+</button>
+      </div>
+      <div id="p-floor-note" class="pf-note"></div>
+    </div>
+
+    <div class="pf-save">
+      <button class="save-btn" id="calc-btn">Save profile</button>
+    </div>
+  </div>
+</div>
+
+<!-- Target sheet - v133: Settings, redesigned. Every id the code uses is kept. -->
+<div class="sheet-backdrop" id="target-backdrop">
+  <div class="sheet st-sheet">
+    <div class="sheet-handle"></div>
+    <h3>Settings</h3>
+
+    <!-- Daily target: the one thing here you change often -->
+    <div class="st-hero">
+      <div class="st-hero-top"><span>Daily target</span><span id="st-prov"></span></div>
+      <div class="st-kcal">
+        <button type="button" class="st-step" data-tstep="target-input:-50" aria-label="50 fewer calories">−</button>
+        <div class="st-kcal-mid"><input type="number" id="target-input" placeholder="Calories" inputmode="numeric"><span>kcal a day</span></div>
+        <button type="button" class="st-step" data-tstep="target-input:50" aria-label="50 more calories">+</button>
+      </div>
+      <div class="st-macros">
+        <div class="st-mac p"><b>Protein</b><input type="number" id="target-p" placeholder="g" inputmode="numeric"><i>g</i>
+          <div class="st-mst"><button type="button" data-tstep="target-p:-5">−</button><button type="button" data-tstep="target-p:5">+</button></div><em id="st-pkg"></em></div>
+        <div class="st-mac c"><b>Carbs</b><input type="number" id="target-c" placeholder="g" inputmode="numeric"><i>g</i>
+          <div class="st-mst"><button type="button" data-tstep="target-c:-5">−</button><button type="button" data-tstep="target-c:5">+</button></div><em id="st-cpc"></em></div>
+        <div class="st-mac f"><b>Fat</b><input type="number" id="target-f" placeholder="g" inputmode="numeric"><i>g</i>
+          <div class="st-mst"><button type="button" data-tstep="target-f:-5">−</button><button type="button" data-tstep="target-f:5">+</button></div><em id="st-fpc"></em></div>
+      </div>
+      <div class="st-check" id="st-check"></div>
+      <div class="st-hero-act">
+        <button type="button" class="save-btn" id="target-save">Save target</button>
+        <button type="button" class="st-link" id="st-revert">Undo changes</button>
+      </div>
+      <button type="button" class="st-link st-calc" id="st-from-profile">Work it out from my profile instead</button>
+    </div>
+
+    <div class="st-group-t">Target</div>
+    <div class="st-group">
+    <label class="st-row"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></span><span class="st-l">Adjust my target automatically</span><input type="checkbox" class="st-sw" id="auto-toggle"></label>
+      <div id="adapt-status" class="st-note"></div>
+      <details class="st-more"><summary>Target history<span class="st-chev2"></span></summary><div id="adjust-log"></div></details>
+    </div>
+
+    <div class="st-group-t">Shortcuts</div>
+    <div class="st-group">
+    <button class="st-row" id="myfoods-btn"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><span class="st-l">My foods</span><span class="st-val" id="st-mf"><span id="myfoods-count">0</span></span><svg class="st-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+    <button class="st-row" id="open-weighin"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="4"/><path d="M8 9a6 6 0 0 1 8 0l-3 3"/></svg></span><span class="st-l">Log or edit weight</span><svg class="st-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+    <button class="st-row" id="open-reviews"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><span class="st-l">Weekly and monthly reviews</span><svg class="st-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+    </div>
+
+    <div class="st-group-t">Backup</div>
+    <div class="st-group st-pad">
+      <div id="cloud-box"></div>
+      <details class="st-more"><summary>More backup options<span class="st-chev2"></span></summary>
+        <div class="st-btns">
+          <button class="st-btn" id="backup-btn">Download backup file</button>
+          <button class="st-btn" id="restore-btn">Restore from a file</button>
+          <input type="file" id="restore-file" accept="application/json" style="display:none;">
+          <button class="st-btn" id="autobackup-btn">Automatic backup to a file</button>
+          <button class="st-btn" id="devicerestore-btn">Put back the copy inside the app</button>
+          <button class="st-btn" id="export-btn">Export all data (CSV)</button>
+        </div>
+        <p id="autobackup-note" class="st-note"></p>
+      </details>
+    </div>
+
+    <div class="st-group-t">Sync with Muse</div>
+    <div class="st-group st-pad">
+      <div id="musesync-box"></div>
+    </div>
+
+    <div class="st-group-t">Display and sound</div>
+    <div class="st-group">
+    <label class="st-row"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg></span><span class="st-l">Protein ring</span><input type="checkbox" class="st-sw" id="pring-toggle"></label>
+    <label class="st-row"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><span class="st-l">Sounds</span><input type="checkbox" class="st-sw" id="sound-toggle"></label>
+    <label class="st-row"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 8v8M21 8v8"/></svg></span><span class="st-l">Buzz when something is saved</span><input type="checkbox" class="st-sw" id="haptic-toggle"></label>
+    </div>
+
+    <div class="st-group-t">Food data</div>
+    <div class="st-group st-pad">
+      <details class="st-more st-first"><summary>USDA nutrient top-ups<span class="st-chev2"></span></summary>
+    <p style="font-size:11.5px; color:var(--text3); line-height:1.55; margin:0 0 9px;">
+      COACH tracks 36 nutrients. Most foods only carry a handful, because that is all a
+      label declares. A free USDA FoodData Central key adds about 20,000 whole foods with a
+      full laboratory profile. It also fills in every built-in food in one go, and tops up
+      anything new you log from then on without being asked.</p>
+    <input type="text" id="fdc-key" placeholder="Paste your USDA key" autocomplete="off"
+           autocapitalize="none" spellcheck="false">
+    <div style="display:flex; gap:8px; margin-top:8px;">
+      <button class="save-btn" id="fdc-save" style="flex:2 1 0; margin:0; white-space:nowrap;">Save &amp; test</button>
+      <button class="save-btn" id="fdc-clear" style="flex:1 1 0; margin:0; white-space:nowrap; background:none; color:var(--text2); border:0.5px solid var(--border); font-weight:500;">Remove</button>
+    </div>
+    <div id="fdc-status" style="font-size:11.5px; line-height:1.55; margin-top:9px; color:var(--text3);"></div>
+    <button class="save-btn" id="fdc-fill" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:9px; font-weight:500;">Fill in every built-in food</button>
+    <button class="save-btn" id="lib-build" style="background:none; color:var(--text2); border:0.5px solid var(--border); margin-top:8px; font-weight:500;">Build my food library</button>
+    <p id="lib-note" style="font-size:11px; color:var(--text3); line-height:1.5; margin-top:8px;"></p>
+    <button class="save-btn" id="fdc-retry" style="display:none; background:none; color:var(--text3); border:0.5px solid var(--border); margin-top:8px; font-weight:500; font-size:12px;">Try the rejected ones again</button>
+    <p style="font-size:11px; color:var(--text3); line-height:1.5; margin-top:8px;">
+      Your key stays on this device and is only ever sent to USDA. Nothing already saved is
+      touched: downloaded figures fill blanks and never overwrite a number COACH already had.</p>
+
+      </details>
+    </div>
+
+    <div class="st-group-t">Recently deleted</div>
+    <div class="st-group st-pad">
+      <div id="bin-list"></div>
+      <p class="st-note" id="bin-note"></p>
+    </div>
+
+    <div class="st-group-t">Help</div>
+    <div class="st-group">
+    <label class="st-row"><span class="st-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M8 9v6M11 9v6M14 9v6M17 9v6"/></svg></span><span class="st-l">Show scanner diagnostics</span><input type="checkbox" class="st-sw" id="scandiag-toggle"></label>
+    </div>
+    <div style="display:none;" aria-hidden="true"><!-- v130: calorie cycling retired; kept so nothing that reads these fields breaks -->
+    <div class="section-title">Calorie cycling</div>
+    <label style="display:flex; align-items:center; gap:10px; font-size:14px; margin-bottom:10px;">
+      <input type="checkbox" id="cycle-toggle" style="width:auto; margin:0;"> Cycle calories by day type
+    </label>
+    <div class="row2">
+      <input type="number" id="cycle-training" placeholder="Training days/week" value="4" inputmode="decimal">
+      <input type="number" id="cycle-split" placeholder="Training day +%" value="15" inputmode="decimal">
+    </div>
+    <p style="font-size:11px; color:var(--text3); line-height:1.5;">Shifts calories toward training days and away from rest days while keeping your weekly total identical. Extra calories go to carbs; protein and fat stay flat.</p>
+    <p id="cycle-preview" style="font-size:12px; color:var(--text2); line-height:1.5;"></p>
+    </div>
+
+    <p class="st-foot" id="st-version"></p>
+  </div>
+</div>
+
+<!-- Everything measured, over time. The app had plenty of numbers and nowhere
+     to see them move. -->
+<div class="sheet-backdrop" id="hist-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="tabs" id="hist-tabs">
+      <button class="tab active" data-htab="log">Log</button>
+      <button class="tab" data-htab="reviews">Weekly reviews</button>
+    </div>
+    <div class="hist-crumbrow">
+      <button id="hist-back" style="display:none;"><i class="ti ti-chevron-left"></i></button>
+      <span id="hist-crumb"></span>
+    </div>
+    <div id="hist-body"></div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="review-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="review-title">Your week</h3>
+    <div class="tabs" id="review-tabs">
+      <button class="tab active" data-rperiod="week">Week</button>
+      <button class="tab" data-rperiod="month">Month</button>
+    </div>
+    <div id="review-body" style="font-size:13px; color:var(--text2); line-height:1.6;"></div>
+    <button class="save-btn" id="review-close">Got it</button>
+    <div class="section-title">Earlier reviews</div>
+    <div id="review-history"></div>
+  </div>
+</div>
+
+<!-- v144: Train sheets. -->
+<div class="sheet-backdrop" id="tr-pick-backdrop">
+  <div class="sheet tr-sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="tr-pick-title">Add exercise</h3>
+    <div class="tr-srch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M21 21l-6-6"/></svg><input id="tr-pick-q" type="search" placeholder="Search exercises" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+    <div class="tr-chips" id="tr-pick-chips"></div>
+    <div id="tr-pick-list" class="tr-pick-list"></div>
+    <div class="tr-pick-foot" id="tr-pick-foot" style="display:none;"><button class="save-btn" id="tr-pick-add">Add</button></div>
+  </div>
+</div>
+<div class="sheet-backdrop" id="tr-ex-backdrop">
+  <div class="sheet tr-sheet"><div class="sheet-handle"></div><div id="tr-ex-body"></div></div>
+</div>
+<div class="sheet-backdrop" id="tr-fin-backdrop">
+  <div class="sheet tr-sheet"><div class="sheet-handle"></div><div id="tr-fin-body"></div></div>
+</div>
+<div class="sheet-backdrop" id="tr-wo-backdrop">
+  <div class="sheet tr-sheet"><div class="sheet-handle"></div><div id="tr-wo-body"></div></div>
+</div>
+<div class="sheet-backdrop" id="tr-rt-backdrop">
+  <div class="sheet tr-sheet"><div class="sheet-handle"></div><div id="tr-rt-body"></div></div>
+</div>
+<div class="sheet-backdrop" id="tr-menu-backdrop">
+  <div class="sheet"><div class="sheet-handle"></div><div id="tr-menu-body"></div></div>
+</div>
+<div class="tr-rest" id="tr-rest" style="display:none;"></div>
+
+<div class="sheet-backdrop" id="hyd-backdrop">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>Hydration</h3>
+    <div id="hyd-body" style="font-size:13px; color:var(--text2); line-height:1.6;"></div>
+    <button class="save-btn" id="hyd-close">Got it</button>
+  </div>
+</div>
+
+<script src="zxing.js" onerror="window.__zxingFailed=true"></script>
+<!--COACH_DATA-->
+<script>
+/* v117: bulk food data is kept as plain text in the blocks above and read here,
+   once, at the same point the old inline lists were defined. The block is then
+   dropped from the page so the text is not held twice. */
+// v132: the food tables live in their own file (foods.<id>.js), which the
+// phone keeps between app updates - so an update only downloads the small app.
+// The old inline blocks are still read if present.
+function coachData(id){
+  const D = window.COACH_DATA;
+  if(D && typeof D[id] === 'string'){ const t = D[id]; D[id] = null; return t; }
+  const el = document.getElementById("d-" + id);
+  const t = el ? el.textContent : "";
+  if(el) el.remove();
+  return t;
+}
+</script>

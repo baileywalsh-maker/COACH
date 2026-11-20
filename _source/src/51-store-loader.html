@@ -1,0 +1,135 @@
+<script>
+/* v142: the bigger store.
+   Until v141 everything lived in localStorage, which the iPhone caps at about
+   5 MB. From v142 it lives in IndexedDB, which can use a share of the phone's
+   disk (gigabytes). The app still reads and writes through one small object,
+   CS, with the same calls as before (getItem, setItem, removeItem, key,
+   length), served from memory so nothing gets slower.
+
+   First open after the update: every saved item is copied into IndexedDB, read
+   back and checked against the original. Only if every item matches does COACH
+   switch over. The old copy in localStorage is left exactly as it was, never
+   deleted. If anything fails, COACH carries on with localStorage as before and
+   tries again next time.
+
+   The app's own script waits (it sits in a <script type="text/coach-app">
+   block) until the store is loaded, then runs as normal. */
+(function(){
+  var DB = 'coach-store', OS = 'kv', FLAG = 'coach:idb', DONE = '__coach_idb_done';
+  var mem = new Map(), mode = 'ls', db = null, pending = new Map(), flushing = false, inflight = 0, waiters = [];
+  function settle(){ if(!inflight && !pending.size){ var w = waiters; waiters = []; w.forEach(function(f){ f(); }); } }
+  function lsKeys(){ var a = []; try{ for(var i = 0; i < localStorage.length; i++) a.push(localStorage.key(i)); }catch(e){} return a; }
+  function flush(){
+    flushing = false;
+    if(!db || !pending.size) return;
+    var batch = pending; pending = new Map();
+    try{
+      var tx = db.transaction(OS, 'readwrite'), st = tx.objectStore(OS);
+      batch.forEach(function(v, k){ if(v === null) st.delete(k); else st.put(v, k); });
+      inflight++;
+      tx.oncomplete = function(){ inflight--; settle(); };
+      tx.onerror = tx.onabort = function(){
+        inflight--;
+        // Put back anything not yet newer, and try again shortly.
+        batch.forEach(function(v, k){ if(!pending.has(k)) pending.set(k, v); });
+        setTimeout(queue, 1500);
+      };
+    }catch(e){ batch.forEach(function(v, k){ if(!pending.has(k)) pending.set(k, v); }); setTimeout(queue, 1500); }
+  }
+  function queue(){ if(!flushing){ flushing = true; Promise.resolve().then(flush); } }
+  var CS = {
+    getItem: function(k){ k = String(k); if(mode === 'ls') return localStorage.getItem(k); return mem.has(k) ? mem.get(k) : null; },
+    setItem: function(k, v){ k = String(k); v = String(v); if(mode === 'ls') return localStorage.setItem(k, v); mem.set(k, v); pending.set(k, v); queue(); },
+    removeItem: function(k){ k = String(k); if(mode === 'ls') return localStorage.removeItem(k); mem.delete(k); pending.set(k, null); queue(); },
+    key: function(i){ if(mode === 'ls') return localStorage.key(i); var a = Array.from(mem.keys()); return i >= 0 && i < a.length ? a[i] : null; },
+    keys: function(){ return mode === 'ls' ? lsKeys() : Array.from(mem.keys()); },
+    get length(){ return mode === 'ls' ? localStorage.length : mem.size; },
+    get mode(){ return mode; },
+    flushNow: flush,
+    // Resolves once everything written so far is safely in the store.
+    whenSaved: function(){ return new Promise(function(r){ waiters.push(r); flush(); settle(); }); }
+  };
+  window.CS = CS;
+  // Write anything waiting the moment the app is put away.
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') flush(); });
+  window.addEventListener('pagehide', flush);
+
+  function openDB(){
+    return new Promise(function(res, rej){
+      if(!window.indexedDB) return rej(new Error('no IndexedDB'));
+      var t = setTimeout(function(){ rej(new Error('IndexedDB timed out')); }, 4000);
+      var rq;
+      try{ rq = indexedDB.open(DB, 1); }catch(e){ clearTimeout(t); return rej(e); }
+      rq.onupgradeneeded = function(){ rq.result.createObjectStore(OS); };
+      rq.onsuccess = function(){ clearTimeout(t); res(rq.result); };
+      rq.onerror = rq.onblocked = function(){ clearTimeout(t); rej(rq.error || new Error('IndexedDB blocked')); };
+    });
+  }
+  function readAll(d){
+    return new Promise(function(res, rej){
+      var out = new Map(), tx = d.transaction(OS, 'readonly'), cur = tx.objectStore(OS).openCursor();
+      cur.onsuccess = function(){ var c = cur.result; if(c){ out.set(String(c.key), c.value); c.continue(); } else res(out); };
+      cur.onerror = function(){ rej(cur.error); };
+    });
+  }
+  function writeAll(d, entries){
+    return new Promise(function(res, rej){
+      var tx = d.transaction(OS, 'readwrite'), st = tx.objectStore(OS);
+      entries.forEach(function(e){ st.put(e[1], e[0]); });
+      tx.oncomplete = function(){ res(); };
+      tx.onerror = tx.onabort = function(){ rej(tx.error || new Error('write failed')); };
+    });
+  }
+  function migrate(d){
+    // Copy, read back, compare every item. Only then switch.
+    // Other apps can share this web address (Jot, Ledger). Their items are
+    // never copied in; and if nothing here is COACH's, nothing is copied.
+    var keys = lsKeys().filter(function(k){ return k !== FLAG && !/^(jot|ledger):/.test(k); });
+    if(!keys.some(function(k){ return /^(coach|calorie)/.test(k); })) keys = [];
+    var entries = keys.map(function(k){ return [k, localStorage.getItem(k)]; });
+    return writeAll(d, entries).then(function(){ return readAll(d); }).then(function(got){
+      for(var i = 0; i < entries.length; i++){
+        if(got.get(entries[i][0]) !== entries[i][1]) throw new Error('check failed on ' + entries[i][0]);
+      }
+      return writeAll(d, [[DONE, new Date().toISOString()]]);
+    }).then(function(){ return readAll(d); }).then(function(got){
+      try{ localStorage.setItem(FLAG, '1'); }catch(e){}
+      return got;
+    });
+  }
+  window.COACH_STORE_READY = openDB().then(function(d){
+    db = d;
+    return readAll(d).then(function(got){
+      if(got.has(DONE)) return got;                     // already moved
+      var flagged = false; try{ flagged = localStorage.getItem(FLAG) === '1'; }catch(e){}
+      // Moved before, but the phone has since emptied the store: start again
+      // from the last copy kept in localStorage, and say so.
+      if(flagged) window.__coachStoreLost = true;
+      return migrate(d);
+    });
+  }).then(function(got){
+    got.delete(DONE);
+    got.forEach(function(v, k){ mem.set(k, v); });
+    mode = 'idb';
+    try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
+  }, function(err){
+    db = null; mode = 'ls';
+    window.__coachStoreErr = String(err && err.message || err);
+  });
+
+  window.COACH_BOOT = function(){
+    var go = function(){
+      var src = document.getElementById('coach-app');
+      var s = document.createElement('script');
+      s.textContent = src.textContent;
+      src.parentNode.removeChild(src);
+      document.body.appendChild(s);
+      if(window.__coachStoreLost) setTimeout(function(){
+        alert('Your phone cleared COACH\'s saved data. COACH is showing the last copy it kept. To get everything back, go to Settings → Back up to GitHub → Put back.');
+      }, 1500);
+    };
+    window.COACH_STORE_READY.then(go, go);
+  };
+})();
+</script>
+<script type="text/coach-app" id="coach-app">

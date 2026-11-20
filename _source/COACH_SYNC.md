@@ -23,6 +23,23 @@ same three-way merge, same quiet failures. Only the data shape differs —
 Jot syncs one flat list of notes, COACH syncs one record per day plus the
 weight log. The code is `src/js/44-muse-sync.js`.
 
+## If Muse changes the app itself (rule, v146)
+
+Muse may change COACH's code, not just the data. When it does:
+
+1. Say what changed and why in the commit message (start it with `Muse:`).
+2. Add a dated line under "Muse's app changes" below, naming the files touched.
+3. Change the source under `_source/` too (e.g. `_source/src/js/`), not only the
+   built files in the root, or the next Claude build will wipe the change.
+   `bash _source/ship.sh` builds, tests and copies the build into the root.
+5. Pull before changing and again before pushing; bump `_source/VERSION`.
+4. Never break saved data, never commit personal data or tokens (this repo is public).
+
+Claude checks this list and the git history before every build.
+
+### Muse's app changes
+- (none yet)
+
 ## The file
 
 ```json

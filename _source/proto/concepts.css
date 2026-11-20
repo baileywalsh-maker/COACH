@@ -1,0 +1,54 @@
+/* COACH concepts 8, 9, 10. Prototype only: not part of the deployed app. */
+.cx-on .ring-card > :not(.ring-foot):not(.cx){display:none !important;}
+.cx{grid-column:1 / -1; min-width:0;}
+.cx-num{font-family:var(--display); font-weight:700; letter-spacing:-0.02em; font-variant-numeric:tabular-nums; color:var(--t1);}
+.cx-sub{font-size:12.5px; color:var(--t3); font-weight:600;}
+.cx-leg{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12.5px; font-weight:600; color:var(--t2);}
+.cx-leg b{color:var(--t1); font-weight:700;} .cx-leg i{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px;}
+/* 8: living day */
+.cx8-tank{position:relative; margin:-20px -20px 14px; height:330px; border-radius:23px 23px 0 0; overflow:hidden; background:#0d0f13;}
+.cx8-tank canvas{position:absolute; inset:0; width:100%; height:100%; display:block;}
+.cx8-over{position:absolute; left:20px; top:18px; pointer-events:none;}
+.cx8-over .cx-num{font-size:46px; line-height:1; display:block; text-shadow:0 2px 14px rgba(0,0,0,.55);}
+.cx8-over .cx-sub{color:var(--t1); opacity:.82; text-shadow:0 1px 8px rgba(0,0,0,.6);}
+/* 9: cockpit */
+.cx9-top{display:flex; justify-content:space-between; align-items:flex-end; gap:10px;}
+.cx9-top .cx-num{font-size:40px; line-height:1;}
+.cx9-chip{font-size:12px; font-weight:800; border-radius:999px; padding:5px 10px; background:var(--n3); color:var(--t2); white-space:nowrap;}
+.cx9-chip.ahead{background:rgba(127,224,176,.14); color:var(--accent);} .cx9-chip.behind{background:rgba(224,185,95,.14); color:var(--caution);}
+.cx9-chart{position:relative; margin:12px -6px 0; touch-action:pan-y;}
+.cx9-chart svg{display:block; width:100%; height:auto;}
+.cx9-chart text{font:600 9.5px var(--ui); fill:var(--t4);}
+.cx9-read{font-size:12px; font-weight:600; color:var(--t3); min-height:18px; margin:4px 0 12px; font-variant-numeric:tabular-nums;}
+.cx9-read b{color:var(--t1);}
+.cx9-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;}
+.cx9-tile{background:var(--n2); border-radius:14px; padding:10px 11px;}
+.cx9-tile .k{font-size:11px; font-weight:700; color:var(--t3);}
+.cx9-tile .v{font-family:var(--display); font-weight:700; font-size:17px; font-variant-numeric:tabular-nums; margin-top:2px; white-space:nowrap;}
+.cx9-tile .v s{text-decoration:none; font-family:var(--ui); font-size:11px; font-weight:600; color:var(--t4);}
+.cx9-tile .b{height:4px; border-radius:9px; background:var(--n3); margin-top:8px; overflow:hidden;}
+.cx9-tile .b i{display:block; height:100%; border-radius:9px;}
+.cx9-week{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:6px; margin-top:12px; align-items:end; height:46px;}
+.cx9-week i{display:block; border-radius:5px 5px 2px 2px; min-height:3px;}
+/* 10: body */
+.cx10{display:grid; grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr); gap:6px; align-items:center;}
+.cx10 .side{display:flex; flex-direction:column; gap:14px;}
+.cx10 .side.r{align-items:flex-end; text-align:right;}
+.cx10 .cx-num.big{font-size:30px; line-height:1;}
+.cx10-m .k{font-size:11px; font-weight:700; color:var(--t3);} .cx10-m .v{font-size:13px; font-weight:700; color:var(--t1); white-space:nowrap;}
+.cx10-m .v s{text-decoration:none; color:var(--t4); font-weight:600;}
+.cx10-m .b{width:74px; height:4px; border-radius:9px; background:var(--n3); margin-top:5px; overflow:hidden;} .cx10-m .b i{display:block; height:100%; border-radius:9px;}
+.cx10 .side.r .cx10-m .b{margin-left:auto;}
+.cx10-fig{width:150px; height:auto; display:block; overflow:visible;}
+.cx10-fig .node{cursor:pointer;}
+.cx10-fig .node circle.halo{fill:transparent;}
+.cx10-fig .node.sel circle.ring{stroke:var(--t1); stroke-width:1.6;}
+.cx10-sys{grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; padding:11px 13px; border-radius:16px; background:var(--n2); border:0; width:100%; color:var(--t1); text-align:left; font-family:var(--ui);}
+.cx10-sys .n{font-size:13.5px; font-weight:800; display:block;} .cx10-sys .w{font-size:11.5px; color:var(--t3); font-weight:600;}
+.cx10-sys .p{font-family:var(--display); font-weight:700; font-size:19px; white-space:nowrap;}
+/* the switcher (prototype chrome, not part of COACH) */
+#cx-switch{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(86px + env(safe-area-inset-bottom,0px)); z-index:69; display:flex; gap:4px; padding:4px;
+  background:rgba(16,18,22,.92); border:1px solid #2b303a; border-radius:999px; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+#cx-switch button{border:0; background:none; color:#9aa1ab; font:700 12.5px var(--ui); padding:8px 12px; border-radius:999px; white-space:nowrap;}
+#cx-switch button.on{background:#eef0f3; color:#0a0b0e;}
+#demo-btn{bottom:calc(140px + env(safe-area-inset-bottom,0px)) !important;}

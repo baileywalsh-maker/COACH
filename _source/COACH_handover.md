@@ -1,8 +1,8 @@
 # COACH: handover for a new chat
 
-This chat is for COACH updates only. Paste this whole file into the new chat. The source and the live build are in my laptop's `GitHub\COACH` folder (see below). Use the live files there as the `--old` build for the tests.
+This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** (repo root): the repo is the app, Claude pulls, builds, tests and pushes itself.
 
-**Before building anything, check `git log` in the repo.** Only one chat should build COACH at a time. If another chat has pushed, start from its build.
+**Before building anything, `git pull` and read `git log`.** Muse and other chats can change COACH too. Build on what's live.
 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
@@ -11,16 +11,9 @@ Current version: **v146**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
-- The repo is cloned on my laptop at **`C:\Users\baile\OneDrive\Documents\GitHub\COACH`** (GitHub Desktop). Jot and Ledger sit beside it (`jot`, `LEDGER`).
-- **The source lives in the repo too:** `_source/coach_source.zip` and `_source/COACH_handover.md`. GitHub Pages doesn't publish folders starting with `_`, so it's not part of the site, and every version is kept in the repo's history.
-- **How to start a new chat:** paste this handover and ask me to connect the `COACH` folder above. Read the source from `COACH/_source/coach_source.zip`, so no attachments are needed. Also read `CLAUDE.md` in the repo.
-- **How to ship a build (the routine, as of v146):**
-  1. Build and run the tests here (`--old` = the live files in the repo folder).
-  2. Write the files from `dist/` straight into the `COACH` folder, along with the updated `_source/coach_source.zip`, `_source/COACH_handover.md` and `_source/COACH_SYNC.md` if sync changed.
-  3. Commit it yourself with the laptop shell (`git add -A && git commit -m "vN"`). Git needs deletion allowed in the COACH folder for its lock files, so ask once for that permission.
-  4. I click **Push origin** in GitHub Desktop. It's live in about a minute; close and reopen the app.
-  - Pushing straight to GitHub from the cloud was refused by permissions, so I do the push.
-  - Old `foods.<hash>.js` / `packets.<hash>.txt` files can stay in the folder. They do no harm.
+- **The source lives in the repo as plain files** under `_source/` (not published, since GitHub Pages skips `_` folders). No zip any more (from Nov 2026).
+- **How to ship:** see `CLAUDE.md`. In short: `git pull`, edit `_source/`, bump `_source/VERSION`, `bash _source/ship.sh` (build + tests + copy into the root), commit `vN`, pull again, push. Claude pushes; Bailey does nothing on the laptop.
+  - Old `foods.<hash>.js` / `packets.<hash>.txt` files can stay in the root. They do no harm.
 - Jot and Ledger share the same web address (`/jot/`, `/LEDGER/`). Their saved data is kept apart (`jot:*`, `ledger:*`), and COACH never copies or touches it. This chat is for COACH only.
 - Deploys are free now. Still run the tests before every build.
 - Netlify is being kept for a short while as a fallback, then cancelled. The old Netlify home-screen copies have been deleted.
@@ -29,26 +22,26 @@ Current version: **v146**.
 1. **Never wipe or break saved data.** Every update must read whatever is already on my phone. Stored names, keys and entry shapes stay compatible, and new features use new keys.
 2. **Never invent nutrition figures.** Only real sources: USDA, CoFID (UK), AFCD (AU), Open Food Facts, or a chain's own published data. Missing = missing.
 3. Plain, simple language. Short answers. Number every list in one running sequence so I can reply "do 1, 3".
-4. Every build: write `dist/` into the COACH repo folder and update `_source/coach_source.zip`. Don't send me files I don't need. Update this handover only when I ask, or when the chat is getting full.
-5. Show a **demo** with every big change: edit the buttons in `demo/tryit.js`, run `python3 demo/make_demo.py`, and publish `demo/coach_demo.html` to the **"COACH designs"** artifact: https://claude.ai/artifact/JPNdyYgguyEKx27A8FbQ1F. It's one page for all COACH mockups and demos, so republish to the same link and never make a new one. When showing how a design will look, show exactly how it will look (built with COACH's real styles).
+4. Every build: push it to the repo (see `CLAUDE.md`). Don't send me files I don't need. Update this handover only when I ask, or when the chat is getting full.
+5. Show a **demo** with every big change: edit the buttons in `_source/demo/tryit.js`, run `python3 _source/demo/make_demo.py`, and publish `_source/demo/coach_demo.html` to the **"COACH designs"** artifact: https://claude.ai/artifact/JPNdyYgguyEKx27A8FbQ1F. It's one page for all COACH mockups and demos, so republish to the same link and never make a new one. When showing how a design will look, show exactly how it will look (built with COACH's real styles).
 9. **Everything in COACH must sync with Muse.** Any new saved data must reach the sync file, and `_source/COACH_SYNC.md` (Muse's instructions) must be updated to match. Secrets never sync.
 6. **Run the test pack before shipping.** Add tests for anything new.
 7. Never paste API keys in chat. My GitHub key is pasted into COACH's settings only.
 8. Personal tool: don't add big new features. Fix what I actually hit.
 
-## Source pack layout (`coach_source.zip`)
+## Source layout (`_source/`)
 - `src/`: the app, in parts. `src/parts.txt` lists them in order and the build joins them, top to bottom.
   - `00-head.html`, `50-page.html` (all the screens' HTML), `51-store-loader.html` (v142 storage, see below), `99-tail.html`
   - `css/`: 5 files (icons and fonts, design system, deep pages, `03b-train.css`, then the v120 redesign layer, which must stay last)
   - `js/`: 50 files named by what they hold. They are one script when joined, so order matters. New: `44-muse-sync.js`, then `44-train.js`.
   - The food data is inserted at `<!--COACH_DATA-->` in `50-page.html`.
 - `data/`: `LOCAL_FOODS.json`, `LABEL_DB.json`, `UK_BLOB.txt`, `AU_BLOB.txt`, `USDA_BLOB.txt`, `EXERCISES.json` (888 exercises), `STRENGTH.json` (Strength Level standards for 64 lifts). Edit the JSON as JSON, never by hand.
-- `static/`: `manifest.json`, `zxing.js`, icons, `uk_packets.txt`.
+- `static/`: `manifest.json`, `zxing.js`, icons (the live v143 ones), `uk_packets.txt`.
 - `sw.template.js`: the service worker. The food data and packets sit in a `coach-data` cache that is kept between versions.
 - `VERSION`: bump this for every build.
-- `build.py`: `python3 build.py` builds `dist/`, `coach_vN.zip` and `index.preview.html`.
+- `build.py`: builds `dist/` and `index.preview.html` (both ignored by git). `ship.sh` runs it, tests, and copies `dist/` into the root.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **142 checks**. Run it as `node tests/run.js --old <folder of last shipped build> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
+- `tests/run.js`: the test pack, **142 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.

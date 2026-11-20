@@ -1,0 +1,5 @@
+_source/dist/
+_source/index.preview.html
+_source/demo/coach_demo.html
+_source/*.zip
+node_modules/
