@@ -26,6 +26,8 @@ version history, open items) is imported at the bottom.
 9. **This repo is PUBLIC.** It must never hold personal data, keys, tokens or backups.
    Before each push, check the diff for them. (Last full scan of the history: clean, Nov 2026.)
 - Everything COACH saves must sync with Muse. Keep `_source/COACH_SYNC.md` in step with any new data.
+- **Facts for all apps** (hosting, accounts, cancelled services, standing rules) live in the APPS project doc
+  `claude/APPS-shared-notes.md`. Read it at the start; add any new shared fact there the same day. Netlify is cancelled.
 
 ## How to ship an update
 ```

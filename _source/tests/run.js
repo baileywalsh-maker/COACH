@@ -1008,6 +1008,34 @@ const TESTS = {
     check('v147 body systems: 3 columns, no "nutrients visible" line, nothing spills sideways', g.n >= 12 && g.cols === 3 && !g.ss && g.fits, JSON.stringify(g));
     check('v147: no errors', !p.errs.length, p.errs.join(' | '));
     s.close(); await p.context().close();
+  },
+  // v149: Bundaberg drinks, brands filled on packets, 158 ranked lifts.
+  async v149(b){
+    const s = serve(NEW); const p = await page(b, s.url, {wait: 2500});
+    await p.context().route(/openfoodfacts|nal\.usda/, r => r.abort());
+    await p.evaluate(()=>packetsLoad()); await p.waitForTimeout(1500);
+    const r = await p.evaluate(()=>{
+      const bund = searchLocal('bundaberg').map(x => x.name || x[0] || x);
+      packetWords();
+      const mg = packetSearch('merchant gourmet', 40).map(x => x.code);
+      const asda = packetSearch('asda', 80).length;
+      const std = trStd();
+      const lifts = ['Face Pull', 'Arnold Press (Dumbbell)', 'Hanging Leg Raise', 'Rack Pull'].map(n => [n, trEx(n).sl || '']);
+      return {bund: bund.map(String).filter(n => /Bundaberg/.test(n)), mg, asda, n: Object.keys(std).length, lifts,
+        drink: hydIsDrink({name: 'Bundaberg Ginger Beer, Aussie Original', grams: 375}), alc: HYD_ALC_RE.test('Bundaberg Spiced Ginger Beer') && !HYD_NO_ALC_RE.test('Bundaberg Spiced Ginger Beer')};
+    });
+    check('v149 Bundaberg: Aussie Original, Diet and Spiced all found, counted as a drink, not as alcohol',
+      ['Aussie Original', 'Diet Ginger Beer, Aussie', 'Spiced'].every(k => r.bund.some(n => n.includes(k))) && r.drink && !r.alc, JSON.stringify(r.bund) + ' drink=' + r.drink + ' alc=' + r.alc);
+    check('v149 packets: a brand filled from the name is now found by brand search', r.mg.includes('5018095012551'), JSON.stringify(r.mg.slice(0, 5)));
+    check('v149 ranks: 150+ standards, and new lifts have one', r.n >= 150 && r.lifts.every(x => x[1] && r.n), JSON.stringify(r.lifts) + ' n=' + r.n);
+    // A Face Pull set ranks against the new standard.
+    const rk = await p.evaluate(()=>{ const d = new Date(); const start = d.getTime() - 3600e3;
+      trSaveActive({id: trUid(), name: 'Pull', d: ymd(d), start, ex: [{n: 'Face Pull', sets: [{t: 'n', kg: 30, reps: 10, done: true}]}]});
+      trFinish(); try{ closeSheet('tr-fin-backdrop'); }catch(e){}
+      const x = trRankOf('Face Pull'); return x ? {tier: x.tier, u: x.L.u} : null; });
+    check('v149 ranks: a Face Pull set gets a rank', rk && rk.tier >= 0 && rk.u === 'kg', JSON.stringify(rk));
+    check('v149: no errors', !p.errs.length, p.errs.join(' | '));
+    s.close(); await p.context().close();
   }
 };
 

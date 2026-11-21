@@ -7,7 +7,7 @@ This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
-Current version: **v148**.
+Current version: **v149**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -16,7 +16,7 @@ Current version: **v148**.
   - Old `foods.<hash>.js` / `packets.<hash>.txt` files can stay in the root. They do no harm.
 - Jot and Ledger share the same web address (`/jot/`, `/LEDGER/`). Their saved data is kept apart (`jot:*`, `ledger:*`), and COACH never copies or touches it. This chat is for COACH only.
 - Deploys are free now. Still run the tests before every build.
-- Netlify is being kept for a short while as a fallback, then cancelled. The old Netlify home-screen copies have been deleted.
+- **Netlify is cancelled** (21 Nov 2026). Shared facts for all apps: project doc `claude/APPS-shared-notes.md`.
 
 ## Rules for every change (non-negotiable)
 1. **Never wipe or break saved data.** Every update must read whatever is already on my phone. Stored names, keys and entry shapes stay compatible, and new features use new keys.
@@ -41,10 +41,16 @@ Current version: **v148**.
 - `VERSION`: bump this for every build.
 - `build.py`: builds `dist/` and `index.preview.html` (both ignored by git). `ship.sh` runs it, tests, and copies `dist/` into the root.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **150 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
+- `tests/run.js`: the test pack, **155 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v149: data fill-ins
+- **Bundaberg:** Ginger Beer Aussie Original (182 kJ/100 ml) and Diet (34 kJ) from bundaberg.com; Spiced (184 kJ) from its pack label as listed by Woolworths AU/NZ (not on Bundaberg's site). 375 ml bottle. Sugar/sodium in `LABEL_DB`.
+- **Packet brands:** 216 of 2,094 blank brands filled: 112 where the product name starts with a brand already in the packets (generic words like "Pure", "Simply" skipped), 104 by barcode prefix (8 digits, 10+ products, 95%+ one brand). Open Food Facts itself has no brand for the rest, so 1,878 stay blank.
+- **Ranked lifts:** Strength Level standards 64 → 158 (sitemap list, `/strength-standards/<slug>/kg` tables, fetched in the built-in browser). 163 library exercises now ranked. Bodyweight ones are judged on reps. Left out: plank/side plank (timed), and timed or odd matches (mountain climbers, scissor kicks, side leg raises, superman, split squats, donkey calf raise).
+- Tests: `v149` suite (5 checks).
 
 ## v148: Eat | Train on its own row
 - The switch moved off the tab row (looked crammed) onto its own full-width row above the tabs, with words: "Eat" and "Train" (option 1 on the designs page). Picked by Bailey from 3 mocks (own row, pill under COACH, big words).
@@ -128,15 +134,14 @@ Current version: **v148**.
 - 567 of the 27,629 UK packets have a blank brand (Bundaberg Ginger Beer 9311493003289 is one of them), so brand searches miss those. The search needs exact letters ("bunderberg" finds nothing).
 
 ## Open items
-1. **Body view muscle highlights:** muscles trained light up on the Day card's body figure (left out of v144).
-2. **More ranked lifts:** only 64 lifts have Strength Level standards, so the rest show no rank.
-3. Bundaberg Aussie Original, Diet and Spiced, from Bundaberg's own figures (web lookups hit a limit in v143).
-4. About 400 old packets plus about 1,700 of the v143 packets have no brand. Brand search misses those.
+1. **Hevy import:** Bailey is sending his Hevy workouts CSV. Build a one-time import so previous numbers, bests and ranks start from his real history.
+2. **Workout feedback from COACH:** mock on COACH designs (21 Nov): ① Next time (weight to use), ② vs last time (up/same/down), ③ Your balance (weakest group, untrained 7+ days). Waiting for Bailey's pick.
+3. **Strength muscle map is general, not daily** (Bailey, 21 Nov): it already lives in Train → Exercises (weakest groups over all time). The old "light up today's muscles on the Day card" idea is dropped.
+4. About 1,880 packets still have no brand anywhere (not on Open Food Facts either).
 5. KFC cup sizes: not published by KFC, so they stay "size unknown".
-6. Train feedback: waiting for my list after real sessions (speed, feel, anything missing).
-7. Small, left alone: the streak counts logged days, not confirmed days.
-8. Cancel Netlify once happy (the old home-screen copies are already deleted).
-9. Open Food Facts' bulk data is only as good as its contributors, so a few packets may carry odd names.
+6. Small, left alone: the streak counts logged days, not confirmed days.
+7. Open Food Facts' bulk data is only as good as its contributors, so a few packets may carry odd names.
+8. Muse sync: Bailey says it was checked earlier and works. Muse credits ran out (21 Nov), so no new Muse runs for now.
 
 ## How to get data the cloud can't reach
 v143 method that worked: open the site in the built-in browser, fetch the file in the page, save it to Downloads, then copy it into a subfolder with `cat a > b` (the bridge refuses freshly saved downloads as "hardlinked" for a few seconds) and stage it.

@@ -2158,7 +2158,7 @@
 5031021454072|2 Bake at Home Baguettes|Tesco|150g, 2||295|8.9|59.8|1.3|2.77|0.3|3.15|0.82
 5060092690355|Garlic mayo|Stokes|345 g||737|1.5|2|80|2|5.5||0.7
 20142360|Tast of - Basmati Microwave Rice|Golden sun|250g||132|3.12|27.6|0.72|0.08|0.08|1.44|0.06
-5018095012551|Merchant Gourmet||||139|4.5|17|4.4|1.4|0.7|6.4|1.2
+5018095012551|Merchant Gourmet|Merchant Gourmet|||139|4.5|17|4.4|1.4|0.7|6.4|1.2
 4088600294285|Thai green curry kit|Aldi|253 g||117|1.4|5.1|9.8|2.8|8|1.3|1.06
 4056489437888|Low fat cottage cheese|Lidl|||80|11|4.67|2|3.67|1||0.43
 5060136254710|Vegan rolls|Higgidy|160g||352|6.9|34.1|21.4|1.1|9.8|2.7|1.06
@@ -2213,7 +2213,7 @@
 8410660048038|olive oil|La Española|||822|0|0|91.4|0|12.8|0|0
 5000193034559|Dr Pepper|coca-cola|500 ml||20|0.01|4.9|0.01|4.9|0.01||0
 5391528181216|Crispy skinny fries|Strong Roots|750 g||146|2.3|22|5|0.1|0.4|2.8|
-5000225016980|Old Bay Seasoning||||284|8.9|33.5|10.1|23.5|1.2|11.8|25
+5000225016980|Old Bay Seasoning|Schwartz|||284|8.9|33.5|10.1|23.5|1.2|11.8|25
 5057967014378|Brazil Nuts|tesco|||696|14|9.4|68|2.4|17|6.3|
 5052003786165|Tesco Swiss Style Muesli|Tesco|1 kg||366|10.3|66.5|4.8|17.3|0.8|7.9|0.1
 4056489479406|Choco Hoops|Crownfield|500g||371|9.2|75|2|20|0.7||0.28
@@ -2562,7 +2562,7 @@
 5054070637128|Chickpeas in water|ASDA|400g||118|6.7|20.7|2.4|0.6|0.2|5.7|0
 5000118047794|Lemon Ice Tea|Lipton|500 ml||13|0|3.1|0|3|0||0.07
 5034467001091|Teriyaki Tofu|The Tofoo Co.|280g||156|15.6|5.9|7.8|2.3|1.3|0.5|0.59
-5010651001627|Billington's natural unrefined caster sugar||||399|0|100|0|100|0||0.17
+5010651001627|Billington's natural unrefined caster sugar|Billington's|||399|0|100|0|100|0||0.17
 4000539140327|Vegan smooth chocolate|Lindt|100 g||561|4.5|55|35|42|18||0.11
 4088600352244|Acti Leaf Coconut|Aldi|1 L||21|0.5|5.3|0.5|2.2|0.1|0.5|0.17
 5060853640391|Cashew & Almond Gluten-Free Granola|Bio & Me|||401|10.7|49.7|14.3|9.7|2.2|15.2|0.03
@@ -2872,7 +2872,7 @@
 5060139435246|Mango & passionfruit|Urban Fruit|85g||321|2.4|73|0.7|48|0.2||0.1
 7394376619427|Oat drink barista edition 500ml|Oatly|500 ml||61|1.1|7.1|3|3.4|0.3|0.8|0.1
 5414661000555|Lait demi écrémé stérilisé UHT||||47|3.4|4.7|1.55|4.7|1.04|0|
-4061463296153|Everyday Essentials Roasted Salted Cashews||||606|20.2|20.8|47.8|5.4|8.6|5.9|0.67
+4061463296153|Everyday Essentials Roasted Salted Cashews|Everyday Essentials|||606|20.2|20.8|47.8|5.4|8.6|5.9|0.67
 4088600032245|British double fresh cream|Aldi|300 ml||496|1.6|1.7|53.7|1.7||0.25|0.06
 5031021139801|Bread Sticks Mini|Tesco breadsticks|||412|11.1|73.2|7.7|2.9|1.4|2.9|1.8
 5060149576069|seven seeds and grains sourdough|Bertinet Bakery|||247|9.7|39|4.7|1.2|0.7|4.6|0.97
@@ -2987,7 +2987,7 @@
 00215336|Organic Virgin Cold Pressed Coconut Oil|By Sainsbury's|||898|0.5|0.5|99.8|0.5|94.5|0.5|
 5029223000555|Roasted Red Peppers|Karyatis|450g||31|0.7|6.2|0|4.5|0||0.63
 5449000124999|Oasis|Oasis|500ml||17|0.1|4.1|0.1|4.1|0.1||0.08
-5013635312146|KTC TOMATO PLUM PEELED 400G||1||19|1.1|3|0.1|2.8|0||0.09
+5013635312146|KTC TOMATO PLUM PEELED 400G|KTC|1||19|1.1|3|0.1|2.8|0||0.09
 5391115000302|Yogurt and Oat Clusters|nomadic|169 g||178|4.8|25.2|6|11.9|1.2|2.1|0.08
 5013665114895|Crunchy dark roasted peanut butter|Whole Earth|340 g||594|28.9|10.3|46.3|4.9|7.9|8.3|1
 7290000604633|Dates|Tesco|800g||326|1.8|76.1|0.4|64.8|0.1|5.1|0.1
@@ -3116,7 +3116,7 @@
 00461481|crunchy peanut butter|By sainsbury's|340g||621|27.8|13.9|48.8|5.5|6|7.4|0.03
 01099096|Grated Mozzarella|Sainsbury's|250g||317|21.4|7.1|22.5|1.9|14.5|0.5|1.46
 5057753224325|Red pesto|Tesco|190 g||358|2.9|7.9|34.6|5.6|3.4||1
-5010034013964|Uncle Ben’s Wholegrain Rice||||162.7|3.73|30.91|2.45||0.36|1.91|
+5010034013964|Uncle Ben’s Wholegrain Rice|Uncle Ben’s|||162.7|3.73|30.91|2.45||0.36|1.91|
 01357295|Organic Butter|Sainsbury's|||751|0.6|0.6|82.9|0.6|49.3||0.02
 5901154045143|Barley cup|Barley cup|200g||339|3.9|72|0.1|15|0.1|17|0.21
 5010477362773|Super Fruity Granola|Jordans|||415|10.7|66|10.6|18.8|1.5|6.5|
@@ -3733,7 +3733,7 @@
 5000129339987|Bran flakes|Coop|500 g||363|11|67|2.8|10|0.6|13|0.64
 5000358966862|Tesco Lentilles Vertes|Tesco|||176|13.4|25|0.6|0.5|0.1|8.7|0.1
 4088600161013|Cinnamon chips|Harvest Morn|||428|6.4|74|11|23|5.1|4.7|0.23
-5000237117897|Hula hoops||15 g||480|8|64|21.33|3.33|2||1.8
+5000237117897|Hula hoops|Hula Hoops|15 g||480|8|64|21.33|3.33|2||1.8
 20913458|100% pure apple juice|Naturis Truly Juicy|200 ml||46|0.1|11|0.1|11|0.1||0.01
 50354078|Seedless Best of Raspberry|Hartley's|22 x 15 g||258|0.4|62.3|0.4|50.8|0.1||0.21
 5000157070845|Carrot & Coriander Soup|Heinz|400g||41|0.5|5.6|1.6|4.1|0.2|0.9|0.6
@@ -4121,7 +4121,7 @@
 5053827142281|Special K Milk Chocolate Cereal|Kellogg’s|360 g||410|7.7|81|5|21||5.3|
 00388511|Sweet potato falafels|By sainsbury's|144g||269|11.2|30.4|9.9|9.9|0.8|6.5|0.75
 5010251524601|Morrisons sardines in olive oil|Morrisons|120 g||245|23|0.1|16.9|0.1|3.4|0.1|0.55
-4088600402437|sun quench apple and strawberrie||||18|0.5|0.5|0.5|0.5|0.1|0.5|0.17
+4088600402437|sun quench apple and strawberrie|Sun Quench|||18|0.5|0.5|0.5|0.5|0.1|0.5|0.17
 4088600564357|dried mango|Aldi|100||330|2.5|76.2|1.2|66.3|0.3|2.4|0.41
 5059697729553|Mixed Vegetable Curry|Tesco|||73|1.7|9.3|2.9|3.3|0.3||0.56
 5012035963101|Giant Straws|Haribo|175||334|0.5|82|0.5|42|0.1||
@@ -4824,7 +4824,7 @@
 0850835000726|Vanilla Chai|pukka|40g, 20 tea sachets||4|0|0|0|0|0||
 5060495115059|Huel Instant Meals - Thai Green Curry|Huel|1 pouch||427|26|43|14|5.1|3.7|11|1.2
 8719200204782|Double Light Cream|Elmlea|270ml||244|2.7|4|24||||
-5012845205620|Aspall Classic Red Wine Vinegar||350 ml||22|0.01|0.8|22|0.4|0.8||0.01
+5012845205620|Aspall Classic Red Wine Vinegar|Aspall|350 ml||22|0.01|0.8|22|0.4|0.8||0.01
 5000237137826|Flavour Kravers|KP|||610|29|6.67|50|5.67|8|8.67|0.77
 5054775579068|Salmon, Spinach and Lemon Fishcakes|Tesco Finest|266g||183|9.2|17.9|8||2.4||1
 5039303004731|Vegan House Light Dressing|Pizza Express|235ml||122|0.2|13|5|3.9|1.5|1|
@@ -5050,7 +5050,7 @@
 5060262489222|Prawn gyoza|itsu|240grams||143|8.9|25|0.5|3.1|0.1|2.2|1.4
 5057172332731|Delicious Micro Grain Lentils|Asda|||98|6.8|11|1.8|2.1|0.3|4.9|0.36
 5000169792360|Pink grapefruit squash|Waitrose|1litre||20|0.1|4.8|0.1|4.8|0.1|0|0.01
-5056357905579|Mars triple treat||4 x 32 g||433|9.7|51|19.4|42|5|8.9|0.19
+5056357905579|Mars triple treat|Mars|4 x 32 g||433|9.7|51|19.4|42|5|8.9|0.19
 5060482841459|Olive Oil, Sea Salt & Black Pepper Baked Veggie Chips|Deliciously ella|100g||410|5.5|71|10|9|0.8|6.8|2.4
 4088600416731|Fully loaded buffalo wing peanuts|Snackrite|200g||591|25|11.2|47.5|5.6|5.5|9.6|1.27
 5060604010084|Habanero Hot Sauce||||19|2.3|5.5|0.5|5.5|0|0|0.5
@@ -5370,7 +5370,7 @@
 01673791|Somerset Brie|By sainsbury's|||291|18.3|0.5|24|0.5|14.5||1.26
 5060384262925|LOVES|Candy Kittens|140 g||348|0.1|85|0.2|62|0.1||0.12
 5010038467329|Non alcohol|Sharps Brewery|500ml||13|0.1|3.2|0.1|1.1|0.1||0.1
-5056138200053|Morello cherry gourmet love yoghurt||450 g||120|4.7|13.3|4.7|12.7|3.6||0.16
+5056138200053|Morello cherry gourmet love yoghurt|The Collective|450 g||120|4.7|13.3|4.7|12.7|3.6||0.16
 8410422005705|Allioli|Chovi|180 ml||749|1.2|1.5|82|0|10|0.1|1.3
 5000169120798|Corn Flour|Waitrose|250g||354|0.5|88|0.5|0|0|0|0.03
 00178396|Extra virgin olive oil|Sainsbury’s|||823|0.5|0.5|91.5|0.5|13.1||0.01
@@ -5389,7 +5389,7 @@
 4088600190075|Salted butter|Cowbelle (Aldi)|250 g||745|0.6|0.6|82|0.6|52|0.5|1.5
 5060283762007|Sweet popcorn|Proper Corn|||466|6.3|52.7|23.7|18.2|7.5|1.7|0.03
 4088600168784|Folded brown rice noodles|Asia Specialities|200 g||131|2.8|27.6|0.2|0.8||1.3|25.57
-5059697389504|Wicked Kitchen - 12 Italian Inspired Amazeballs||308g||198|12.5|9.4|10.9|1|3.2|6|1.24
+5059697389504|Wicked Kitchen - 12 Italian Inspired Amazeballs|Wicked Kitchen|308g||198|12.5|9.4|10.9|1|3.2|6|1.24
 5053827197212|Fruit Winders|Kellogg's|5 x 17 g||393|0.2|79|8|37|3.5|2|0.13
 8445290019530|Fruit Gums|Rowntree's|||331|0.1|81.6|0.1|46.5|0.1|1.5|0.28
 5025840005553|Protein 25|Grahams|200g||90|12.4|8.9|0.5|6.5|0.3|0|0
@@ -5543,7 +5543,7 @@
 5057753925253|Mango passion smothie|Tesco|||62|0.4|13.6|0.5|11|0.2||0.1
 5059697682568|Lemon all butter shortbread fingers|Tesco Finest|||503|5.6|63.8|24.8|16.3|15.4|1.1|0.4
 5060375300186|Peanut Butter Dark Choc and Rock Salt Granola|The Paleo Foods Co|||495|15|50.7|24.6|10.5|4|6|0.3
-5060699970317|Leon Velvety Hummus||||262|8.6|4.3|21.4|0.7|3.4|8.8|0.97
+5060699970317|Leon Velvety Hummus|Leon|||262|8.6|4.3|21.4|0.7|3.4|8.8|0.97
 00447737|Red Lentils|By sainsbury's|||118|7.6|17.5|0.5|0.8|0.1|6.8|0.03
 5018374219718|Tesco Ricotta 250G|Tesco|250 g||103|7|3|7|3|4.9|0|0.3
 5000169600719|Pure Honey|Waitrose Duchy|||307|0.5|76.4|0|76.4|0|0|
@@ -5719,7 +5719,7 @@
 7622201143671|Dunkers|Mondelez|||240|9.6|26|10|6.8|6||1.4
 5016451522300|Really cheesy lentil puffs||||454|17.7|54.7|17.4|0.8|1.2|3.5|0.82
 4088600114972|Realy creamy vanilla ice cream||||196|1.7|26|9.6|4.5|8.5|0.6|
-5060430292340|Sweet potato katsu curry||||80|4.6|10|1|0.5|0.7|6.1|0.37
+5060430292340|Sweet potato katsu curry|BOL|||80|4.6|10|1|0.5|0.7|6.1|0.37
 5051140110505|Sesame Seeds|Tesco|300g||616|18.2|0.9|58|0.4|10.5|8.8|0.05
 29214655|Plant based Burgers with Soya Protein|Marks & Spencer|400g||212|11.2|7.3|14.2|0.7|1.6|5.3|1.18
 5059977003038|Pret tuna sandwich|Pret|||205|4.9|22.3|7.7|2.3|0.9|2.7|0.74
@@ -5848,7 +5848,7 @@
 5013635350704|Kala Chana in salted water|KTC|400 g||102|6|18|1.6|0.5|0.2|6|0.39
 5054070905401|Pank breadcrumbs|Asda|70||361|12|72|1.9|4.3|0.5|3.9|0.46
 5057172859825|Fruit and seed mix|Asda|||415|11|41|22|32|3.1|5.9|0.5
-5016451062196|Seabrook Variety Pack Crisps||||510|6.4|53.6|29.1|2.8|2.8||1.3
+5016451062196|Seabrook Variety Pack Crisps|Seabrook|||510|6.4|53.6|29.1|2.8|2.8||1.3
 5054781971801|Wholewheat spaghetti|Tesco|500 g||148|4.8|28|0.9|0.5|0.2|3.7|0.01
 5022374057973|Pomegranate & Almond Topper|Forest Feast|1 kg||347|12|30|21|22|2.5|6.6|0.05
 5060139433372|Super Sour Strawberry & Apple Yoyos Fruit Rolls 5 x|Yo yo|280||280|1.9|63|0|42|0|10|0
@@ -5893,7 +5893,7 @@
 8002670002010|Mascarpone|Granarolo|250 g||403|3.6|2.5|42|2.5|28.2||0.1
 01736175|Semi dried tomatoes||||250|4|20.2|15.8|12.4|2.6||1.4
 5000396054798|Digestives dark chocolate|Mcvities|266 g||494.7|6|61.1|24.3|26.6|12.9||0.3
-5030343834081|Sun dried tomato pesto||||369|4.9|7.1|35.1|6.4|6.1|2.5|3.5
+5030343834081|Sun dried tomato pesto|Belazu|||369|4.9|7.1|35.1|6.4|6.1|2.5|3.5
 5201083333084|Authentic Greek Yogurt 10% Fat|Mevgal|||129|5.5|3.5|10|3.5|7.5||0.11
 5060136250170|Smoked English Bacon Quiche|Higgidy|400g||264|9.6|17.7|17.6|0.7|8.1||0.67
 5000436733607|Pain Au Chocolat|Tesco|||403|8.1|46.8|19.7|14.4|12.1|3.2|0.63
@@ -5907,7 +5907,7 @@
 5051399457437|Tesco Double Cream|Tesco|600 ml||467|1.5|1.6|50.5|1.6|31||
 5057753599294|Jumbo King Prawns|Tesco’s Finest|||80|18.4|0.4|0.5|||0|
 5056053308704|rustic vegetable soup|Yorkshire provender|560g||52|1.6|5.3|2.5|2.5|0.2|1.1|0.57
-5000168210421|McVitie's Club Orange Bars 7 x (154g)||||512|5.7|61|26.6|39.4|16.6||0.75
+5000168210421|McVitie's Club Orange Bars 7 x (154g)|McVitie's|||512|5.7|61|26.6|39.4|16.6||0.75
 8001250120335|Chifferi Rigati n 33|De Cecco|500 g||351|14|69|1.5|3.4|0.3|2.9|0
 4088600047324|Mini roulé||||338|9.7|3.8|31|2.4|22||1.06
 5036589205425|Greek Style yogurt|Yeo Valley|150 g||129|5|5.3|9.7|5.3|6.3||0.14
@@ -6275,7 +6275,7 @@
 4056489383369|Fromage frais|Lidl|||86|5.3|10.6|2.4|10|1.6||0.13
 8436586780012|Just Oat|Iparlat|||45|0.9|8.33|0.9|3.8|0.2||0.1
 20802301|Roast chicken breast slices|Birchwood Deli Choice|150 g||148|28.2|0.4|3.4|0.4|0.8|0.5|0.56
-5023751101111|Ko-Lee Go Noodles Chicken Special Flavour||||487|11|63.1|21.1|6.31|1.84|0.9|0.52
+5023751101111|Ko-Lee Go Noodles Chicken Special Flavour|KO-LEE|||487|11|63.1|21.1|6.31|1.84|0.9|0.52
 20113964|Pop'd|Lidl|100 g||440|5.9|68.9|14.5|0.4|1.9|4.7|1.88
 5059512736438|Pasta & Pizza Flour ‘00’ Grade|Tesco Finest|||353|12.8|70.1|1.8|1.1|0.3|2.4|
 4088600047157|Spreadable strong mature cheddar|Emporium|150g||243|14|8.6|17|2.5|11|0.5|1.6
@@ -6414,7 +6414,7 @@
 5057753894436|8 meat free burgers|Plant Chef|454 g||124|17.6|3.5|3|0.7|0.3|6.1|0.83
 5038862237420|RE[CHARGE] Smoothie|Innocent|300 ml||45|0.5|11|0.5|9.9|0.1|0.9|0.01
 5060360504360|Low Fat Yogurt Raspberry & Chia Seed Muesli||||115|5.9|16|2.7|11|1||0.17
-5057753521561|The Growers Harvest - Island Mix||||349|2.2|79.9|1.1|61.5|0.4|5.1|0.2
+5057753521561|The Growers Harvest - Island Mix|The Growers Harvest|||349|2.2|79.9|1.1|61.5|0.4|5.1|0.2
 4088600288949|Essentials Long Grain Rice|Aldi|1kg||140|2.8|31.1|0.4|0|0|0.5|0
 5057753283964|Pitted olives with basil & garlic|Tesco|||208|1.4|2|21|2|3.8|2.5|3.35
 4088600011325|SEMI-SKIMMED LONG LIFE MILK|Aldi|||48|3.4|4.7|1.7|4.7|1.1||0.11
@@ -6433,7 +6433,7 @@
 5018605007466|Chickpeas in salted water|East end|400 g||72|4.3|8.6|1.3|0|0.1||0.6
 5010251870678|Desiccated coconut|Morrisons|200 g||684|7.7|11.8|64.4|6.4|57.5||0.05
 20437459|Garlic bread||||342|7.4|45|14|2.5|4.5|1.8|0.88
-5000237131435|Nik Naks||6 x 20 g||566|6.1|53|36|4.3|3.3||1.8
+5000237131435|Nik Naks|Nik Naks|6 x 20 g||566|6.1|53|36|4.3|3.3||1.8
 5011308510271|Lime Pickle|Patak's|170g||187|2.3|2.5|16.9|2.2|1.2||8.9
 5010525094564|Free from penne|Morrisons|500 g||172|2.8|38.6|0.8|0.2|0.2||
 5000169608050|Belgian Milk Chocolate|Waitrose|||539|5.56|56.1|31.7|55|18.9|2.78|
@@ -6441,7 +6441,7 @@
 5021476000511|Mug Shot creamy cheese pasta|Symingtons|68g||104|2.8|18.6|1.9|1.3|1|0.7|0.67
 5000169601884|Duchy Cocoa powder|Waitrose|||390|22.3|12.4|21|0.5|13.2|31|
 5000129327373|Coop bacon rashers|Coop|150 g||485|6.3|66|21|2.1|1.6|1|
-5056000502926|Kendamil organic first infantmilk||800 g||513|11.2|54|27.4|52|9.7|1.8|0.19
+5056000502926|Kendamil organic first infantmilk|Kendamil|800 g||513|11.2|54|27.4|52|9.7|1.8|0.19
 7622201796464|Sour Patch Kids||||326|2.8|77|0.2|63|0.1||
 5000157147868|Heinz Sundried Cherry Tomato & Basil|Heinz|490g||49|1.7|5.1|2.1|4.3|0.3||0.72
 5013635606603|Sunflower Oil|K T C|||899|0.01|0|99.9|0|11.9||
@@ -6566,19 +6566,19 @@
 5000232027962|Plant based chunky vegetable curry|Princes|392g||66|2.9|10.9|0.7|3.7|0.1|2.4|0.49
 5018095011721|Lentil chilli||||89|3.5|12|2.7|0.3|0.3|2.9|0.7
 4088600264073|Squirty squash||66 ml||10|0.5|1.6|0.5|0.5|0.3|0.5|1.2
-5030343837792|Tomato & Sage||||324|4.3|10.2|28.9|7.7|4.3|2.3|2.5
+5030343837792|Tomato & Sage|Belazu|||324|4.3|10.2|28.9|7.7|4.3|2.3|2.5
 4088600559858|Munchy Bars|Dairyfine|5 x 32 g||131|2|18.7|4.6|9.3|2.3|3.7|0.09
 5010292966620|Saucisson sec||||434|32|0.5|34|0.5|13|0.5|4.5
 5449000309822|Coca-Cola Intergalactic|Coca Cola|250ml||1|0|0|0|0|0|0|0.03
 5039303006322|Katsu mayo||||520|0.6|6.8|54|3.5|3.8|0.7|1.46
 00450935|Pickled gherkins|By sainsbury's|||24|0.7|4.4|0.5|3|0.1|1.1|0.65
-5030343836900|Smoked Chilli Harrisa||||348|2.5|11.6|31.4|5.8|1.8|4|3
+5030343836900|Smoked Chilli Harrisa|Belazu|||348|2.5|11.6|31.4|5.8|1.8|4|3
 5000169467800|Chickpea spinach quinoa|Waitrose|||141|6.5|15.2|4.3|1.2|0.5|7.5|
 29234424|Cordial|Marks & Spencer|||22|0.1|5.4|0.1|4.9|0.1|0.5|
 00464741|Apple and blackcurrant squash|By sainsbury's|||1|0.5|0.5|0.5|0.5|0.1|0.5|0.04
 5034444122115|Bean bake mexican style||175 g||115|4|22|1.2|3.9|0.2|4.7|0.67
 5941448003367|Pistacho||||640|20|16|54|6.1|10|4.3|1.2
-4061462529252|Tomato & Grilled Peppers Stir Through Sauce||||222|1.6|9.8|18.7|7|2.1|4.1|1
+4061462529252|Tomato & Grilled Peppers Stir Through Sauce|Aldi|||222|1.6|9.8|18.7|7|2.1|4.1|1
 29217120|peanut & choc chip|Marks & Spencer|||402|11.4|46.6|16.4|43.5|5|11.1|0.23
 8711000677810|Original Latte|Kenco|||407|15|57|12|40|12|2.2|
 5056357907610|Tracker Oats & Grains||||423|7.4|64|15|21|5.7|3.3|0.5
@@ -6604,7 +6604,7 @@
 5055036900126|Thai Taste Green Curry Paste|Thai Taste|200 g||96|2.2|20|0.9|2.2|0.2|3.3|5
 5033665208912|Meatballs al forno|Charlie Bighams|650g||165|8|11.3|9.7|2.4|2.9||0.61
 20692650|Mcallisters rough oatcakes|Lidl|||448|11|55.8|18.2|0.7|4.3|8.7|1.27
-5060699970331|LEON Pea lentiful||||275|6.5|6.6|23.5|2.1|2.5|5.7|0.83
+5060699970331|LEON Pea lentiful|Leon|||275|6.5|6.6|23.5|2.1|2.5|5.7|0.83
 5010251552659|Morrisons Raisins|Morrisons|500g||305|3.4|69.4|0.4|59|0.2|5.2|0.2
 20116798|Tuna Steak in Sunflower Oil|Lidl|200 g||255|20|0.67|19.1|0.67|2.67||1.18
 5060482842869|Sparkling kombucha crisp apple & floral elderflower|Deliciously Ella|250g||21|0.5|4.7|0.2|4.5|0|0|
@@ -6630,7 +6630,7 @@
 5900820016500|Natural Buttermilk|Mlekpol|1 l||48|3.5|5|1.5|5|1||0.1
 5054070136010|Salmon|Asda|2 g||225|24|0.5|14|0|2.1||0.28
 5010102100015|Dr pepper reg|Dr pepper|330 ml||17.9|0|4.24|0|4.24|0||0.05
-7622201388959|Dairylea lunchers||||290|16|26|13|2.4|6.1|1.4|1.2
+7622201388959|Dairylea lunchers|Dairylea|||290|16|26|13|2.4|6.1|1.4|1.2
 4056489763055|Passata With Basil|Baresa|500 g||37|1.7|4.9|0.5|4|0.1|1.4|0.39
 4056489238812|Sunflower Seeds|Lidl|||593|19.8|18.6|47.5|1.6|6.6|6|0.01
 5060062060133|Cotswold Crunch strong flour mix|Matthews Cotswold Flour|1.5kg||344|12.8|73.9|1.5|2.7|0.3|4.6|0.01
@@ -6805,8 +6805,8 @@
 5000128767941|Organic fresh whole milk|The co-operative|||69|3.5|4.7|4|4.7|2.4|0|0.11
 00491266|Pumpkin seeds|Sainsbury’s|||590|35.6|5.2|46.9|1.3|8.5|2.3|0.16
 8711200426218|Hellmans mayonnaise|Hellmann's|||726|1.1|1.4|79|1.3|6.3||1.5
-5000237127025|Butterkist Toffee Popcorn||6 x 20 g||427|2.9|80|9.7|49|3.1|3.9|1.3
-5060853640117|Bio & Me Strawberry Gut-Loving Prebiotic Yoghurt||||58|3.67|5.33|2.13|5.27|1.27|1.53|
+5000237127025|Butterkist Toffee Popcorn|Butterkist|6 x 20 g||427|2.9|80|9.7|49|3.1|3.9|1.3
+5060853640117|Bio & Me Strawberry Gut-Loving Prebiotic Yoghurt|Bio & Me|||58|3.67|5.33|2.13|5.27|1.27|1.53|
 5000129290424|Thick natural skyr|Co-op|||62|11|3.9|0.5|3.9|0.1||0.08
 5201360531219|Croissant with cocoa filling|7 Days|||443|6|45|26|15|14|0|0.75
 0612322000783|Nairn's Gluten Free Biscuit Breaks Chunky Oats, Dark Chocolate & Coconut|Nairn's|160 g||478|8.5|55.8|22.9|18.8|11.1||0.78
@@ -6841,7 +6841,7 @@
 7622210318947|Dairylea Cheese Spread|Dairylea|145 g||201|12|4.8|14|4.8|9.2|2.3|1.52
 3608580081562|Clementine Mousse|Bonne Maman|||171|3|19|9|16|6|1|0
 4056489354918|Noodles instant chicken|Lidl|||163|3.9|21.9|6.3|0.7|2.6||0.52
-5030343837150|Pesto aubergine & Parmesan||||314|4.2|3.9|27.5|3.1|4.5|2.1|2.2
+5030343837150|Pesto aubergine & Parmesan|Belazu|||314|4.2|3.9|27.5|3.1|4.5|2.1|2.2
 5057172404773|Extra Mature Cheddar Cheese|Asda|400g||417|25|0.5|35|0.5|22||1.8
 5000328015675|Popwork||||440|7.4|71|13|4.5|1.2|5|0.94
 5060139435277|Fruit rolls|Bear|||280|1.9|63|0|42|0||0
@@ -6893,7 +6893,7 @@
 8000320390517|Peeled plum tomatoes|Cirio|4 x 400 g||27|1.1|4.2|0.2|3.8|0.1|1.1|0.02
 5000169040652|Cooks' Homebaking Sicilian Lemon Juice|Waitrose|||28|0.4|2|0|2|0|0.5|0.01
 5010052112700|Original Scratchings|Mr Porky|65g||646|42.5|0.4|52.7|0.2|18.4||3.05
-5010024118082|Hovis Malted Brown Granary Flour 1Kg||||339|11.5|64.8|2|1|0.3||0
+5010024118082|Hovis Malted Brown Granary Flour 1Kg|Hovis|||339|11.5|64.8|2|1|0.3||0
 00518949|Soft Wholemeal Rolls|M&S Bakery|360 g||234|10.8|35.7|4.1|4.4|0.7|5.6|0.78
 4088600476063|Ground Almonds|Aldi|||630|21|14.3|55.7|4.33|4.33|7.33|0.03
 9349571002329|Simply Seed Crackers|Olina's|||521|22|7.1|40|1.1|5.7|25|0.85
@@ -7015,7 +7015,7 @@
 3560071452841|Craky|carrefour classic|75 g||508|13|57|24|2.8|3|4.3|1.2
 5000169376195|Soft apricots|Waitrose|||254|3.4|55.3|0.5|53.4|0||0
 4088600007007|Filtered semi-skimmed Milk|Aldi|||49|3.6|4.8|1.7|4.8|1.1|0.5|0.11
-5060092696524|Stokes reduced suger tomato ketchup||||80|1.9|17|0|14|0||1.7
+5060092696524|Stokes reduced suger tomato ketchup|Stokes|||80|1.9|17|0|14|0||1.7
 6001048003323|Appletiser|Appletiser|275 ml e||46|0|10.8|0|10.2|0|0|0
 5010578003131|Longley farm vanilla yogurt|Longley Farm|||120|4.4|13.4|5.8|11.9|4||0.1
 5201049211395|Macedonian Tahini|Haitoglou|300 g||673|25.3|3.6|60.3|1.4|23.7|7.8|0.04
@@ -7030,7 +7030,7 @@
 5019503028812|Vegan Pieces|Quorn|280 g||94|15|2.1|1.4|0|0.5|6.9|0.4
 5000168085913|Chocolate Cake Bar|Galaxy|||484|5|57|27|45|13|0|0.46
 4061464676336|Protein Pudding - Coffee Flavour|Brooklea|200g||149|20.4|9.6|3.1|8.4|2.1|0.7|1.05
-5016451162803|Seabrook||||126|6|13.2|7.2|0.4|0.6||0.33
+5016451162803|Seabrook|Seabrook|||126|6|13.2|7.2|0.4|0.6||0.33
 5052675001238|Indonesian Peanut Satay|The Spice Taylor|275 g||197|5.5|6.9|15|6.3|8.9|5.4|1.1
 5065008402909|Strawberry super berry jam||300 g||148|0|35|0.1|34|0.1||0.1
 5055540022338|Estrella beer 330ml can|Estrella|||99|8.3|11|0.8|0.5|0.2||
@@ -7170,7 +7170,7 @@
 5000128969291|BBQ Chicken Slices|Coop|130g||161|28|4.2|3.6|2.7|0.5|0.5|0.25
 5000232902597|Reduced sugar and salt baked beans|Branston|410g||85|5|12.5|0.5|2.8|0.1|5.1|0.39
 5000128767927|Fresh semi-skimmed milk|The co-operative|||50|3.6|4.8|1.8|4.8|1.1||0.1
-5029617002004|Nomadic breakfast bircher||140 g||141|4.7|26|2.3|11.1|1|1.3|0.07
+5029617002004|Nomadic breakfast bircher|Nomadic|140 g||141|4.7|26|2.3|11.1|1|1.3|0.07
 5051140265441|Sausage, bacon and egg triple|Tesco|266g||208|10.8|25.6|6.58|2.78|1.99|1.8|0.92
 00411424|2 Bake at Home Stonebaked White Baguettes|M&S|||288|9.8|58|1.2|3.5|0.3|3.4|1.09
 5060088708651|Banoffee Pie Fruit & Nut Bar|Nakd|1x35g||365|6.9|53.1|13.2|51.1|1.7||0.5
@@ -7350,9 +7350,9 @@
 5010292965449|Chargrilled Cajan Mini Fillets||||191|21|9.3|7.8|2.3|0.8||0.9
 00429962|Roasted & Salted Almonds|Sainsburys|100g||639|25.7|7.9|54.3|4.2|3.7|8|0.24
 5060561603138|Salted Pretzel Oat M!lk Chocolate|H!P|70g||528|4.2|58.2|31.3|37.9|18.2|4.7|0.67
-5010204029450|tesco silver skin onions||||48|0.8|8.1|0.5|7.1|0.2|1.3|0.6
+5010204029450|tesco silver skin onions|Tesco|||48|0.8|8.1|0.5|7.1|0.2|1.3|0.6
 5000128769358|flour|coop|1.5kg||379|11|79|1.2|0.5|0.3|3.3|
-5000157150509|Teriyaki cooking sauce||||116|1.5|30.1|0.1|20.3|0.1|0.2|1
+5000157150509|Teriyaki cooking sauce|Heinz|||116|1.5|30.1|0.1|20.3|0.1|0.2|1
 5060413268737|cocoa nib nights||||602|4.1|40|46|38|39|0|0
 4088600456010|Naturally sweet sweetcorn in water||||79|2.2|13.7|1.2|6.4|0.2|2.3|
 4088600558271|pesto salad dressing||||338|0.9|9.1|33|8.4|3.3|0.3|1.18
@@ -7368,7 +7368,7 @@
 5000128599450|Butter basted turkey|co-op|120g||141|32|0.5|1.3|0.5|0.4|0.5|0.5
 29308354|topper get going berry boost|Marks & Spencer|90g||476|18|30|28|22|2.8|16|0.13
 5057753894245|Peeled new potatoes|Tesco|||69|1.5|15.1|0.1|0.7|0.1|0.8|0.1
-5051413855355|Scottish Mackerel Fillets in Brine||||241|20|0|18|0|4|0|0.75
+5051413855355|Scottish Mackerel Fillets in Brine|Asda|||241|20|0|18|0|4|0|0.75
 5601312182979|Pain de mie||||232|8.3|42.3|2.7|2.82|0.6|3.3|
 8001665722643|Fresh Tortelloni Basil and Pine Nut Pesto|Giovanni Rana|250 g||210|8.4|28|6.6|2.4|2.2|2.3|0.5
 5010102240100|Green ice tea mint&lemon|Lipton|500ml||10|0|2.3|0|2.2|0|0|0.03
@@ -7672,7 +7672,7 @@
 5010477361332|Country Crisp||||452|9.6|64.2|16.4|21|3.4|4.6|
 5010251655565|Onion bhajis|Morrisons|||254|5.7|20.4|15.6|5.3|1.1|4.6|0.85
 8719992099269|Earth water||500 ml||0|0|0|0|0|0|0|
-5057172080953|Crinkle cut chips||||167|2.8|27|4.5|0.5|0.9|0.5|2.9
+5057172080953|Crinkle cut chips|Asda|||167|2.8|27|4.5|0.5|0.9|0.5|2.9
 134817|Golden wonder ready salted||||540|5.6|52.9|33.3|0.7|4.1|3|1.41
 3046920028042|Classic recipe|Lindt|||574|8.3|50|37|47|17||0.25
 4088600399034|Madagascan vanilla|Lidl|||169|4.4|19.8|7.9|17.8|5.3|0.5|0.1
@@ -7766,7 +7766,7 @@
 5088722227030|Malt Loaf (2 Slices)|Soreen|45 g||313|6.89|63.3|4.89|20|2|3.33|1.28
 5010251523253|Morrisons Saltana Bran|Morrisons|500g||351|9.5|68|1.9|25|0.3|12|0.23
 5000169035146|Sardines in water|Waitrose|||147|21.8|0.5|6.5|0.5|2.1|0.5|0.24
-5030343836894|Extra virgin olive oil||500 ml||824|0|0|91.6|0|14||0
+5030343836894|Extra virgin olive oil|Belazu|500 ml||824|0|0|91.6|0|14||0
 5059321005121|Fruit Winders|Kellogg's|5 x 17g||381|0.2|78|7.2|39|4|0.7|0.06
 5000328019345|Paprika walkers|Walkers|||508|6.7|53|29|3.3|2.4|4.5|3
 01192377|Lighter Mozzarella|By Sainsbury's|||161|18.9|1.1|9|0.5|6.3|0.5|0.63
@@ -7826,7 +7826,7 @@
 5010251268239|British Skimmed Milk|Morrisons|2.272 l||36|3.4|5|0.3|5|0.1||0.13
 5000159550680|Galaxy Minstrels|Galaxy|217g||497|5.8|68|22|67|13||0.26
 5057967464050|Smoked Salmon & Tuna Sushi|Tesco|136 g||162|6.47|26.7|3.01|1.62|0.37|0.81|1.14
-5030343834944|Roasted pepper tapenade||||164|1|5.3|14.8|4.6|1.8||1.5
+5030343834944|Roasted pepper tapenade|Belazu|||164|1|5.3|14.8|4.6|1.8||1.5
 5010251341352|Double Cream|Morrisons|300 ml||467|1.5|1.6|50.5|1.6|31.4||0.1
 5070000206806|Tempeh|Better Nature|180g||283|24|5.3|16|1|2.1|6.9|0.8
 5057172568994|Asda Garlic and Herb 2 Baguettes|Asda|420g||310|7.9|46|10|3.1|5|2.2|0.81
@@ -7887,7 +7887,7 @@
 5031102000020|Classic Pie Mushroom||235 g||229|3.9|17.7|15.2|2.7|6.8||0.5
 5000237120149|Hula Hoops Puft Beef Flavour Wheat & Potato Rings 6 x|KP Snacks|||479|9|64|20|1.9|1.9||2
 5711953027857|Skyr Icelandic Style Yogurt Layered with Cherry|Skyr|150g||77|9.1|9|0.5|8.4|0.1||0.13
-5010251785279|Fromage Frais||||50|7.6|4.4|0.2|3.3|0.1||0.1
+5010251785279|Fromage Frais|Morrisons|||50|7.6|4.4|0.2|3.3|0.1||0.1
 5054781248712|Asda sweetcorn|Asda|||84|2.8|13|1.7|8.4|0.4||0.02
 5011026008227|MiWadi Blackcurrant No Added Sugar||||3|0|0|0|0|0||0.1
 5057753907853|Plant chef Cumberland style bangers|Tesco|350g||170|8.6|15.6|7.5|2.4|3.8|3|1.3
@@ -7901,11 +7901,11 @@
 00278317|Sweet Mango Chutney|Sainsburys|||256|0.5|61.9|0.5|50.5|0.1|1.8|2.73
 4088600207032|Mozzarella and Basil Pizza|Carlos Stonebaked|355 g||261|12|31|9.3|3.5|4.6|2|1.1
 5000169074978|Green Olives|Waitrose|||301|33.2|24.8|3.1|9.4|0.5||
-5060262487150|Spicy Veg Bao Buns||||194|7.3|33|3.1|7.3|0.5||1.33
+5060262487150|Spicy Veg Bao Buns|Itsu|||194|7.3|33|3.1|7.3|0.5||1.33
 5012427309609|Sri Lankan Sweet potatoe|Baxters|||54|0.8|7.9|1.8|2.9|1.4||0.53
 4056489240266|Teriyaki sauce||280 g||155|2.5|35.8|0.1|26.9|0.1||3.35
 4088600049830|Cod and chorizo fishcake|Aldi|||211|10.4|20.1|9.6|3.7|1.5|1|1.06
-3228023190059|Seriously spreadable lighter||||214|15|7|14|6|9|0|2.1
+3228023190059|Seriously spreadable lighter|Seriously|||214|15|7|14|6|9|0|2.1
 4088600072531|Macaroni Cheese|Aldi|||91|2.3|20|3.7|0.7|1.2||0.62
 4088600210162|Chimmichurri olives|Aldi|||160|1.1|1.5|16|0.5|2.4|3.1|2.51
 4056489462132|Spicy Meatfeast Pizza|Chef Select|||254|11.9|27.8|10|3.1|4.7|2.4|1.06
@@ -8007,7 +8007,7 @@
 5057172859504|Raisins, Berries & Cherries|Asda|||313|2.2|69|2.2|66|0.3|4.1|0.03
 6005207000307|Chicken Style Burgers|Fry's|320g||197|8.9|12.1|12.3|0.5||1.3|1.43
 5033665212520|Thai Red chicken curry & fragrant rice|Charlie Bigham|418g||160|7.73|17.4|6.29|0.69|3.71||
-5057545985359|Stockwell And Co. Lard 250G||||898|0|0|99.8|0|44|0|
+5057545985359|Stockwell And Co. Lard 250G|Stockwell|||898|0|0|99.8|0|44|0|
 5039303000863|Nando's Peri Peri Salt|Nando's|1pcs||162|4.6|24.6|3.5|13.7|0.6||53.6
 8410660049783|Extra Virgin Olive Oil|La Española|||823|0.5|0.5|91.5|0.5|13.1||
 8711327533950|Madagascan vanilla light|Carte D'or|||143|2.3|21|4.3|17|3.9||
@@ -8040,7 +8040,7 @@
 5051008181975|Salt & Vinegar Twirls|Tesco|125 g||474|3.1|69.3|20.2|0.4|1.7|1.8|1.8
 5060120285478|Coconut muesli gluten free|Rude health|||234|7.4|31.6|7.9|4.7|0.8||
 8711327578968|Magnum Vegan Raspberry Swirl|Magnum|71 g||316|1.5|34|19|28|13||0.07
-5010525201702|Jalapeño chilli jam||||276|0.2|67.3|0.1|58.3|0.1|2.3|0.13
+5010525201702|Jalapeño chilli jam|Morrisons|||276|0.2|67.3|0.1|58.3|0.1|2.3|0.13
 4056489648284|Malted Milk|Tower Gate|||497|6.6|67|23|16|10|2.4|0.62
 5000169606810|Almond unsweetened|Waitrose|||15|0.8|0.8|0.8|0.5|0.1||0.18
 5000436571179|English Set Honey|Tesco finest|340g||331|0.3|82.4|0|82.4|0|0.2|0.03
@@ -8190,7 +8190,7 @@
 5060127360048|Scottish rapeseed oil|Borderfields|500 ml||824|0|0|92|0|5.8||0
 5055476152451|Organic coconut milk||||181|1.4|3.4|18|1.8|15.8|1.1|0.2
 4056489594277|Taco mixed beans in tomato sauce|Freshona|||77|4.6|11.5|0.5|3.5|0.1|4.1|0.48
-4061462529238|Rich & Intense Tomato & Olive Stir Through Sauce||190 g||275|1.6|5.9|28|4.8|3.6|2.9|1
+4061462529238|Rich & Intense Tomato & Olive Stir Through Sauce|Aldi|190 g||275|1.6|5.9|28|4.8|3.6|2.9|1
 4056489762416|Fried onions with bacon flavour|Søder Garden|100g||574|6|43|41|9.1|19|4.7|1.8
 00034951|Grapefruit segments in fruit juice|Sainsburys|290g drained weight||32|0.6|7.3|0.5|7.3|0.1|0.5|0.03
 5000129340143|White sourdough baguette|Coop|||256|8.1|51|1.3|2.3|0.2|3.3|0.82
@@ -8208,7 +8208,7 @@
 4088600367330|Pop outs salt and vinegar|Aldi|||427|5.4|71|13|1.6|1.3||1.77
 5000157072641|Big soup chicken and leek|Heinz|400g||58|2.9|8.2|1.4|1.6|0.3|0.7|0.6
 3495566050946|4 petits pains|Menissez|300 g||239|7.8|49|0.8|3|0.2||1.48
-5060040252789|Rasberry & Beetroot Melty Buttons||||432|5.8|80|8.9|8.8|0.8||0
+5060040252789|Rasberry & Beetroot Melty Buttons|Kiddylicious|||432|5.8|80|8.9|8.8|0.8||0
 4088600295596|Baked cheese thins cheese biscuits||||519|12|51|29|3.6|14||1.63
 5010822991269|Mrs Crimble's / Coconut Macaroon|Mrs Crimble's|180g||424|3.5|60.5|19.1|34.8|17.6||0.1
 5000169065402|British beef burgers|Waitrose|||234|22.8|2.9|14.4|0.4|5.8||0.73
@@ -8263,7 +8263,7 @@
 5056138201296|Plant greek style raspberry yoghurt|The Collective|||118|1.4|15|5.4|4.1|4.4||0.2
 5050854989070|Frozen blueberries|Asda|||45|0.9|9.1|0.5|9.1|0.1|1.5|0.01
 5060108453240|Rhubarb and raspberry tonic water|Fever-Tree|||19|0|4.7|0|4.7|0||0
-5010482912635|Sausage patties||3pcs||122|20.2|3.6|2.6|0.3|0.9|1.7|1.1
+5010482912635|Sausage patties|Iceland|3pcs||122|20.2|3.6|2.6|0.3|0.9|1.7|1.1
 29339259|Mexican style burrito bowl|Marks & Spencer|||126|2.9|21|2.3|5.1|0.6|4.7|0.33
 5060868950294|Skinny Rice||||11|0|1|0|0|0|4|
 5000232029089|Tuna|Princes|3 x 60 g||109|25|0|1|0|0.3|0.1|
@@ -28197,7 +28197,7 @@
 4088600476049|Almonds||||629|21.1|6.9|55.8|4.2|4.4|7.4|
 5060088708279|Barre aux fruit noix de cajou amande et myrtilles|Nakd|280 g||371|7.1|54.3|13|52|2||0.1
 5011157993805|Tilda kids sunshine vegetable rice|Tilda|125 g||104|1.9|18.3|2.3|1.7|0.3||0.27
-5029223001972|Odysea PDO Feta cheese||200 g||283|15.9|0.2|24.2|0.1|15||3.1
+5029223001972|Odysea PDO Feta cheese|Odysea|200 g||283|15.9|0.2|24.2|0.1|15||3.1
 5010775199606|Salted Caramel & Sea Salt Bar|Nomo|38 g||559|1.9|55|36|35|20||0.39
 5010718402909|Large sausage roll|Ginsters|||369|9.3|21.8|26.8|0.9|11.5|1.6|1.09
 4056489186083|Caramelised almonds|Alpen Fest|150g||526|13|43|32|39|2.5||0.1
@@ -28213,7 +28213,7 @@
 25411348|Original wraps||Per tortilla (64g)||283|7.8|54|3.6|3.4|1.8||1
 20991364|homestyle chips||||135|2.4|21.5|3.9|0.2|0.5||0.25
 00359559|Green Pea fusili|Sainsburys|250g||171|11|27.5|1|1.2|0.2|3.8|0.05
-5011026005592|pepsi max||||0.4|0|0|0|0|0|0|0
+5011026005592|pepsi max|Pepsi|||0.4|0|0|0|0|0|0|0
 5059321004018|Fruit winder|Kellogg's|17g||393|0.2|79|8|37|3.5|2|0.13
 5012389672780|Scotch Bonnet Sauce|Encona|220 ml||21|0.8|2.2|0.5|0.5|0.2||5.9
 5000128939294|Pitted Queen Green Olives With Garlic||150 g||136|1.5|1.3|13|0|2.3||2.95
@@ -28312,7 +28312,7 @@
 5000168032030|BN vanilla flavour biscuits||||462|5.5|71.6|17.1|33|8.4|2.4|0.53
 29089659|Normandy creme fraiche|Marks and Spencer|200 ml||380|2|3|40|2.6|25.6||0.1
 5060360506852|Actimel Kids - Peach|Actimel|||63|3.3|9.1|1.4|8.7|0.9||0.11
-5000171057884|Tuna Chunks with a Little Sunflower Oil 3 x||||208|27|0|11|0|1.4||1
+5000171057884|Tuna Chunks with a Little Sunflower Oil 3 x|John West|||208|27|0|11|0|1.4||1
 5054267001299|Orange|Lucozade|330ml||35|0|8.4|0|4.5|0||0.06
 5060302240271|Aduna Moringa Green Superleaf Powder|ADUNA|275 g.||274|23.1|19.2|4.7|7.4|1.4||0.33
 5055540002149|Ripe and ready avocados||||158|1.5|1.5|15.6|0.4|3.3|2.7|
@@ -28361,7 +28361,7 @@
 5060006203046|Flapjack cherry and almond flavour|Higates|120 g||427|5.6|56.1|18.6|31.2|7.9|6.2|
 5060960660725|Brilliant Broth Miso Ramen|Itsu|||30|1.1|2|2|0.6|0.2|0.4|
 5060149412480|garli puree|Spice Kitchen|||142|4|24.2|2.8|7.2|0.5|2|4.06
-5010026519085|Very Berry Granola||500 g||398|9.8|59.7|11.7|14|3||
+5010026519085|Very Berry Granola|Mornflake|500 g||398|9.8|59.7|11.7|14|3||
 5011673403604|Dino’s Famous||||231|12|0.7|20|0.7|8||2
 00487610|Plain Tortilla Wraps|Stamford Street Co.|||290|8.1|54.1|4|3|1.8|2.8|0.52
 4088600086385|Granulated sugar|Aldi - The Pantry|1 kilo gram||400|0|100|0|100|0|0|0
@@ -28437,8 +28437,8 @@
 4088600479316|Prawn Cocktail||||135|6.7|4|10.2|1.4|0.8|0.5|1.13
 5010084906360|Dark chocolate banana bread|Betty Crocker|||396|7.2|70.3|8.4|39.5|4.1|5.4|1.25
 5065002532053|Nuts Fruit & Chocolate|Pret A Manger|35 grams||556|18|27|40|25|6.2|6.8|0.04
-5060472692207|Hippeas||||399|16.7|53.2|14.2|5|1.2|6|1.1
-5000295157859|Clover simply made with buttermilk||||587|0.7|1|64.5|1|23.7||1.5
+5060472692207|Hippeas|Hippeas|||399|16.7|53.2|14.2|5|1.2|6|1.1
+5000295157859|Clover simply made with buttermilk|Clover|||587|0.7|1|64.5|1|23.7||1.5
 4088600513379|No chicken peri peri||||188|17.7|8.4|8.2|2.7|1|4.6|0.93
 5000169011546|Plain White Flour|Waitrose|||363|11.3|73.5|1.9|1.9|0.4||0.01
 5000169027028|New York cheesecake|Waitrose|||380|5.1|28.3|27.1|19.3|15.8||0.35
@@ -28457,7 +28457,7 @@
 5060490400426|Salt & Vinegar Corn|Love Corn|20g||85|1.6|13.4|2.4|0.1|0.5|1.9|0.2
 5020379150651|Energy Drink||250 ml||20|0.5|4.8|0|4.8|0|0|0.1
 5010102240483|Pressed Pear & Elderflower Fruit Cordial|robinsons|500 ml||18|0|4.2|0|4.2|0||0.02
-5000168201115|McVitie's 5 Digestives Caramel Millionaire Slices||||484|4.3|58.9|25.3|38.8|12.6||0.6
+5000168201115|McVitie's 5 Digestives Caramel Millionaire Slices|McVitie's|||484|4.3|58.9|25.3|38.8|12.6||0.6
 20420918|Wafer assortment||||537|4.8|55.9|31.9|34.5|21.4||0.2
 5017601018117|Herb Pâté|Suma|200g||224|10.3|3.8|16.5|0.6|3.8|5.4|1
 5000116111527|Gluten free 2 fish fillets in breadcrumbs|Birds Eye|||239|12|18|13|0.6|1||0.89
@@ -28558,7 +28558,7 @@
 5038961002721|Greek salad chesse||||198|22|0.4|12|0.4|8||2.5
 5012179000076|Salted Dairy Butter||||745|0.6|0.6|82.2|0.6|52.1|0|1.51
 5060728270104|Plant-based Sausage Burgers|Moving Mountains|227 g||250|11|6.6|14|0.7|10|6.1|1.6
-4088600112442|Crestwood Chicken Satay Skewers||||220|18.8|7.3|12.6|3.8|2.3|1.2|1.3
+4088600112442|Crestwood Chicken Satay Skewers|Crestwood|||220|18.8|7.3|12.6|3.8|2.3|1.2|1.3
 5016451212270|Harvest Snaps Sour Cream & Chive Crunchy Lentil Rings|Harvest Snaps|||442|18.8|54.2|15.5|2|1|5.3|1.26
 4088600291888|Yogurt|Brooklea|||138|2.7|13|7.9|12|5.1||0.1
 5000159417426|Twix|Twix|||493|4.3|65|24|49|14||0.41
@@ -28566,7 +28566,7 @@
 5060255520062|Lancashire Crisps Sea Salt|Fiddler’s|40 g||513|7|55.1|28.1|0.1|3.1|5.6|1.3
 01091977|Exotic tropical juice|By Sainsbury's|||46|0.5|10.5|0.5|8.7|0.1||0.08
 5057373868671|Tesco Finest Beetroot and Seed Crackers 150G|Tesco|||497|12.2|53.1|24.8|4.8|6.9||0.7
-5000237110836|Hula Hoops Big Hoops BBQ Beef Flavour Potato Rings||50 g||499|3.8|65|24|1.4|2.4||1.8
+5000237110836|Hula Hoops Big Hoops BBQ Beef Flavour Potato Rings|Hula Hoops|50 g||499|3.8|65|24|1.4|2.4||1.8
 5060088707838|Nakd coffee & walnut|Nakd coffee & walnut|35 g||386|6.8|51.1|16.3|50|2.6||0.1
 5000128669726|Organic 100% Virgin Coconut Oil||||825|0.5|0.5|92|0.5|83|0.5|0
 5088722225609|Fruity 5 Loaf||||298|8.2|55|3.9|21.7|1||0.53
@@ -28588,7 +28588,7 @@
 5055036901888|Pad thai|Thai Taste|||340|7.3|61|7.3|20|1.2|0.8|2.2
 5060494810269|Rhubarb sparkling water||4 x 330 ml||0|0|3|0|3|0||
 5000116127115|Veggie Power Hearty Broccoli and Buckwheat|Birds Eye|||88|1.9|12|2.3|1.9|0.3|3.6|0.58
-5060362071204|Ginger Immunity||||45|0|9.2|0.3|5.8|0.1|0.7|1.6
+5060362071204|Ginger Immunity|Plenish|||45|0|9.2|0.3|5.8|0.1|0.7|1.6
 5000227000789|Crispy & Fluffy Roasties|Aunt Bessie's|||128|1.9|18|4.9|0.49|1.4|2.3|0.48
 5010718315711|Cheese and onion slice||||295|6|22.5|19.7|1.7|10.3|1.7|0.93
 4056489618775|Latte macchiato||||37|2.2|5.7|0.6|4.4|0.6||
@@ -28605,7 +28605,7 @@
 5017764003067|Sea salt and crushed black peppercorns potato chips|Kettle|||515|6.7|53.5|29.4|0.6|2|4.8|1.1
 4088600522586|Mint protein bar||||353|37.6|19.1|13.3|0.8|5.8|12.2|0.39
 5060472692221|Chickpea puff snack|Hippeas|||417.3|16|50.8|17.5|3.1|1.5|6|1
-5010251483953|Slices beetroot||||27|1.1|4.3|0.1|4.3|0|2.1|0.11
+5010251483953|Slices beetroot|Morrisons|||27|1.1|4.3|0.1|4.3|0|2.1|0.11
 5060699971062|Waffle Fries|Leon|||242|3.6|38.4|7.5|0.7|0.9|3.4|1.1
 5033665214647|Chicken Korma|Charlie Bigham’s|403g||177|8.1|16.7|8.3|0.5|4.6|1.3|
 5060360506838|Actimel Kids - Strawberry Banana|Actimel|||62|3.3|8.9|1.4|8.5|0.9||0.11
@@ -28621,7 +28621,7 @@
 5033450000905|Luxury Dark Chocolate Chips||||583|7.4|44|42|29|25|9.4|0
 4088600022529|British extra mature coloured cheddar|Emporium|400 g||416|25|0.5|35|0.5|22|0.5|1.8
 5060433990564|Sparkling raspberry rhubarb||||19|0.1|4.8|0.1|4.5|0.1|0|
-5010525108902|Lemon, lime & mint cordial||500 ml||20|0.08|5|5|4.5|4.5|11.3|
+5010525108902|Lemon, lime & mint cordial|Morrisons|500 ml||20|0.08|5|5|4.5|4.5|11.3|
 5060034489337|Cypriot Halloumi|Ocado|250g||344|23.5|1.9|26.6|1|18|1.4|2.3
 5010238019328|Oreo ice cream with oreo cookie pieces|Oreo|220 ml||322|5.4|49|11|26|7.1|2.7|1.3
 5055365683660|Batons 100% Dark Ecuador|Hotel Chocolat|120g||610|13.7|13.9|52.3|1|33.2|14.6|0.1
@@ -28633,7 +28633,7 @@
 5028931006408|Totally Toffee||||430|3.3|56.2|20.7|37.4|3.4|2.7|0.33
 5000362000316|Green Greek Olives|Cypressa|||136|1.6|1.2|13.2|0.4|2|3|2.95
 5060139435901|Strawberry Banana Smoothie Real Fruit Yoyos|Bear|5 x 20 g||312|2.4|67|1.8|48|0.2|9.2|
-5057624566646|Richmond 12 thick pork sausages||||252|9.8|10|18|1.2|7.1||
+5057624566646|Richmond 12 thick pork sausages|Richmond|||252|9.8|10|18|1.2|7.1||
 5060088700143|Naked Bar Blueberry|Naked|45g||370|6.4|55|12|45|1.7|8.4|0.03
 5010034014282|Caribbean Inspired Flavour|Ben's|||157|3.4|28|2.9|1.4|0.2|1.6|0.43
 5054678306020|Toasted caramel nut|Kind|||499|23|26|34|16|7.9||0.38
@@ -28702,7 +28702,7 @@
 5010478278141|Rainbow drops|Swizzels|||359.23|2.1|84|0.4|64|0.1||0.05
 20397074|Mint chocolate chip|Gelatelli|450ml||330|3.48|32.6|20|25.8|6.52|10.3|0.35
 5060006203411|Flapjack Plain & Delicious|Higates|120 g||439|6.3|54.9|20.5|13|7.1|4.9|0.49
-5019378000357|Tracklements StrongHorseradish Cream||||299|4.3|7.5|26.5|5.5|4.1||0.6
+5019378000357|Tracklements StrongHorseradish Cream|Tracklements|||299|4.3|7.5|26.5|5.5|4.1||0.6
 4088600262048|Rice pudding|Dessert Menu|||92.5|3.1|17.1|1.3|8.35|0.8|0.25|0
 01007770|Carrots|Sainsbury|||39|0.5|9.4|0.5|6.9|0.1|2.1|0.07
 20074487|Evaporated Milk|Dairy Manor|410 g||163|7.6|12.7|9|12.7|6|0.5|0.3
@@ -28739,7 +28739,7 @@
 4056489712459|Mango Chutney|Taste Of India|370 g||240|0.5|58|0.5|54|0.1|0.5|0.01
 5000157150974|Baked Beanz|Heinz|||81|4.8|15.5|0.4|4.3|0.1|3.9|0.6
 4056489447894|Vegan Gnocchi Spinach and Basil|Vemondo|400g||163|3.8|32.9|1.2|0.9|0.2||1.06
-5000237132302|POM-BEAR||||521|3.9|63|28|1.9|2.6||1.7
+5000237132302|POM-BEAR|Pom-Bear|||521|3.9|63|28|1.9|2.6||1.7
 5055958703546|Salt & Vinegar Crunch|Graze|||444|16|50|17|2.4|2||1.5
 20006150|Knäckebrot Wholegrain Rye Crispbread|Rivercote|250 g||324|10.5|64|1.6|3.5|0.3|15|1.25
 5060100601359|Koko strawberry|KOKO|250 g||102|0.6|16|3.9|12.4|3.4|0.3|0.4
@@ -28777,7 +28777,7 @@
 20836016|Elderflower cordial||||25|0.5|4.8|0.3|4.8|0.1||
 5000169030981|Easy Peelers|Waitrose|||42|0.9|8.7|0.1|8.7||1.8|
 5060120285539|Fruity Date Porridge|Rude health|||167|5.1|34.5|2.5|8.3|0.8||0
-5054781220053|Free Range 6 Golden Eggs||||131|13|0|9|0|2.5||0.39
+5054781220053|Free Range 6 Golden Eggs|Asda|||131|13|0|9|0|2.5||0.39
 5060301180271|Franzela||||246|8|47|2|0.1|0||0.65
 5060517883560|MONSTER ULTRA WHITE|Monster|553ml||2|0|0.9|0|0|0||0.2
 5000382109754|Irnbru|Sparkling Flavoured Soft Drink|||42|0|10.3|0|10.3|0||
@@ -28859,7 +28859,7 @@
 20422219|British Organic Semi skimmed milk||||47|3.6|4.8|1.8|4.8|1.1|0|0.11
 5060336503540|Red Cabbage||||29|0.8|4.9|0.2|4.9|0|2.2|0.9
 03331255|Garlic and Herb Nooch Flavoured Seasoning||||329|42.5|28.6|1.5|0.5|0.2|15.5|3.4
-5000169578742|Orecchiette||||154|5.5|30.8|0.8|0.5|0.1|0.7|0
+5000169578742|Orecchiette|Waitrose|||154|5.5|30.8|0.8|0.5|0.1|0.7|0
 5055950611634|Vegan protein powder chocolate mint|Bulkpowders|500g||371|65.4|10.3|6|1.43|1.43|6.57|1.31
 5060525200021|Roasted Peas - Paprika and Chili|Brave|35 g||378|20|40|11|2.7|1.1|20|1.5
 5000157074027|Lentil & Bacon|Heinz|||58|2.7|8.4|1.4|1.1|0.4||0.6
@@ -28881,8 +28881,8 @@
 5000169051740|Chopped tomatoes|Waitrose|||21|0.9|3.6|0.5|3.2|0.1|1.2|
 5057624782787|Cheeshapes||75 g||315|27|0|23|0|14.5||1.8
 5060120285553|Sprouted Porridge organic Gluten Free|Rude health|||382|13.6|60|7.2|1.2|1.3|10|
-5000171060648|Sardines||||295|20|0|24|0|5.1||1
-5020580001735|Laila covonut milk||||60|0.5|0.97|6|0.6|5.65||
+5000171060648|Sardines|John West|||295|20|0|24|0|5.1||1
+5020580001735|Laila covonut milk|Laila|||60|0.5|0.97|6|0.6|5.65||
 5011673103962|Classic Pickle Spears||||38|0.6|7.5|0.2|7.5|0.1|0.9|0.7
 4056489656371|Pasta sauce|Baresa|500 g||46|1.8|8.1|0.4|6.3|0.1|1.4|0.69
 00448468|Tomato sauce with basil|Sainsburys|||55|1.3|8.7|1.2|6.9|0.18|2|0.43
@@ -29028,7 +29028,7 @@
 5000354919145|CupaSoup thai chicken and lemongrass|Batchelors|||38|0.7|5|1.6|1.1|1.3|0.5|0.55
 20327163|Soda water||||4|0.1|0.1|0.1|0.1|0.1|0.1|0.04
 5000112583915|Coka cola|Coca-Cola|1.75l||0.4|0|0|0|0|0||0
-5000157145796|Worcestershire sauce||||96|0.8|21|0.9|18.8|0.4||2.9
+5000157145796|Worcestershire sauce|Heinz|||96|0.8|21|0.9|18.8|0.4||2.9
 5060896623573|Ultra Watermelon|Monster Energy|||11|0.5|1.3|0|0|0|0|0.1
 5056182402830|Omega Seed Mix|Grape Tree|||563|20|23|44|0.9|3.7|16|0.05
 5010003065505|Farmhouse cheddar muffins|Hovis|||251|11.6|35.4|6.5|4.6|2.6|2.5|0.91
@@ -29089,11 +29089,11 @@
 4056489593775|Fat free strawberry protein|Milbona|||68|10.1|6.3|0.2|6.1|0.1|0.5|0.12
 00126816|Spelt Wholegrain Spaghetti|Saintsbury's|||158|5.7|30|1|1.7|0.2||0
 5000129315288|Cinnamon bun balls||40 g||398|15|42|17|32|2.5|10|0.15
-5010044009698|Super soft seeded sliced rolls||||250|6.5|34.6|8.2|7|0.8|6|0.83
+5010044009698|Super soft seeded sliced rolls|Warburtons|||250|6.5|34.6|8.2|7|0.8|6|0.83
 5000328252582|Nobbys nuts - sweet chilli||140 g||536.67|14|44|34|6.67|5|2.67|3.8
 5020744670050|Brown Sauce|Gold Star|670g||37|0.6|6|0.1|0.4|0||2.8
 5050665048690|Noodles|Naked|||128|3.4|17.5|4.7|1.2|2.3|1.2|1.05
-5057624797040|Richmond meat free chargrilled no chicken pieces||||143|20|3|4.6|0.5|0.4|5.8|1.5
+5057624797040|Richmond meat free chargrilled no chicken pieces|Richmond|||143|20|3|4.6|0.5|0.4|5.8|1.5
 5060198645495|Vegana Sourdough Pizza|Crosta & Mollica|498 g||195|5.4|29|5.6|0|0.6|2.9|2.5
 5010228006048|Frozen Home Chips|McCain|1 kg||151|1.9|21|6|0.6|0.7|2|0.29
 5060120620767|Venison burgers||||132|18|4.4|4.8|0.9|1.8|0.5|0.74
@@ -29108,10 +29108,10 @@
 5019312081152|2 Deep Dish Pepperoni Pizzas|Chicago Town|2x160 g||291|11|32|13|1.5|5.2|0.9|1.2
 5036829150638|Sweet Potato Pakora|Gosh!|200 g||198|6|17|10|6.8|0.8|6.8|0.93
 01174403|Gravy Granules|Sainsburys|||31|0.5|3|2.1|0.5|1.1|0.5|0.98
-5051413866672|Italian crostini||||421|13|70|9.3|3.9|1.5||1.3
+5051413866672|Italian crostini|Asda|||421|13|70|9.3|3.9|1.5||1.3
 5050668011066|Unsmoked Rashers|Jolly hog|||266|31|0.8|16|0.8|5.9|0.5|4
 4088600300030|Macaroni|Cucina|||150|5.8|30|0.5|0.7|0.1||
-5000169596609|Sliced tiger vob||||238|3.2|43.9|3.9|4.6|0.3||0.96
+5000169596609|Sliced tiger vob|Waitrose|||238|3.2|43.9|3.9|4.6|0.3||0.96
 5000237123362|Dry roasted peanuts||||594|30|7.2|47|5.1|7.8|8.6|2
 5000354918513|Gravy Granules (for Chicken)|Bisto|||400|2.2|61.6|15.6|16.7|10.5|2.1|11.9
 5000372030778|Chickpeas in Salted Water|Lupa Foods|||123|6.3|15.8|2.5|0.6|0.3||0.7
@@ -29141,7 +29141,7 @@
 5000225010346|Bewf casserole|Schwartz|||297|7.5|62.3|1.2|5.9|0.3|3.8|14.52
 4088600315829|Oak Smoked Thick Cut Wiltshire Ham|Ashfields - Aldi|3 Slices 130g||138|22.9|0.5|5.1|0.5|1.9|0.5|2.13
 5060456691127|Porcini mushroom risoto|white rabbit|180g||339|8.7|73.8|0.6|1.1|0.2|1.6|1.98
-5060360507101|Actimel||||73|2.8|11|1.5|11|1|1|0.1
+5060360507101|Actimel|Actimel|||73|2.8|11|1.5|11|1|1|0.1
 4088600543857|Maltime||||50|1.6|8.2|1|4.4|0.7|0.7|0.14
 5011308501149|mild spice paste||||204|4.8|11|13|3.3|1.3||2.8
 5065002532244|Seltzer||||0.1|0|0|0|0|0|0|0
@@ -29165,7 +29165,7 @@
 5000354907456|Pasta 'n' sauce Cheese & Brocoli|Batchelors|65g||26.1|0.87|4.81|0.36|0.55|0.19||0.18
 5000169179697|Perfectly Ripe Avocado||||198|1.9|1.9|19.5|0.5|4.1|3.4|0.02
 5011579451495|Medium soft white|Roberts|800 g||234|8.6|45.7|1|3.5|0.2|3.6|1
-5054070071328|Gorgonzola piccante||||354|23|0.5|29|0.5|19||2.5
+5054070071328|Gorgonzola piccante|Asda|||354|23|0.5|29|0.5|19||2.5
 5057172223527|Garlic & Herb soft cheese alternative|Asda free from|170 grams||283|2.5|5.2|28|1|23|1.8|0.97
 5000232023643|Tomato and Mascarpone pasta sauce|Napolina|||62|2.4|4.7|2.8|4|1.3||0.44
 5000129309928|Sizzlin’ Sausages|GRO Co-op|300g||135|6.3|15|4.2|1.7|1.9|5|1
@@ -29181,10 +29181,10 @@
 5000169376096|Sunflower seeds|Waitrose|||610|20.8|11.4|51.5|2.6|4.5||0.02
 5060178072822|Mr Organic Flatbread With Rosemary|Mr Organic|||439|10.1|67.4|13.4|0|2.1||1.75
 5052514014771|Corned beef|Premier Deli|||225|25|1.79|13.9|1.79|6.07||1.86
-5012845032028|Aspall Organic White Wine Vinegar||||21|0.5|0.5|0.5|0.5|0.1||0.1
+5012845032028|Aspall Organic White Wine Vinegar|Aspall|||21|0.5|0.5|0.5|0.5|0.1||0.1
 5010386073005|Butter||500 g||725|0.6|0.6|80.5|0.6|52.1||1.68
 5060490010502|Turmeric shot||||40|1.7|8.7|1.6|8.6|0.6||
-5060060387300|Crucials Garlic & Herb||||365|1.1|4.6|37.9|3.3|2.6|0.7|1.29
+5060060387300|Crucials Garlic & Herb|Crucials|||365|1.1|4.6|37.9|3.3|2.6|0.7|1.29
 20635381|Caramel & sea salt butter fudge||||456|1.3|69.8|18.9|63.5|11.3||0.66
 5000128969451|Flame grilled chicken slices|CooP|130 g||134|27.7|0|2.62|0|0.77|0|
 4088600338859|Baby cucumbers|Nature’s pick|200 g||213|22|0.5|14|0.5|2.1|0.6|0.15
@@ -29274,7 +29274,7 @@
 5017689004170|Popping corn|TRS|500 g||375|13.7|47.9|10.5|3.5|1.4|15.2|0.01
 5010478368224|Lots of Lollies|Swizzels|180 g||406|0.2|91.1|4|90|3||0.1
 5013635101917|Unrefined Palm oil|KTC|500 ml||899|0.01|0|99.9|0|45.3|0.01|0.01
-5030343831318|Cornicabra Extra Virgin Olive Oil||||823|0|0|91.4|0|14.4||0
+5030343831318|Cornicabra Extra Virgin Olive Oil|Belazu|||823|0|0|91.4|0|14.4||0
 5000128274654|Tartare Sauce||||349|1.1|16|31|15|2.5||2.76
 5000224009853|Cheese Slices|Dairylea|200g||223|15|8.4|14|6.6|8.8|2.6|1.45
 5060034486510|Bake at home white baguettes|Ocado|2||259|8.3|54|0.9|2.7|0.2|0.9|1
@@ -29285,7 +29285,7 @@
 5010663807323|Del Monte orange juice|Del Monte|||47|0.5|10.5|0.1|10.5|0||0
 20846183|British Whole Milk||||65|3.2|4.7|3.6|4.7|2.3||0.15
 5010105001593|Sauce granules cheese||||73|0.6|6.1|5.1|0.6|2.9||0
-5000234050593|Whitworths shots, toffe and pecan||||395|4.2|59.8|14.8|50.3|2.8||
+5000234050593|Whitworths shots, toffe and pecan|Whitworths|||395|4.2|59.8|14.8|50.3|2.8||
 5060291110036|Pizza Dough Wholemeal||||193|11.2|33.6|1.5|2.3|0.2||1.48
 5018095185743|Wholeweat giant couscous||||396|12.3|76.9|1.7|3.2|0.5||
 20015596|Scottish seeded oatcakes|Rivercote|250 g||461|11|54.9|19.9|0.7|4.3||1.38
@@ -29373,7 +29373,7 @@
 5051873019908|Margherita speciale Romana extra thin base|Pizza express|350 g||259|11.6|28.5|10.2|2.9|4.1|3.2|1.18
 5000111047630|Daddies Tomato Ketchup|Daddies|685 g||111|0.9|27|0|24|0||1.5
 5056357905906|White ice cream|Maltesers|270 ml, 3 x 90 ml||230|1.7|24|14|22|9.8||0.07
-4088600110400|Emporium Mature Welsh Cheddar Cheese||400 g||416|25|0.5|35|0.5|22||1.8
+4088600110400|Emporium Mature Welsh Cheddar Cheese|Emporium|400 g||416|25|0.5|35|0.5|22||1.8
 4056489422716|Double Chocolate Mini Muffins|Rowan Hill Bakery|16||426|5.2|52.8|20.9|30.5|2.5|2.9|0.39
 00437097|24 jaffa cakes|Sainsbury|||386|4.7|69.6|9.4|46.8|4.9|2.1|0.2
 20595296|Aspragus|O.P. Natura Dauna|250 g||26|3.4|1.4|0.8|1.4|0.1|1.4|0.01
@@ -29423,14 +29423,14 @@
 4088600385358|Black pudding||||279|12.1|15.5|18.3|0.5|7.6|1.9|1.54
 5000232027320|Linguine|Napolina|500g||356|12|72|1.5|3|0.3|3|0.01
 5038862638548|Innocent smoothies|Innocent|||59|0.7|14|0.5|13|0.1||
-5010026518491|Fibreful Oatbran Porridge||500 g||347|13|42.6|8.2|2.1|1.4||
+5010026518491|Fibreful Oatbran Porridge|Mornflake|500 g||347|13|42.6|8.2|2.1|1.4||
 5038862430982|Rays & shine|Innocent|||36|0.5|9.1|0.5|8.3|0.1||0.5
 5060120285232|Berry Date & Nut Bar|Rude health|35 g||416|9.9|45.5|20.8|39|3.8|3.7|0.04
 5055159500593|Sweet chilli|Global Choice|500g||178|2.1|40|0.5|0.5|0.1||2.1
 5000128841566|Frozen Hash Browns|Coop|700 g||182|2.4|21|9.3|0.5|1.1||0.36
 5060587580208|Gut & Brain Kombucha health shot||||35|0|4|0|2|0|6.5|0.01
 5050083451751|Squares|Kellogg's|||424|3|76|12|32|7||0.75
-5060501561344|Misfits Plant-Powered Chocolate Banofee||||424|33.5|15.1|21.5|2.2|9|22.5|0
+5060501561344|Misfits Plant-Powered Chocolate Banofee|Misfits|||424|33.5|15.1|21.5|2.2|9|22.5|0
 4056489073369|4 Battered Cod Fillets|Ocean Sea|500g||234|12.1|16.4|13.1|0.7|1|1.2|0.88
 5000169529799|Double cream|Waitrose and Partners|||467|1.5|1.6|50.5|1.6|31.4|0|0.05
 5014276706707|Veggie gyoza|Yutaka|||145|5|20|4|2|0.7|3|0.99
@@ -29488,11 +29488,11 @@
 5060235831454|Moofreesas|Moo Free|||472|3.8|65|22|34|13|0|0.23
 20159764|mini profiteroles|duc de coeur Lidl|330g||318|4.8|26.5|21.1|17.1|12.8|1.5|0.2
 5010003064140|Rustic White Rolls|Hobos|||271|8.1|55.6|1.3|3.1|0.2|2.8|
-5010482954727|Salt and pepper chicken with rice - Myprotein||||105.71|12.4|8.94|2.03|1|0.46|0.94|
+5010482954727|Salt and pepper chicken with rice - Myprotein|Iceland|||105.71|12.4|8.94|2.03|1|0.46|0.94|
 5052514009753|Pepperoni|Premier Deli|||442|16.4|2|40.7|0.1|10.5||3.51
-5060578324972|PHD Smart Protein chocolate Brownie flavor||||380|59|14|8.4|2|4.9|7.3|0.77
+5060578324972|PHD Smart Protein chocolate Brownie flavor|PhD|||380|59|14|8.4|2|4.9|7.3|0.77
 5013803509330|Salt and pepper snack mix||||472|26.8|32.6|23.8|4|3.1|10.5|
-5010525187150|Cake bars||120 g||474|4.7|52.5|26.5|35.3|11.8|3.3|0.52
+5010525187150|Cake bars|Morrisons|120 g||474|4.7|52.5|26.5|35.3|11.8|3.3|0.52
 5030343837235|Antipasti Exme Mezze|Belazu|165g||238|1.2|9|22|7.1|7.1|2.6|1.6
 5035139218540|Salted Sweet Chilli Plantain Chips|Grace|85 g||475|4|64|21|4|11|7|0.4
 5000129297058|Co Op chicken bites|Coop|72 g||231|15|9|15|1.1|2.4|1.7|1.21
@@ -29509,7 +29509,7 @@
 5000328015347|MAX Strong Fiery Prawn Cocktail|Walkers|||505|6.7|29|29|2.8|2.6|4.2|0.64
 5011376002852|Medium sliced white bread||||239|8.7|48.4|0.5|3.1|0.1|3.6|0.92
 5052675000996|Thai massaman curry||275 g||138|2.2|5.8|11|2.8|10|1.5|0.97
-4088600455266|Crestwood Cheese and Onion Quiche||||288|8.1|21|18.9|2.7|10.2|1|0.28
+4088600455266|Crestwood Cheese and Onion Quiche|Crestwood|||288|8.1|21|18.9|2.7|10.2|1|0.28
 5025820006549|Minestrone cup soup||||33|0.4|7.1|0.2|2.9|0|0.3|0.55
 5010793377635|Peeled plum tomatoes||||25|1.4|4|0.2|4|0|0.9|
 5055958705441|Graze Lenin blueberry|Graze|||428|6|46|21|13|3.6|16|0.19
@@ -29589,7 +29589,7 @@
 5000128624749|Chicken and prawn paella|Coop|400 g||127|7|13.2|4.75|1.52|1.25|1.07|0.46
 4088600315812|British breaded ham|Ashfields|120g||100|20.6|0|1.76|0|0.59|0|1.62
 5000205035086|Youngs 4 Fish steaks in a creamy butter sauce|Young's|1 560g||86|10.8|5.2|2.4|2.6|1.3||0.8
-5060578322077|PhD smart protein plant||500 g||388|84|5.2|3.2|0|0||7
+5060578322077|PhD smart protein plant|PhD|500 g||388|84|5.2|3.2|0|0||7
 00550895|Belgian Chocolate Sauce|Marks & Spencer|||337|2.7|63.1|8|41.6|6.1|1|0.88
 5060079655193|Steak Strips|Kings|60 g||289|34|23.6|6.4|22.7|2.6|0.3|2.95
 00547093|Large wafer thin chicken breast slices|Marks & Spencer|140 g||105|21.4|0.2|2|0.1|0.5|0.5|1.12
@@ -29627,7 +29627,7 @@
 00122061|Jamaican Jerk Spiced Chicken Soup|Sainsbury's Taste The Difference|600 g||66|3.9|7.6|1.7|3.4|0.3|2.6|0.33
 4088600121062|Buttermilk Fish Burgers|The Tasty Catch Co|227 g||184|13.5|16.3|6.9|4.2|0.7|0.9|0.77
 5000227991667|Hearty Dumplings|Aunt Bessie's|390g, 8 dumplings||323|4.8|43|15|0.5|6.9|3|0.6
-5060317354604|Heck Steak and butter burgers||320 g||214|20|1.7|14|0.2|5.8||13
+5060317354604|Heck Steak and butter burgers|Heck|320 g||214|20|1.7|14|0.2|5.8||13
 00580304|Medium White Super Soft Loaf|M&S Food|400 g||235|8.7|43.9|2.1|5.7|0.6|3.6|1.02
 5032722316270|Chickpea flour|Amisa|400 g||316|20.9|46.9|6.3|3.7|0.6||0.15
 5028905028252|Air Fryer Spray Oil|Sizzola|190 ml||823|0|0|91|0|7.4||0
@@ -29685,7 +29685,7 @@
 5027952015307|4 brioche bagel||||329|8.9|51|9.4|12|2.7|2.5|1.4
 5060444980745|pain au chocolat||||440|6.4|46|25|14|11|2.7|0.8
 5060356680078|Oak smoked chilli||||497|5.2|58.9|26.8|3.4|2.3|2.5|1.9
-5000328017228|PopWorks Sweet & Salty Popped Chips||||448|6.7|72|14|8.9|1.2|4.6|0.9
+5000328017228|PopWorks Sweet & Salty Popped Chips|Popworks|||448|6.7|72|14|8.9|1.2|4.6|0.9
 5056000505460|Smooth Baby Rice|Kendamil|120g||386|8.2|85|1|0.4|0.36|1.4|0.03
 5010003064102|Teacakes|Hovis|||275|8.6|48.6|4.2|14.8|1.8|4|0.58
 5012389670014|All Purpose Seasoning|Dunn's River|||205|12|6.6|9.7|1|1|0|39
@@ -29727,8 +29727,8 @@
 5054678306068|Honey oat|Kind|||440|8|56|16|20|1||0.18
 5010034595002|Stir in pasta sauce pepperoni and tomato|Dolmio|||141|3.9|8.2|10|5.5|2.2|1.3|1.5
 00623711|Classic Vegetable Sushi||||153|3.1|28.5|2.6|4.8|0.4|1.5|0.8
-5010525102337|Sourdough flatbreads||||38|1.1|6.1|0.2|0.8|0.2|0.8|0.15
-5060298881670|Cocos Organic mixed berry||||175|1.5|9|14.6|5.9|12||
+5010525102337|Sourdough flatbreads|Morrisons|||38|1.1|6.1|0.2|0.8|0.2|0.8|0.15
+5060298881670|Cocos Organic mixed berry|COCOS organic|||175|1.5|9|14.6|5.9|12||
 4056489479826|Sweet Chili Crunch|Alesto|||425.81|15.48|43.87|16.77|3.87|1.61|18.39|
 5000221607335|Sweet apricot and ginger flapjacks||||395|5.4|58.1|14.7|34.2|2.8|4.5|0.41
 5010421074523|Fajita Seasoning|Schwartz|530G||313|7.2|52.2|5.1|16.9|1.2||11.38
@@ -29739,7 +29739,7 @@
 4056489519836|Cheese curls|Snaketastic|15g||535|3.6|48.2|36.1|3.8|3.3|1.4|1.92
 5000116127139|Seasoned butternut squash and quinoa|Birds Eye|||76|3.2|9.9|2|1.8|0.2|2.6|0.69
 4088600074146|Double strength squash||||2|0|0.2|0|0.2|0|0|
-5010251465737|British extra thick double cream||300 ml||467|1.5|1.6|50.5|1.6|31.4|0.5|
+5010251465737|British extra thick double cream|Morrisons|300 ml||467|1.5|1.6|50.5|1.6|31.4|0.5|
 29157440|Edamame rainbow salad|Marks and spencers|||73|5.2|3.7|3.6|2.2|0.5|2.7|0.4
 5011044001538|Just like butter||450 g||270|0|0|30|0|7.5|0|1.5
 5027632102303|Mature cheddar||350 g||410|25|0.5|34|0.5|22||1.8
@@ -29750,14 +29750,14 @@
 4056489518693|Midget Gems|Sweet Corner|||362|1.6|87.6|0.5|47.1|0.4|0.5|0.16
 4056489594420|Mexican style 3 bean||||184|6.4|28.4|4.3|4.3|1.9|3|0.45
 4088600188867|Fibre now caramel squares||||345|4.4|56|7.1|29|4.5|21|1.1
-5000157144287|Balsamic with a hint of garlic||||82|0.4|10.3|4.3|9.9|0.4||1.2
+5000157144287|Balsamic with a hint of garlic|Heinz|||82|0.4|10.3|4.3|9.9|0.4||1.2
 5011312000645|Simply chicken nuggets||||198|13.2|17.1|8.5|0.6|1||0.25
 5060262487945|Protein noodles|Itsu|||67|6.8|4|1.9|2|0.3||0.57
 5000243800653|Coconut Flat White|Nescafé|||464|5.9|64.9|18.5|7.9|15.4||1.44
 4088600282633|Coldwater praws|The Fishmonger|150 g||71|14|1.9|0.5|0.5|0.1||1.6
 4088600136271|Iced coffe|Cowbelle|||87|3.2|9.1|4.2|8.7|2.7|0.5|0.1
 5010437000998|Light Tropical||330 ml||5|0|0.9|0|0.9|0||0
-5010251958260|Drained tuna steak||3 x 110 g||109|24.9|0|1|0|0.3||1
+5010251958260|Drained tuna steak|Morrisons|3 x 110 g||109|24.9|0|1|0|0.3||1
 5000169596791|Buttermilk pancakes|Essential Waitrose|||276|6.8|39|10|13|2.3||0.7
 5060614804178|Chocoholic Spread Salted Caramel|Skinny food|350g||524|6|50|41|4.7|13||0.56
 5057753930615|Breaded garlic chicken kievs||||291|12.5|11|21.8|0.8|8.6||0.4
@@ -29799,7 +29799,7 @@
 5000237124772|cheese footballs|KP|142g||556|12|44|37|14|27|1.5|1.2
 5050974506959|Vitamin Boost||||355|11.5|58.9|4.4|3.4|0.8|16.8|0.58
 5030341510000|Natural mineral water sparkling||||0|0|0|0|0|0|0|
-5010034011472|Ben's original||||157|3.5|28|2.9|1.5|0.3|1.5|0.44
+5010034011472|Ben's original|Ben's Original|||157|3.5|28|2.9|1.5|0.3|1.5|0.44
 5060005462567|Coconut & Kale Dahl||400 g||86|2|8.9|4.2|0.8|2.5|2.3|0.28
 5024271112212|Prawn, Garlic, Chilli Ravioli|Dell Ugo|||185|7|26.9|4.7|1.1|3.2|3.4|0.55
 5034467001435|Silken||||42|4.3|2.4|1.7|1.1|0.3|0.5|0.1
@@ -29919,7 +29919,7 @@
 5060185130065|Difatti Gluten Free Gnocchi Spinach||250 g||163|3.5|36|0.5|0.1|0.1||1.4
 5055540061221|plum tomatoes|ocado|||27|1.1|4.2|0.5|3.8|0.1|1.1|0.02
 00354240|Pitted green olives|Sainsbury's SO Organic|||125|1.1|1.6|11.8|0.5|2|4|3.36
-5020580004965|Laila Xtra Long Basmati Rice||5 kg||351|8|84|0.5|0.1|0.1||0.1
+5020580004965|Laila Xtra Long Basmati Rice|Laila|5 kg||351|8|84|0.5|0.1|0.1||0.1
 5059604459924|Vegan egg replacer|Holland & Barrett|200g||333|0.5|77|0.5|0.5|0.1|2.5|0.02
 29350223|Marks|Marks & Spencer Everything Grill Burger Buns|2 x 134g||281|9.9|40.9|7.7|4.4|1.3|4|0.58
 5011826274204|Light Coconut Milk|Kingfisher|200 ml||81|1|1.1|8|0.5|6.3|0.5|0.1
@@ -29998,7 +29998,7 @@
 5060317322122|25g protein salted caramel|ÜFIT|||46.1|7.58|3.64|0.09|3.33|0.09||0.24
 5000382024033|American Cream Soda Can|Rockstar|330ml||16|0.5|3.8|0|3.8|0||0
 5060040253694|Potato rice and pea snacks|Kiddylicious|||513|6.2|61|26|0.5|2|3.1|7.3
-5015753002305|Costa Mini All Butter Shortbreads||||528|5.3|61|29|21|22||0.17
+5015753002305|Costa Mini All Butter Shortbreads|Costa|||528|5.3|61|29|21|22||0.17
 5060084345553|Korean Beef Chilli|The Gym Kitchen|400 g||101|8|10.7|2.85|1.57|0.93|2.6|0.37
 4088600046631|Smoked baked ham||||126|22|0.5|4.1|0.5|1.5|0.5|1.6
 5000128723602|Butter beans|Coop|235g||108|6.9|15|0.7|0.5|0.1|7.3|0.03
@@ -30006,7 +30006,7 @@
 5000234053983|Fusions coconut pineapple|Whitworths|||318|1.6|73.3|0.4|67.3|0.2|7.2|0.41
 5060003730453|Grumpy Mule Coffee||||1|0.2|0.3|0|0|0||0
 00278157|Tikka Masala|Sainsburys|||80|1.8|8.6|3.6|2.6|1.3|2.8|0.6
-5010482844332|Cheese & Onion Crispbakes||||195|4.9|23.7|8.3|2.9|1.7||0.9
+5010482844332|Cheese & Onion Crispbakes|Iceland|||195|4.9|23.7|8.3|2.9|1.7||0.9
 4056489219880|HENRY HIPPO|Sweet Corner|||350|0.8|86.1|0.2|55.8|0.2||0.12
 5000295157224|Extra Mature Cheddar 30% less fat|Cathedral City|||310|29.1|0.1|21.5|0.1|13.6||1.8
 5060482842456|Roasted Almond & Sour Cherry Granola|deliciously ella|380g||418|11.7|61|12.1|23.4|2.5|9.3|0.01
@@ -30079,7 +30079,7 @@
 5056315500358|Mint &dark chocolate snack bar||||382|5.1|51.7|12.1|20.4|7||0.26
 5032457712071|Sweet & sticku teriyaki|Yo!|100 g||133|2.2|28.3|0.1|23|0.1||3.42
 01760408|Cooked and peeled jumbo raw prawns|Jumbo|||62|14.5|0.5|0.5|0.5|0.1||1.13
-5054781312789|Beef Gravy Granules||||32|0.5|3|2.1|0.5|1.2||0.92
+5054781312789|Beef Gravy Granules|Asda|||32|0.5|3|2.1|0.5|1.2||0.92
 5055540030180|Organic Chickpeas in water||||119|6.8|15|2.2|0.5|0.4||
 00413879|Spicy no meat pizza||||251|10|36|7|3|4||1
 28057895|Früchtchen||||342|0|84|0|50|0||0.2
@@ -30127,7 +30127,7 @@
 5051140586478|sweet & delicious salted caramelised nut selection||||608|12|31|47|25|5.2|6.3|4.07
 5060317354789|Sausages||440 g||204|13|4.8|14|1.8|5.3||1.4
 5000168035291|Red Leicester|Mini Cheddars|||526|8.9|51.2|30.9|4.1|15.2|2.6|2.5
-5060238480383|Organic Hemp Protein Powder||||363|50|10|11|5.9|1.1||
+5060238480383|Organic Hemp Protein Powder|Naturya|||363|50|10|11|5.9|1.1||
 4088600163079|Giant Milk Chocolate Buttons||||554|7.7|58|32|58|19||0.24
 4088600265438|Racer||||479|8|59|23|50|8.5||0.38
 5000225012746|Chicken and Leek Bake|Schwartz|||416|12|52.1|16.4|2.1|9.5|5.9|6.25
@@ -30137,7 +30137,7 @@
 5000205048444|Popcorn scampi bites|Young's|||240|7.8|22.1|13|0.7|1.2|1.6|1.3
 4056489238546|Milk lollies|Gelatelli|||136|3.7|21.9|3.6|21.7|2.5||0.14
 5050668013404|Sizzling danish bacon||||259|31|0.5|15|0.5|5.8||4.2
-5060142011574|Pulsin supershake vanilla matcha||10 x 30 g||381|65.7|6.1|9.4|1.5|1.8||2.91
+5060142011574|Pulsin supershake vanilla matcha|Pulsin|10 x 30 g||381|65.7|6.1|9.4|1.5|1.8||2.91
 01409864|Tangy Cheese Tortillas|Sainsburys|||492|6.4|60.7|23.6|2|2.2||1.28
 4088600124254|Pineapple Juice||||54|0.5|13|0.5|13|0.1||0.01
 5060709190018|Shamembert||||336|3.2|14.4|29.6|1.2|9.12|3.6|1.6
@@ -30168,7 +30168,7 @@
 5059697260353|Chilli lime salon sizzlers|Fire pit|||225|23.3|8.3|10.7|8.3|1.5|0.9|
 4088600563398|4 Lean Beef Quarter Pounders||||142|22|6.8|2.9|0.4|1.1|0.6|0.81
 5060198820878|Kashmiri Chilli Sourdough Bites||||433|12|67|12|9|1|2.2|1.1
-5060430292623|Fresh Thai noodles Thai green||||94.89|3.2|12.8|3|4.5|0.8|1.8|0.43
+5060430292623|Fresh Thai noodles Thai green|BOL|||94.89|3.2|12.8|3|4.5|0.8|1.8|0.43
 5010034013797|mushroom rice|Ben's Original|220g||157|3.3|30|2.2|0.5|0.2|1.2|0.45
 5060245607636|Serious mass|Optimum nutrition|||378|15|75|1.7|7.7|0.7|1|
 4088600256290|Falafel and houmous wrap||||213|5.8|32|6.2|4.7|1.4||0.88
@@ -30198,7 +30198,7 @@
 5060484660218|Pink Punk||||22|0|4.9|0|4.9|0||0
 5000116112050|Birds Eye Chicken Dippers 12pk|Birds Eye|||259|13|22|13|0.7|1.5|1|0.98
 5024448562307|Ramen Chinese stir-fry noodles|Tiger Tiger|400g||139|5|27.4|0.9|0|0||0.4
-5000169578803|Paglia e fieno nests||||190.56|1.83|37.44|0.44|0.5|0.11|0.89|7.39
+5000169578803|Paglia e fieno nests|Waitrose|||190.56|1.83|37.44|0.44|0.5|0.11|0.89|7.39
 4056489168485|Cocktail rumba|Borges Agricultural & Industrial Nuts S.A.|200 g||495|20|37|28|1.8|4.9||2.1
 00725019|Beef & chianti ragu|M&S|||125|10.3|12.3|3.6|2.6|1.4|1.2|0.38
 00751094|Boisson saveur citron et gingembre|M & S|||1|0.1|0.1|0.1|0.1|0.1|0|0.1
@@ -30222,7 +30222,7 @@
 4056489632054|Italian Macaroni|Baresa|500 g||356|12.5|72|1.3|3|0.3|3.2|
 5060139435727|Yo Yo Peach And Banana Bear||||325|2.5|67|3.4|49|0.6|8|
 5000237138465|McCoy's Ridge Cut Sizzling King Prawn|McCoy's|45 g||530|6.3|55|30|3.6|2.6|3.9|1.5
-5054070630693|Salted nacho chips||||477|6.7|65|20|1.3|1.7|4|0.81
+5054070630693|Salted nacho chips|Asda|||477|6.7|65|20|1.3|1.7|4|0.81
 29200498|Salt and vinegar||||459|4.5|64.5|19.5|2.5|1.7|3.7|3.1
 5057172483754|Bavarian style ham|Asda|6 plastrów 120g||109|22|1|1.6|0.5|0.5|0.7|2.6
 5060769300655|Collagen peptides Type 1|GREENWHEY|300g||360|90|0|0|0|0|0|1.05
@@ -30231,12 +30231,12 @@
 5060198645693|Gelato Limoncello Sicilian Lemon||||94|0.72|19|1.9|19|1.6||0
 5000171057723|Tuna|John West|||170|28|0|6.4|0|0||0.9
 4088600479507|Walnut Pieces||||696|14.7|3.3|68.5|2.6|7.5|3.5|
-5057172214099|Lasagne||||118|8.4|12|3.9|1.5|2.1|1.4|0.45
+5057172214099|Lasagne|Asda|||118|8.4|12|3.9|1.5|2.1|1.4|0.45
 5032457717359|Korean style sweet chilli||||202|0.3|47.2|1.2|33.5|0.1|0.7|1.1
 5060212470232|White crab||||81|19|0.1|0.5|0.1|0.21|0.5|1
 5060424704422|Serious protein (chocolate)|The Bulk Protein Company|||381|80.9|12.5|0.67|5.33|0.1||1
 5060746509477|WHIP|Myprotein|||138|5.2|8.7|9|5.9|3.1|0.7|
-5019503045024|Uniquorns||240 g||241|13|22|9.8|1.5|1|6.7|0.76
+5019503045024|Uniquorns|Quorn|240 g||241|13|22|9.8|1.5|1|6.7|0.76
 4056489671381|Espresso Macchiato|Milbona|||57|3|8.2|1.2|8.2|0.8|0.5|0.18
 5000306004752|Golden yolks eggs||||130.7|12.6|0.5|9|0.5|0.5|0|0.35
 5060238482516|Chia + chocolate|Naturya|175 g||437.14|12.86|40|20|26.57|7.14|21.71|
@@ -30244,7 +30244,7 @@
 5060572340312|Fitbakes||||274|21|25|10|4.9|5.8|24|0.88
 5060064700518|Chicken lentil and butternut squash soup||||47|3.5|4|1.6|2.1|1.2|1.6|0.52
 4088600384108|Strawberry Dinos|The Foodie Market|||286|1.5|62.3|1.1|54.3|0.3|10.6|
-5056315500976|Skinny Whip||||380|3.8|58|10.3|34.2|6.3|20|
+5056315500976|Skinny Whip|Skinny Whip|||380|3.8|58|10.3|34.2|6.3|20|
 5000128735551|Wholewheat spaghetti||500 g||349|12|63|3.3|4.4|0.6||
 5060837490059|Simply roasted sea salt & cider vinegar||||430|8.8|65.1|13.8|2.7|1.5|4.9|0.88
 5060300551461|Kalamata olives|The greek kitchen|||194|1.4|3.7|21|0.1|2.3|2.8|2.5
@@ -30258,11 +30258,11 @@
 5010115926985|Caster baking sugar|Tate lyle|500g||400|0|99.95|0|99.95|0|0|0.01
 5032722315785|Lemon pressed juice|Biona Organic|||29|0.5|1.7|0.5|1.7|0.1||0.01
 5060178333015|Truffle Mayonnaise|Pott's|230 g||668|1.2|1.3|73.6|1.3|4.8||1.2
-5010525247038|Peach protein yoghurt||200 g||85|12.1|7.9|0.4|5.6|0.2|0.5|0.1
+5010525247038|Peach protein yoghurt|Morrisons|200 g||85|12.1|7.9|0.4|5.6|0.2|0.5|0.1
 5000129327670|Extremely Chocolatey Double Chocolate Brownie||190 g||407|6.4|47|21|42|13|2.9|0.2
 20914592|Yorkshire puddings|Simply|230g||267|8.5|37|8.9|2.1|1|2.2|0.55
 5000208000203|Fruit & Nut Crunchy Muesli|Joyfull|450 g||338|9.9|60.6|4.3|20.7|0.7|8.8|0.4
-5059977004738|Pret a manger||||201|5.1|16.4|12.2|1.8|2.5|2.5|0.52
+5059977004738|Pret a manger|Pret A Manger|||201|5.1|16.4|12.2|1.8|2.5|2.5|0.52
 5010228012223|Quick chips|McCain|||157|2.3|26.4|4.2|0.3|0.5|2.3|0.1
 5010034011533|Mushroom rice|Ben's Original|250g||157|3.5|31|2.1|0.5|0.2|1.2|0.44
 5018605427455|Red Kidney Beans|East End|400g||53|4.4|5.3|0.3|0|0||0.3
@@ -30286,7 +30286,7 @@
 5013665116691|Yogurt topped rice cakes||||502|6.5|63|25|32|14|0|
 5035272934253|Crispy salmon roll|Yo!|||187|5|26.3|6.5|6|1.7||0.97
 5060198820915|Pink peppercorn sourdough crackers|Peter's Yard|90g||369|11|77|3.5|7.6|1.4||1.6
-5010026515681|Classic fruit and fibre||||313.6|7.92|52.4|6.32|14.56|3.92|7.76|0.29
+5010026515681|Classic fruit and fibre|Mornflake|||313.6|7.92|52.4|6.32|14.56|3.92|7.76|0.29
 5057172332953|Kalamata tapenade||||219|2.3|2.9|21|2.7|3.2||2.9
 5060346831022|London ice tea||500 ml||14|0|3.6|0|3.6|0|0|0
 5021554981459|Organic Sunflower oil|Clearspring|||828|0|0|92|0|10||0
@@ -30473,10 +30473,10 @@
 5010718228011|Cornish Pasty|Ginsters|130g each||264|6.6|23.2|15.7|1.8|7.1|1.9|1.02
 5000129318845|CoOp Irresponsible Margherita Pizza Crisps|CoOp|150g||524|7.1|50|32|2.7|3.5|4.5|1.12
 5060614804314|Fake away chinese curry sauce|Fake away|452 ml||40|0.6|0.9|3.2||||0.19
-5060560280019|ManiLife Deep Roast Crunchy Peanut Butter||||619|26.4|10.1|50.5|5.5|6|9.1|0.9
+5060560280019|ManiLife Deep Roast Crunchy Peanut Butter|Manilife|||619|26.4|10.1|50.5|5.5|6|9.1|0.9
 5000128681513|Indian tonic water|Coop|1 l||20|0.5|4.9|0.5|4.9|0.1|0.5|0.5
 5010437021931|RIO Tropical||||42|0|10.2|0|10.2|0||0
-5060120285171|Puffed wheat||||162|5.85|31.05|0.72|0.68|0.18||0
+5060120285171|Puffed wheat|Rude health|||162|5.85|31.05|0.72|0.68|0.18||0
 5000354915000|Chicken & herb flavour super low fat noodles|Batchelors|||103|3.18|20.7|0.61|1.42|0.2|0.88|0.49
 4088600548753|Cheese|Specially Selected|||416|25.4|0.1|34.9|0.1|21.7|0|1.81
 5060004210985|Wee Black Pudding|Simon Howie|200g||320|7.2|17.1|24.6|0.1|2.1|0.3|
@@ -30500,7 +30500,7 @@
 5019312094220|Tiger Crust Cheese Medley|Chicago Town|305g||293|12|29|14|2.9|8|1.5|0.99
 4088600379418|Kebab wraps|Inspired cuisine|330g||261|10.7|42.1|4|3.1|0.7|6.5|0.64
 5055967501591|Slimfast Choc Chip Tasty Balanced Meal Bar|Slimfast|1||351|24|38|9|23|3.4|11|0.89
-5030343830687|Balsamic Vinegar||||262|0.4|60.4|0|60.4|0||0.1
+5030343830687|Balsamic Vinegar|Belazu|||262|0.4|60.4|0|60.4|0||0.1
 20143299|Cooked Scottish Mussels|Scottish shellfish|450g||113|5.2|1.4|9.5|0.5|5.3|0.6|1.22
 5000169182291|Smooth Peanut Butter|Essential Waitrose|454 g||630|28.2|5.6|51.6|5.6|9.5|6.2|0.86
 5057172886821|ALMONDS|Asda|180 g||580|21|5.3|50|4.5|3.8|13|0
@@ -30545,7 +30545,7 @@
 5055036901901|Thai Massaman Curry Kit|Thai Taste|||142|2.4|8.8|11|3|6.8|1|0.85
 5029788140055|Black Beans||||57|4.18|6.3|0.6|0|0|5.1|0.4
 5000168030685|Mini cheddars||||431|8|69.6|13.4|3.5|2|6.9|1
-5060342470638|Shaken Udder Salted Caramel||||61|3.1|9.3|1.3|6.2|0.9|0.1|0.14
+5060342470638|Shaken Udder Salted Caramel|Shaken Udder|||61|3.1|9.3|1.3|6.2|0.9|0.1|0.14
 5057172886845|Walnuts|Asda|||696|15|3.3|69|2.6|7.5|3.5|
 20758929|Lemon & Herb Olives|Meadow fresh|||154|1.1|0.5|15.5||||
 5000382112426|Irn bru 1901||||43|0.8|11|0|11|0||
@@ -30559,7 +30559,7 @@
 29094066|Tomato and basil sauce||||19.3|0.86|2.49|0.26|2.48|0.06|1.2|0.03
 5056357905678|Snickers triple treat|Snickers|40||436|11|49|20|42|5|8|0.2
 5060088709788|Nakd vegan chocolish|Nakd|||395|6.3|55.3|15.2|48.3|4.2|5.8|
-5038862636193|Innocent Smoothies||||50|0.5|12|0.5|10|0.1|0.6|
+5038862636193|Innocent Smoothies|Innocent|||50|0.5|12|0.5|10|0.1|0.6|
 20123710|Frozen Large Prawns Cooked and Peeled||||64|13.8|0.5|0.8|0.1|0.2|0|1.4
 5060149575062|Olive sourdough||||188|5.4|39|2.28|0.48|0.4|1.98|1.8
 00237758|On the Go Red Leicester Ploughmans with Pickle on Malted Bread Meal Deal|Sainsbury|||225|9.5|24.7|9.3|4.8|5.4|2.3|1.08
@@ -30569,7 +30569,7 @@
 5060283762243|Sweet sriracha chilli lentil chips|Proper|||470|9.6|63.6|19.5|3.4|2.9||2.55
 5060559970006|Goji Berry & Pumpkin Seed Porridge||400 g||404|11|56|14|16|6.1||0.03
 4088600162379|Spreadable Lightly Salted Butter with Rapseed oil||500 g||688|0.8|1.4|75|1.4|32||0.95
-5054070683200|Broccoli @ Cheddar Quiche||||296|11|21|18|2.1|8|2.9|0.68
+5054070683200|Broccoli @ Cheddar Quiche|Asda|||296|11|21|18|2.1|8|2.9|0.68
 5000168214665|Iced Gems|McVitie's|||399|5|86.7|3.1|51.6|1.3|2|0.65
 5060088708286|Dark Chocolate and Sea Salt Protein Nut Bar|Trek|||532|25.7|17.3|37.3|11.7|4.9|12.1|0.8
 5000169173442|British honey roast ham|Waitrose|||117|22.3|0|3.1|0|1|0|2.17
@@ -30591,7 +30591,7 @@
 5000328839400|Squares|Walkers|||449|6.5|60|19|1.3|1.6|6|1.48
 4088600217871|Lean bacon medallions||250 g||164|32|1.4|3.4|1.4|1.3||3
 5012262011002|Honeycomb milk chocolate with honeycomb pieces||||550|6.4|54.2|33.5|52.1|20.2|1.9|0.23
-5010459000617|Highland spring||||10|0|1.8|0|1.7|0|0|0
+5010459000617|Highland spring|Highland Spring|||10|0|1.8|0|1.7|0|0|0
 5017764000417|Skinny popcorn|Kettle Foods|80g||481|8.1|53.4|23.8|18.1|1.4|2.4|1.3
 5050083706752|Crunchy Nut Honey & Nut Clusters Cereal|Kellogg's|||441|8.1|66|15|26|3.2|1.8|0.9
 00415798|Gravy Granules for Meat|Sainsburys|500 g||32|0.5|2.8|2.1|0.5|1.2|0.5|0.91
@@ -30604,20 +30604,20 @@
 4088600084787|Milk cooking chocolate||||547|1.4|54|33|46|20|3|0.15
 5000128735506|Linguine||500 g||354|11|73|1.3|3.2|0.3||
 5060178070040|Passata||||29|1.5|4.8|0.2|4.3|0||
-5060198820946|Peter's Yard Sourdough Crispbread Spelt & Poppy Seed||||387|14.1|75.1|4.8|4.3|1.4||1.7
+5060198820946|Peter's Yard Sourdough Crispbread Spelt & Poppy Seed|Peter's Yard|||387|14.1|75.1|4.8|4.3|1.4||1.7
 5000116108053|Mini Potato Waffles|Birds Eye|||161|2.2|22|6.8|0.9|0.5|1.3|0.65
-5000225038357|Schwartz chicken curry||||303|11.7|34.6|9.8|4.5|1.1|15.3|17.6
+5000225038357|Schwartz chicken curry|Schwartz|||303|11.7|34.6|9.8|4.5|1.1|15.3|17.6
 5025042016456|Almonds||||620|21.2|21.7|49.4|3.8|3.7||0
 5000116125593|Green cuisine meat free sausage rolls|Birds Eye|360 g (4 x 90 g)||216|8.4|22|10|0.6|4.4|2.3|1.1
 01806427|English Muffins|Saunsbury’s|||225|11.1|37.1|2.3|5|0.5|5.5|0.78
-5060495117459|Complete protein banana milkshake||||359|70|10|3.8|0.5|0.8||1.3
+5060495117459|Complete protein banana milkshake|Huel|||359|70|10|3.8|0.5|0.8||1.3
 4088600236834|Spaghetti bolognese seasoning mix|Bramwells|44g||303|10|57|1.9|30|0.2|7.6|10.3
 4088600388762|100% Pressed Apple and Mango Juice||||49|0.5|12|0.5|10|0.1||
 5060360506814|Tropical pineapple|Activia|||53|4.6|7.4|0.5|7.1|0.1||0.25
 5000237130650|Pombear salt and vinegar|POM-BEARS|6 packs x 13 g||500|3.85|63.08|25.38|0|3.08|3.85|0
 5027906080788|Falafel||180 g||90|6|16|0.5|1|0.08||1.65
 5060148621128|Avant Natural Mineral Water 500ML||500 ml||0|0|0|0|0|0|0|
-5000232816313|Princes tuna & mayo paste||||177|15|5.3|10.5|0.4|1.1|0.5|0.8
+5000232816313|Princes tuna & mayo paste|Princes|||177|15|5.3|10.5|0.4|1.1|0.5|0.8
 4088600045917|Potato Dauphinoise|specially selected|400g||119|3.9|7.3|7.8|2.1|5.2||0.68
 5010105001807|Onion gravy|Goldenfry|300 g||31|0.5|3.2|2|0.5|1.4|0.5|0.92
 4056489439196|Sundried tomato Garlic & Basil pasta sauce||340 g||110|2.7|12.7|5.1|8.3|0.8|1.2|0.7
@@ -30625,7 +30625,7 @@
 00378185|Seetcorn in water||||100|2.6|18.5|1.2|4.3|0.2|2.5|0.13
 4088600427973|Turkey and stuffing crips|Specially Selected|||489|8.5|52.1|26.2|1.8|2.4|5.7|1
 5000116126149|Petits Pois|Birds Eye|960 g||68|4.9|7.5|0.7|4.9|0.1|6|
-5054781509752|Plant Based Meat Free Mince||||179|22|8.1|5.3|2.6|1.1|6.2|0.59
+5054781509752|Plant Based Meat Free Mince|Asda|||179|22|8.1|5.3|2.6|1.1|6.2|0.59
 5060079652758|Kings wagyu|Kings|45g||374|27|22.5|19.5|22.2|7.8|0.6|2.85
 5017601043010|Organic jackfruit chunks|Suma|||40|1.4|7.6|0|0|0|2|2
 5060178070156|Italian organic cherry tomatoes||||22|0.8|4.2|0.1|3.6|0|0.4|
@@ -30654,7 +30654,7 @@
 5000328022550|pizza hut pepperoni feast crisps|walkers Max|140g||511|6.9|53|29|3.9|2.3|4.4|0.67
 5021554002642|Organic Flax Oil|Clearspring|||828|0|0|92|0|8||0
 5011273030309|Rowse hony|Rowse|||329|0.5|81.5|0.5|80.8|0.2|0.5|
-5010251424833|Long Grain Rice||1 kg||153|3.45|33|0.13|0|0.07|1.63|0
+5010251424833|Long Grain Rice|Morrisons|1 kg||153|3.45|33|0.13|0|0.07|1.63|0
 5034709004842|Devon Roast Beef Crisps|Burts|150 g||533|7.2|47.8|33.8|1.8|3.1|4.5|1.5
 5060154930207|Gourmet Rosemary Crackers|gormet|185||499|7.6|61|24|3.5|3.6|2.6|0.96
 5000159543910|Malteasers dark|Maltesers|||495|9.6|45|29|32|18||0.2
@@ -30850,7 +30850,7 @@
 5010801002375|Chopped pork||||255|16|0.5|21|0.5|7.9||2.4
 5012035962388|Harribo|Haribo|||342|6.6|77|0.5|47|0.1||
 5000128158862|Diet Bitter Lemon|Coop|||2|0.5|0.5|0.5|0.5|0.1||
-21112409|Asda Smart Price Corned beef||340g||222|25|0|14|0|5.5|0|1.6
+21112409|Asda Smart Price Corned beef|Asda Smart Price|340g||222|25|0|14|0|5.5|0|1.6
 5000168023557|V.I.Bs Heavenly Chocolate Hazelnut|McVitie's|||480|5.6|65.5|21.7|30.9|11.5||0.88
 5060552770023|Kimchi||9 x 50 g||23|1.1|2.2|0.5|0|0.4||1.6
 5060088707326|Naked Lemon Drizzle|Nākd|||381|6.1|51.8|15.5|50.6|6.5|5.1|0.1
@@ -30859,7 +30859,7 @@
 5010801009060|Masurian Sausage||||37|3.6|5|0.3|5|0.1||0
 5000328205694|Ready salted|Walkers|65 g||526.67|6|51.67|32|0.33|2.67||1.4
 20844585|Sweet BBQ Pork Rib Rack||||201|16.2|12.7|9.4|11.7|3.6||0.68
-5010251325499|Spanish Chorizo||||328|23.1|0.8|25.8|0.3|9.8||3.1
+5010251325499|Spanish Chorizo|Morrisons|||328|23.1|0.8|25.8|0.3|9.8||3.1
 20450236|Kania Minestrone Soup with Pasta|Kania|400 g||50|1.5|6.1|1.7|2.2|0.2||0.83
 5000168022499|Family circle|Booths|||487|6.1|65.1|21.8|23.3|11.3||0.76
 20510176|Cheese puffs||||527|6|59|29.3|9.3|2.8|1.5|1.87
@@ -30879,7 +30879,7 @@
 5033665212728|Sweet potato & bean chilli with Mexican Rice|Charlie Bigham|840g||132|4.3|16.7|4.9|1.7|1.3|1.9|0.59
 5019180052339|24 WHEAT BISCUITS|one stop|||358|12|68|2|4.4|0.6|10|0.3
 4056489384168|Beef and pork mince|Lidl birchwood|750 g||268|17.1|0.1|22|0.1|9.3|0.5|16
-5018735224771|Soreen||||303|8.7|54.1|4.6|21.7|0.8|5|0.5
+5018735224771|Soreen|Soreen|||303|8.7|54.1|4.6|21.7|0.8|5|0.5
 20397807|Crispy Bake Snack Pork Pies|Chef Select|260 g||408|10|30.1|27.4|1.4|9.8|0.5|0.96
 5060452491080|Mini Stars Baby Pasta|Piccolo|||354|11|75|1.1|4.3|0.2||0.01
 5019520001287|Southern Style Gravy Mix||||65|0.8|8|3.4|2.2|1.3|0.3|1.2
@@ -30896,7 +30896,7 @@
 00133128|Prosciutto di speck||||280|31.3|1|16.6|0.5|5.1|0.5|3.89
 4088600360966|Purple burst||||77|0.5|17.6|0.1|15.2|0.1|1.6|0.03
 5000221607977|Plum pear & cinnamon pies|Mr Kipling|||365|3.3|53.5|14.2|16.5|4|4.8|0.22
-5057967576265|Tesco finest pizza||||212|10.4|26.8|6.6|||2.1|
+5057967576265|Tesco finest pizza|Tesco Finest|||212|10.4|26.8|6.6|||2.1|
 5010228001920|Naked oven chips|McCain|||135|1.8|24|3.3|0.5|0.4||0.06
 5000237203491|ChipbShop Curry Shop Flavour Crisps - McCoy's||||528|6.8|56|31.2|2.4|2.8|4|
 5060150940170|Eiwit|Two Chicks|||48|10.9|0|0||||0.4
@@ -30910,8 +30910,8 @@
 00480888|Bubble & Squeak Cakes|Marks And Spencer|320g||152|2.1|18.8|7||||
 5056357901748|Vegan Topic whole hazelnut|Topic|100g||595|6|44|43|35|15||0.15
 5000208001033|fruit & but crunchy muesli|joyfull|45g||338|9.9|60.6|4.3|20.7|0.7|8.8|0.4
-5050854966552|Colombian roast and ground coffee||||1|0.2|0.3|0|0|0||0
-5000178108497|Fridge Raiders Southern Style Chicken Bites||||221|19|4.2|14|1.1|3.8||1.3
+5050854966552|Colombian roast and ground coffee|Asda|||1|0.2|0.3|0|0|0||0
+5000178108497|Fridge Raiders Southern Style Chicken Bites|Fridge Raiders|||221|19|4.2|14|1.1|3.8||1.3
 5060040254622|Banana wafer|Kiddylicious|16 g||402|5.7|90|1.5|6.4|0.7|2.9|0.04
 4056489560456|Kids smoothies|Naturis|200 ml||57|0.6|13.2|0.1|11.4|0|0.6|0
 4056489721604|Parmigiano Reggiani DOP|Milbona|200 g||402|32|0|30|0|20|0|
@@ -30919,7 +30919,7 @@
 5017838821351|Cheddar cheese slices|Président|150g (6*25g)||277.33|0.67|0.07|23.33|0.07|14.67||1.21
 5011273040155|Organic Acacia Honey|Rowse|||329|0.5|81.5|0.5|80.8|0.2|0.5|0.03
 5060559970082|Classic chocolate porridge||385 g||378.8|9.9|58|10|15|5.1|9|0.1
-5060430292500|Power shake||||72|4.5|6|3.2|4.1|0.7|0.6|
+5060430292500|Power shake|BOL|||72|4.5|6|3.2|4.1|0.7|0.6|
 5019827199915|Smoked Bacon Back|Denhay|200 gr||297|19.4|0.5|24|0.5|9|0.9|2.5
 4088600524467|Honey & nuts Crunchy clusters|Harvest Morn|||419|9.4|66.7|12|17.8|1.2|3.5|0.43
 4088600348049|Sour cream and chive dip|Snackrite (ALDI)|300g||229|1.3|9.7|20.5|3.7|3.4|0.3|0.92
@@ -30931,7 +30931,7 @@
 5000137442907|Extra Wheatgerm Crackers||||447|10.2|58.4|17.9|6.1|8.1||2.5
 5000221606772|Crunchie Cake Bar|Cadbury|||440|4.4|56.6|21.4|40.5|11.2||0.47
 5030343836719|Date Molasses|Belazu|250g||268|1.4|65|0.1|55|0|5|0.1
-5054781256694|Edamame soya beans||600 g||133|12|4|6.4|0.5|0.9|5.4|0.04
+5054781256694|Edamame soya beans|Asda|600 g||133|12|4|6.4|0.5|0.9|5.4|0.04
 5034736000053|Lentil & Pepper Soup|Really Interesting Food Co|400g||117|3.7|14.2|4.3|2.7|0.6|3.4|0.1
 5060360507422|Plus Cherry and Elderberry Twist|Actimel|800g||73|2.9|11|1.4|11|1|1|0.1
 5010358255255|Tomato ketchup|Spar|||107|1.2|25|0.2|24.9|0.1|0.2|1.1
@@ -31009,7 +31009,7 @@
 5025575000502|Yorkshire Brack|Botham's of Whitby|||262|3.7|62|0.9|47|0.2||0.6
 20401870|Garlic baguette slices|Trattoria Alfredo|||436|8.4|45.5|23.8|2.2|6.2|3|0.85
 5011579451518|Mega thick soft white loaf||||234|8.6|45.7|1|3.5|0.2||1
-5088722226064|Soreen Mini Loaves||||330|8.67|62.67|4.33|19.67|1.33|3|0.57
+5088722226064|Soreen Mini Loaves|Soreen|||330|8.67|62.67|4.33|19.67|1.33|3|0.57
 4061458000420|Farmerkrusti|GUT Bio|320g||275|8.8|51|3|2.7|0.3||1.3
 5060103710515|Bread||||260|8.1|51|1.9|0.4|0.5|3.1|
 5000237128299|Frisps Assorted 6pk||||553|6.4|53|34|1.9|2.9|2.5|1.2
@@ -31136,7 +31136,7 @@
 4088600366821|Espresso Macchiato|Cowbelle|||66|3.1|9.6|1.6|9|1||0.13
 5060545680599|Oaties forest fruits||||328|6|60|4.5|36|0.6||
 5055958704529|Peanut Butter Chocolate Protein Oat Boosts|Graze|||496|16|40|29|14|4.4|5.1|0.75
-5010482657833|4 Panini Rolls||||286|10.9|48.3|4.5|3.9|0.7||0.7
+5010482657833|4 Panini Rolls|Iceland|||286|10.9|48.3|4.5|3.9|0.7||0.7
 4088600091501|Creamy Caesar|Specially Selected|255 ml||307|1.8|15|26|9.3|3.1||2.1
 5000208009473|Good energy Organic Guayusa Blood orange & Tangerine|Good Earth|250ml||20|0|4.8|0|3.8|0||0
 5011579450511|Roberts Mega Thick||||238|8.7|47.4|1|3.3|0.2||1
@@ -31199,8 +31199,8 @@
 5016451768029|Lattice||||546|6.9|47.9|35.5|0.4|3.5||1.3
 5060188170778|Sushi||||150|3.8|30|1.3|2.7|0.2|1.1|0.64
 5000354920127|Batchelors|Batchelors|||29|0.7|4.3|0.9|0.7|0.7|0.5|0.49
-5057172999125|Jerk mac and cheese||80 g||89|3.3|17|0.5|2.2|0.2|2|0.54
-4061462528576|Curly fries||||260|5|36.9|9.2|0.5|1|5.1|0.66
+5057172999125|Jerk mac and cheese|Asda|80 g||89|3.3|17|0.5|2.2|0.2|2|0.54
+4061462528576|Curly fries|Aldi|||260|5|36.9|9.2|0.5|1|5.1|0.66
 5000157147936|Heinz beanz|Heinz|||81|4.8|15.5|0.4|4.3|0.1|3.9|0.6
 5065002532541|Pop corn||||469|8.6|49|24|0.3|1.8|12|1.51
 5056265000250|Lemons||||20|1|3.2|0.3|3.2|0.1|0|0.1
@@ -31214,7 +31214,7 @@
 00471275|8 PORK SAUSAGE ROLLS||||299|6.9|29.7|16.5|2.3|7.2|2.1|0.84
 4088600383682|Iso Strike||||386|87|4.3|2.3|4.3|0.63|0.36|0.46
 5055540004426|Eggs||||140|12.7|0.27|9.83|0.27|2.64|0|0.78
-5010482903121|Chicken breast fillet strips||||231|15.4|18.2|10.5|1.3|1.8|1.1|0.9
+5010482903121|Chicken breast fillet strips|Iceland|||231|15.4|18.2|10.5|1.3|1.8|1.1|0.9
 5060549640131|Refreshers||4 x 65 ml||79|0|18|0|0.02|0||
 5000326011990|Vitality eggs|The Happy Egg Co.|||140|12.7|0.27|9.83|0.27|2.64|0|0.78
 5029396003483|Fentiman's Raspberry Lemonade|Fentimans|||17|0|4.1|0|3.9|0||3
@@ -31225,8 +31225,8 @@
 5066537520256|Cooked Gammon Ham|Wessex Country Gammons|||142|22|0.7|4.9|0.1|1.6||2.5
 5060853640209|Gut Loving Muesli||||427|13.1|49.6|16.6|7.5|3.3|13.4|
 5060005421502|Reverse margarita with pesto and yellow marinated tomatoes sourdough pizza|Franco Manca|412g||250|8.8|33.7|8.4|3.3|2.4|2.1|1
-5000342000824|Fridge Raiders Meat Free Smoky BBQ||||223|7|20.3|14.2|2.5|1.6|7.3|1.4
-5000128742610|Co op black current jam||||249|0.6|60|0.5|44|0.2|1.8|0.24
+5000342000824|Fridge Raiders Meat Free Smoky BBQ|Fridge Raiders|||223|7|20.3|14.2|2.5|1.6|7.3|1.4
+5000128742610|Co op black current jam|Co Op|||249|0.6|60|0.5|44|0.2|1.8|0.24
 5030563000457|spicy sweetcorn relish|Mrs Darlington’s|300g||70|0.4|16.3|0.1|14.4|0||0.7
 5060149575642|English muffins|Gails|||277|9|57|1.7|2.8|0.7|2.7|1.3
 5060482842906|Moroccan style chickpea and red pepper tangine|deliciously Ella|300g||93|2.7|13|3.7|7|0.3|2.8|0.78
@@ -31236,7 +31236,7 @@
 5060925290844|Cherry & Raspberry Daily A-Z Vitamins Drink|Huel|1 can, 330ml||9|0|1.3|0|0.9|0|1|0
 5060011957972|Banana Chips|Sunrise Sbacks|100g||441|2.9|47|26.4|29.4|26.4|5.9|0
 5010052114858|Original Scratching Double Cooked|The Real Pork Crackling Co|1 pack 15g||646|42.5|0.4|52.7|0.2|18.4||3.05
-5060512671544|hip pop||4 x 330 ml||20|1.3|3|0.3|2.2|0.2|2.4|0.1
+5060512671544|hip pop|Hip Pop|4 x 330 ml||20|1.3|3|0.3|2.2|0.2|2.4|0.1
 5012547004644|Egg mayo sandwich|Costa coffe|||199|9.5|28|5.1|1.5|1.4|1|
 5000354912337|Oxo Organic Garden Vegetable Stock Cubes|Oxo|8||283|5.1|18.5|19.8|11.3|9.5|5|42.2
 5059604656248|Minty Green Bites|H&B|||183|7.5|14|6.4|2.4|3.8|9.3|1.2
@@ -31249,7 +31249,7 @@
 20203436|British Brussels sprouts||||35|2.9|3.5|1.5|3|0.3|3.1|
 20763640|Zywiecka|Dulano|||123|21|0.5|4||||
 5013803106188|Cashew Nuts|Snacking Essentials|35g||582|8.2|26.9|43.9|3|7.8|3|0.03
-5034709007485|Burts lentil crisps||||505|7.5|60|25||||
+5034709007485|Burts lentil crisps|Burts|||505|7.5|60|25||||
 5060081115470|judes caramel||6 x 100 ml||99|0.8|18|2.9|12|2.4|4.5|0.3
 29129416|Spaghetti Wholewheat Pasta||||338|13|63|2|3|0.3|8|0.1
 5060201624837|Fuel oat bar||3 x 45 g||426|21.6|33|20.9|18.8|5.1|11.3|
@@ -31259,7 +31259,7 @@
 5000169192269|pitted black olives|Essential Waitrose|||267|1.1|1.9|27.6|0.5|3.9|3.1|2.86
 5025514000341|Pease Pudding|Dicksons|227g||111|6.8|16.3|0.7|0.6|0.1|6|1.2
 5000168030753|Tasties|McVitie's|||504|6|64.4|23.9|23.2|13.5|3.6|0.31
-5000169568392|Roasted Pepper & Almond Pesto||||211|3.5|5.7|19|3.3|3.8|1.5|1.1
+5000169568392|Roasted Pepper & Almond Pesto|Waitrose|||211|3.5|5.7|19|3.3|3.8|1.5|1.1
 5029788158869|Sweet mango chilli sauce|tropical sun|150 ml||115|0|28|0|24|0|18|1.78
 5036589254652|Double free range cream||220 ml||466|1.5|1.6|50.5|1.6|31.4||0.05
 20509910|40 pork cocktail sausages||||268|8|11.7|18.7|0.9|6.4|1.9|1.38
@@ -31274,7 +31274,7 @@
 01048063|Dailys Medium White Bread||||238|8.1|45.4|1.9|4.1|0.3|3.2|0.9
 5060198645716|Gelato||||142|1.6|20|6|20|5.4||0
 5057967370535|Roast chicken breast||||149|24.4|2.1|4.6|0.6|1.5|0.9|0.64
-5010511478842|Seriously strong XXX extra strong mints peppermint||||401|0.7|98|0.5|95|0.1|0|0
+5010511478842|Seriously strong XXX extra strong mints peppermint|Seriously|||401|0.7|98|0.5|95|0.1|0|0
 5060586970901|Smokey Dokey|Love Seitan|275 g||150|26|9|1.4|0.7|0.2|3.1|1.5
 4056489523949|Cheese & tomato tortellini|ChefSelect|300g||192|7.1|29.1|4.4|3.9|1.1|3.8|0.35
 5000129318661|Halloumi salad wrap||||474|16|47|24|11|5.7|2.5|2.24
@@ -31299,13 +31299,13 @@
 4088600515090|Figs||||216|3.1|43.3|1.2|43.3|0.1|10|0.28
 5016599010646|Tonijnstukken in zonnebloemolie|Princes|||180|23.5|0.1|9.5||1.6||
 4088600531106|Lentil shepards pie||||73|1.9|12.3|1.2|2.8|0.2|2.7|0.46
-5060356680023|Brown bag crisps||40 g||497|5.2|58.9|26.8|3.4|2.3|2.5|1.9
+5060356680023|Brown bag crisps|Brown Bag Crisps|40 g||497|5.2|58.9|26.8|3.4|2.3|2.5|1.9
 5011157996516|Pure basaltic rice|Tilda|||351|7.8|77.7|0.8|0.5|0.2|1|10
 5055476113131|Organic Extra Virgin Coconut Oil||||899|0|0|99.9|0|94|0|0
 5059512742934|Honey Siracha Chicken||||135|6.4|19.8|3|1|1||0.4
 5060360507149|Actimel dairy free|Danone|||59|1.7|8.5|2|4.5|0.6||
 5020580017118|Thai Red curry paste||400 g||329|5|22|23|5|3||15
-5057172908622|Burrata, roasted cherry tomato & basil ravioli||||211|5.5|29|7.8|4.4|3.3|1.5|0.51
+5057172908622|Burrata, roasted cherry tomato & basil ravioli|Asda|||211|5.5|29|7.8|4.4|3.3|1.5|0.51
 4088600422107|Salted Maple Almond Brittle|Specially Selected|115g||478|10.6|59.8|20.9|45.9|1.6|4.6|0.92
 4056489650386|Breaded Cod Fillets|Lighthouse Bay|300 g||191|12.8|17.5|7.6|0|0.7|0.8|0.4
 5000328015842|baked cheese & jalapeño|Walkers|||437|6|72|13|8.5|1.5|6.2|0.82
@@ -31352,7 +31352,7 @@
 4088600163260|Low sugar granola||||465|13|58|18|4|4.6||0.03
 5030150000075|Milk|Lanchester Dairies|||66|3.3|4.5|3.9|4.5|2.5||0.1
 5060108452281|Lemon tonic water|Fever-Tree|500 ml||17|0|4.2|0|4.2|0||0
-4088600035963|Savour Bakes Biscuits For Cheese||||467|8.1|62|19|17|9.5||0.24
+4088600035963|Savour Bakes Biscuits For Cheese|Savour Bakes|||467|8.1|62|19|17|9.5||0.24
 00246804|Salade chou,pomme,céleri|M&S|210gr||146|1.5|10.5|10.4|10.4|1.2|2.3|0.25
 00298162|Stonebaked Pizza &quot;the american pepperoni&quot;|Marks & Spencer|456 g||260|12.7|24.9|11.8|3.8|4.8||1.51
 00364102|Pilau Rice|Marks & Spencer|250 g||164|3.5|34.8|1.1|0.8|0.1|0.6|0.55
@@ -31367,7 +31367,7 @@
 5010238019489|Daily milk caramel|Cadbury|||187|1.8|23.5|9.5|17.4|7.3||0.12
 5033665209803|Spanish Chicken|Charlie Bigham'd|||124|7.2|9.8|6.7|1.8|1||62
 5000116111114|The Original Potato Waffles||||180|2.5|22|8.7|0.7|0.6||0.75
-5060501561023|Misfits Protein bar||||406|35.6|12|20.4|1.8|8.6|20.7|0
+5060501561023|Misfits Protein bar|Misfits|||406|35.6|12|20.4|1.8|8.6|20.7|0
 5000178113026|Southern Style Chicken Bites||14 oz||166|17|4.2|9.2|0.9|2.2|0|1.3
 01142440|Artisan Rye & Buckwheat Boule|Artisan|||269|7|45.1|1.8|0.8|0.2|4.2|0.91
 5060299780378|Marine collagen||15 oz||45|9|0|0|0|0||0
@@ -31377,7 +31377,7 @@
 5032439100698|Backed pretzels||||423|9.2|71|11|6.2|0.9||1.7
 4088600143583|Stevia Sweetener||||285|2.8|64|1|64|0.5||0.28
 5000112644890|Coca-Cola|Coca-Cola|||42|0|10.6|0|10.6|0||0
-4088600244051|Sun quench blackcurrant juice||||23|0.5|4.6|0.5|3.1|0.1|0.5|
+4088600244051|Sun quench blackcurrant juice|Sun Quench|||23|0.5|4.6|0.5|3.1|0.1|0.5|
 5010392007803|Organic capers|Opies|180g||25|1.8|5|0.5|0|0.2||12
 5013297994353|Oyster delights|Carousel|6||463|5.1|59.5|22.1|36.5|18.4|2.9|0.13
 5000354700088|Birds trifle kits|Birds|141g||83|2.1|14.2|2|10.6|1.6|0.5|0.13
@@ -31431,7 +31431,7 @@
 5052003509573|Tesco pork sausages|Teaco|||301|16.6|8.91|21.8|1.63|7.28|0.98|1.47
 4088600476124|Chocolate Flavour Dessert Sauce|Dessert Menu|325g||320|2.1|74.5|1|67.7|0.7|2.5|0.11
 5055200642753|The late district dairy co. Deciciously moreish mature chedder||||416|25.4|0.1|34.92|0.1|21.7||1.81
-5000169576359|Buttermilk pancakes||||254|7.2|39.5|7.1|9.6|0.9||0.99
+5000169576359|Buttermilk pancakes|Waitrose|||254|7.2|39.5|7.1|9.6|0.9||0.99
 00324731|Slow Cook Moroccan Syle Lmb Tagine|M&S FOOD|468g||124|15.6|5.81|3.89|2.99|1.2|1.62|0.7
 01739015|Bresaola Air Dried Beef|Taste the difference|80g||159|34.1|0.8|2|0.5|0.8|0.5|0.76
 5000128955799|Parmigiana reggiano|Coop|170 g||402|32|0|30|0|20|0|1.6
@@ -31451,7 +31451,7 @@
 5060983410161|Bang bang chickpea|Simply Lunch|||208|5.4|32.6|5.8|4.3|1.4||0.6
 5010282011064|Bourbon fingers|Hill|200 g||501|6|68|22|26|12|2.6|0.23
 5021254909432|garlic spreadable||125 g||503|0.4|1.6|55|0.1|15|0|1.5
-5057624354670|Richmond Meat-free sausages||336 g||155|4.8|14|6.1|0.3|3.2||2
+5057624354670|Richmond Meat-free sausages|Richmond|336 g||155|4.8|14|6.1|0.3|3.2||2
 29013869|Succulent British Chicken Legs|Marks & Spencer|||151|17.3|1.1|8.48|0.1|2.19|0.48|0.87
 5060362074113|plenish berry gut health shot|Plenish|300ml||51.7|0.17|12.7|0|10.5|0|0|0
 5055177535447|Organic Kitchen Coconut Milk|Organic kitchen|||169|1|4|17|1|16|1|0.01
@@ -31571,7 +31571,7 @@
 5026109009350|Radnor Splash orange and passionfruit||||0.7|0.5|0.5|0.5|0.5|0.1||
 5056555203378|Diet Whey Protein Vanilla Flavour|Muscle Moose|||360|79.4|4.44|4.4|1.6|3.6|0.8|
 5055365670691|Hotel Chocolat 45 Nutmilk|Hotel Chocolat|||474|2.6|36.3|35.3|34.5|21.3|3.7|
-5022374054231|Dark Chocolate Mango||||453|5.1|57.9|21.2|49.5|13|7.6|
+5022374054231|Dark Chocolate Mango|Forest Feast|||453|5.1|57.9|21.2|49.5|13|7.6|
 00424806|Roast chicken thighs|Sainsburys|450g||237|25.7|0.6|14.6|0.5|4|0.5|0.54
 5010654333329|Stewed Steak|Grant's|||103|16|2.7|3.1|0.5|1.3|0.5|1
 4088600389363|Bacon lardons||||330|34.1|0|21.5|0|8.2|0|5.42
@@ -31584,14 +31584,14 @@
 4088600062785|Dark Seville Orange Marmalade|Specially Selected|340 g||273|0.3|66.4|0.6|65.9|0.2|0.4|0.21
 29273720|Cranberry and Port Sauce||||181|0.2|44.5|0.1|41.7|0.1|0.9|
 5032722313002|Brazil nuts dark chocolate|Biona Organic|80 g||553|8.4|28|43.4|25.9|20.4|8.1|0.01
-5054070638095|Chickpeas||||137|8.9|11|2.9|0.7|0.4|15|
+5054070638095|Chickpeas|Asda|||137|8.9|11|2.9|0.7|0.4|15|
 5060462261567|Milk Choc Bar Caramel||||508|4|54|31|39|17||0.1
 5024121339127|Banana Weaning Wands|Organix|||438|7.3|70|13|7.6|1.4|3.4|
 4088600460048|Minced beef and onion|Bramwells|||124|14.6|0.6|3.8|0.6|2.1|1.1|0.66
 5060050989408|Pomegranate||||300|0|65|0|43|0||0
 20281922|Berglinsen|Bio-Sonne|1000g||32|0.2|3.1|2|0.1|1.4|0.5|0.79
 5060440130090|Crunchy Baked Corn Snacks||100 g||474|7.6|71.7|17.3|5.6|2.5||2.8
-4088600046853|Emporium Mature Coloured Grated Cheese||250 g||389|25|1.7|31|0.5|20||1.8
+4088600046853|Emporium Mature Coloured Grated Cheese|Emporium|250 g||389|25|1.7|31|0.5|20||1.8
 5000221604655|Cake, chocolate log, hobeycomb|Cadbury|||481|4.62|58.8|23.8|44.2|11.2|1.92|0.54
 5060016803670|Blue cheese dressing||||349|2|10.4|33|8.7|3.7||1.5
 4088600238579|Tru bakewell tart|The Foodie Market|||416|6.7|57.1|16.5|45.1|3.3||
@@ -31700,7 +31700,7 @@
 5000128596008|Sliced Green Jalapeño Peppers|Coop|||23|3.8|3.5|0.5|0.5|0.5||0.5
 5024121326424|Barbeque claws|Organix|||430|8.1|68|13|6|1.3||
 5060137140227|Single Origin Dark Chocolate Lavender||||580|9|32|44|28|27||0.1
-5010251863878|The Best Hand Cooked Sea Salted Crisps||||514|5.1|57.8|28.3|0.1|2.8||0.89
+5010251863878|The Best Hand Cooked Sea Salted Crisps|Morrisons|||514|5.1|57.8|28.3|0.1|2.8||0.89
 5034444115568|Falafel Beetroot & Chili|artisan nature's kitchen|150 gm||211|7.4|24|9.5|6.2|0.8|4.5|0.51
 5055958704284|Smoky barbecue|Graze|||455|10|60|17|5.8|2||0.68
 5055365647440|Chocolate batons||||568|10.3|28.6|44.5|24.9|26.9|9.7|0.14
@@ -31756,7 +31756,7 @@
 5016648910002|Quality save||||49|4.5|7.6|0.2|4.8|0.1||0.17
 5010102243033|real fruit in every drop||||3|0|0|0.01|0|0||0.1
 5060040253137|Apple fruits wriggles|Kiddylicious|12 g||330|1.6|74|1.1|70|0.3|7.3|0.12
-5054070299173|Apple slices & grapes||||59|0.5|12|0.5|12|0||0
+5054070299173|Apple slices & grapes|Asda|||59|0.5|12|0.5|12|0||0
 4088600256252|White Grape & Blackberry Flavoured Sparkling Water||||3|0.5|0.5|0.5|0.5|0.1||0
 5060472691903|In herb we trust|Hippeas|||419|16.1|51.2|16.6|3.8|1.5||1.6
 5060003830160|Mahi Peri Peri Hot||165 g||121|1.1|4|11|1.5|0.7||3.6
@@ -31777,12 +31777,12 @@
 5000237135808|Big hoops||||499|7.2|65|24|1.4|2.4||1.8
 5060175390202|Gingerbread syrup|Sweet Freedom|350g||278|0|70|0|61|0|5.3|9
 5060253702620|Salted Caramel & Chocolate Ganache||||415|4.2|23|33|22|17||0.62
-5010044010021|Toasties soft thick white||||244|9.1|46.4|2|3|0.5|2.3|0.98
+5010044010021|Toasties soft thick white|Warburtons|||244|9.1|46.4|2|3|0.5|2.3|0.98
 29281459|snowball mini bites||||441|4.5|59.3|19.4|49.8|13.6|5.6|0.18
 5034795003552|Sheese||||293|0.5|19|23.9|0.1|20|0.1|1.66
 5060525200601|Brave super hoops||||383|34|38|8.4|1.8|1.3|15|
 5059697727368|Matured Lancashire cream cheese||||347|14.1|4.3|30.4|1.9|19.6|0|
-5000157150639|Sosu Donburi meal kit||||262|4.8|56|1.5|22|0.4|2.3|1
+5000157150639|Sosu Donburi meal kit|Heinz|||262|4.8|56|1.5|22|0.4|2.3|1
 5010069725290|Crispi chicken breast strips||||272|15.5|23.3|12.7|8|1.3|1.4|0.7
 5050665049277|Chilli bean bowl|Quorn|300g||78|3.9|11|1.4|1.7|0.3|3.5|0.34
 4088600541075|Dark Thunder, Ultra Berry||||6|0.1|1.1|0|0.1|0|0.5|0.19
@@ -31793,7 +31793,7 @@
 5000112662191|Coke Diet|Coca-Cola|2 x 250 ml||0.6|0|0|0|0|0|0|0
 4056489106425|Beef Fillet Steak||170 g||140|21.2|0|6.1|0|2.8|0|0.11
 5010438018930|Vimto no added sugar|Vimto|725 ml||2|0|0.3|0|0.3|0||
-5050854264375|Broccoli Florets||||34|3.3|2.8|0.5|1.6|0.1|2.3|
+5050854264375|Broccoli Florets|Asda|||34|3.3|2.8|0.5|1.6|0.1|2.3|
 5012427671003|Sweet Potato & Chipotle Soup|Baxters|||53|0.6|6.5|2.5|2.2|0.4|0.8|0.6
 5000237097786|KP original salted peanut||||614|30|5.6|51|5.1|8.1|8.5|1.3
 4088600325774|Back bacon||360 g||230|25.4|0.6|13.9|0.2|5.7|0.5|3.91
@@ -31802,28 +31802,28 @@
 5025820006532|chicken and leek cup soup||72 g||29|0.2|6.4|0.2|1.6|0|0.2|0.69
 5059512733185|White Pitta Breads||||254|9.2|47.4|2.4|4.8|0.4|3|0.85
 5017174809303|Organic Natural Walnuts||||688|15|3.3|69|2.6|7.5|3.5|
-5010525145884|Hidden centre cupcakes||||451|4.1|54.1|23.8|42.1|7.2|1.7|0.15
+5010525145884|Hidden centre cupcakes|Morrisons|||451|4.1|54.1|23.8|42.1|7.2|1.7|0.15
 5057624881190|It’s so soft spread||||380|0.5|0.5|42|0.5|11|0.5|1.06
 4056489113195|Pork belly slices||||258|19.1|0|20.2|0|7.3|0|0.17
-5010482578640|Hash browns||||215|2.6|23.9|11.6|0.4|1.3|2.5|0.6
+5010482578640|Hash browns|Iceland|||215|2.6|23.9|11.6|0.4|1.3|2.5|0.6
 5060524150150|Thai massaman stir Inman sauce|Bays kitchen|260g||111|1.7|5.6|8.9|1.6|6.3|1.1|0.99
 5012035972165|Haribo|Haribo|||333|3.5|80|0.5|68|0.1||
 4056489462347|Steak and Gravy family pie|Chef Select|||264|12.1|23|13.4|0.9|6|1.3|0.64
 5060172470044|Sea saltcrisp||||505|6.2|54.9|28.1|0.1|1.9|3.6|1.5
-5060430291947|Power Soup||||54|2.5|7.9|1|2.5|0.4||0.37
+5060430291947|Power Soup|BOL|||54|2.5|7.9|1|2.5|0.4||0.37
 4088600108636|Jam & Cream Vinennese Fingers|Belmont|||521|4.8|61|29|33|17||0.64
 5010052112755|Pork Scratchings|Mr porky|6 16.5g||646|42.5|0.4|52.7|0.2|18.4|0|3.1
 5060639129973|Monster energy ultra blu|Monster Energy|||3|0|1.4|1|0|0||0.2
 5060060387027|Garlic mayo||||449|0.6|3.2|48.1|2.5|5.8||1.4
 4088600215280|Butter Beans||||108|7|15|1|0.5|0.1||
 5099420020021|O'Haras of Foxford Premium Sliced Hi-Fibre Bran Bread||||236|9.9|42|1.9|2.4|0.3||1.18
-5022374040913|Toppers||||417|10.7|49.5|21.5|39.7|2.4||
-5010482522766|Chicken burgers||||241|15.5|16.7|12.3|1.3|1.5||0.9
+5022374040913|Toppers|Forest Feast|||417|10.7|49.5|21.5|39.7|2.4||
+5010482522766|Chicken burgers|Iceland|||241|15.5|16.7|12.3|1.3|1.5||0.9
 5060059496747|Dummy with lanyard||||380|0|95|0|90|0||0
 5010034011434|Roasted Garlic Rice|Ben’s Original|250||152|3.2|30|2.1|0.5|0.1|0.9|0.43
 5010115801367|Coffee syrup||||240|0|60|0|60|0||0
 5000237131923|Royster’s||||540|5.5|55|32|0.8|3.1||1.8
-5057172091263|Reduced salt mest gravy granules||||32|0.5|3.3|2.1|0|1.2||0.5
+5057172091263|Reduced salt mest gravy granules|Asda|||32|0.5|3.3|2.1|0|1.2||0.5
 5060391626543|10 cal cherry bakewell tart flavour jelly|Hartley's|175g||4|0.5|0.5|0.5|0.5|0.1||0.03
 5055365641653|Classic Hot Chocolat||||117|4.6|9.8|6.2|8|3.7||0.1
 4088600416434|No chicken tikka pieces|Plant menu|200g||185|16.2|8.2|8|4|1.2|7.8|1.2
@@ -31831,10 +31831,10 @@
 4088600329864|Pea and Ham Soup|Specially Selected|||45|3.7|5.5|0.6|1.7|0.2|1.8|0.46
 5032457712132|soy, ginger & garlic yakisoba||||171|1.4|39.5|0.1|31.5|0.1||4.85
 5060040252109|Smoothie melts|Kiddylicious|||362|4.9|77|1|67|0.2||
-5054267001374|Lucozade Original (can)||||37|0|8.9|0|4.5|0|0|
+5054267001374|Lucozade Original (can)|Lucozade|||37|0|8.9|0|4.5|0|0|
 5060578326372|Smart Plant Bar - Chocolate Peanut Brownie||||381|29|33|19|1.1|9.5||0.3
 4088600385532|Cheese rolls||||275|10.8|39.3|7.7|2.8|4.8||0.76
-4088600044668|Aldi||||349|23|1.5|28|0.5|10||4.2
+4088600044668|Aldi|Aldi|||349|23|1.5|28|0.5|10||4.2
 4088600028965|Fondant fancies||||374|2.5|69|9.3|58|3.9|1.2|0.45
 5060424707065|Chocolate Brownie||||279|26.7|33.5|4.2|3.4|0.13||0.17
 5021812000731|Winter spiced berry||||25|0|6.1|0|4.6|0||0
@@ -31882,7 +31882,7 @@
 5060452491622|Pea and courgette risotto|Piccolo|||339|8.5|71.6|1.4|3.4|0.2|2.8|
 5060283761680|Simply Sweet||||427|7.4|64.1|15.7|18.2|1.8|8|
 5060770730649|Kefir Strawberry Peach|Nexba|330ml||2|0|0.2|0|0|0|0|0
-5000354920356|Paxo sage and Onion||||127|3.8|23.4|1.5|2.9|0.6|2.2|0.28
+5000354920356|Paxo sage and Onion|Paxo|||127|3.8|23.4|1.5|2.9|0.6|2.2|0.28
 5000232025043|Napolina|Napolina|||356|12|72|1.47|3.07|0.27|3.07|0.01
 00418881|Tomato and Basil Chicken Pasta Salad||||155|7.3|18.9|5.3|3.4|0.4|1.1|0.31
 5056344400896|Mexican beef Barbacoa with brown rice and beans|MindfulChef|400g||428|40|45|8.8|7.6|2|7.6|1.8
@@ -31891,7 +31891,7 @@
 5060922350046|Camenvert||||380|2.9|8.2|38.8|0.6|10.6|1.8|2
 5000382038467|Irn-Bru||||47|0.5|4.5|0|4.5|0|0|
 5010775203259|Bunny|Nomo|30 g||563|0.6|58|36|30|17||0.1
-5060430292401|Mediterranean pesto pasta pot||||121|3.9|17.7|3.5|3|0.3|1.4|0.37
+5060430292401|Mediterranean pesto pasta pot|BOL|||121|3.9|17.7|3.5|3|0.3|1.4|0.37
 5011673400610|Giant American Style Toastin' Marshmallows|Epic|600 g||334|4.1|79.6|0|67.7|0||0.03
 00381253|Shroomdog, Sausage, Cumberland|Plant Pioneers|300 g||145|6.6|14|4.6|1.6|2||0.99
 5060081112493|Jude's Dairy Ice Cream|Jude’s|||134|2.7|15|7|14.7|4.3||0.3
@@ -31991,7 +31991,7 @@
 5060122034654|Instant Hot Chocolate|Galaxy|200 g||389|5|70|8.9|63|7.5||1.4
 5060540310101|Dark Chocolate Sorbetto||||170|2|30.2|4|30|2.4|0|0.25
 5060629370255|Kombucha dry apple|Genie|||16.4|0.2|4|0|3|0|0|0.1
-5060452360652|Equinox organic Kombucha||||15|0|2.8|0|2.8|0|0|0
+5060452360652|Equinox organic Kombucha|Equinox|||15|0|2.8|0|2.8|0|0|0
 4056489451686|Silken tofu|Vemondo|300 g||56|5.7|3.1|2.1||||
 4088600407425|Tuna chunks in brine|Aldi|||109|24.9|0.5|1|0.5|0.3|0.5|0.73
 5033665216368|Penang Chicken Curry|Bighams|800g||139|7.8|16.2|4.53|1.68|2.38|0.93|0.52
@@ -32052,7 +32052,7 @@
 5010525062426|Fat free coco nut Greek style yoghurt|Mortisons|4 x 125 g||51.2|4.88|7.28|0.24|5.52|0.24|0.24|
 5011673400863|American Style Giant Toasting Marsh-mallows|Epic snax co.|500g||334|4.1|79.6|0|67.7|0|0|0.03
 20510831|British Free Range Medium Eggs|Woodcote|15||114|11|0.17|7.93|0.17|2.24|0.86|0.35
-5010251426769|Sliced Carrots||||27|0.5|4.2|0.3|3.7|0.1|2.6|
+5010251426769|Sliced Carrots|Morrisons|||27|0.5|4.2|0.3|3.7|0.1|2.6|
 01081343|Cumberland sausage|Saibsbury's|||251|15|9.4|17.3|8|6.9|15.3|0.5
 4056489520160|Deluxe luxury cracker|Deluxe|||456|8.4|66.6|16.4|6.7|1.8|4.1|1.13
 5060655450013|Oggs Aquafaba|Oggs|200 ml||18|1.7|2.4|0.1|1.1|0.1|0|0.05
@@ -32233,7 +32233,7 @@
 5038862836623|Antioxidant smoothie|Innocent|||54|0.5|13|0.5|11|0.1|1.1|0.01
 5060430551591|Mylk & Vanilla Vegan Chocolate|Raw Halo|22g||582|6.7|35.8|43.7|29.6|30.4|0|0.1
 20375232|Long Life Skimmed Milk|Just Essentials by Asda|1L||37|3.6|5|0.5|5|0.1|0|0.12
-5030343833497|Basil Pesto||||577|9.3|2.6|59.6|0.6|9.8||4.5
+5030343833497|Basil Pesto|Belazu|||577|9.3|2.6|59.6|0.6|9.8||4.5
 5060719550031|Cacao And Lime Hot Sauce|Eaten Alive|150 ml||73|1.9|15.4|0.9|12.6|0.2|1.9|5.9
 5000128980630|Tomato and basil chicken pasta|Coop|||139|6.3|20.7|3.15|3.7|0.37|1.33|0.4
 5055540028835|Frozen Blueberries|Ocado|400g||45|0.9|9.1|0.5|9.1|0.1|1.5|0.01
@@ -32289,7 +32289,7 @@
 5059697257445|Macadamia Nuts||||766|8.4|5.1|77.8|3|11.6||0.01
 5011259043118|Manitoba string white flour|Marriages|||348|15|70|1.5|2.4|0.4|2.7|0.01
 4088600266565|Bistro salad|Nature's pick|160g||26|1.6|4.2|0.1|3|0|1|0.29
-4088600381756|Carlos Takeaway Fully Loaded Meat Feast||||239|10.3|27.6|9.2|4.8|3.5|2|1.02
+4088600381756|Carlos Takeaway Fully Loaded Meat Feast|Carlos|||239|10.3|27.6|9.2|4.8|3.5|2|1.02
 5060175390943|Choc shot mint||||260|2.5|52|3.9|45|1.7|7.5|0
 4088600402390|fruit fusions peach and raspberry||||7|0|0.8|0.5|0.8|0.1||
 5020091000401|Rollmop herring||380 g||217|11|14|13|12|3||2.3
@@ -32319,7 +32319,7 @@
 5000225007421|Cajun Chicken & Rice|Schwartz|||280|11.8|33.1|7.4|12.1|1.4||16.48
 5030039004750|Onion Paratha|Shana|5 400grams||333|6.1|39.8|16.6|1.9|8.8||1.2
 5000171054791|Herring Fillets in Tomato Sauce|John West|||186|12.6|5.1|12.8|4.4|2.7||1.2
-5060262488003|Tonkotsu rice noodles||63 g||64|1.6|12|1|0.3|0.2|0.6|0.68
+5060262488003|Tonkotsu rice noodles|Itsu|63 g||64|1.6|12|1|0.3|0.2|0.6|0.68
 5057753900403|Chicken Gravy||||32|0.18|3.08|2.1|0.18|1.18|0.18|0.8
 5000225013071|Italian Cheesy Chicken and Garlic Pasta|Schwartz|||303|10.4|54.7|3.5|13.9|2|5.7|17.83
 5000168026190|Sticky toffee pud hobnobs|Mcvites|||481|6.9|61.7|23|32.7|11.2||0.7
@@ -32463,7 +32463,7 @@
 4088600159225|Cookie bites|Harvest Morn|||390|7.2|75|5.2|19|0.7|7.4|0.59
 4088600075648|Scottish extra mature white cheddar||400 g||416|25|0.5|35|0.5|22||1.8
 5000243678702|Authentic Indian Masala Chilli Sauce|Maggi|400 g||154|0.8|36.3|0|35.5|0|2.9|2.65
-5060198820106|Peter's Yard Sourdough Crispbread Seeded Wholegrain||105 g||383|10.9|77.4|6.3|2.4|0.7||1.8
+5060198820106|Peter's Yard Sourdough Crispbread Seeded Wholegrain|Peter's Yard|105 g||383|10.9|77.4|6.3|2.4|0.7||1.8
 5000237132357|Parsnip crisps||||527|5|40.1|35.9|23.1|3.6||0.53
 5000112640328|Coca Cola Zero|Coca-Cola|7 x 250 ml||0.3|0|0|0|0|0||0.02
 5010478200517|Sweet shop favorites|Swizzels|||394|0.6|89.7|3.3|87.3|2.6||0
@@ -32484,7 +32484,7 @@
 5060088270400|Anjoman Dates||||265|0|51|2.1|46.7|2.1||0
 5060139431972|gently baked mango|Urban Fruit|18g||305|2.9|68|0.3|57|0.1|9|0
 5033665211189|Spaghetti Bolognese|Charlie Bighams|||139|7.11|13.2|5.73|1.35|2.04||0.6
-4088600243948|Sun quench||||16|0.5|3.7|0.5|2.2|0.1|0.5|0.39
+4088600243948|Sun quench|Sun Quench|||16|0.5|3.7|0.5|2.2|0.1|0.5|0.39
 5000171051981|Lunch on the Go Moroccan Style Salmon Salad|John West|||138|12|8.8|5.3|6.2|0.6||1
 5060521410134|Dark Chocolate Roasted Chickpeas||100 g||484|10.8|52.8|23.5|35.5|12.8||0.01
 5000153006664|Indulgent chocloate cake||||409|4.6|50.8|20.4|32.3|6.7||0.33
@@ -32586,7 +32586,7 @@
 5060081115272|Madagascan Vanilla Custard||||119|0.1|17|5.6|13|5.6||0.13
 5028889002606|Pork pie||||341|12.7|19.9|23.1|1|8.3|1.3|1.15
 5060213780316|Freddies farm||||253|7.9|56.5|0.6|44.7|0.1|1.6|0
-5010251979944|Jalfrezi curry||||111|3.8|14|3.9|2|0.8|2.2|0.34
+5010251979944|Jalfrezi curry|Morrisons|||111|3.8|14|3.9|2|0.8|2.2|0.34
 00385572|Cheese and Garlic Flatbread||||316|11.2|40.8|11.6|2.2|4.8|2.2|0.96
 5060146373319|oat peanut butter and maple syrup||8 x 35 g||134|0.8|8.3|13.4|8.3|2.3|13.2|0.11
 4088600040356|All Butter Almond Mince Tarts|Aldi Specially Selected|290g||419|4.4|64|15.8|41.2|8.3|1.7|0.5
@@ -32638,7 +32638,7 @@
 5060614800125|Chocolate Flavour Skinny Syrup||||4|0|0|0|0|0||0.25
 5034444906029|Raspberry flapjack||||350|6.8|36|19.9|8.9|6.3|20.8|
 5032457712798|Ghost Chilli|Meat Lust|||92|1.3|18.2|0.6|12.8|0.3|1.7|2.6
-5060699970218|LEON. Beetroot Ketchup||||111|1.2|25.4|0.5|23.7|0.1||1.57
+5060699970218|LEON. Beetroot Ketchup|Leon|||111|1.2|25.4|0.5|23.7|0.1||1.57
 5054775323876|Gravy||||32|0.1|3.2|2.1|0|1.1|0.1|0.9
 5015285811468|Chickpea & Bean Tagine|Free and Easy|||82|3.9|13.3|2.1|3.3|0.3||0.54
 5000328206998|Squares Salt and Vinegar|Walkers|||433|6.5|61|18|3.5|1.5||2.2
@@ -32697,7 +32697,7 @@
 20758936|Chilli and Garlic Olives||||177|1.2|2.7|17.2|0.5|2.4|3.1|3.4
 5000205049243|Youngs Gastro Lemon Sole Fillets 2pk|Young's|||185|13.7|15|7.6|0.7|0.7|1.6|1.6
 5013472000039|Scottish Oatmeal||||384|11.2|63.2|7.7|1.1|1.2|8.7|
-5054070046593|Oak smoked British back bacon dry cured||||244|32|1|12|0.5|4.3|0.6|3.6
+5054070046593|Oak smoked British back bacon dry cured|Asda|||244|32|1|12|0.5|4.3|0.6|3.6
 5000108281658|Scotts Porage Oats||||374|11|60|8|1|1.5|9|0
 5055967502208|Keto fuel bar|Slimfast|1 x 46 g||426|16|28|28|3.5|11|18|0.78
 5065008359128|Tikka kebab|Shicken|800 g||232|16.9|9.6|14.1|4.5|2.7|1.2|0.25
@@ -32724,7 +32724,7 @@
 5060103395774|Wasabi and lime|Dine|255g||476|1.5|10.3|47.4|6.9|4.2|0.6|0.8
 5060452492261|Baby Pasta|Piccolo|||349|10|73|1.3|3|0.3|2.4|0.03
 5011308303279|Mild butter chicken|Pataks|||89.8|0.98|7.73|5.87|4.36|2.4||0.52
-5027952014966|Baker street Sliced white bread||||254|8.7|48|2.5|4.4|0.4|2.3|1.6
+5027952014966|Baker street Sliced white bread|Baker Street|||254|8.7|48|2.5|4.4|0.4|2.3|1.6
 5000128771511|Luxury cottage pie|Coop|400 g||102|6.7|9.9|3.8|1.4|1.7|1.1|0.37
 5011371000693|Wild Fruit Crunch Toasted Oats|White's|||430|8.5|68|12.3|17|2.25|6.5|0
 5060201625360|Fuel Oat Muffin imp||52||353|19|43|8.2|4.2|2.7|15|0.89
@@ -32759,7 +32759,7 @@
 01125221|Italian plum tomatoes in tomato juice|Sainsburys|||22|1.1|3.8|0.5|3.8|0.1|0.8|0.01
 5021476000825|Shot Chicken & Sweetcorn Noodles|REN Skincare|244.0g||81|2.3|16.6|0.5|0.4|0.2|0.45|0.63
 4088600119953|Edamane &mung Bean||||116|16|3|2.5|1.9|0.8||0.01
-5030343834371|Organic Balsamic||250 ml||387|1|90|0|49|0||0.18
+5030343834371|Organic Balsamic|Belazu|250 ml||387|1|90|0|49|0||0.18
 5000128413244|Eggs||||130|13|0.5|9|0.5|2.5|0|0.4
 4088600290331|Double choc mocha|ALCAFE|184g (8 x 32ge)||44|1.1|6.9|1.3|5.3|0.9||0.11
 5060081113995|Jude's 70 Vanilla Bean Salted Caramel|Jude's 70|||73|2.5|10.6|3.1|5.9|2||0.08
@@ -32784,7 +32784,7 @@
 5016845004801|sea salt and vinegar handcooked crisps|The British Crisp Company|40g||497.5|5.7|51.3|28.6|1.4|3.3|6.2|2.1
 5000128587044|Light Soy Sauce|Coop|||60|2.1|12|0.5|10|0.1|0.8|14.9
 01830798|Pimento stuffed olives|Sainsbury's|800g||126|0.8|0.8|12.7|0.5|1.8||3.48
-5020580161705|Laila Everyday Rice||1 kg||355|6|85|1|0.2|0.2||0.1
+5020580161705|Laila Everyday Rice|Laila|1 kg||355|6|85|1|0.2|0.2||0.1
 5000354905650|Bolognese with Smoked Garlic|Loyd Grossman|||56|1.6|7.3|2|6.1|0.3|1.1|0.8
 5021254904710|Meadow Churn Lard||||897|0|0|99.7|0|40.3|0|0
 5016648910514|Greek Style Yogurt|Ann Forshaw’s|450g||82|5|5.6|4.4|4.2|2.6||0.15
@@ -32819,7 +32819,7 @@
 00999427|Cheese and onion pasties|M&S food|300g||289|7.9|24.7|17.3|1.5|9|1.6|0.53
 5060140286530|Organic green pesto||180 g||369|3.8|6.8|35.8|2.4|2.4||1.2
 20023249|Schnecken|Toque du Chef|12pcs||287|8.6|2.2|27|1.3|14||1.5
-5060430291862|Piri Piri Sweet Potato & Coconut Power Pot||||84|4.4|11.2|1.5|2.6|0.9||0.36
+5060430291862|Piri Piri Sweet Potato & Coconut Power Pot|BOL|||84|4.4|11.2|1.5|2.6|0.9||0.36
 4088600029030|6 Angel Slices|Holly Lane|165g||416|3.6|64.7|15.7|39.6|5.4|0.8|0.41
 5000306003519|Eggs||||140|12.7|0.27|9.83|0.27|2.64|0|0.78
 5000128776905|Organic houmous|Coop|170 g||334|6.7|13|28|0.8|3.3||0.85
@@ -32829,7 +32829,7 @@
 5053947623073|Tesco Finest English Breakfast 50 Teabags 125G|Tesco|||0|1|0|0|0|0||
 01845075|Loading…|By Sainsbury's|||176|2.8|26.4|6|12|3.6||1.95
 5060482841060|Roasted almonds, hazelnuts, blackcurrants & rasberries|Deliciously Ella|85 g||595.29|10.94|35.76|44.24|22.24|16.24|10.35|0.09
-4056489537922|LIDL apple juice||||48|0.5|10|0.5|10|0|0.5|
+4056489537922|LIDL apple juice|Lidl|||48|0.5|10|0.5|10|0|0.5|
 5000362104601|Cypriot Halloumi|Cypressa|250g||344|23.5|1.9|26.6|1|18|1.4|2.3
 4088600165523|Vanilla ice cream||2 l||190|3.6|22|9.6|21|4.6|0.5|0.13
 4088600255446|Microwave Popcorn|Snackrite|3 bags/273g (3x 91g)||444|11|54|18|0.7|9|13|1.5
@@ -32851,7 +32851,7 @@
 4088600114170|Baked beans||||93|4.9|15|0.5|6.1|0.2|4.7|0.06
 5000221606703|Dairy milk caramel cake slices|Cadbury|5||430|4.6|53.1|21.9|33.4|7|1.3|0.6
 00227582|fridge raiders|Sainsburys|150 g||508|5.9|61.1|26.1|39.3|16|2.7|0.6
-4088600035277|Acti leaf Almond original milk||||28|0.6|3.2|1.4|3.2|0.1||0.14
+4088600035277|Acti leaf Almond original milk|Acti Leaf|||28|0.6|3.2|1.4|3.2|0.1||0.14
 5054781844839|50% reduced sugar & salt Tomato Ketchup|ASDA|700 g||63|1.9|13|0|10|0|1.8|0.82
 5037682772012|Caster sugar|Trade Aid UK|1 kg||400|0|99.95|0|99.95|0||0.01
 00265768|Cookies au Beurre|Marks & Spencer|375 g e||487|5.4|64.9|22.3|29.5|13.5|2.3|0.73
@@ -32879,7 +32879,7 @@
 01744422|West Country Farmhouse Butter|Sainsbury's Taste The Difference|250g||753|0.5|0.5|83.2|0|53.1|0.5|
 5019180048653|Salted butter|One Stop|||745|0.6|0.6|82|0.6|52|0|1.5
 5011255015003|Butter|Golden Cow|||728|0.5|0.7|80.5|0.7|47||1.8
-5025840002521|Graham's Lightly Salted||||533|0.3|0.3|60|0.3|23.6|0|1.1
+5025840002521|Graham's Lightly Salted|Graham's|||533|0.3|0.3|60|0.3|23.6|0|1.1
 5077147005521|Salted Caramel Flavoured Pancakes|Nutri Lean|||233|9.5|37.6|4.7|9|1||0.2
 5013427001050|Bread|Nutty Krust|||240|9.5|48.6|1.2|3.4|0.3|2.2|1
 4056489594963|6 Potato Croquettes|Chef Select|250 g||183|2.3|25.7|7.5|0.7|0.7|1.8|0.35
@@ -32955,7 +32955,7 @@
 5000316000683|Caramel Latte|Arctic Coffee|330 ml||60|2.9|8.7|1.5|8|0.9|0.5|0.21
 4088600253978|Fish fingers|The fishmonger|||201|12|15|10|0.5|1|1|0.63
 4088600033341|Battered Onion Rings|Four Seasons Gourmet Foods|750 g||206|3.1|28.2|8.2|5.6|0.8||0.95
-5010482759568|Slimming World Chips||||104|3.3|20.9|0.3|0.5|0.1||0.3
+5010482759568|Slimming World Chips|Iceland|||104|3.3|20.9|0.3|0.5|0.1||0.3
 5032015002293|Belgian chocolate vegan fudge|Mrs Tilly’s|150 g||446|0.5|80|14|71|8.3||0.1
 5056182401543|Pea Protein Powder||||428|80|4.9|5.4|0.25|1.1||1.1
 5000159393928|Smooth Milk 75g|Galaxy|75 g||546|7.2|56|32|20|4.9||0.27
@@ -32967,7 +32967,7 @@
 5060468522662|Peanut Salted Caramel Triple Decker|TRIBE|43g||463|19|33|27|21|7.4|8.2|0.4
 4088600437101|Ardennes pate|The Deli Aldi|200g||321|10.6|4.8|29|2|10.3|0.9|1.52
 4088600048260|16 Dutch Cheese Maasdam Slices|Emporium|400g||372|24|0.5|30|0.5|21|0.5|1.3
-5010482881474|Dorset white bread||||236|8.6|47|0.7|2.8|0.2|3.2|0.9
+5010482881474|Dorset white bread|Iceland|||236|8.6|47|0.7|2.8|0.2|3.2|0.9
 4088600238449|Classic Caesar salad dressing|Bramwells|250 ml||414|1.2|4.7|43|4|3.7|2|1.28
 5060095862162|Gluten Free Moo - Beef Steak and Gluten Free Ale Pie|Pieminister|275 g||224|10.1|20.2|11.4|2|6.3||0.8
 5000168206462|Tasties Coconut Rings|McVitie's|300 g||489|6.2|65.8|21.6|23.2|11.2|3.1|0.85
@@ -33017,12 +33017,12 @@
 4056489648079|Double Strength Apple and Blackcurrent||||2|0.1|0.2|0.1|0.2|0.1|0.1|0.1
 5056357904275|Milkyway biscuits|Milky way|||482|7.6|66|20|24|9.7||0.65
 4056489299752|Chocolate chip madeleines|Rowan Hill Bakery|400g||478|6.1|54|26|27|5.3|1.6|0.35
-5060081114916|Jude’s Vegan Minis||||231|1.7|22.3|14.4|15.7|10.2||0.17
+5060081114916|Jude’s Vegan Minis|Jude’s|||231|1.7|22.3|14.4|15.7|10.2||0.17
 5000169640210|Dark chocolate digestive biscuits|Essential Waitrose|||498|6.5|63.1|23.5|25.7|13|4.1|0.49
 5037986000033|Exotic crips|Asiko|||436|2.2|64.5|16.8|13.3|7.8|5.4|0.45
 5060621160113|Lucky Saint Alcohol Free Lager|Lucky Saint|4x330ml||16|0.6|3.5|0.1|0.1|0.1||0.01
 5054781313113|Mayonnaise light|Asda|||273|0.6|9.4|26|0.5|0.3|0.5|0.18
-5060120284310|Puffed spelt||1.05.24||62|2.7|11.2|2|2|0.3|2|0.01
+5060120284310|Puffed spelt|Rude health|1.05.24||62|2.7|11.2|2|2|0.3|2|0.01
 4088600395975|Jerk chicken|Inspired cuisine|||118|5.53|17.6|2.39|4.21|0.26|2.03|0.36
 5013803999780|Cloudy pressed apple juice||||48|0.1|11.2|0.3|8.9|0.13||0
 5060198643453|Rustica Sourdough Pizza — Mushrooms, Pancetta & Mascarpone|Crosta & Mollica|||275|10.8|30.2|12.2|1.62|4.5|1.71|1.06
@@ -33032,7 +33032,7 @@
 06045593|All natural peanut butter|MyProtein|1 kg||579|30|12|46|5.9|8.2||0
 5060092696456|Brown sauce|Stokes|||194|1.4|46|0|38|0||0.8
 5060002043073|The Award Winning Selection|Booja-Booja|184g||581|5.9|35|46|32|29||0.06
-5000128632034|Co-op Irresistible Caramelised Red Onion Chutney||330 g||253|0.7|61|0.5|59|0.1||0.22
+5000128632034|Co-op Irresistible Caramelised Red Onion Chutney|Co-op|330 g||253|0.7|61|0.5|59|0.1||0.22
 5060088708989|Raspberry Chocolish|Nākd|||392|6.2|53.9|18.4|47.1|6.4|5.3|0.14
 4088600200545|Southen fried chicken stakes||||224|14|14|12|1.2|2.5||0.84
 5000354915611|Best lamb gravy|Bisto|||348|1.5|71.5|4.3|41|0.7||13.19
@@ -33042,7 +33042,7 @@
 5060501561177|Plant-Based Chocolate Brownie High Protein Bar||||411.11|34|19.11|20|2|8.89||
 5000354402722|Beef and Tomato soup|Batchelors|||32|0.5|6.1|0.6|1.1|0.4|0.5|0.53
 5056315500310|Skinny Dream Choc Toffee Bars||||386|3.7|50|11.1|35.1|6.8||0.38
-25284423|Vive Cherry Cola Zero Sugar||||0|0.5|0.5|0.5|0.5|0.1||
+25284423|Vive Cherry Cola Zero Sugar|Vive|||0|0.5|0.5|0.5|0.5|0.1||
 5000168091556|Morning Oats||||452|6.6|54.4|21.9|25.1|7.8||0.3
 5029396001144|Raspberry Natural Syrup|Fentimans|250ml||307.9|0|75.8|0|75.8|0||0
 4088600299198|No Cheez Bakes|Plant menu|288g||272|4.6|27|16|2.3|8.9|2.3|0.68
@@ -33053,7 +33053,7 @@
 5000169000359|Cherry tomatoes|Essential Waitrose|||36.79|1.1|3.6|0.5|3.6|0.1||
 5000354908927|Pasta Bake Tomato & Bacon|Homepride|485 g||105|1.4|7.2|7.7|5|1.3|0.7|0.89
 5035251001860|Ayran|Pakeeza|1 kg||46|2.2|3|2.8|2.3|1.7|0.5|0.5
-5000171054777|Kipper Fillets in Sunflower Oil||||236|19.1|0|17.9|0|3.6||1.5
+5000171054777|Kipper Fillets in Sunflower Oil|John West|||236|19.1|0|17.9|0|3.6||1.5
 5060100601373|Peach and Passion Fruit|Koko|250 g||113|0.6|16.2|3.9|12.5|3.4|0.3|0.3
 20717445|6 organic eggs. Mixed sizes||||131|12.6|0.1|9|0.1|2.5||0.39
 5000171055903|Mild Curry Tuna Salad - Gluten Free|John West|||107|8.4|11|2.7|5|0.3||0.9
@@ -33245,11 +33245,11 @@
 5011673217287|Tortelloni spinach ricotta||250 g||300|8.4|53|5.8|1.3|2.1|1.2|1.2
 4088600415987|Hickory Smoked Nuts|Aldi Specially Selected|150g||594|23.2|11.9|48.3|5.2|6.5|9.3|1.09
 5000382113256|Bubblegum fizzy drink|Barr|8 x 250 ml||2|0|0|0|0|0|0|
-5000129295245|Co-op chilli and lime protein crunch||120 g||563|29|18|40|6|5.5|8.2|1.04
+5000129295245|Co-op chilli and lime protein crunch|Co-op|120 g||563|29|18|40|6|5.5|8.2|1.04
 5060280601040|Hummus chips||||498|9.5|55|24.5|1.6|2|6.7|1.5
 4088600489377|Flatbread Stonebaked Spinach and Ricotta||||250|10.1|26.7|11|2|5.8|1.5|0.95
 5060213780309|Fruit Shapes||||232|2.1|52.1|0.5|39.9|0.2|7.9|0
-4088600452548|Sun Quench Blackcurrant Squash||||11|0.5|2.5|0|1|0|0.5|0.15
+4088600452548|Sun Quench Blackcurrant Squash|Sun Quench|||11|0.5|2.5|0|1|0|0.5|0.15
 4088600230177|Apple||||47|0.5|12|0.5|12|0.1|1.8|
 5060326870867|Popped veggie crisps sweet chilli|Good honest|85g||443|11.8|62.9|14.8|6.2|1.5|5.6|1.35
 5039303006339|Wagama firecracker mayo||||540|0.7|12|54|8.2|3.8|1|1.65
@@ -33311,16 +33311,16 @@
 5060088704394|Trek cocoa|TREK|4 x 40g||454|18.4|43.9|22|27.9|10.3|1.6|0.9
 5036829500099|Sweetcorn & Quinoa BITES||5 x 20 g||161|3.7|26.1|5.8|6.3|0.5||0.65
 5060043610999|TIANA Fairtrade Organics All-Purpose Cassava Flour||||360|1|85|0|0|0||0.09
-5000178108510|Fridge raiders||||209|21|5.6|11|0.9|4.4||1.5
+5000178108510|Fridge raiders|Fridge Raiders|||209|21|5.6|11|0.9|4.4||1.5
 5026489500508|Cheezie Straws||||525|3.8|57.9|30|0.9|2.6||2.5
 5055540023625|Mixed Weight Organic Free range eggs|Ocado|||151|12|0|11.2|0|3||0.39
 5000354909030|Chilli sauce||||56|1.5|10.5|0.5|6.8|0.1|1.7|0.71
 5010035067973|Oaties||||476|7|63.7|20.4|23.4|8.9||0.5
 5017174373316|Flapjack||||433|6.8|54|20|22|6.8||0.09
-5000168188614|McVitie's Tasties Ginger Nut||||448|5.4|73.5|14.7|33.6|6.9||0.99
+5000168188614|McVitie's Tasties Ginger Nut|McVitie's|||448|5.4|73.5|14.7|33.6|6.9||0.99
 5035336004021|Real gand cooked sweet chili||||495|7|57.7|25.4|4.3|2.7||1
 5055967557536|SlimFast Chocolate Caramel Treat Snack Bar|Slim Fast|1, 26g||360|3.5|63|10|48|5||0.58
-5000169526316|Green olives with herbs de provence||||160|1|1.2|16.1|0.5|2.3||2.99
+5000169526316|Green olives with herbs de provence|Waitrose|||160|1|1.2|16.1|0.5|2.3||2.99
 5020379150774|Cheese puffs|Happy Shopper|||522|7.1|59|28|9.9|2.6||1.7
 5055958703270|Honeycomb Caramel Wow Bakes|Graze|||470|6.4|52|25|14|4.9||0.66
 5060101160183|Horseradish||||121|2.2|11.1|6.3|4.6|0.5|0.6|1.7
@@ -33338,7 +33338,7 @@
 5029617001328|Yogurt & Oat Clusters Blackcurrant & Blueberry||||173|4.7|24|6|11.5|1.6|2.2|0.08
 5060627160087|Banana & Chocolate chip muffin mix||||386|7.5|65.1|12|13.8|6.4||1.5
 5060238482318|Organic Functional Blend - Cognition|Naturya|250g||336|11|40|9|26|5.2|25|0.06
-5060468521412|Nut butter triple decker||||485|21|22|33|12|10|10|0.5
+5060468521412|Nut butter triple decker|TRIBE|||485|21|22|33|12|10|10|0.5
 5056138201319|Plant Passion Fruit|The Collective|||119|1.4|16|5.4|4.3|4.4||0.2
 5060388310783|Beef burgers||454 g||200|18.3|7|10.9|0.2|5|0|1.7
 5010292962271|sweet smokey bbq|Squeaky Bean|||194|21|9.4|7.3|5|0.9||1.4
@@ -33402,13 +33402,13 @@
 5000111046862|Hoi Sin stir fry sauce|Amoy|||110|2.1|20.3|2.3|16.8|0.3||2
 5010102242029|Strawberry, Cucumber & Mint|Robinsons|||15|0|3.7|0|3.7|0||
 5060051271571|Vegetarian black pudding|The Bury Black Pudding Company|220g||134|2.9|29.4|1.5|1.7|0.9||1.29
-5030343834623|Chermoula||||314|2|6.1|30.2|2.8|3.5|4.6|2.5
+5030343834623|Chermoula|Belazu|||314|2|6.1|30.2|2.8|3.5|4.6|2.5
 5050665038882|Rice Long Grain Rice Malaysian Curry||||113|2|21.9|1.8|1.1|0.8||0.55
 4056489248903|Cola XX||||3|0.5|0.8|0.5|0.8|0.1||
 5000354908347|Super rice curry flavour|Batchelors|||138|3|28.7|0.9|4.3|0.2||0.44
 5010238016877|Fruit pastilles||||87|0.1|20.7|0.19|17.5|0||0
 4088600341835|Raspberry & blueberry rice cakes||||371|7.4|83|0.9|9.3|0.2|0.8|
-20265328|freshona super sweet sweetcorn||||77|3.6|8.9|1.9|2.5|0.2||0
+20265328|freshona super sweet sweetcorn|Freshona|||77|3.6|8.9|1.9|2.5|0.2||0
 5060326870881|Popped veggie crisps Salted|Good & Honest|85g||431|15.4|59.8|12.8|2|1.4|7.5|1.38
 5060062660944|Soft cheese|Yester Farm|||103|10|3.6|6|3.6|5.1|0.1|
 4088600280165|Honey roasted peanuts|Snackrite|||559|21|29|39|24|4.4|6.2|0.72
@@ -33443,7 +33443,7 @@
 5010102108905|Apple and rasperry J2O||4 x 275 ml||19|0|4.1|0|4.1|0|0|0.06
 5056339400054|Sriracha Vegan Mayonnaise||||488|2.9|5.7|50.1|3.3|4.5|1.2|1.3
 5020934520035|Prune Juice||||73|0.4|18|0|11|0||0
-5000129301229|Co Op Breaded Ham||||128|18|0.9|5.8|0.9|2.1|0|1.5
+5000129301229|Co Op Breaded Ham|Co Op|||128|18|0.9|5.8|0.9|2.1|0|1.5
 5000168031637|Blissfuls|McVitie's|228 g||492|7.7|59|25|33|11|2.4|0.6
 5010105001784|Gravy||||3|0.5|3.1|2.2|0.5|1.5|0.5|0.93
 4088600436296|Detox||||1|0|0|0.1|0|0|0.06|
@@ -33453,9 +33453,9 @@
 5000159537964|Maltesers Buttons Orange|Maltesers|189g||518|7.8|60|27|57|16||0.31
 5000128616195|Sourdough Bloomer||||228|8.7|45|0.8|0.9|0.2|2.4|0.88
 4088600107622|8 Continental Croissants||||394|7.4|47.5|18.8|11.3|9.7|2.5|0.87
-5010525063188|4 salmon & hollandaise||540 g||214|8.3|20.8|10.4|1.2|2.1|1.9|0.5
-4088600296425|Carlos takeaway double pepperoni||||274|12|30.2|11.3|4.2|5.4|1.9|1.15
-4088600167152|Snackrite 6 Pack Salt and Vinegar Potato Crisps||6 x 25 g||540|6.7|56|32|1.3|2.5|2.3|1.6
+5010525063188|4 salmon & hollandaise|Morrisons|540 g||214|8.3|20.8|10.4|1.2|2.1|1.9|0.5
+4088600296425|Carlos takeaway double pepperoni|Carlos|||274|12|30.2|11.3|4.2|5.4|1.9|1.15
+4088600167152|Snackrite 6 Pack Salt and Vinegar Potato Crisps|Snackrite|6 x 25 g||540|6.7|56|32|1.3|2.5|2.3|1.6
 4088600427201|sour cream and chive snacks||150 g||475|4.5|64.8|21.5|3.6|21.5|2.5|2.04
 5060426631115|Organic Coconut Sugar||500 g||389|1.2|94|0.7|85|0.3|0.7|0.3
 5060084348301|Singapore Noodles|The Gym Kitchen|400 g||81|7.3|9.6|1.2|2.2|0.3|1.3|0.95
@@ -33463,17 +33463,17 @@
 5060110483433|Chippy chips|Scotty Brand|||115|1.8|19|3.1|1.3|0.3|1.8|
 5013665116677|Dark chocolate rice cakes||||487|6.2|60|23|28|14||
 5056344401015|Thai Green Chicken Curry||||117|7|10|5.1|1.6|3.3|2|0.81
-5055958705267|Chocolate peanut||100 g||493|15|47|26|13|5.2|8.1|0.74
-5057172824755|Jazzie sprinkles||||392|0.5|96|0.5|78|0.2|0.5|
+5055958705267|Chocolate peanut|Graze|100 g||493|15|47|26|13|5.2|8.1|0.74
+5057172824755|Jazzie sprinkles|Asda|||392|0.5|96|0.5|78|0.2|0.5|
 5060337222259|kefir protein blackcurrant||||71|9.7|7.3|0.3|6.1|0.2||
 5013635352456|Chana dal||||318|24|56|1.3|2.2|0.2|4.9|
 4088600550640|Katsu melt in the middle fishcakes|Specially Selected|||184|9.7|17|8.2|1.8|2.7|1.8|0.53
-5054781312277|Roasted Garlic, Sage & Red Onion Stuffing||||165|5|31|1.7|3.1|0.3|3.2|1.1
+5054781312277|Roasted Garlic, Sage & Red Onion Stuffing|Asda|||165|5|31|1.7|3.1|0.3|3.2|1.1
 5000159549714|Maltesers|Maltesers|||533|7.7|58|30|54|18||0.31
 5035272145130|Fish super selection||||168|4.7|24|5.8|4.5|0.7|1.1|1.5
 5099801004718|Irish Oats||10 x 35 g||371|11|64|5.8|0.9|1|8.3|
 5011766010443|einkorn wholemeal flour||||345|11|63|3.3|1.4|0.5|11|
-5000157150301|Big soup chicken and vegetable||||50|3.1|7.4|0.7|1.8|0.2|1|0.5
+5000157150301|Big soup chicken and vegetable|Heinz|||50|3.1|7.4|0.7|1.8|0.2|1|0.5
 5000129329155|Vannilla custard||||191|0.5|15|13|11|8.8|14|2.5
 4088600148458|Pasta Spirali||||171|5.3|35|0.8|0.5|0.2|1.5|
 4088600552224|Buffalo No Chicken Wings||||278|16.6|17.3|15.1|1.5|3.7|3.2|1.32
@@ -33498,7 +33498,7 @@
 5000354922527|Plain Flour White & Wholegrain|McDougalls|||338|10.8|69.7|0.7|1.1|0.2|4.7|
 4056489517832|Honey Roast Ham||120 g||108|21|1.9|1.7|1.9|0.6|0.5|1.63
 5029223011629|Baked gigantes beans||||167|5.8|14.1|8.2|4.1|1.2||1.3
-5010292970283|Vadasz Fresh Pickles||||50|0.8|11|0.5|11|0.1|2.2|12.3
+5010292970283|Vadasz Fresh Pickles|Vadasz|||50|0.8|11|0.5|11|0.1|2.2|12.3
 29362783|Nan bread, garlic and coriander|M&S Food|||272|8.6|49.7|3.6|2.2|0.4|3.2|0.95
 5060941970058|Green Tea Energy Pear & Ginger||||14|0.1|3.1|0|2.8|0||
 5059512744266|Banoffee flavour nut mix||||603|21.2|21.5|47|11.4|7.4|4.6|0.03
@@ -33515,7 +33515,7 @@
 5011166054559|Cucumber|Lamb & Watt|200 ml||34|0.1|7.9|0|7.9|0||0
 5000234050043|Whitworths shots berry and white chocolate|Whitworths|||394|2.4|73|9.5|63|5||0.1
 5012058010004|Layali Eyelash Serum|Strathmore|330 mL||0|0|0|0|0|0|0|0
-5013635362240|KTC popcorn||||375|11|75|4.3|0.98|0.6|13|
+5013635362240|KTC popcorn|KTC|||375|11|75|4.3|0.98|0.6|13|
 5022019430116|Farms Cucumber & Mint Pressé|Belvoir Farm|750 mL||33|0|7.9|0|7.4|0||0
 5055950601352|Organic Raw Cacao Nibs|Bulk Powders|||613.33|12.67|15.33|55.33|0.67|34|11|0.07
 5060282750265|Gluten free steak pies|Genius|320g||252|7.3|26.5|12.6|2.4|5.6|1.1|0.9
@@ -33551,7 +33551,7 @@
 5017601005810|smooth peanut butter|Suma|340 g||631|27|17|49|5|7||0.32
 5010525223056|Walnuts|Morrisons Market Street Walnuts|180g||696|14.7|3.3|68.5|2.6|7.5|3.5|0.02
 5011157995656|Wholegrain Toasted Coconut Jasmine Rice|Tilda|250g||181|3.9|26.3|6|0.6|3.3|3|0.3
-5010251870685|Sesame seeds||||630|22.8|0.8|56.8|0.5|8.3|12.1|0.01
+5010251870685|Sesame seeds|Morrisons|||630|22.8|0.8|56.8|0.5|8.3|12.1|0.01
 5012389670021|Dunn's River Everyday Seasoning||100 g||238|12|14|12|6.8|0.8|0|40.5
 5055967502024|Double Choc|Slimfast|25g||398|3.4|64|10|41|6.1|19|0.16
 01620627|Rice noodles|Sainsburys|||148|2.6|32.5|0.6|1.2|0.1|1.3|0.02
@@ -33568,7 +33568,7 @@
 5000169342527|Passata|Waitrose duchy|500g||28|1.4|4.9|0.1|4.3|0||0.03
 5031153331883|Smoked cheddar||170 g||410|24.9|0.1|34.5|0.1|21.6||1.72
 5024255000832|Llaeth Y Llan||||108|4.4|15.3|3.2|15|1.8|0.5|0.14
-5060075671401|For Goodness Shakes||||43.3|5.3|5.3|0.1|5|0.1|0.1|0.1
+5060075671401|For Goodness Shakes|For Goodness Shakes|||43.3|5.3|5.3|0.1|5|0.1|0.1|0.1
 5010693602554|cadbury dairy milk caramel ice cream|Cadbury|||189|2.1|25|8.9|16|6.5||
 4056489757856|Peri Peri chicken King kebab|braemoor|924 g||177|23.9|3.2|7.4|2.4|2.3|1.2|1.5
 5000354156106|Tomato & Wild Mushroom|Loyd Grossman|350 g||61|1.4|5.8|3.4|4.7|0.4||0.83
@@ -33620,7 +33620,7 @@
 00579124|Linguine|Sainsbury's|||159|5.2|32.3|0.7|1.6|0.1|1.4|0.03
 01141849|Sainsburry's triple chocolate muffin|Sainsbury's|||438|4|51|24|21|7||0
 5032722317437|Golden turmeric|Biona Organic|||15|0.7|1.8|0.1|1.2|0|2|1.68
-5030343833824|Tahini||||701|20|13.3|63|0|9.4||0.7
+5030343833824|Tahini|Belazu|||701|20|13.3|63|0|9.4||0.7
 5000227510813|Roast Potatoes|Aunt Bessies|1.4 kg||103|2|18|1.9|0.1|0.2|2.4|0.34
 5045092208335|Vegan No Duck & Hoisin|Boots|1||195|8.6|29|4.5|4.7|1.7|2.5|0.96
 5010067314991|Chocolate flavour milkshake mix|Crusha|740ml||11|0|2.6|0|0|0||0.07
@@ -33630,7 +33630,7 @@
 4056489139331|Pizza Margherita|Trattoria Alfredo|||225|10.5|30.9|6.1|2.4|2.8||1
 5016346515943|White Chocolate Bunny Egg|Thorntons|151 g||549|5.3|61|31|61|19||0.19
 5010825001774|Sterilised semi skimmed milk||||46|3.2|4.7|1.6|4.7|0.9||0.1
-5050665039643|Naked Noodle Singapore Curry||||359|12|70|3|||3|
+5050665039643|Naked Noodle Singapore Curry|Naked noodle|||359|12|70|3|||3|
 5000169114742|Red seedless grapes||||66|0.4|15.4|0.1|15.4|0||0
 01787085|Crunchy peanut butter|Sainsburys|||620|29.5|6|60|4|11.5||0.8
 00901987|Raisins sans pépins|M&S|||60|0.7|18.1|0.2|0|0||
@@ -33683,7 +33683,7 @@
 4056489215158|Lemon cheesecake|Lidl|180 g||306|5.6|32|17|19|9.5|1.1|0.27
 00312929|Roasted and salted peanuts, cashew nuts and almonds|Sainsburys|60 g||620|23.1|10.5|52|4.7|8|8.9|0.48
 5010251603863|Unsmoked bacon|Morrisons|300 g||290|25.2|0.2|20.8|0.2|8.7||3.54
-4088600059716|Crestwood 6 Mini Cured Melton Mowbray Pork Pies||||422|9.8|28|29|1.9|11||0.98
+4088600059716|Crestwood 6 Mini Cured Melton Mowbray Pork Pies|Crestwood|||422|9.8|28|29|1.9|11||0.98
 5010338016081|Spicy Thai flavour imp|Blue Dragon|67 g||95|2.3|12|3.9|2.5|1.9|0.8|1.5
 5032722301955|Mayonnaise with sunflower oil imp|Biona Organic|||737|1.3|4.4|79.4|4.1|8.2||1.3
 5060050996628|Raspberry Turkish Delight||||346|0|89|0|45|0|4.4|0
@@ -33693,7 +33693,7 @@
 5022374057584|Belgian Dark Chocolate Brazils|Forest Feast|1 kg||582|8.2|33|45|31|20|6.9|0.16
 5000128746533|8 sweet Pancakes|Coop|480 g (8 x 60 g)||265|5.3|38|10|16|1.9|1.4|0.3
 5000112648485|Zero|Coca-Cola|||0.3|0|0|0|0|0||0
-5010228012933|Fries to go||3 x 90 g||315|4.3|49|10|1.6|1.3|4.7|0.47
+5010228012933|Fries to go|McCain|3 x 90 g||315|4.3|49|10|1.6|1.3|4.7|0.47
 01145908|Lovett's dark chocolate||||526|5.9|56.5|29.3|50.3|17.6|6.3|0.01
 5051898751784|Tesco 30% reduced fat mature cheese|Tesco|||315|27.3|2.7|21.7|0.1|13.5|0|1.8
 5038862130707|Hazelnut Unsweetened|Innocent|750 ml||72|1|8.3|3.9|2.9|0.3|0|0.05
@@ -33723,7 +33723,7 @@
 5000112547634|zero sugar lemonade|Schweppes|||2|0|0|0|0|0|0|0.03
 5060339011462|Sweetened dried cranberries||||308|0.1|82|1.4|65|0.1|5.7|0.1
 5000354917349|Stir Fry Sauce|Sharwood's|120 g||81|1.2|15.9|1.4|9.2|0.1|0.5|0.74
-4088600496849|Cucina dinosaur pasta||250 g||354|11.5|72.5|1.5|3.5|0.4|2.3|0.01
+4088600496849|Cucina dinosaur pasta|Cucina|250 g||354|11.5|72.5|1.5|3.5|0.4|2.3|0.01
 4088600348841|Buttermilk chicken thigh burger||330 g||231|17|14|11|0.5|2.1|0.9|0.99
 5060337220927|Kefir Raspberry||||64|2.9|7|2.7|5.3|1.8||0.1
 5000237128244|Discos cheese and onion flavour||||528|4.1|60|30|1.4|5.5|2.2|1.4
@@ -33768,7 +33768,7 @@
 5060058021018|Hummus|Meze Hummus|170g||250|6.42|16.8|18.9|0.4|1.87|6.5|0.83
 5060094480961|Krispy Kreme Doughnut|Krispy Kreme Doughnuts|||387.3|4.76|58.41|14.29|33.97|6.98||0.95
 5017764901233|Kettle Sweet chili and sour cream|Kettle|||509|7.5|53.9|28.3|4.5|2.29|4.7|0.87
-5000237139455|Mccoy's Flame Grilled Steak potato chips||||524|6.9|53|31|2.3|2.5|4|1.5
+5000237139455|Mccoy's Flame Grilled Steak potato chips|McCoy's|||524|6.9|53|31|2.3|2.5|4|1.5
 00748681|Decaffeinated black tea|M&S|||469|7.1|56.4|21|14.9|6.6|9.3|0
 5057545864500|Cooked Ham|Eastman's Deli Foods|125g||92.9|17.9|0.71|2.14|0.71|0.71|0.71|1.61
 5010793378694|Lychees in light syrup|summer pride|425 g||60|0.4|14.2|0|14.2|0|0.6|0
@@ -33781,7 +33781,7 @@
 5010074534825|Pink 'n' whites||||350|5.7|78.7|0.8|51.4|0.3||0.18
 4056489340645|Bordeaux Rosé|Sainsburys|||57|1.2|6.2|2.8|4.9|0.3||0.4
 5060342470539|Milkshake|Shaken Udder|||64|3.2|9.6|1.3|8.4|0.9||0.13
-5010482908225|chicken skewers||||170|31.9|2.2|3.6|0.1|0.8|0.5|1.1
+5010482908225|chicken skewers|Iceland|||170|31.9|2.2|3.6|0.1|0.8|0.5|1.1
 00264631|Tuna steak|Sainsburys|3 x 120 g||116|27|0.5|0.5|0.5|0.1||0.75
 5060512090130|True collagen||||362|89.5|0|0|0|0|0.9|1.2
 5011059001875|Be good wholemeal sandwich breads|Brennans|||239|10.1|39.5|3|3.2|0.5|6.7|1
