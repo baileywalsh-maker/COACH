@@ -28,29 +28,30 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
     </div>
     <h1 class="wordmark">COACH</h1>
     <div style="display:flex; gap:4px; align-items:center;">
-      <!-- v144: Eat / Train. Swaps every tab below; the header stays. -->
-      <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
-        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
-        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
-      </div>
       <button class="gear" id="profile-btn" aria-label="Profile"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></button>
       <button class="gear" id="target-btn" aria-label="Settings"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
     </div>
   </header>
 
+  <!-- v147: Eat / Train sits at the start of the tab row, so COACH stays centred in the header. -->
+  <div class="nav-row" id="nav-row">
+      <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
+        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
+        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
+      </div>
   <div class="view-tabs tr-tabs" id="tr-tabs" style="display:none;">
     <button class="view-tab active" data-tv="workout">Workout</button>
     <button class="view-tab" data-tv="history">History</button>
     <button class="view-tab" data-tv="exercises">Exercises</button>
   </div>
-  <!-- v144: everything for training lives in here. -->
-  <div id="view-train" style="display:none;"></div>
-
   <div class="view-tabs" id="eat-tabs">
     <button class="view-tab active" data-view="day">Day</button>
     <button class="view-tab" data-view="week">Week</button>
     <button class="view-tab" data-view="data">Data</button>
   </div>
+  </div>
+  <!-- v144: everything for training lives in here. -->
+  <div id="view-train" style="display:none;"></div>
 
   <!-- DAY VIEW -->
   <div id="view-day">
@@ -583,6 +584,7 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
     <div class="sheet-handle"></div>
     <h3 id="fd-name">Food</h3>
     <div class="fd-sub" id="fd-sub"></div>
+    <div class="fd-sub fd-mac" id="fd-macros"></div>
     <div class="fd-amt" id="fd-amt" style="display:none;">
       <div class="fd-amt-row">
         <button type="button" id="fd-amt-minus" aria-label="Less">&minus;</button>

@@ -7,7 +7,7 @@ This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
-Current version: **v146**.
+Current version: **v147**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -41,10 +41,15 @@ Current version: **v146**.
 - `VERSION`: bump this for every build.
 - `build.py`: builds `dist/` and `index.preview.html` (both ignored by git). `ship.sh` runs it, tests, and copies `dist/` into the root.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **142 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
+- `tests/run.js`: the test pack, **150 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v147: tighter Day screen + Eat/Train in the tab row
+- **Header:** streak | COACH | profile + settings, so COACH is dead centre. The Eat/Train switch now sits at the start of the tab row (`#nav-row`, left of Day/Week/Data or Workout/History/Exercises). Same ids, so `setMode` and the tests work unchanged.
+- **Day screen, option B from the designs page** (about 25% shorter, 3.9 → 3.0 screens): "+ Add" sits beside each meal's total; food rows are one line (name, amount, kcal; brand under the name when there is one); protein/carbs/fat moved to the food's page (`#fd-macros` under the subtitle); slimmer chips, date bar and "Add a supplement"; body systems in 3 columns without the "x of y nutrients" line; tighter water cards. All CSS is scoped to `#view-day` at the end of `04-redesign-v120.css`.
+- Tests: new `tidy` suite (8 checks).
 
 ## v146: Sync with Muse covers everything
 - **Standing rule:** everything in COACH must be visible to and editable by Muse. Any new feature's saved data goes into the sync (store keys sync automatically if they start with `coach`/`calorie`; anything needing structure gets its own part plus an `insights` entry). Update `_source/COACH_SYNC.md` with it.

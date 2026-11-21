@@ -900,6 +900,9 @@ function openFoodDetail(idx){
   document.getElementById('fd-sub').textContent =
     unitPart + (grams > 0 && !e.perItem ? round2(grams) + (entryBasis(e) === 'ml' ? ' ml' : ' g') + ' \u00b7 ' : '') +
     fmt0(e.kcal || 0) + ' kcal \u00b7 ' + (e.meal || 'Snack');
+  // v147: the Day rows no longer show protein, carbs and fat, so the food's page does.
+  const fdMac = document.getElementById('fd-macros');
+  if(fdMac) fdMac.textContent = 'Protein ' + fmt0(e.protein || 0) + 'g \u00b7 Carbs ' + fmt0(e.carbs || 0) + 'g \u00b7 Fat ' + fmt0(e.fat || 0) + 'g';
 
   renderFoodSystems(food, 'fd-sys');
   try{ renderHydDetail(e); }catch(err){}

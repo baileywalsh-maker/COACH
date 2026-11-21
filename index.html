@@ -2369,6 +2369,40 @@
   .bc-read b{color:var(--t1);}
   .ont-card:not(.ds-folded) button.ds-top{padding-bottom:12px;}
   .dv-slide .bc-chart{margin-left:0; margin-right:0;}
+
+  /* ===== v147: tighter Day screen (option B) + Eat/Train moved into the tab row ===== */
+  /* Header: streak | COACH | profile + settings. The switch no longer crowds the right side. */
+  .nav-row{display:flex; gap:8px; align-items:stretch; margin-bottom:16px;}
+  .nav-row .view-tabs{flex:1 1 auto; margin-bottom:0;}
+  .nav-row .mode-sw{flex:0 0 auto; background:#14161b; border:1px solid var(--n3); border-radius:14px; padding:4px; gap:4px; margin:0;}
+  .nav-row .mode-b{width:40px; height:38px; border-radius:10px;}
+  /* 3: reminder chips, date bar, "Add a supplement" slimmer */
+  #view-day .tf-row{gap:6px; margin-bottom:10px;}
+  #view-day .tf-chip{height:28px; padding:0 10px; font-size:12.5px;}
+  #view-day .daynav{margin:0 0 8px; padding:0; min-height:0;}
+  #view-day .meal-add:not(.subtle){min-height:40px; height:40px;}
+  /* 1: "+ Add" sits beside each meal's total */
+  #view-day .meal-group{position:relative;}
+  #view-day .meal-group:not(.is-empty) .meal-head{padding:0 92px 6px 4px;}
+  #view-day .meal-card .meal-add.subtle{position:absolute; top:-3px; right:0; height:26px; min-height:26px; width:auto;
+    padding:0 10px; border:1px solid var(--n3); border-radius:9px; font-size:12.5px; background:var(--n1);}
+  /* 2 + 5: one line per food (brand still shows under the name when there is one) */
+  #view-day .meal-card .entry{padding:9px 14px; min-height:0;}
+  #view-day .entry .name{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:14.5px;}
+  #view-day .entry .brand-mini{font-size:12px; color:var(--t3); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  #view-day .entry .kcal{font-size:15px;}
+  /* 4 + 6: body systems in 3 small columns, no "x of y nutrients" line */
+  #view-day .sysgrid{grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;}
+  #view-day .sysc{padding:9px 10px; min-height:0;}
+  #view-day .sysc .ss{display:none;}
+  #view-day .sysc .si{font-size:16px; line-height:1; margin-bottom:4px;}
+  #view-day .sysc .sn{font-size:12px; line-height:1.2; min-height:29px;}
+  #view-day .sysc .sp{font-size:13px;}
+  /* 7: smaller water glasses, tighter water cards */
+  #view-day .water-card{padding:12px 14px;}
+  #view-day .wseg{height:24px; min-height:24px;}
+  #view-day .hyd-card{padding:10px 14px;}
+  .fd-sub.fd-mac{margin-top:2px;}
 </style>
 </head>
 <body>
@@ -2399,29 +2433,30 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
     </div>
     <h1 class="wordmark">COACH</h1>
     <div style="display:flex; gap:4px; align-items:center;">
-      <!-- v144: Eat / Train. Swaps every tab below; the header stays. -->
-      <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
-        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
-        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
-      </div>
       <button class="gear" id="profile-btn" aria-label="Profile"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></button>
       <button class="gear" id="target-btn" aria-label="Settings"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
     </div>
   </header>
 
+  <!-- v147: Eat / Train sits at the start of the tab row, so COACH stays centred in the header. -->
+  <div class="nav-row" id="nav-row">
+      <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
+        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
+        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
+      </div>
   <div class="view-tabs tr-tabs" id="tr-tabs" style="display:none;">
     <button class="view-tab active" data-tv="workout">Workout</button>
     <button class="view-tab" data-tv="history">History</button>
     <button class="view-tab" data-tv="exercises">Exercises</button>
   </div>
-  <!-- v144: everything for training lives in here. -->
-  <div id="view-train" style="display:none;"></div>
-
   <div class="view-tabs" id="eat-tabs">
     <button class="view-tab active" data-view="day">Day</button>
     <button class="view-tab" data-view="week">Week</button>
     <button class="view-tab" data-view="data">Data</button>
   </div>
+  </div>
+  <!-- v144: everything for training lives in here. -->
+  <div id="view-train" style="display:none;"></div>
 
   <!-- DAY VIEW -->
   <div id="view-day">
@@ -2954,6 +2989,7 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
     <div class="sheet-handle"></div>
     <h3 id="fd-name">Food</h3>
     <div class="fd-sub" id="fd-sub"></div>
+    <div class="fd-sub fd-mac" id="fd-macros"></div>
     <div class="fd-amt" id="fd-amt" style="display:none;">
       <div class="fd-amt-row">
         <button type="button" id="fd-amt-minus" aria-label="Less">&minus;</button>
@@ -3598,7 +3634,7 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
 </div>
 
 <script src="zxing.js" onerror="window.__zxingFailed=true"></script>
-<script>window.COACH_PACKETS = "packets.7b4a23dc1c.txt"; window.COACH_VERSION = "146";</script>
+<script>window.COACH_PACKETS = "packets.7b4a23dc1c.txt"; window.COACH_VERSION = "147";</script>
 <script src="foods.b6d8b98ca1.js"></script>
 <script>
 /* v117: bulk food data is kept as plain text in the blocks above and read here,
@@ -5117,7 +5153,8 @@ function renderDay(){
           '<button class="swipe-del" data-i="'+x.i+'" aria-label="Delete '+esc(x.e.name)+'">'+
           '<i class="ti ti-trash" aria-hidden="true"></i>Delete</button>'+
           '<div class="entry" data-edit="'+x.i+'"><div><div class="name">'+esc(shownName(x.e.name, x.e))+amountLabel(x.e)+'</div>'+
-          '<div class="macros-mini">'+(splitName(x.e.name, x.e).brand ? esc(splitName(x.e.name, x.e).brand)+' &middot; ' : '')+'P '+fmt0(x.e.protein||0)+'g &middot; C '+fmt0(x.e.carbs||0)+'g &middot; F '+fmt0(x.e.fat||0)+'g</div></div>'+
+          (splitName(x.e.name, x.e).brand ? '<div class="brand-mini">'+esc(splitName(x.e.name, x.e).brand)+'</div>' : '')+'</div>'+
+          // v147: one line per food. Protein, carbs and fat live on the food's own page (tap it).
           '<div class="right"><span class="kcal">'+fmtK(x.e.kcal)+'</span>'+
           '<i class="ti ti-chevron-left hint" aria-hidden="true"></i></div></div></div>'
         ).join('')
@@ -21356,6 +21393,9 @@ function openFoodDetail(idx){
   document.getElementById('fd-sub').textContent =
     unitPart + (grams > 0 && !e.perItem ? round2(grams) + (entryBasis(e) === 'ml' ? ' ml' : ' g') + ' \u00b7 ' : '') +
     fmt0(e.kcal || 0) + ' kcal \u00b7 ' + (e.meal || 'Snack');
+  // v147: the Day rows no longer show protein, carbs and fat, so the food's page does.
+  const fdMac = document.getElementById('fd-macros');
+  if(fdMac) fdMac.textContent = 'Protein ' + fmt0(e.protein || 0) + 'g \u00b7 Carbs ' + fmt0(e.carbs || 0) + 'g \u00b7 Fat ' + fmt0(e.fat || 0) + 'g';
 
   renderFoodSystems(food, 'fd-sys');
   try{ renderHydDetail(e); }catch(err){}

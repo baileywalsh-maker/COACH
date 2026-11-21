@@ -963,6 +963,49 @@ const TESTS = {
     check('start-up: loading screen waits for the warm-up, then goes (under 4 s)', Date.now() - t0 < 4000 && (warm.done === warm.of || !warm.covered), (Date.now() - t0) + ' ms, ' + JSON.stringify(warm));
     check('v137: no errors', !p.errs.length, p.errs.join(' | '));
     s.close(); await p.context().close();
+  },
+  // v147: tighter Day screen (option B) and Eat / Train moved into the tab row.
+  async tidy(b){
+    const s = serve(NEW);
+    let p = await page(b, s.url);
+    await p.evaluate(SEED);
+    await p.evaluate(()=>{ const d = new Date(); const es = loadEntries(d); es.push({name: 'Greek yogurt', brand: 'Fage', grams: 170, kcal: 163, protein: 17, carbs: 6, fat: 8, meal: 'Snack'}); saveEntries(d, es); });
+    await p.reload(); await p.waitForTimeout(3000);
+    const h = await p.evaluate(()=>{ const w = document.querySelector('header .wordmark').getBoundingClientRect(), hd = document.querySelector('header').getBoundingClientRect();
+      return {off: Math.abs((w.left + w.width / 2) - (hd.left + hd.width / 2)), swInHeader: !!document.querySelector('header #mode-sw'), swInRow: !!document.querySelector('#nav-row #mode-sw'),
+        rowTop: Math.abs(document.getElementById('mode-sw').getBoundingClientRect().top - document.getElementById('eat-tabs').getBoundingClientRect().top)}; });
+    check('v147 header: COACH sits in the centre, switch is in the tab row', h.off < 2 && !h.swInHeader && h.swInRow && h.rowTop < 2, JSON.stringify(h));
+    await p.evaluate(()=>document.querySelectorAll('.sheet-backdrop.open').forEach(x => { try{ closeSheet(x.id); }catch(e){} })); await p.waitForTimeout(400);
+    await p.click('#mode-sw .mode-b[data-mode=train]'); await p.waitForTimeout(400);
+    const tr = await p.evaluate(()=>({tabs: getComputedStyle(document.getElementById('tr-tabs')).display !== 'none', eat: getComputedStyle(document.getElementById('eat-tabs')).display === 'none',
+      view: document.getElementById('view-train').style.display === '', off: (()=>{ const w = document.querySelector('header .wordmark').getBoundingClientRect(); return Math.abs(w.left + w.width / 2 - document.querySelector('header').getBoundingClientRect().left - document.querySelector('header').getBoundingClientRect().width / 2); })(),
+      fits: document.documentElement.scrollWidth <= innerWidth}));
+    await p.click('#mode-sw .mode-b[data-mode=eat]'); await p.waitForTimeout(400);
+    const back = await p.evaluate(()=>document.getElementById('view-day').style.display === '' && getComputedStyle(document.getElementById('eat-tabs')).display !== 'none');
+    check('v147 switch: Train and back to Eat from the tab row, no sideways scroll', tr.tabs && tr.eat && tr.view && tr.off < 2 && tr.fits && back, JSON.stringify(tr) + ' back=' + back);
+    const m = await p.evaluate(()=>[...document.querySelectorAll('#view-day .meal-group[data-mealgroup]:not(.is-empty)')].map(g => { const a = g.querySelector('.meal-add').getBoundingClientRect(), hd = g.querySelector('.meal-head').getBoundingClientRect(), k = g.querySelector('.mkcal').getBoundingClientRect();
+      return {inHead: a.top >= hd.top - 6 && a.bottom <= hd.bottom + 6, clear: a.left >= k.right}; }));
+    check('v147 meals: "+ Add" sits in each meal header, clear of the kcal', m.length >= 3 && m.every(x => x.inHead && x.clear), JSON.stringify(m));
+    await p.evaluate(()=>{ const g = [...document.querySelectorAll('#view-day .meal-group:not(.is-empty)')].find(x => x.dataset.mealgroup === 'Lunch'); g.querySelector('.meal-add').click(); });
+    await p.waitForTimeout(500);
+    const addOpen = await p.evaluate(()=>document.getElementById('add-backdrop').classList.contains('open'));
+    await p.evaluate(()=>{ try{ closeSheet('add-backdrop'); }catch(e){} }); await p.waitForTimeout(400);
+    check('v147 meals: the header "+ Add" opens the add sheet', addOpen);
+    const r = await p.evaluate(()=>{ const rows = [...document.querySelectorAll('#view-day .meal-card .entry')];
+      const plain = rows.filter(e => !e.querySelector('.brand-mini'));
+      const fage = rows.find(e => /Greek yogurt/.test(e.textContent));
+      return {n: rows.length, tall: Math.max(...plain.map(e => e.getBoundingClientRect().height)), macros: rows.some(e => /P \d+g/.test(e.textContent)),
+        brand: fage && fage.querySelector('.brand-mini') ? fage.querySelector('.brand-mini').textContent : null}; });
+    check('v147 food rows: one line each, no macros on the row, brand still shown', r.n > 5 && r.tall < 46 && !r.macros && r.brand === 'Fage', JSON.stringify(r));
+    await p.evaluate(()=>document.querySelector('#view-day .meal-card .entry').click()); await p.waitForTimeout(800);
+    const mac = await p.evaluate(()=>{ const e = document.getElementById('fd-macros'); return {t: e ? e.textContent : '', open: document.getElementById('fooddet-backdrop').classList.contains('open')}; });
+    await p.evaluate(()=>{ try{ closeSheet('fooddet-backdrop'); }catch(e){} }); await p.waitForTimeout(300);
+    check('v147 food rows: tapping a food shows its protein, carbs and fat', mac.open && /Protein \d+g . Carbs \d+g . Fat \d+g/.test(mac.t), JSON.stringify(mac));
+    const g = await p.evaluate(()=>{ const c = [...document.querySelectorAll('#view-day .sysgrid .sysc')]; return {n: c.length, cols: new Set(c.map(x => Math.round(x.getBoundingClientRect().left))).size,
+      ss: c.some(x => x.querySelector('.ss') && getComputedStyle(x.querySelector('.ss')).display !== 'none'), fits: document.documentElement.scrollWidth <= innerWidth}; });
+    check('v147 body systems: 3 columns, no "nutrients visible" line, nothing spills sideways', g.n >= 12 && g.cols === 3 && !g.ss && g.fits, JSON.stringify(g));
+    check('v147: no errors', !p.errs.length, p.errs.join(' | '));
+    s.close(); await p.context().close();
   }
 };
 

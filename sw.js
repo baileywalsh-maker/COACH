@@ -1,4 +1,4 @@
-const CACHE = 'coach-v146';
+const CACHE = 'coach-v147';
 // v132: the food tables and the UK packets sit in their own cache, which is
 // kept from one app version to the next. Their file names change only when
 // their contents do, so an app update no longer downloads ~7 MB again.

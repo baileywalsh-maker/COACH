@@ -368,7 +368,8 @@ function renderDay(){
           '<button class="swipe-del" data-i="'+x.i+'" aria-label="Delete '+esc(x.e.name)+'">'+
           '<i class="ti ti-trash" aria-hidden="true"></i>Delete</button>'+
           '<div class="entry" data-edit="'+x.i+'"><div><div class="name">'+esc(shownName(x.e.name, x.e))+amountLabel(x.e)+'</div>'+
-          '<div class="macros-mini">'+(splitName(x.e.name, x.e).brand ? esc(splitName(x.e.name, x.e).brand)+' &middot; ' : '')+'P '+fmt0(x.e.protein||0)+'g &middot; C '+fmt0(x.e.carbs||0)+'g &middot; F '+fmt0(x.e.fat||0)+'g</div></div>'+
+          (splitName(x.e.name, x.e).brand ? '<div class="brand-mini">'+esc(splitName(x.e.name, x.e).brand)+'</div>' : '')+'</div>'+
+          // v147: one line per food. Protein, carbs and fat live on the food's own page (tap it).
           '<div class="right"><span class="kcal">'+fmtK(x.e.kcal)+'</span>'+
           '<i class="ti ti-chevron-left hint" aria-hidden="true"></i></div></div></div>'
         ).join('')

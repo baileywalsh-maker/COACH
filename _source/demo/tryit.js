@@ -1,4 +1,4 @@
-// "Try v146" buttons for the demo. Edit per version.
+// "Try v147" buttons for the demo. Edit per version.
 (function(){
   const closeAll = () => ['add-backdrop','review-backdrop','weighin-backdrop','tr-pick-backdrop','tr-ex-backdrop','tr-fin-backdrop','tr-rt-backdrop','tr-menu-backdrop'].forEach(id => { try{ closeSheet(id); }catch(e){} });
   // Sample training so the demo has history, ranks and routines to show.
@@ -24,6 +24,9 @@
   }
   const go = fn => () => { closeAll(); seed(); setTimeout(fn, 120); };
   window.TRYIT = [
+    ['Food log', () => { closeAll(); setMode('eat'); const el = document.querySelector('#view-day .meal-group'); if(el) window.scrollTo({top: el.getBoundingClientRect().top + scrollY - 90, behavior: 'smooth'}); }],
+    ['Tap a food', () => { closeAll(); setMode('eat'); const e = document.querySelector('#view-day .meal-card .entry'); if(e) openFoodDetail(Number(e.dataset.edit)); }],
+    ['Body systems', () => { closeAll(); setMode('eat'); const el = document.querySelector('#view-day .sysgrid'); if(el) window.scrollTo({top: el.getBoundingClientRect().top + scrollY - 140, behavior: 'smooth'}); }],
     ['Eat / Train switch', go(() => setMode(trMode === 'train' ? 'eat' : 'train'))],
     ['Start "Push"', go(() => { setMode('train'); if(!trActive()) trStart('r1'); })],
     ['Log a set', go(() => { setMode('train'); if(!trActive()) trStart('r1'); const a = trActive(); const s = a.ex[0].sets.find(x => !x.done); if(s){ s.kg = 92.5; s.reps = 8; trSaveActive(a); trRefresh(); trToggleSet('0:' + a.ex[0].sets.indexOf(s)); } window.scrollTo({top: 260, behavior: 'smooth'}); })],
