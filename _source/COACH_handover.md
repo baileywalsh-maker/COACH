@@ -7,7 +7,7 @@ This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
-Current version: **v147**.
+Current version: **v148**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -45,6 +45,9 @@ Current version: **v147**.
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v148: Eat | Train on its own row
+- The switch moved off the tab row (looked crammed) onto its own full-width row above the tabs, with words: "Eat" and "Train" (option 1 on the designs page). Picked by Bailey from 3 mocks (own row, pill under COACH, big words).
 
 ## v147: tighter Day screen + Eat/Train in the tab row
 - **Header:** streak | COACH | profile + settings, so COACH is dead centre. The Eat/Train switch now sits at the start of the tab row (`#nav-row`, left of Day/Week/Data or Workout/History/Exercises). Same ids, so `setMode` and the tests work unchanged.

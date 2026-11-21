@@ -33,11 +33,11 @@ window.addEventListener('error', function(){ setTimeout(window.hideBootSplash, 3
     </div>
   </header>
 
-  <!-- v147: Eat / Train sits at the start of the tab row, so COACH stays centred in the header. -->
+  <!-- v148: Eat / Train on its own full-width row above the tabs, so COACH stays centred in the header. -->
   <div class="nav-row" id="nav-row">
       <div class="mode-sw" id="mode-sw" role="tablist" aria-label="Eat or train">
-        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg></button>
-        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg></button>
+        <button class="mode-b on" data-mode="eat" aria-label="Eat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.2 1.4-3 4.2-3 7v3h3"/></svg><span class="ml">Eat</span></button>
+        <button class="mode-b" data-mode="train" aria-label="Train"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M3 9v6M18 7v10M21 9v6M6 12h12"/></svg><span class="ml">Train</span></button>
       </div>
   <div class="view-tabs tr-tabs" id="tr-tabs" style="display:none;">
     <button class="view-tab active" data-tv="workout">Workout</button>

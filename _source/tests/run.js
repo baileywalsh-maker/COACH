@@ -973,8 +973,10 @@ const TESTS = {
     await p.reload(); await p.waitForTimeout(3000);
     const h = await p.evaluate(()=>{ const w = document.querySelector('header .wordmark').getBoundingClientRect(), hd = document.querySelector('header').getBoundingClientRect();
       return {off: Math.abs((w.left + w.width / 2) - (hd.left + hd.width / 2)), swInHeader: !!document.querySelector('header #mode-sw'), swInRow: !!document.querySelector('#nav-row #mode-sw'),
-        rowTop: Math.abs(document.getElementById('mode-sw').getBoundingClientRect().top - document.getElementById('eat-tabs').getBoundingClientRect().top)}; });
-    check('v147 header: COACH sits in the centre, switch is in the tab row', h.off < 2 && !h.swInHeader && h.swInRow && h.rowTop < 2, JSON.stringify(h));
+        above: document.getElementById('mode-sw').getBoundingClientRect().bottom <= document.getElementById('eat-tabs').getBoundingClientRect().top,
+        full: Math.abs(document.getElementById('mode-sw').getBoundingClientRect().width - document.getElementById('eat-tabs').getBoundingClientRect().width) < 2,
+        words: [...document.querySelectorAll('#mode-sw .mode-b')].map(b => b.textContent.trim()).join('|')}; });
+    check('v148 header: COACH centred; Eat | Train on its own full-width row above the tabs', h.off < 2 && !h.swInHeader && h.swInRow && h.above && h.full && h.words === 'Eat|Train', JSON.stringify(h));
     await p.evaluate(()=>document.querySelectorAll('.sheet-backdrop.open').forEach(x => { try{ closeSheet(x.id); }catch(e){} })); await p.waitForTimeout(400);
     await p.click('#mode-sw .mode-b[data-mode=train]'); await p.waitForTimeout(400);
     const tr = await p.evaluate(()=>({tabs: getComputedStyle(document.getElementById('tr-tabs')).display !== 'none', eat: getComputedStyle(document.getElementById('eat-tabs')).display === 'none',

@@ -570,10 +570,11 @@
 
   /* ===== v147: tighter Day screen (option B) + Eat/Train moved into the tab row ===== */
   /* Header: streak | COACH | profile + settings. The switch no longer crowds the right side. */
-  .nav-row{display:flex; gap:8px; align-items:stretch; margin-bottom:16px;}
-  .nav-row .view-tabs{flex:1 1 auto; margin-bottom:0;}
-  .nav-row .mode-sw{flex:0 0 auto; background:#14161b; border:1px solid var(--n3); border-radius:14px; padding:4px; gap:4px; margin:0;}
-  .nav-row .mode-b{width:40px; height:38px; border-radius:10px;}
+  /* v148: Eat | Train on its own full-width row, tabs underneath. */
+  .nav-row{display:flex; flex-direction:column; gap:10px; margin-bottom:16px;}
+  .nav-row .view-tabs{margin-bottom:0;}
+  .nav-row .mode-sw{display:grid; grid-template-columns:1fr 1fr; width:100%; background:#14161b; border:1px solid var(--n3); border-radius:14px; padding:4px; gap:4px; margin:0;}
+  .nav-row .mode-b{width:auto; height:40px; border-radius:10px; gap:8px; font-size:15px; font-weight:700;}
   /* 3: reminder chips, date bar, "Add a supplement" slimmer */
   #view-day .tf-row{gap:6px; margin-bottom:10px;}
   #view-day .tf-chip{height:28px; padding:0 10px; font-size:12.5px;}
