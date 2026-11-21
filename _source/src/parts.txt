@@ -57,4 +57,5 @@ js/43-food-library-and-startup.js
 js/44-muse-sync.js
 js/44-train.js
 js/44b-hevy-import.js
+js/44c-train-plus.js
 99-tail.html

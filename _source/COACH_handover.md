@@ -7,7 +7,7 @@ This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
-Current version: **v150**.
+Current version: **v151**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -41,10 +41,23 @@ Current version: **v150**.
 - `VERSION`: bump this for every build.
 - `build.py`: builds `dist/` and `index.preview.html` (both ignored by git). `ship.sh` runs it, tests, and copies `dist/` into the root.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **163 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
+- `tests/run.js`: the test pack, **174 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v151: routines rebuilt (`src/js/44c-train-plus.js`, styles at the end of `03b-train.css`)
+- **Bailey's training rules:** trains to failure, short sessions (25–50 min), 3–5 sessions a week, lean bulk 75 → 80 kg. He is making a leg day himself.
+- **Routine page** (tap a routine): score out of 10 (Volume 35: weekly sets per main muscle vs 10; Progress 25: last 3 sessions per lift; Time 15: 25–50 min; Reps 15: 5–30; Rest 10: 90 s+ big lifts, 60 s+ small). Under 8 shows tips with one-tap fixes (+1 set, add a suggested exercise from `TR_SUGGEST`, rest 2 min, −1 set when over 55 min). Score pill on each routine card.
+- **Targets** (`trTarget`): judged on set 1 because he trains to failure: 12+ reps → add a step (2.5 kg, 2 kg dumbbells); under 6, or the lift trending down → a step lighter; otherwise beat set 1's reps. Shown on the routine page and in the live workout under each exercise name.
+- **Editor:** hold ⋮⋮ (or long-press the card) and drag to reorder (`trDragWire`), sets −/+, rest 60/90/120/180.
+- **Gyms** (`coachtrain:gyms`): gym chip on the Workout tab (switch, rename, add). Machines/cables/smith use only this gym's sets (or the best you set) for bests, previous numbers, trophies and ranks. First time per gym for machines, once ever for free weights: one "Check your bests" sheet (Same / My best here / Find it today). Exercise page has "Change" to redo it. Workouts save `gym`.
+- **Pictures:** Free Exercise DB (public domain) picture id in `EXERCISES.json` column 9 (703 of 888); start/end frames loop on the exercise page, thumbnails everywhere; how-to steps fetched from `raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/<id>.json`. Hevy's own videos can't be copied.
+- **Muscle map fix:** a muscle is ranked on the lifts that mainly train it; helper lifts only when there's none (triceps were dragged to "average" by presses).
+- **Your week:** sets per muscle across routines on the Workout tab.
+- **Finish screen:** session score /10, Next time, vs last time, Your balance.
+- Research used: 10–20 weekly sets (Schoenfeld 2017, Pelland 2024), rest past 90 s adds nothing (Singer 2024), 1–3 RIR or failure, lean bulk 0.25–0.5% bodyweight a week (Iraki 2019).
+- Tests: `routines` suite (11 checks).
 
 ## v150: Hevy import + library fix
 - **Import from Hevy** (Train > History, card at the top): reads Hevy's own export file (Hevy: Settings > Export & Import Data > Export workouts, a CSV) or Hevy API JSON. All on the phone; the public repo never sees workout data. Code: `src/js/44b-hevy-import.js`.
@@ -144,7 +157,7 @@ Current version: **v150**.
 
 ## Open items
 1. **Hevy import:** built in v150. Bailey runs it once from Train > History with Hevy's exported file.
-2. **Workout feedback from COACH:** mock on COACH designs (21 Nov): ① Next time (weight to use), ② vs last time (up/same/down), ③ Your balance (weakest group, untrained 7+ days). Waiting for Bailey's pick.
+2. **Workout feedback:** built in v151 (all three plus a session score).
 3. **Strength muscle map is general, not daily** (Bailey, 21 Nov): it already lives in Train → Exercises (weakest groups over all time). The old "light up today's muscles on the Day card" idea is dropped.
 4. About 1,880 packets still have no brand anywhere (not on Open Food Facts either).
 5. KFC cup sizes: not published by KFC, so they stay "size unknown".

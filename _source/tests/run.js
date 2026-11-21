@@ -1089,6 +1089,75 @@ const TESTS = {
     check('v150 Hevy: card in Train > History; a wrong file is refused', ui.card && ui.file && /Hevy/.test(ui.txt) && bad === 'error', JSON.stringify(ui) + ' bad=' + bad);
     check('v150: no errors', !p.errs.length, p.errs.join(' | '));
     s.close(); await p.context().close();
+  },
+  // v151: routines rebuilt - gyms, scores, targets, drag, pictures, feedback (made-up data).
+  async routines(b){
+    const s = serve(NEW); const p = await page(b, s.url, {wait: 2500});
+    await p.context().route(/raw\.githubusercontent\.com/, r => r.fulfill({status: 404, body: ''}));
+    await p.evaluate(()=>{
+      document.querySelectorAll('.sheet-backdrop.open').forEach(x => { try{ closeSheet(x.id); }catch(e){} });
+      const day = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+      const S = (kg, reps) => ({t: 'n', kg, reps, done: true});
+      const W = (n, ex, gym) => { const d = day(n), st = asDate(d).getTime() + 15 * 3600e3, id = 't' + n;
+        trSave(TR_W + id, {id, name: 'T', d, start: st, end: st + 1800e3, ex: ex.map(([nm, sets]) => ({n: nm, sets})), gym});
+        return {id, d, s: st, n: 'T', v: 0, k: 0, m: 30, x: ex.map(e => e[0])}; };
+      trSave(TR_IDX, [
+        W(40, [['Triceps Rope Pushdown', [S(59, 5)]], ['Bench Press (Barbell)', [S(60, 8)]]]),          // old gym (no gym id)
+        W(20, [['Preacher Curl (Barbell)', [S(25, 8), S(25, 7)]]], 'g1'),
+        W(10, [['Preacher Curl (Barbell)', [S(25, 10), S(25, 9)]], ['Triceps Pushdown', [S(30, 12)]]], 'g1'),
+        W(3, [['Preacher Curl (Barbell)', [S(27.5, 12), S(27.5, 10)]], ['Incline Curl (Dumbbell)', [S(12, 5)]]], 'g1')]);
+      trSave(TR_GYM, {cur: 'g1', list: [{id: 'g1', name: 'New gym'}], best: {}, asked: {}});
+      trSave(TR_RT, [{id: 'r1', name: 'Arms', ex: [{n: 'Preacher Curl (Barbell)', sets: 3, rest: 120}, {n: 'Incline Curl (Dumbbell)', sets: 2, rest: 120}, {n: 'Triceps Rope Pushdown', sets: 2, rest: 45}]}]);
+      TR_LIB = null; trUsageCache = null;
+    });
+    const g = await p.evaluate(()=>({
+      img: trImgId('Bench Press (Barbell)'), thumb: /raw\.githubusercontent\.com/.test(trThumb('Bench Press (Barbell)')),
+      ropeNeeds: trGymNeeds('Triceps Rope Pushdown'), ropeBest: trBests('Triceps Rope Pushdown').e1,
+      benchNeeds: trGymNeeds('Bench Press (Barbell)'), benchBest: Math.round(trBests('Bench Press (Barbell)').e1),
+      preacherNeeds: trGymNeeds('Preacher Curl (Barbell)')}));
+    check('v151 pictures: library exercises carry a Free Exercise DB picture', g.img === 'Barbell_Bench_Press_-_Medium_Grip' && g.thumb, JSON.stringify(g));
+    check('v151 gyms: a cable lift from another gym asks again and has no best here; free weights keep their history',
+      g.ropeNeeds && g.ropeBest === 0 && g.benchNeeds && g.benchBest === 76 && g.preacherNeeds, JSON.stringify(g));
+    const g2 = await p.evaluate(()=>{ const gy = trGyms(); gy.best.g1 = {'Triceps Rope Pushdown': {how: 'set', kg: 25, reps: 7, at: 0}}; gy.best.all = {'Bench Press (Barbell)': {how: 'same', kg: 60, reps: 8, at: Date.now()}}; gy.asked['Bench Press (Barbell)'] = 1; trGymSave(gy);
+      return {ropeNeeds: trGymNeeds('Triceps Rope Pushdown'), rope: Math.round(trBests('Triceps Rope Pushdown').e1 * 10) / 10, prev: trPreviousGym('Triceps Rope Pushdown').map(s => s.kg + 'x' + s.reps).join(),
+        benchNeeds: trGymNeeds('Bench Press (Barbell)'), bench: Math.round(trBests('Bench Press (Barbell)').e1)}; });
+    check('v151 gyms: "my best here" sets the best, previous numbers and rank for that gym', !g2.ropeNeeds && g2.rope === 30.8 && g2.prev === '25x7' && !g2.benchNeeds && g2.bench === 76, JSON.stringify(g2));
+    const t = await p.evaluate(()=>({pre: trTarget('Preacher Curl (Barbell)', 3), inc: trTarget('Incline Curl (Dumbbell)', 2)}));
+    check('v151 targets: 12 reps on set 1 → heavier; under 6 → lighter', t.pre.kg === 30 && /add 2\.5 kg/.test(t.pre.hint) && t.inc.kg === 10, JSON.stringify(t));
+    const m = await p.evaluate(()=>{ const S = trMuscleScores(); const r = S.Triceps; return r ? {pct: r.pct, main: r.lifts.filter(l => l.main).map(l => l.r.pct)} : null; });
+    check('v151 muscle map: a muscle is ranked on the lifts that mainly train it', m && m.main.length && Math.abs(m.pct - Math.round(m.main.reduce((a, b) => a + b, 0) / m.main.length)) <= 1, JSON.stringify(m));
+    const sc = await p.evaluate(()=>{ const r = trJSON(TR_RT, [])[0]; const a = trRtScore(r); const tip = a.tips.find(x => x.a && x.a.k === 'set');
+      const rest = a.tips.find(x => x.a && x.a.k === 'rest');
+      if(tip) trRtApply('r1', tip.a); if(rest) trRtApply('r1', rest.a); trRtApply('r1', {k: 'add', n: 'Overhead Triceps Extension (Cable)'});
+      const r2 = trJSON(TR_RT, [])[0]; return {score: a.score, n: a.tips.length, tip: tip && tip.a, sets: r2.ex.map(e => e.sets), rest: r2.ex[2].rest, last: r2.ex[r2.ex.length - 1].n, after: trRtScore(r2).score}; });
+    check('v151 routine score: out of 10, tips with one-tap fixes (add a set, fix rest, add an exercise)',
+      sc.score > 0 && sc.score <= 10 && sc.n >= 2 && sc.tip && sc.rest === 120 && sc.last === 'Overhead Triceps Extension (Cable)' && sc.after >= sc.score, JSON.stringify(sc));
+    // Routine page and the drag to reorder.
+    await p.evaluate(()=>{ setMode('train'); trShow('workout'); }); await p.waitForTimeout(300);
+    const list = await p.evaluate(()=>({pill: !!document.querySelector('.rx-pill'), week: /YOUR WEEK/.test(document.getElementById('view-train').textContent), gym: !!document.getElementById('tr-gym')}));
+    await p.evaluate(()=>trOpenRoutine('r1')); await p.waitForTimeout(500);
+    const pg = await p.evaluate(()=>({ring: !!document.querySelector('#tr-rt-body .rx-ring'), targets: document.querySelectorAll('#tr-rt-body .rx-ex').length, tips: document.querySelectorAll('#tr-rt-body .rx-fix').length}));
+    check('v151 routine page: score on the list, week card, gym chip; page has ring, targets and tips', list.pill && list.week && list.gym && pg.ring && pg.targets === 4 && pg.tips >= 1, JSON.stringify([list, pg]));
+    await p.evaluate(()=>trEditRoutine('r1')); await p.waitForTimeout(500);
+    const gb = await (await p.$('#rx-list [data-grip="2"]')).boundingBox();
+    await p.mouse.move(gb.x + gb.width / 2, gb.y + gb.height / 2); await p.mouse.down();
+    await p.mouse.move(gb.x + gb.width / 2, gb.y - 60, {steps: 8}); await p.mouse.move(gb.x + gb.width / 2, gb.y - 150, {steps: 8}); await p.mouse.up();
+    await p.waitForTimeout(300);
+    await p.evaluate(()=>document.getElementById('tr-rt-save').click()); await p.waitForTimeout(400);
+    const order = await p.evaluate(()=>trJSON(TR_RT, [])[0].ex.map(e => e.n));
+    check('v151 editor: hold and drag reorders, and Save keeps the order', order[0] === 'Triceps Rope Pushdown' && order.length === 4, JSON.stringify(order));
+    // First-time sheet on start, then finish with feedback.
+    await p.evaluate(()=>{ closeSheet('tr-rt-backdrop'); const gy = trGyms(); gy.best = {}; gy.asked = {}; trGymSave(gy); }); await p.waitForTimeout(400);
+    await p.evaluate(()=>trStart('r1')); await p.waitForTimeout(900);
+    const ask = await p.evaluate(()=>({open: document.getElementById('tr-gym-backdrop').classList.contains('open'), rows: document.querySelectorAll('#tr-gym-body .rx-ask').length, gym: trActive().gym}));
+    await p.evaluate(()=>document.getElementById('tr-gym-ok').click()); await p.waitForTimeout(500);
+    const after = await p.evaluate(()=>({again: trGymNeeds('Bench Press (Barbell)') === trGymNeeds('Bench Press (Barbell)'), rope: trGymNeeds('Triceps Rope Pushdown'), preacher: trGymNeeds('Preacher Curl (Barbell)')}));
+    check('v151 first time: one sheet lists the lifts to confirm; answered ones are not asked again', ask.open && ask.rows >= 2 && ask.gym === 'g1' && !after.rope && !after.preacher, JSON.stringify([ask, after]));
+    const fin = await p.evaluate(()=>{ const a = trActive(); a.ex.forEach(e => e.sets.forEach(s => { s.kg = 20; s.reps = 10; s.done = true; })); trSaveActive(a); trFinish();
+      const t = document.getElementById('tr-fin-body').textContent; const w = trLoadW(a.id); return {score: /Session score/.test(t), next: /NEXT TIME/.test(t), vs: /VS LAST TIME/.test(t), gym: w.gym}; });
+    check('v151 feedback: session score, next time and vs last time on the finish screen; workout keeps its gym', fin.score && fin.next && fin.vs && fin.gym === 'g1', JSON.stringify(fin));
+    check('v151: no errors', !p.errs.length, p.errs.join(' | '));
+    s.close(); await p.context().close();
   }
 };
 

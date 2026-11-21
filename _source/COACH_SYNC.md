@@ -42,6 +42,12 @@ Workouts imported from Hevy look like any other workout, plus `src: "hevy"` and,
 `note` (the workout's own note). Ids start with `hevy`. Exercises COACH didn't know are added to
 `coachtrain:custom` (in `store`). Muse can read and edit them like any workout.
 
+## Gyms, routine scores (v151)
+- `coachtrain:gyms` (in `store`): `{cur, list:[{id,name}], best:{<gymId or "all">:{<exercise>:{how:"same"|"set"|"today", kg, reps, at, d}}}, asked:{<exercise>:1}}`.
+  Machines, cables and smith machines keep bests per gym (`best[gymId]`); free weights use `best.all`.
+- Every workout now has `gym` (the gym id it was done at). Hevy imports and older workouts have none.
+- Routine exercises may have `rest` (seconds). Routine scores, targets and feedback are worked out, not saved.
+
 ### Muse's app changes
 - (none yet)
 

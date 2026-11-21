@@ -36,7 +36,7 @@ function trLib(){
   const rows = TR_ROWS;
   const custom = trJSON(TR_CUSTOM, []);
   TR_LIB = rows.map((r, i) => ({n: r[0], e: r[1], p: r[2], s: r[3] ? r[3].split(',') : [], t: r[4] || 'w', sl: r[5] || '',
-                                al: r[6] ? r[6].split('|') : [], k: r[7] || '', core: i < 180}));
+                                al: r[6] ? r[6].split('|') : [], k: r[7] || '', img: r[8] || '', core: i < 180}));
   custom.forEach(c => TR_LIB.push(Object.assign({s: [], al: [], sl: '', k: '', core: true, mine: true}, c)));
   TR_BY = new Map(TR_LIB.map(x => [x.n, x]));
   TR_LIB.forEach(trIndexEx);
@@ -134,7 +134,7 @@ function trHistoryOf(name){
   for(let i = idx.length - 1; i >= 0; i--){
     if(idx[i].x && idx[i].x.indexOf(name) < 0) continue;
     const w = trLoadW(idx[i].id); if(!w) continue;
-    (w.ex || []).forEach(e => { if(e.n === name){ const sets = e.sets.filter(s => s.done && s.t !== 'w'); if(sets.length) out.push({id: w.id, d: w.d, start: w.start, sets}); } });
+    (w.ex || []).forEach(e => { if(e.n === name){ const sets = e.sets.filter(s => s.done && s.t !== 'w'); if(sets.length) out.push({id: w.id, d: w.d, start: w.start, gym: w.gym, sets}); } });
   }
   return out;
 }
@@ -166,7 +166,8 @@ function trWorkoutStats(w){
 }
 function trBests(name, excludeId){
   const b = {kg: 0, e1: 0, vol: 0, reps: 0, sec: 0, km: 0};
-  trHistoryOf(name).forEach(h => { if(h.id === excludeId) return; h.sets.forEach(s => {
+  // v151: machines count this gym only; a confirmed best counts too.
+  trGymHistory(name, excludeId).forEach(h => { h.sets.forEach(s => {
     b.kg = Math.max(b.kg, Number(s.kg) || 0); b.e1 = Math.max(b.e1, trE1rm(s.kg, s.reps));
     b.vol = Math.max(b.vol, (Number(s.kg) || 0) * (Number(s.reps) || 0)); b.reps = Math.max(b.reps, Number(s.reps) || 0);
     b.sec = Math.max(b.sec, Number(s.sec) || 0); b.km = Math.max(b.km, Number(s.km) || 0); }); });
@@ -306,14 +307,17 @@ function trRenderWorkout(box){
   if(a) return trRenderLive(box, a);
   clearInterval(trTick); trTick = null;
   const rts = trJSON(TR_RT, []);
-  let h = '<button class="tr-big" id="tr-start">' + TR_I.plus + ' Start empty workout</button>';
+  let h = '<button class="rx-gymchip" id="tr-gym">📍 ' + esc(trGymName()) + ' <span>›</span></button>' +
+    '<button class="tr-big" id="tr-start">' + TR_I.plus + ' Start empty workout</button>';
   h += '<div class="section-title">ROUTINES</div>';
   if(!rts.length) h += '<div class="tr-mini" style="margin:-4px 0 10px;">Save a workout as a routine, or make one here.</div>';
   rts.forEach(r => {
-    h += '<div class="tr-rt"><div class="tr-rt-h"><span data-rtedit="' + r.id + '">' + esc(r.name) + '</span><button class="tr-pill" data-rtstart="' + r.id + '">Start</button></div>' +
+    const sc = trRtScore(r);
+    h += '<div class="tr-rt"><div class="tr-rt-h"><span data-rtedit="' + r.id + '">' + esc(r.name) + (sc ? ' <i class="rx-pill" style="color:' + trScoreCol(sc.score) + '">' + sc.score.toFixed(1) + '</i>' : '') + '</span><button class="tr-pill" data-rtstart="' + r.id + '">Start</button></div>' +
       '<div class="tr-rt-s" data-rtedit="' + r.id + '">' + esc(r.ex.map(e => e.n.replace(/ \((Barbell|Dumbbell|Machine|Cable)\)$/, '')).join(', ') || 'No exercises yet') + '</div></div>';
   });
   h += '<button class="tr-ghost" id="tr-newrt">' + TR_I.plus + ' New routine</button>';
+  h += trWeekCardHTML();
   // This week, Monday to Sunday.
   const today = new Date(); const mon = addDays(today, -((today.getDay() + 6) % 7));
   const idx = trIdx(); let n = 0, vol = 0, mins = 0;
@@ -334,14 +338,15 @@ function trRenderWorkout(box){
   box.querySelector('#tr-start').onclick = () => trStart(null);
   box.querySelector('#tr-newrt').onclick = () => trEditRoutine(null);
   box.querySelectorAll('[data-rtstart]').forEach(b => b.onclick = () => trStart(b.dataset.rtstart));
-  box.querySelectorAll('[data-rtedit]').forEach(b => b.onclick = () => trEditRoutine(b.dataset.rtedit));
+  box.querySelectorAll('[data-rtedit]').forEach(b => b.onclick = () => trOpenRoutine(b.dataset.rtedit));
+  box.querySelector('#tr-gym').onclick = trGymMenu;
   box.querySelectorAll('[data-wo]').forEach(b => b.onclick = () => trOpenWorkout(b.dataset.wo));
 }
 
 function trStart(rtId){
   if(trActive()) return trRefresh();
   const now = Date.now();
-  const a = {id: trUid(), name: 'Workout', start: now, ex: [], d: todayYMD()};
+  const a = {id: trUid(), name: 'Workout', start: now, ex: [], d: todayYMD(), gym: trGymCur()};
   const h = new Date().getHours();
   a.name = h < 11 ? 'Morning workout' : h < 17 ? 'Afternoon workout' : 'Evening workout';
   if(rtId){
@@ -353,6 +358,8 @@ function trStart(rtId){
   trSaveActive(a);
   try{ buzz('big'); }catch(e){}
   trView = 'workout'; trRefresh();
+  // v151: confirm bests the first time (per gym for machines).
+  if(a.ex.length) setTimeout(() => trGymAsk(a.ex.map(e => e.n)), HANDOFF);
 }
 
 function trPreFoods(a){
@@ -419,10 +426,11 @@ function trRenderLive(box, a){
     '<button class="tr-pill solid" id="tr-finish">Finish</button></div>';
   h += trPreCard(a);
   a.ex.forEach((e, ei) => {
-    const x = trEx(e.n), prev = trPrevious(e.n, a.id);
+    const x = trEx(e.n), prev = trPreviousGym(e.n, a.id), tgt = (x.t === 'w' || x.t === 'b') ? trTarget(e.n, e.sets.length) : null;
     const doneN = e.sets.filter(s => s.done).length;
     const rest = e.rest != null ? e.rest : trPrefs().rest;
-    h += '<div class="tr-card tr-ex' + (e.fold ? ' collapsed' : '') + '"><div class="tr-ex-h"><button class="tr-ex-n" data-exinfo="' + ei + '">' + esc(e.n) + '</button>' +
+    h += '<div class="tr-card tr-ex' + (e.fold ? ' collapsed' : '') + '"><div class="tr-ex-h"><button class="tr-ex-n rx-exn" data-exinfo="' + ei + '">' + trThumb(e.n) + '<span>' + esc(e.n) +
+      (tgt && !e.fold ? '<small class="rx-tg">' + esc(tgt.txt.replace(/^\d+ × /, '')) + (tgt.hint ? ' · ' + esc(tgt.hint.replace(/^Last: [^·]*· ?/, '')) : '') + '</small>' : '') + '</span></button>' +
       (e.fold ? '<span class="tr-mini">' + doneN + ' / ' + e.sets.length + '</span>' : '') + '<button class="tr-ex-more" data-exmenu="' + ei + '">⋯</button></div><div class="tr-body">' +
       '<div class="tr-ex-r"><button data-rest="' + ei + '">' + TR_I.timer + ' Rest ' + (rest ? fmtDur(rest) : 'off') + '</button><button data-noteb="' + ei + '">' + TR_I.note + (e.note ? ' Note' : ' Add note') + '</button></div>' +
       (e.note != null ? '<textarea class="tr-note" rows="1" data-note="' + ei + '" placeholder="Note">' + esc(e.note || '') + '</textarea>' : '') +
@@ -473,7 +481,7 @@ function trToggleSet(key){
   const [ei, si] = key.split(':').map(Number); const a = trActive(); const e = a.ex[ei], s = e.sets[si]; const x = trEx(e.n);
   if(!s.done){
     // An empty box takes last time's number, like Hevy.
-    const prev = trPrevious(e.n, a.id)[si];
+    const prev = trPreviousGym(e.n, a.id)[si];
     const fill = k => { if((s[k] === '' || s[k] == null) && prev && prev[k] != null && prev[k] !== '') s[k] = prev[k]; };
     if(x.t === 'c'){ fill('km'); fill('sec'); } else if(x.t === 't') fill('sec'); else { fill('kg'); fill('reps'); }
     if(x.t !== 'c' && x.t !== 't' && !(Number(s.reps) > 0)){ try{ buzz(); }catch(_){} const r = document.querySelector('[data-in="' + ei + ':' + si + ':reps"]'); if(r) r.focus(); return; }
@@ -483,7 +491,7 @@ function trToggleSet(key){
     const b = trBests(e.n, a.id);
     const doneHere = e.sets.filter((q, i) => i !== si && q.done && q.t !== 'w');
     const e1 = trE1rm(s.kg, s.reps), here = Math.max(0, ...doneHere.map(q => trE1rm(q.kg, q.reps)));
-    s.pr = s.t !== 'w' && trHistoryOf(e.n).length > 0 && ((e1 > 0 && e1 > b.e1 && e1 > here) || (x.t === 'b' && !s.kg && Number(s.reps) > b.reps));
+    s.pr = s.t !== 'w' && trGymHistory(e.n, a.id).length > 0 && ((e1 > 0 && e1 > b.e1 && e1 > here) || (x.t === 'b' && !s.kg && Number(s.reps) > b.reps));
     try{ if(s.pr) sfx('protein'); else sfx('scan'); buzz(); }catch(_){}
     const rest = e.rest != null ? e.rest : trPrefs().rest;
     if(rest && s.t !== 'w') trRestStart(rest); else if(rest) trRestStart(Math.min(rest, 60));
@@ -616,6 +624,7 @@ function trPickDone(){
   if(trPick.mode === 'swap') a.ex[trPick.idx] = mk(names[0]);
   else names.forEach(n => a.ex.push(mk(n)));
   trSaveActive(a); trRefresh();
+  setTimeout(() => trGymAsk(names), HANDOFF);
   setTimeout(() => { const cards = document.querySelectorAll('#view-train .tr-ex'); const c = cards[trPick.mode === 'swap' ? trPick.idx : cards.length - names.length]; if(c) c.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 80);
 }
 function trMakeExercise(name){
@@ -642,7 +651,7 @@ function trFinish(){
     if(confirm('No sets are ticked yet. Discard this workout?')){ trSaveActive(null); trRestStop(); trRefresh(); }
     return;
   }
-  const w = {id: a.id, name: a.name, d: a.d, start: a.start, end: Date.now(), rt: a.rt || null,
+  const w = {id: a.id, name: a.name, d: a.d, start: a.start, end: Date.now(), rt: a.rt || null, gym: a.gym || trGymCur(),
              ex: kept.map(e => ({n: e.n, note: e.note || '', sets: e.sets.map(s => { const o = {t: s.t || 'n', done: true};
                ['kg', 'reps', 'km', 'sec'].forEach(k => { if(s[k] !== '' && s[k] != null) o[k] = Number(s[k]); }); if(s.pr) o.pr = 1; return o; })}))};
   const st = trWorkoutStats(w);
@@ -680,6 +689,7 @@ function trShowSummary(w, st, prs, ups, fresh){
   if(prs.length){
     h += '<div class="section-title">NEW BESTS</div><div class="tr-card">' + prs.map(p => '<div class="tr-row"><span>🏆 ' + esc(p.n) + '</span><span><b>' + esc(trFmtSet(p.s, trEx(p.n))) + '</b></span></div>').join('') + '</div>';
   }
+  try{ h += trFeedbackHTML(w); }catch(e){}
   h += '<div class="section-title">' + (fresh ? 'ADDED TO TODAY' : 'LINKED TO THAT DAY') + '</div><div class="tr-card">' +
     '<div class="tr-lk"><span class="tr-ok">✓</span><span>Marked as a training day</span></div>' +
     '<div class="tr-lk"><span class="tr-ok">✓</span><span>Water target <b>+' + (top / 1000).toFixed(1) + ' L</b> <span class="tr-mini">(' + fmtMins(trWorkoutsOn(w.d).reduce((x, y) => x + (y.m || 0), 0)) + ' training)</span></span></div>' +
@@ -788,6 +798,14 @@ function trOpenExercise(name){
   const r = trRankOf(name);
   const b = trBests(name);
   let h = '<h3 style="margin-bottom:2px;">' + esc(name) + '</h3><div class="tr-mini" style="margin-bottom:14px;">' + esc([x.p].concat(x.s).join(' · ')) + ' · ' + esc(x.e) + '</div>';
+  // v151: the moving picture, and this gym's best for machines.
+  h += trClipHTML(name);
+  if(trMachineLike(name) || trGymBase(name)){
+    const gb = trGymBase(name);
+    h += '<div class="tr-card" style="padding:12px 16px;"><div class="tr-row" style="padding:0;"><span><b>' + (trMachineLike(name) ? 'Best at ' + esc(trGymName()) : 'Your best') + '</b><div class="tr-mini">' +
+      (gb && gb.kg != null && gb.how !== 'today' ? fmtKg(gb.kg) + ' kg × ' + gb.reps + ' (you set this)' : trGymHistory(name).length ? 'From your sets here' : 'Not set yet') + '</div></span>' +
+      '<button class="tr-pill" id="tr-ex-best">Change</button></div></div>';
+  }
   // Rank card.
   if(r){
     const L = r.L, unit = L.u === 'reps' ? ' reps' : ' kg';
@@ -835,7 +853,12 @@ function trOpenExercise(name){
       '<div class="tr-row" style="align-items:flex-start;"><span class="tr-mini" style="font-size:13px;">' + asDate(hh.d).toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}) + '</span><span style="font-size:12.5px; color:var(--t2);">' + hh.sets.map(s => esc(trFmtSet(s, x))).join(' · ') + '</span></div>').join('') + '</div>';
   } else h += '<div class="tr-empty">No sets logged yet.</div>';
   if(x.mine) h += '<button class="tr-ghost" id="tr-ex-del" style="border-style:solid; color:var(--danger);">Delete my exercise</button>';
+  h += '<div id="tr-ex-how"></div>';
   const body = document.getElementById('tr-ex-body'); body.innerHTML = h;
+  trHowTo(name, body.querySelector('#tr-ex-how'));
+  const cb = body.querySelector('#tr-ex-best');
+  if(cb) cb.onclick = () => { const g = trGyms(); const k = trGymKey(name); if(g.best[k]) delete g.best[k][name]; delete g.asked[name]; trGymSave(g);
+    closeSheet('tr-ex-backdrop'); setTimeout(() => trGymAsk([name], () => trOpenExercise(name)), HANDOFF); };
   const del = body.querySelector('#tr-ex-del');
   if(del) del.onclick = () => { if(!confirm('Delete ' + name + '? Past workouts keep their sets.')) return; trSave(TR_CUSTOM, trJSON(TR_CUSTOM, []).filter(c => c.n !== name)); TR_LIB = null; closeSheet('tr-ex-backdrop'); trRefresh(); };
   openSheet('tr-ex-backdrop');
@@ -849,7 +872,7 @@ function trEditRoutine(id){
   const rts = trJSON(TR_RT, []);
   trRtEdit = id ? JSON.parse(JSON.stringify(rts.find(r => r.id === id) || null)) : {id: trUid(), name: '', ex: [], fresh: true};
   if(!trRtEdit) return;
-  trRtRender();
+  trRtRender2();
   openSheet('tr-rt-backdrop');
 }
 function trRtRender(){
@@ -877,7 +900,7 @@ function trRtRender(){
 function trRoutineAdd(names){
   if(!trRtEdit) return;
   names.forEach(n => { if(!trRtEdit.ex.find(e => e.n === n)) trRtEdit.ex.push({n, sets: 3}); });
-  setTimeout(() => { trRtRender(); openSheet('tr-rt-backdrop'); }, HANDOFF);
+  setTimeout(() => { trRtRender2(); openSheet('tr-rt-backdrop'); }, HANDOFF);
 }
 
 /* ---------------------------------------------------------------------
@@ -972,7 +995,10 @@ function trMuscleScores(){
     const o = per[reg];
     // One main lift, or two that only help, before a muscle gets a colour.
     if(!o || o.w < 1){ out[reg] = {k: 'none', pct: null, lifts: o ? o.lifts : []}; return; }
-    const pct = Math.round(o.sum / o.w);
+    // v151: a muscle is ranked on the lifts that mainly train it. Lifts where it only
+    // helps (triceps on a press) count only when there's no main lift.
+    const main = o.lifts.filter(l => l.main);
+    const pct = main.length ? Math.round(main.reduce((s, l) => s + l.r.pct, 0) / main.length) : Math.round(o.sum / o.w);
     const k = pct >= 95 ? 'champ' : pct >= 50 ? 'strong' : pct >= 20 ? 'avg' : 'weak';
     out[reg] = {k, pct, lifts: o.lifts.sort((a, b) => b.main - a.main || b.r.pct - a.r.pct)};
   });

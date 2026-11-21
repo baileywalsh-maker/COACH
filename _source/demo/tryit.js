@@ -1,4 +1,4 @@
-// "Try v150" buttons for the demo. Edit per version.
+// "Try v151" buttons for the demo. Edit per version.
 (function(){
   const closeAll = () => ['add-backdrop','review-backdrop','weighin-backdrop','tr-pick-backdrop','tr-ex-backdrop','tr-fin-backdrop','tr-rt-backdrop','tr-menu-backdrop'].forEach(id => { try{ closeSheet(id); }catch(e){} });
   // Sample training so the demo has history, ranks and routines to show.
