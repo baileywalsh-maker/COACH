@@ -37,6 +37,11 @@ Muse may change COACH's code, not just the data. When it does:
 
 Claude checks this list and the git history before every build.
 
+## Workouts from Hevy (v150)
+Workouts imported from Hevy look like any other workout, plus `src: "hevy"` and, when Hevy had a description,
+`note` (the workout's own note). Ids start with `hevy`. Exercises COACH didn't know are added to
+`coachtrain:custom` (in `store`). Muse can read and edit them like any workout.
+
 ### Muse's app changes
 - (none yet)
 

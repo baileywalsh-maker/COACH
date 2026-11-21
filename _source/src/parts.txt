@@ -56,4 +56,5 @@ js/42e-body-card.js
 js/43-food-library-and-startup.js
 js/44-muse-sync.js
 js/44-train.js
+js/44b-hevy-import.js
 99-tail.html

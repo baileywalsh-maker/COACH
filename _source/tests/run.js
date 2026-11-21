@@ -1036,6 +1036,59 @@ const TESTS = {
     check('v149 ranks: a Face Pull set gets a rank', rk && rk.tier >= 0 && rk.u === 'kg', JSON.stringify(rk));
     check('v149: no errors', !p.errs.length, p.errs.join(' | '));
     s.close(); await p.context().close();
+  },
+  // v150: one-time Hevy import (made-up workouts; the repo is public).
+  async hevy(b){
+    const s = serve(NEW); const p = await page(b, s.url, {wait: 2500});
+    const CSV = [
+      '"title","start_time","end_time","description","exercise_title","superset_id","exercise_notes","set_index","set_type","weight_kg","reps","distance_km","duration_seconds","rpe"',
+      '"Push","3 Nov 2025, 18:00","3 Nov 2025, 19:00","Felt good, ""strong"" day","Treadmill",,,0,"normal",,,0.4,300,',
+      '"Push","3 Nov 2025, 18:00","3 Nov 2025, 19:00","Felt good, ""strong"" day","Bench Press (Barbell)",,"Warm up, then work",0,"warmup",40,10,,,',
+      '"Push","3 Nov 2025, 18:00","3 Nov 2025, 19:00","Felt good, ""strong"" day","Bench Press (Barbell)",,"Warm up, then work",1,"normal",70,8,,,',
+      '"Push","3 Nov 2025, 18:00","3 Nov 2025, 19:00","Felt good, ""strong"" day","Seated Shoulder Press (Machine)",,,0,"normal",40,8,,,',
+      '"Arms","5 Nov 2025, 17:30","5 Nov 2025, 18:10","line one',
+      'line two","Seated Incline Curl (Dumbbell)",,,0,"normal",10,10,,,',
+      '"Arms","5 Nov 2025, 17:30","5 Nov 2025, 18:10","line one',
+      'line two","Knee Raise Parallel Bars",,,0,"normal",,12,,,',
+      '"Push","10 Nov 2025, 18:00","10 Nov 2025, 19:05","","Bench Press (Barbell)",,,0,"normal",72.5,8,,,',
+      '"Push","10 Nov 2025, 18:00","10 Nov 2025, 19:05","","Bench Press (Barbell)",,,1,"dropset",50,10,,,'].join('\n');
+    // One workout already in COACH at the same minute as the last Hevy one: must be kept, and the Hevy copy skipped.
+    await p.evaluate(()=>{ const st = new Date(2025, 10, 10, 18, 0).getTime();
+      trSave(TR_W + 'mine1', {id: 'mine1', name: 'My push', d: ymd(new Date(st)), start: st, end: st + 3600e3, ex: [{n: 'Bench Press (Barbell)', sets: [{t: 'n', kg: 60, reps: 5, done: true}]}]});
+      trSave(TR_IDX, [{id: 'mine1', d: ymd(new Date(st)), s: st, n: 'My push', v: 300, k: 1, m: 60, x: ['Bench Press (Barbell)']}]); TR_LIB = null; trUsageCache = null; });
+    const r = await p.evaluate(CSV => {
+      const a = hevyImport(CSV), again = hevyImport(CSV);
+      const ws = trIdx().map(x => trLoadW(x.id));
+      const push = ws.find(w => w.name === 'Push'), arms = ws.find(w => w.name === 'Arms');
+      return {a, again, n: ws.length, mine: !!trLoadW('mine1') && trLoadW('mine1').name === 'My push',
+        pushEx: push && push.ex.map(e => e.n), note: push && push.note, armsNote: arms && arms.note, exNote: push && push.ex[1].note,
+        warm: push && push.ex[1].sets[0].t, tread: push && push.ex[0].sets[0], armsEx: arms && arms.ex.map(e => [e.n, trEx(e.n).t]),
+        training: isTrainingDay(asDate(push.d)) && isTrainingDay(asDate(arms.d)), date: push.d,
+        sorted: trIdx().every((x, i, l) => !i || l[i - 1].s <= x.s), ranked: !!trRankOf('Bench Press (Barbell)')};
+    }, CSV);
+    check('v150 Hevy CSV: workouts, sets and notes come in (quotes, commas and line breaks kept)',
+      r.a.added === 2 && r.a.skipped === 1 && r.n === 3 && r.note === 'Felt good, "strong" day' && r.armsNote === 'line one\nline two' && r.exNote === 'Warm up, then work' && r.warm === 'w' && r.date === '2025-11-03', JSON.stringify(r));
+    check('v150 Hevy CSV: names mapped to COACH\'s, unknown ones become your own exercises',
+      JSON.stringify(r.pushEx) === JSON.stringify(['Treadmill', 'Bench Press (Barbell)', 'Shoulder Press (Machine)']) &&
+      r.armsEx[0][0] === 'Incline Curl (Dumbbell)' && r.armsEx[1][0] === 'Knee Raise Parallel Bars' && r.armsEx[1][1] === 'b' && r.a.made.join() === 'Knee Raise Parallel Bars', JSON.stringify([r.pushEx, r.armsEx, r.a.made]));
+    check('v150 Hevy CSV: treadmill keeps distance and time; days marked as training; list in order; ranks work',
+      r.tread.km === 0.4 && r.tread.sec === 300 && r.training && r.sorted && r.ranked, JSON.stringify([r.tread, r.training, r.sorted, r.ranked]));
+    check('v150 Hevy CSV: running it again adds nothing; your own workout at the same time is kept', r.again.added === 0 && r.again.skipped === 3 && r.mine, JSON.stringify([r.again, r.mine]));
+    const j = await p.evaluate(()=>{ const r = hevyImport(JSON.stringify({workouts: [{title: 'Legs', start_time: '2025-12-01T10:00:00+00:00', end_time: '2025-12-01T10:45:00+00:00', description: '',
+      exercises: [{title: 'Squat (Barbell)', notes: null, sets: [{type: 'normal', weight_kg: 100, reps: 5, distance_meters: null, duration_seconds: null}]}]}]}));
+      return {r, has: trIdx().some(x => x.n === 'Legs')}; });
+    check('v150 Hevy JSON: the API\'s workout shape imports too', j.r.added === 1 && j.has && !j.r.made.length, JSON.stringify(j));
+    await p.evaluate(()=>{ document.querySelectorAll('.sheet-backdrop.open').forEach(x => { try{ closeSheet(x.id); }catch(e){} }); setMode('train'); });
+    await p.waitForTimeout(300);
+    await p.evaluate(()=>{ const t = [...document.querySelectorAll('#tr-tabs .view-tab')].find(x => /History/.test(x.textContent)); if(t) t.click(); });
+    await p.waitForTimeout(500);
+    const ui = await p.evaluate(()=>({card: !!document.getElementById('hevy-card'), file: !!document.getElementById('hevy-file'), txt: (document.getElementById('hevy-card') || {}).textContent || ''}));
+    const bad = await p.evaluate(()=>{ try{ hevyImport('just,some,text\n1,2,3'); return 'no error'; }catch(e){ return 'error'; } });
+    const lib = await p.evaluate(()=>{ TR_LIB = null; trLib(); TR_LIB = null; return {n: trLib().length, sq: !!trEx('Squat (Barbell)').sl}; });
+    check('v150 fix: rebuilding the exercise list keeps the whole library', lib.n >= 888 && lib.sq, JSON.stringify(lib));
+    check('v150 Hevy: card in Train > History; a wrong file is refused', ui.card && ui.file && /Hevy/.test(ui.txt) && bad === 'error', JSON.stringify(ui) + ' bad=' + bad);
+    check('v150: no errors', !p.errs.length, p.errs.join(' | '));
+    s.close(); await p.context().close();
   }
 };
 

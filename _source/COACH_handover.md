@@ -7,7 +7,7 @@ This chat is for COACH updates only. **The setup and rules are in `CLAUDE.md`** 
 ## What COACH is
 My own calorie, nutrition, hydration **and training** tracker, for personal use only (not a product). It's a PWA that runs from my iPhone home screen. All data lives on the phone, with a daily automatic backup to a private gist on my GitHub. **Everything syncs with Muse** through a private repo (see v146).
 
-Current version: **v149**.
+Current version: **v150**.
 
 ## Where it's hosted (changed in v142)
 - **GitHub Pages**, not Netlify. Repo **`COACH`** (capitals) on my account `baileywalsh-maker`. Live at **https://baileywalsh-maker.github.io/COACH/** (the link is case-sensitive).
@@ -35,16 +35,25 @@ Current version: **v149**.
   - `css/`: 5 files (icons and fonts, design system, deep pages, `03b-train.css`, then the v120 redesign layer, which must stay last)
   - `js/`: 50 files named by what they hold. They are one script when joined, so order matters. New: `44-muse-sync.js`, then `44-train.js`.
   - The food data is inserted at `<!--COACH_DATA-->` in `50-page.html`.
-- `data/`: `LOCAL_FOODS.json`, `LABEL_DB.json`, `UK_BLOB.txt`, `AU_BLOB.txt`, `USDA_BLOB.txt`, `EXERCISES.json` (888 exercises), `STRENGTH.json` (Strength Level standards for 64 lifts). Edit the JSON as JSON, never by hand.
+- `data/`: `LOCAL_FOODS.json`, `LABEL_DB.json`, `UK_BLOB.txt`, `AU_BLOB.txt`, `USDA_BLOB.txt`, `EXERCISES.json` (888 exercises), `STRENGTH.json` (Strength Level standards for 158 lifts). Edit the JSON as JSON, never by hand.
 - `static/`: `manifest.json`, `zxing.js`, icons (the live v143 ones), `uk_packets.txt`.
 - `sw.template.js`: the service worker. The food data and packets sit in a `coach-data` cache that is kept between versions.
 - `VERSION`: bump this for every build.
 - `build.py`: builds `dist/` and `index.preview.html` (both ignored by git). `ship.sh` runs it, tests, and copies `dist/` into the root.
 - `demo/`: `seed_body.js` (90 days of example data), `tryit.js` (the "Try v…" buttons, edit per version), `make_demo.py` (builds `demo/coach_demo.html` from `index.preview.html`).
-- `tests/run.js`: the test pack, **155 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
+- `tests/run.js`: the test pack, **163 checks**. Run it through `ship.sh`, or as `node tests/run.js --old <folder of the live files only> --new dist` (set `CHROME=` to a Chrome path if Playwright's own browser isn't installed). `--only <suite>` runs one suite. It covers data surviving updates, targets lining up, reviews, hydration maths, remembered scores, the offline data file, the scanner (fake camera), cloud backup (mock GitHub), the weigh-in, every screen's speed and errors, the v142 store, search (v143), Train (v144) and Muse sync with a mock GitHub (v146).
   - The storage checks swap a v142+ `--old` build's store for plain localStorage, so they always test the move from a v141-style phone (v143).
   - Note: the v141 source was rebuilt in this chat from the v140 source plus the v141 app (it builds byte-for-byte the same). The ~14 extra checks written in v141 were lost with it. One v140 check was updated to the v141 budget wording.
 - `proto/`: concept prototypes, not part of the app.
+
+## v150: Hevy import + library fix
+- **Import from Hevy** (Train > History, card at the top): reads Hevy's own export file (Hevy: Settings > Export & Import Data > Export workouts, a CSV) or Hevy API JSON. All on the phone; the public repo never sees workout data. Code: `src/js/44b-hevy-import.js`.
+  - Ids `hevy<start in base36>`, `src: 'hevy'`, Hevy's description saved as the workout's `note` (shown on the workout page). Set types warmup/dropset/failure → w/d/f. Distance in km, time in sec. lbs and miles converted.
+  - Name map `HEVY_NAMES` (Seated Incline Curl (Dumbbell) → Incline Curl (Dumbbell), Seated Shoulder Press (Machine) → Shoulder Press (Machine)); other unknown names become custom exercises (type guessed from the sets).
+  - Skips any workout that starts in the same minute as one already there, so it is safe to run again and never replaces anything. Trophies set where a set beat the running best. Days marked as training.
+  - Claude can read Bailey's Hevy through the Hevy connector (9 pages of 10 workouts, Nov 2026), but the private `coach-sync` repo was not reachable from the cloud, so the import runs on the phone from Hevy's file.
+- **Fix:** rebuilding the exercise list (new custom exercise, deleting one, a Muse sync) used to lose the whole built-in library until the app reopened, because the data block can only be read once. The parsed rows are now kept (`TR_ROWS`).
+- Tests: `hevy` suite (8 checks).
 
 ## v149: data fill-ins
 - **Bundaberg:** Ginger Beer Aussie Original (182 kJ/100 ml) and Diet (34 kJ) from bundaberg.com; Spiced (184 kJ) from its pack label as listed by Woolworths AU/NZ (not on Bundaberg's site). 375 ml bottle. Sugar/sodium in `LABEL_DB`.
@@ -134,7 +143,7 @@ Current version: **v149**.
 - 567 of the 27,629 UK packets have a blank brand (Bundaberg Ginger Beer 9311493003289 is one of them), so brand searches miss those. The search needs exact letters ("bunderberg" finds nothing).
 
 ## Open items
-1. **Hevy import:** Bailey is sending his Hevy workouts CSV. Build a one-time import so previous numbers, bests and ranks start from his real history.
+1. **Hevy import:** built in v150. Bailey runs it once from Train > History with Hevy's exported file.
 2. **Workout feedback from COACH:** mock on COACH designs (21 Nov): ① Next time (weight to use), ② vs last time (up/same/down), ③ Your balance (weakest group, untrained 7+ days). Waiting for Bailey's pick.
 3. **Strength muscle map is general, not daily** (Bailey, 21 Nov): it already lives in Train → Exercises (weakest groups over all time). The old "light up today's muscles on the Day card" idea is dropped.
 4. About 1,880 packets still have no brand anywhere (not on Open Food Facts either).

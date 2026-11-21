@@ -27,11 +27,13 @@ function trUid(){ return Date.now().toString(36) + Math.random().toString(36).sl
    Set types: w = kg x reps, b = bodyweight reps (+kg optional),
               a = assisted (kg taken off), t = time, c = distance + time
    --------------------------------------------------------------------- */
-let TR_LIB = null, TR_BY = null;
+let TR_LIB = null, TR_BY = null, TR_ROWS = null;
 function trLib(){
   if(TR_LIB) return TR_LIB;
-  let rows = [];
-  try{ rows = JSON.parse(coachData('EXERCISES') || '[]'); }catch(e){ rows = []; }
+  // v150 fix: the data block can only be read once, so keep the parsed rows.
+  // Before, rebuilding the list (new custom exercise, Muse sync) lost the whole library.
+  if(!TR_ROWS){ try{ TR_ROWS = JSON.parse(coachData('EXERCISES') || '[]'); }catch(e){ TR_ROWS = []; } }
+  const rows = TR_ROWS;
   const custom = trJSON(TR_CUSTOM, []);
   TR_LIB = rows.map((r, i) => ({n: r[0], e: r[1], p: r[2], s: r[3] ? r[3].split(',') : [], t: r[4] || 'w', sl: r[5] || '',
                                 al: r[6] ? r[6].split('|') : [], k: r[7] || '', core: i < 180}));
@@ -706,12 +708,14 @@ function trHistCard(w){
 }
 function trRenderHistory(box){
   const idx = trIdx().slice().reverse();
-  if(!idx.length){ box.innerHTML = '<div class="tr-empty">Finished workouts show here.</div>'; return; }
-  let h = '', month = '';
+  // v150: Hevy import card at the top.
+  if(!idx.length){ box.innerHTML = hevyCardHTML() + '<div class="tr-empty">Finished workouts show here.</div>'; hevyBindCard(box); return; }
+  let h = hevyCardHTML(), month = '';
   idx.forEach(w => { const m = asDate(w.d).toLocaleDateString('en-GB', {month: 'long', year: 'numeric'});
     if(m !== month){ month = m; h += '<div class="section-title">' + m.toUpperCase() + '</div>'; } h += trHistCard(w); });
   box.innerHTML = h;
   box.querySelectorAll('[data-wo]').forEach(b => b.onclick = () => trOpenWorkout(b.dataset.wo));
+  hevyBindCard(box);
 }
 function trOpenWorkout(id){
   const w = trLoadW(id); if(!w) return;
@@ -719,7 +723,9 @@ function trOpenWorkout(id){
   const prs = []; w.ex.forEach(e => e.sets.forEach(s => { if(s.pr) prs.push({n: e.n, s}); }));
   trShowSummary(w, st, prs, [], false);
   const body = document.getElementById('tr-fin-body');
-  let sets = '<div class="section-title">SETS</div>';
+  // v150: the workout's own note (Hevy descriptions come in here).
+  let sets = (w.note ? '<div class="section-title">NOTE</div><div class="tr-card" style="padding:12px 16px;">' + esc(w.note) + '</div>' : '') +
+    '<div class="section-title">SETS</div>';
   w.ex.forEach(e => { const x = trEx(e.n); sets += '<div class="tr-card"><div class="tr-ex-n" style="margin-bottom:6px;">' + esc(e.n) + '</div>' +
     e.sets.map((s, i) => '<div class="tr-row"><span class="tr-mini">' + (s.t === 'w' ? 'Warm-up' : 'Set ' + (i + 1)) + '</span><span>' + esc(trFmtSet(s, x)) + (s.pr ? ' 🏆' : '') + '</span></div>').join('') +
     (e.note ? '<div class="tr-mini" style="margin-top:6px;">' + esc(e.note) + '</div>' : '') + '</div>'; });
